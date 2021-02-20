@@ -3,7 +3,7 @@ title: "Google Chrome のアプリや拡張機能、テーマが保存されて�
 emoji: "😊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["google", "Chrome", "アプリ", "拡張機能", "テーマ"]
-published: false
+published: true
 ---
 
 今回が初投稿です。よろしくお願いします。
