@@ -19,7 +19,7 @@ iOS 9.3
 # 準備
 Charles をダウンロードします。
 以下のサイトにアクセスしてDOWNLOADボタンを押して、お使いの環境に合わせてダウンロードしてください。
-<a href="http://www.charlesproxy.com/" target="_blank">http://www.charlesproxy.com/</a>
+<a href="http://www.charlesproxy.com/" target="_blank">Charles</a>
 
 ダウンロードが完了したら Charles を起動します。初回に何回かダイアログが出ますが、すべて肯定するボタンを押していけばOKです。
 
