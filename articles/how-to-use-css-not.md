@@ -3,7 +3,7 @@ title: "CSS の :not() の使いかた"
 emoji: "🍣"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["CSS"]
-published: false
+published: true
 ---
 
 CSS でスタイルを適用したいけど、ここだけは適用したくない！ っていうときがたまにあります。
