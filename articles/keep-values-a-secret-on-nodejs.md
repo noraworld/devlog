@@ -3,7 +3,7 @@ title: "【Node.js / Express 版】GitHub に公開したくない変数や値�
 emoji: "📚"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Node.js", "Express", "GitHub", "Git"]
-published: false
+published: true
 ---
 
 GitHub にパブリックでソースコードを公開するときに、そのソースコードに API key やパスワードなどが含まれていた場合は、その部分だけを隠す必要があります。
