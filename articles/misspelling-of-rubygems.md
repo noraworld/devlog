@@ -3,7 +3,8 @@ title: "Linux で Rubygems がインストールできなかった超初歩的�
 emoji: "🙌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["rubygems", "Ruby", "Gem", "Linux"]
-published: false
+published: true
+order: 4
 ---
 
 環境: Vagrant (CentOS 7.1)
