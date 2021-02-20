@@ -61,3 +61,21 @@ CSS でスタイルを適用したいけど、ここだけは適用したくな�
 #container :not(h1) /* OK */
 #container:not(h1)  /* NG */
 ```
+
+# container 要素の子要素 img に適用させたいけど、emoji クラスがある img は除外
+```lang:index.html
+<div id="container">
+  <img src="something.jpg">
+  <img src="something.png">
+  <img src="something.gif" class="emoji">
+</div>
+```
+
+```lang:style.css
+#container img:not(.emoji) {
+  /* something */
+  /* something.jpg と something.png には適用され、something.gif には適用されない */
+}
+```
+
+:warning: さきほどとは逆で、`img`と`:not()`の間にはスペースを**入れないで**ください
