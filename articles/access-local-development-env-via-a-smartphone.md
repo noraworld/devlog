@@ -27,18 +27,15 @@ Charles をダウンロードします。
 1. Wi-Fi に接続します。
 
 2. Charles の画面上部のメニューバーから `Proxy` -> `Proxy Settings...` を選び、HTTP Proxy 欄の Port を確認します。デフォルトでは8888になっていますが、変更したい場合は他と競合しないようなポート (1024〜65535) を各自で設定してください。
-
 ![http_proxy_settings_charles.png](https://qiita-image-store.s3.amazonaws.com/0/113895/0dd5e120-2225-285d-ce88-881f0f023e83.png)
 
 3. Mac の IP アドレスを確認します。`システム環境設定` アプリを起動し、`ネットワーク`をクリックします。Wi-Fi タブに Mac の IP アドレスが書かれているのでそれをメモします。
-
 ![ip_check.png](https://qiita-image-store.s3.amazonaws.com/0/113895/723f565f-887f-79e7-7039-beee87071bd3.png)
 
 # iPhone 側の設定
 1. Mac と同じく Wi-Fi に接続します。接続する Wi-Fi は、**Mac と同じでなければいけません** 。
 
 2. Wi-Fi の接続ができていれば`設定`アプリの `Wi-Fi`タブに接続済みの Wi-Fi のネットワーク名が表示されているはずです。その欄の右端にある `i` の丸いマークをタップするとネットワークの詳細画面が表示されます。詳細画面の一番下に `HTTPプロキシ` という項目があり、デフォルトでは「オフ」になっているので「手動」に変更します。すると入力項目が出てくるので、「サーバ」に先ほど確認した Mac の IP アドレスを入力し、「ポート」に Charles で設定したポート番号 (デフォルト: 8888) を入力します。
-
 <img width="320" alt="http_proxy_settings_ios.png" src="https://qiita-image-store.s3.amazonaws.com/0/113895/48e105a1-e63e-37a8-8fd3-f4ef20830ca6.png">
 
 :warning: 画像ではポートが8888になっていますが、Charles でポートを変更した場合はそのポート番号を入力してください。
