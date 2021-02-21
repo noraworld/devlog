@@ -95,7 +95,7 @@ stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
 
 すると `lib/tasks` ディレクトリに `unicorn.rake` というファイルが生成されます。このファイルを開いて以下を追加します。
 
-```ruby:lib/tasks/unicorn.rb
+```ruby:lib/tasks/unicorn.rake
 namespace :unicorn do
 
   # Tasks
