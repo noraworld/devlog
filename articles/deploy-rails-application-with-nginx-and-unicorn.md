@@ -277,25 +277,28 @@ production:
   secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 ```
 
-これは本番環境で起動するためのキーを設定するものです。`secret_key_base:` の値が `<%= ENV["SECRET_KEY_BASE"] %>` となっていて、ここに環境変数で設定したランダムな文字列が設定されます。このファイルは特に編集する必要はないので、確認だけでOKです。
+これは本番環境で起動するためのキーを設定するものです。`secret_key_base:` の値が `<%= ENV["SECRET_KEY_BASE"] %>` となっていて、ここに環境変数で設定したランダムな文字列が設定されます。このファイルは特に編集する必要はないので、確認だけでOKです。もし `<%= ENV["SECRET_KEY_BASE"] %>` ではなくランダムな文字列が設定されていたら `<%= ENV["SECRET_KEY_BASE"] %>` に書き換えてください。
 
-では、環境変数に `SECRET_KEY_BASE` を設定しましょう。まずはランダムなキーを生成します。
+では、環境変数に `SECRET_KEY_BASE` を設定しましょう。まずはランダムなキーを生成します。Railsのプロジェクトディレクトリで以下のコマンドを実行します。
 `$ rake secret`
 
 実行して出てきたランダムな文字列をコピーします。
 
-次に以下を実行します。
-`$ SECRET_KEY_BASE={ランダムなキー}`
+次に `.bash_profile` ( `.bashrc` ) に以下の1行を追加します。
 
-`{ランダムなキー}`の箇所に `$ rake secret` で生成した文字列をペーストしてください。前後の`{}`は要りません。
+```:.bash_profile
+export SECRET_KEY_BASE=ランダムなキー
+```
 
-そしてこれを環境変数にエクスポートします。
-`$ export SECRET_KEY_BASE`
+`ランダムなキー`の箇所に `$ rake secret` で生成した文字列をペーストしてください。
+
+そして `.bash_profile` を再読み込みして反映させます。
+`$ source ~/.bash_profile`
 
 これで環境変数が設定できました。ちゃんと設定できているかを確認するには以下のコマンドを実行します。
 `$ env | grep SECRET_KEY_BASE`
 
-`SECRET_KEY_BASE={先ほど設定したランダムなキー}` が表示されればOKです。
+`SECRET_KEY_BASE=先ほど設定したランダムなキー` が表示されればOKです。
 
 最後に Unicorn をもう一度起動します。
 `$ rake unicorn:start`
