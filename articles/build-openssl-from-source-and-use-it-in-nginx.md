@@ -10,6 +10,42 @@ order: 27
 # はじめに
 今まではパッケージマネージャのアップデートでOpenSSLのバージョンをアップデートしていましたが、先日はじめてソースからビルドして使用してみたので、そのやり方をまとめます。
 
+# TL;DR
+
+```bash
+$ wget https://www.openssl.org/source/openssl-x.x.x.tar.gz
+$ tar xzvf openssl-x.x.x.tar.gz
+$ cd openssl-x.x.x
+$ ./config shared zlib
+$ make
+$ sudo make install
+$ /usr/local/ssl/bin/openssl version
+```
+
+```diff:~/.bashrc
++ PATH="/usr/local/ssl/bin:$PATH"
+```
+
+```bash
+$ source ~/.bashrc
+$ openssl version
+$ wget http://nginx.org/download/nginx-x.xx.x.tar.gz
+$ tar xzvf nginx-x.xx.x.tar.gz
+$ cd nginx-x.xx.x
+$ ./configure --with-http_ssl_module --with-http_v2_module --with-openssl=展開したOpenSSLのディレクトリのパス
+$ make
+$ sudo make install
+$ nginx -V
+```
+
+**サーバを再起動する**
+
+```bash
+$ sudo nginx
+```
+
+うまくいかない場合は以下に続く記事をお読みください。
+
 # ソースからビルドする理由
 個人的には以下の3つが挙げられます
 
