@@ -12,14 +12,25 @@ PHPをインストールしてNginxの設定でCGIを実行できるようにす
 
 # PHPのインストール
 以下のコマンドを実行します。
-`$ sudo yum -y install php`
+
+```bash
+$ sudo yum -y install php
+```
 
 インストールできたかどうかを確認します。
-`$ php --version`
+
+```bash
+$ php --version
+```
+
+:memo: 最新版のPHPをインストールしたい場合、あるいはプロジェクトごとに異なるバージョンのPHPを簡単に管理したい場合は、phpenvをおすすめします。phpenv利用したPHPのインストール手順については「[phpenvで最新版のPHPをインストールしてWebサイトで使用する](http://qiita.com/noraworld/items/26e516e0245ff619f648)」を参考にしてください。
 
 # PHP-FPMのインストール
 以下のコマンドを実行します。
-`$ sudo yum -y install php-fpm`
+
+```bash
+$ sudo yum -y install php-fpm
+```
 
 # Nginxのインストール
 こちらの記事を参照してください。
@@ -37,7 +48,10 @@ Apacheを使用する場合は特に変更することはありませんが、Ng
 ```
 
 設定したら、PHP-FPMを起動(再起動)します
-`$ sudo systemctl restart php-fpm`
+
+```bash
+$ sudo systemctl restart php-fpm
+```
 
 # Nginxの設定を変更
 Nginxの設定を変更してPHPを実行できるようにします。`/etc/nginx/conf.d/default.conf` を編集します。今回はホームディレクトリ以下に `www` というディレクトリを作り、その中にある `index.php` を実行できるようにします。
@@ -75,7 +89,10 @@ Nginxの設定を変更してPHPを実行できるようにします。`/etc/ngi
 また、`location /`ブロックの`index`に`index.php`を追加することを忘れずにしてください。なお、ここでいう`index.php`はファイルを省略した場合に参照するファイルなので、たとえば`info.php`というファイルにアクセスしたい場合でもNginx設定ファイル内の`index.php`の部分は変更する必要はありません。
 
 上記を設定に変更したらNginxを起動(再起動)します。
-`$ sudo systemctl restart nginx`
+
+```bash
+$ sudo systemctl restart nginx
+```
 
 # PHPファイルを作成
 PHPのファイルを作成します。ホームディレクトリに`www`ディレクトリを作り、その中に`index.php`を作成します。
@@ -98,4 +115,7 @@ $ vi ~/www/index.php
 
 # 403 Forbidden と表示されたとき
 ホームディレクトリのパーミッションが正しいか確認してください。パーミッションを正しく設定するには以下を実行します。
-`$ chmod 755 /home/ユーザ名/`
+
+```bash
+$ chmod 755 /home/ユーザ名/
+```
