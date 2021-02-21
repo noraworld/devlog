@@ -3,7 +3,7 @@ title: "CentOS7 + Nginx で WordPress をインストールする"
 emoji: "💭"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["WordPress", "nginx", "CentOS"]
-published: false
+published: true
 order: 17
 ---
 
