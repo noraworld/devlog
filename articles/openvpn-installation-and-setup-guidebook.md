@@ -336,18 +336,55 @@ IPフォワーディングを有効にします。`/etc/ufw/sysctl.conf`を開�
 ```
 
 ## IPマスカレード
-IPマスカレードを有効にします。`/etc/ufw/before.rules`を開き、以下を追加します。一番下の行に`COMMIT`と書かれているはずなので、この下に追加していきます。
+IPマスカレードを有効にします。その前に、インターネットにつながっているネットワークインターフェースの名称を調べます。`ifconfig` を実行します。
+
+```bash
+$ ifconfig
+ens3 Link encap:Ethernet HWaddr ab:cd:ef:gh:ij:kl
+ inet addr:216.58.197.228 Bcast:216.58.198.255 Mask:255.255.254.0
+ inet6 addr: 0123:4567:890:1234:216:58:197:228/64 Scope:Global
+ inet6 addr: abcd::efgh:ijkl:mnop:qrst/64 Scope:Link
+ UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+ RX packets:1892979 errors:0 dropped:0 overruns:0 frame:0
+ TX packets:167294 errors:0 dropped:0 overruns:0 carrier:0
+ collisions:0 txqueuelen:1000
+ RX bytes:241710378 (241.7 MB) TX bytes:107644167 (107.6 MB)
+
+lo Link encap:Local Loopback
+ inet addr:127.0.0.1 Mask:255.0.0.0
+ inet6 addr: ::1/128 Scope:Host
+ UP LOOPBACK RUNNING MTU:65536 Metric:1
+ RX packets:160 errors:0 dropped:0 overruns:0 frame:0
+ TX packets:160 errors:0 dropped:0 overruns:0 carrier:0
+ collisions:0 txqueuelen:1
+ RX bytes:11840 (11.8 KB) TX bytes:11840 (11.8 KB)
+
+tun0 Link encap:UNSPEC HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
+ inet addr:10.8.0.1 P-t-P:10.8.0.2 Mask:255.255.255.255
+ UP POINTOPOINT RUNNING NOARP MULTICAST MTU:1500 Metric:1
+ RX packets:38514 errors:0 dropped:0 overruns:0 frame:0
+ TX packets:60151 errors:0 dropped:0 overruns:0 carrier:0
+ collisions:0 txqueuelen:100
+ RX bytes:8130438 (8.1 MB) TX bytes:69942984 (69.9 MB)
+
+```
+
+複数のインターフェースが出てくると思いますが、その中で `inet addr` がグローバル IP アドレスになっているものを探してください。上記の例でいうと、`ens3` がそれに該当します。それを覚えておきます。
+
+`/etc/ufw/before.rules`を開き、以下を追加します。一番下の行に`COMMIT`と書かれているはずなので、この下に追加していきます。
 
 ```diff:/etc/ufw/before.rules
 COMMIT
 +
 + *nat
 + :POSTROUTING ACCEPT [0:0]
-+ -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
++ -A POSTROUTING -s 10.8.0.0/24 -o ens3 -j MASQUERADE
 + COMMIT
 ```
 
 :warning: `POSTROUTING` のIPアドレスはOpenVPNサーバの設定の`server`の箇所にあるものと同じIPアドレス、サブネットマスクを設定します。サブネットマスクが`255.255.255.0`の場合は`/24`となります。この記事の例と同じIPアドレスの設定にした場合は、ここでの設定も同じでOKです。
+
+:warning: `ens3` という箇所は、先ほど `ifconfig` で調べた際の、インターネットにつながっているネットワークインターフェースの名称です。別の名称だった場合は変更してください。多くの場合は `ens3` や `eth0` などになっているかと思われます。
 
 ここまで設定できたらファイアウォールを再起動して変更を反映させます。
 
@@ -358,15 +395,19 @@ $ sudo ufw reload
 エラーが出なければOKです。
 
 # OpenVPNサーバの起動
-いよいよここでOpenVPNを起動します。起動の前にOpenVPNサーバの設定を読み込む必要があるので、以下を実行します。
+### **【注意】さくらの VPS における「ネットワークインターフェース」について**
+実は、今までずっと問題なく接続できていた VPN が、数週間前に、設定も全くいじっていないのに突然接続できなくなってしまいました。その原因が数週間ずっとわからず、数週間調べ続けてようやくわかったのですが、どうやら**さくらの VPS で、ネットワークインターフェース名が変わった**ような気がします。
 
-```bash
-$ sudo openvpn --config /etc/openvpn/server.conf
-```
+もちろん確証はないのですが、`ifconfig` を実行したときの、インターネットにつながっているインターフェースの名称が、今まで `eth0` だったのが突然 `ens3` に変わっていました。その影響で、VPN 接続でインターネットに接続できなくなってしまいました。
 
-エラーなど特になにもでなければOKです。
+ここからが注意ポイントなのですが、インターフェース名が変わったにもかかわらず、さくらの VPS コントロールパネルでは、`eth0` と表記されています。
 
-問題なければOpenVPNを起動します。
+![sakura_network_interface.png](https://qiita-image-store.s3.amazonaws.com/0/113895/68c908d0-5a7c-d673-a359-13da5144c07d.png)
+
+コントロールパネルで見る限りでは、インターネットにつながっているインターフェースは `eth0` となっていますが、実際には違います。なので、**必ず `ifconfig` の実行結果を確認**してください。これはさくらの VPS に限らず、他のサーバでも `ifconfig` の結果を信用するようにしてください。
+
+# OpenVPNサーバの起動
+いよいよここでOpenVPNを起動します。
 
 ```bash
 $ sudo systemctl start openvpn
@@ -389,6 +430,29 @@ $ systemctl status openvpn
 ```
 
 で`active`になっていたとしても、プロセスが起動していない場合はエラーなので、十分注意してください。ここはかなりの罠ポイントです。
+
+### OpenVPN サーバが起動できない場合
+設定は合っているはずなのに、`/var/log/openvpn.log` に謎のエラーが発生して OpenVPN のプロセスが表示されない場合は、代わりに `openvpn@server` が起動できるか確認してください。
+
+```bash
+$ sudo systemctl stop openvpn
+$ sudo systemctl start openvpn@server
+$ ps -ef | grep openvpn | grep -v grep
+```
+
+`ps` コマンドで、OpenVPN のプロセスが起動していた場合はこれで OK です。今後は、`openvpn` の代わりに `openvpn@server` を使用してください。これでも起動できなかった場合は `/etc/openvpn/server.conf` の設定が間違っていたり、UFW でポートが閉じていたりしている可能性があるので、そちらをもう一度確認してください。
+
+また、サーバをリブートしたときに `openvpn` ではなく `openvpn@server` が自動起動されるように、設定を変更します。
+
+```bash
+$ sudo systemctl disable openvpn
+$ sudo systemctl enable openvpn@server
+$ systemctl is-enabled openvpn openvpn@server
+disabled
+enabled
+```
+
+`openvpn` が `disabled` で、`openvpn@server` が `enabled` となっていれば OK です。
 
 # クライアント用秘密鍵の生成
 ここまで来たらサーバ側の設定はあともう少しです。クライアント側で使用する鍵を生成します。各種鍵を生成したときと同様に、Easy RSA のディレクトリに移動します。
