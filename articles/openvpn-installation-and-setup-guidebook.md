@@ -411,12 +411,12 @@ $ ./easyrsa build-client-full username
 $ sudo cp /etc/openvpn/ca.crt ~
 $ cp pki/issued/username.crt ~
 $ cp pki/private/username.key ~
-$ sudo chown username:username ~/ca.crt
-$ sudo chown username:username ~/username.crt
-$ sudo chown username:username ~/username.key
+$ sudo chown sshuser:sshuser ~/ca.crt
+$ sudo chown sshuser:sshuser ~/username.crt
+$ sudo chown sshuser:sshuser ~/username.key
 ```
 
-`username`は先ほどと同じユーザ名を入力してください。
+`username`は先ほどと同じユーザ名を入力してください。`sshuser`にはVPNサーバの現在ログインしているユーザのユーザ名を入力してください。
 
 # 鍵ファイルのダウンロード
 先ほどホームディレクトリにコピーした3つの鍵ファイルを、OpenVPNに接続するクライアントPCにダウンロードします。やり方は様々ありますが、`scp`コマンドを利用するのが一番簡単だと思います。`scp`コマンドの使い方に関しては「[scpコマンドでサーバー上のファイルorディレクトリをローカルに落としてくる](http://qiita.com/katsukii/items/225cd3de6d3d06a9abcb)」を参考にしてください。
