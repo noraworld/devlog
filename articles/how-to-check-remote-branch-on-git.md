@@ -3,7 +3,7 @@ title: "【Git】リモートのブランチを確認する"
 emoji: "📑"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Git"]
-published: false
+published: true
 order: 10
 ---
 
