@@ -16,6 +16,69 @@ Nginxはデフォルトの設定のままでもセキュリティ的に大きな
 
 ここでは、Nginxでレスポンスヘッダの情報をできるかぎり隠蔽する方法を説明します。以下の説明では状況に応じて`sudo`をつけてください。
 
+# TL;DR
+
+```bash
+$ wget https://nginx.org/download/nginx-X.XX.X.tar.gz
+$ tar -xzvf nginx-X.XX.X.tar.gz
+$ wget https://github.com/openresty/headers-more-nginx-module/archive/vX.XX.tar.gz
+$ tar -xzvf vX.XX.tar.gz
+$ cd nginx-X.XX.X
+$ ./configure --add-dynamic-module=拡張モジュールをインストールしたディレクトリのパス/headers-more-nginx-module-X.XX --with-http_ssl_module --with-http_v2_module
+$ make
+$ sudo make install
+```
+
+```nginx:/usr/local/nginx/conf/nginx.conf
+load_module  /usr/local/nginx/modules/ngx_http_headers_more_filter_module.so;
+
+http {
+    server_tokens off;
+    more_clear_headers Server;
+    more_clear_headers ETag;
+    more_clear_headers Transfer-Encoding;
+    more_clear_headers Date;
+    more_clear_headers Status;
+    more_clear_headers X-Request-Id;
+    more_clear_headers X-Runtime;
+    more_clear_headers X-UA-Compatible;
+    more_clear_headers Cache-Control;
+    more_clear_headers Connection;
+    more_clear_headers X-Powered-By;
+
+  # 以下省略
+}
+```
+
+```bash:~/.bashrc
+export PATH="/usr/local/nginx/sbin:$PATH"
+```
+
+```bash
+$ source ~/.bashrc
+```
+
+```bash
+$ sudo visudo
+```
+
+```diff
+- Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin
++ Defaults secure_path = /sbin:/bin:/usr/local/nginx/sbin:/usr/sbin:/usr/bin
+```
+
+```bash
+$ sudo nginx
+```
+
+```bash
+$ curl -I ドメイン名
+HTTP/1.1 200 OK
+Content-Type: text/html
+
+... # 指定のレスポンスヘッダが隠蔽されていればOK
+```
+
 # ソースからビルド
 大前提として、Nginxでレスポンスヘッダを編集するには拡張モジュールが必要となります。そしてこの拡張モジュールは、Nginxをソースからビルドして追加する必要があります。
 
