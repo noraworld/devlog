@@ -27,7 +27,7 @@ Ruby 2.0.0p353
 はじめにNginxをダウンロードします。Ubuntuでは `$ sudo apt install nginx` だけでインストールできると思いますが、CentOS は少し特殊な設定をしなければなりません。
 
 詳しくは別の記事で書いたのでこちらを参照してください。
-<a href="http://qiita.com/noraworld/items/1aae57dcbe428089c7d5" target="_blank">CentOS 7 (5, 6) で "安定版 (最新版)" のNginxをインストールする方法</a>
+[CentOS 7 (5, 6) で "安定版 (最新版)" のNginxをインストールする方法](http://qiita.com/noraworld/items/1aae57dcbe428089c7d5)
 
 # Rails アプリケーション側の設定
 まずはじめに Rails 側での設定を行います。
@@ -85,10 +85,10 @@ stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
 stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
 ```
 
-:warning: `listen` と `pid` のパスは `/home/{ユーザ名}/{Railsアプリケーション名}/tmp/unicorn.sock(.pid)` としてください。言い換えると、`{Railsアプリケーションのあるディレクトリ}/tmp/unicorn.sock(pid)` です。
+⚠️ `listen` と `pid` のパスは `/home/{ユーザ名}/{Railsアプリケーション名}/tmp/unicorn.sock(.pid)` としてください。言い換えると、`{Railsアプリケーションのあるディレクトリ}/tmp/unicorn.sock(pid)` です。
 
 ## Unicorn の起動・停止スクリプトを作成する
-これは作らなくてもできますが、一度作っておけば後々の操作がかなり楽になるのでここで紹介します。なお、スクリプトは「<a href="http://qiita.com/teitei_tk/items/2f997d1b916905da6c80" target="_blank">Rakefileにunicorn起動・停止のコマンドを追加する</a>」を参考にしました。
+これは作らなくてもできますが、一度作っておけば後々の操作がかなり楽になるのでここで紹介します。なお、スクリプトは「[Rakefileにunicorn起動・停止のコマンドを追加する](http://qiita.com/teitei_tk/items/2f997d1b916905da6c80)」を参考にしました。
 
 まず以下のコマンドを実行してファイルを生成します。
 `$ rails g task unicorn`
@@ -146,9 +146,9 @@ namespace :unicorn do
 end
 ```
 
-:bangbang: ちなみに上記は本番環境ではなく開発環境で起動するためのスクリプトです。本番環境での起動方法を知っている方は `development` の箇所を `production` にしてください。ただし、いきなり本番環境で起動しようとすると別のエラーが発生する可能性があるので、問題を切り分けるために、まずは開発環境で起動してみて、一通りうまくいったら本番環境で起動する、という流れで説明していきます。
+‼️ ちなみに上記は本番環境ではなく開発環境で起動するためのスクリプトです。本番環境での起動方法を知っている方は `development` の箇所を `production` にしてください。ただし、いきなり本番環境で起動しようとすると別のエラーが発生する可能性があるので、問題を切り分けるために、まずは開発環境で起動してみて、一通りうまくいったら本番環境で起動する、という流れで説明していきます。
 
-:warning: `def unicorn_pid` の `File.read` の引数のパスは `/home/{ユーザ名}/{Railsアプリケーション名}/tmp/unicorn.pid` としてください。
+⚠️ `def unicorn_pid` の `File.read` の引数のパスは `/home/{ユーザ名}/{Railsアプリケーション名}/tmp/unicorn.pid` としてください。
 
 これで便利な Unicorn の起動・停止スクリプトが完成しました。
 
@@ -178,14 +178,14 @@ Unicorn が起動しているかどうかを確認するには以下のコマン
 
 `$ sudo mv /tmp/unicorn.sock /home/{ユーザ名}/{Railsアプリケーション}/tmp`
 
-:warning: `{}` は入力しません。
+⚠️ `{}` は入力しません。
 
 そしてもう一度 Unicorn 起動コマンドを実行してください。
 `$ rake unicorn:start`
 
 これで起動できるはずです。
 
-:cyclone: ここがまさにはまるポイントで、いくつかのサイトでは、`unicorn.sock` を置く場所として `/tmp/unicorn.sock` を指定していますが、これが大きな落とし穴です。いつからかはわかりませんが、`/tmp` 内のファイルは Nginx と Unicorn 間で共有できないようになったらしいです。
+🌀 ここがまさにはまるポイントで、いくつかのサイトでは、`unicorn.sock` を置く場所として `/tmp/unicorn.sock` を指定していますが、これが大きな落とし穴です。いつからかはわかりませんが、`/tmp` 内のファイルは Nginx と Unicorn 間で共有できないようになったらしいです。
 
 昔はできたっぽいので、ちょっと古い記事だと `/tmp` 内にソケットファイル(.sock)を置くようにしていますが、現在はここだとうまくいかないので、`/home/{ユーザ名}/{Railsアプリケーション名}/tmp` に置くようにしましょう。厳密には、Unicorn 自体は起動できますが、後に Nginx を起動して動作確認しても `502 Bad Gateway` もしくは Rails のサーバエラーのページが表示されてしまいます。
 
@@ -195,7 +195,7 @@ Unicorn が起動しているかどうかを確認するには以下のコマン
 ## Nginx の設定ファイルを作成
 Nginx の設定ファイルは、`/etc/nginx/conf.d/default.conf` です。そのままこのファイルを編集してもいいですが、通常これらの設定ファイルはバックアップを取るのが一般的なので、今回は、このファイルは直接いじらずに `rails.conf` というファイルを作って編集することにしましょう。
 
-:bangbang: `default.conf` にはじめから設定されていたものとバッティングする可能性があるので、Rails のアプリケーションがうまく動くまでは、`default.conf` 内に書かれている内容はすべてコメントアウトしてから行ったほうがいいかもしれません。
+‼️ `default.conf` にはじめから設定されていたものとバッティングする可能性があるので、Rails のアプリケーションがうまく動くまでは、`default.conf` 内に書かれている内容はすべてコメントアウトしてから行ったほうがいいかもしれません。
 
 `/etc/nginx/conf.d` 以下に `rails.conf` を新規作成して、以下を追加します。`vi` 等のエディタを使う場合は `sudo` が必要になるかもしれません。
 
@@ -227,9 +227,9 @@ server {
 }
 ```
 
-:warning: `upstream` 内の `server` のパスは `/home/{ユーザ名}/{Railsアプリケーション名}/tmp/unicorn.sock` としてください。同様に、`server` 内の `root` は `/home/{ユーザ名}/{Railsアプリケーション名}/public` としてください。
+⚠️ `upstream` 内の `server` のパスは `/home/{ユーザ名}/{Railsアプリケーション名}/tmp/unicorn.sock` としてください。同様に、`server` 内の `root` は `/home/{ユーザ名}/{Railsアプリケーション名}/public` としてください。
 
-:warning: `server` 内の `server_name` は使用するサーバのドメイン名もしくはIPアドレスを指定してください。
+⚠️ `server` 内の `server_name` は使用するサーバのドメイン名もしくはIPアドレスを指定してください。
 
 ## Nginx の起動
 設定ファイルを編集したら Nginx を起動します。なお、すでに起動していた場合でも設定ファイルを編集した場合は再起動が必要になりますので再起動してください。
@@ -320,24 +320,24 @@ $ rake unicorn:stop && rake unicorn:start
 
 # 参考サイト
 ## Unicorn や Nginx の設定ファイルの書き方
-<a href="http://qiita.com/Salinger/items/5350b23f8b4e0dcdbe23" target="_blank">Rails 4.2 + Unicorn + Nginx でアプリケーションサーバの構築</a>
+[Rails 4.2 + Unicorn + Nginx でアプリケーションサーバの構築](http://qiita.com/Salinger/items/5350b23f8b4e0dcdbe23)
 
-<a href="https://github.com/herokaijp/devcenter/wiki/Rails-unicorn" target="_blank">Rails unicorn</a>
+[Rails unicorn](https://github.com/herokaijp/devcenter/wiki/Rails-unicorn)
 
-<a href="http://qiita.com/shinyashikis@github/items/ace49154f0c71c65b2c9" target="_blank">rails + nginx + unicorn連携</a>
+[rails + nginx + unicorn連携](http://qiita.com/shinyashikis@github/items/ace49154f0c71c65b2c9)
 
 ## Unicorn の起動・停止スクリプト
-<a href="http://qiita.com/teitei_tk/items/2f997d1b916905da6c80" target="_blank">Rakefileにunicorn起動・停止のコマンドを追加する</a>
+[Rakefileにunicorn起動・停止のコマンドを追加する](http://qiita.com/teitei_tk/items/2f997d1b916905da6c80)
 
 ## `/tmp` にソケットファイルを置くと失敗するときの解決策
-<a href="http://blog.tnantoka.com/posts/49" target="_blank">CentOS 7でNginx、Unicornにハマる</a>
+[CentOS 7でNginx、Unicornにハマる](http://blog.tnantoka.com/posts/49)
 
-<a href="http://blog.naichilab.com/entry/2015/12/27/234631" target="_blank">nginx＋unicorn、ソケットファイルを/tmp上に置くとNo such file or directoryになる</a>
+[nginx＋unicorn、ソケットファイルを/tmp上に置くとNo such file or directoryになる](http://blog.naichilab.com/entry/2015/12/27/234631)
 
 ## 本番環境での起動方法
-<a href="http://ruby-rails.hatenadiary.com/entry/20141110/1415623670" target="_blank">RailsをローカルでProductionモードで起動させる方法</a>
+[RailsをローカルでProductionモードで起動させる方法](http://ruby-rails.hatenadiary.com/entry/20141110/1415623670)
 
-<a href="http://qiita.com/a_ishidaaa/items/74de8bdaecd637063c40" target="_blank">[Rails]production環境で動かす</a>
+[[Rails]production環境で動かす](http://qiita.com/a_ishidaaa/items/74de8bdaecd637063c40)
 
 ## 気になったこと
-<a href="http://unlearned.hatenablog.com/entry/2014/02/28/015554" target="_blank">unicornとunicorn_railsのオプションの違い</a>
+[unicornとunicorn_railsのオプションの違い](http://unlearned.hatenablog.com/entry/2014/02/28/015554)
