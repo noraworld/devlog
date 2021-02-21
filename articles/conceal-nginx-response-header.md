@@ -3,7 +3,7 @@ title: "Nginxでレスポンスヘッダの一部を隠蔽する方法"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nginx", "nginx-build"]
-published: false
+published: true
 order: 21
 ---
 
