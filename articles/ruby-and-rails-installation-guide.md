@@ -3,7 +3,7 @@ title: "【CentOS7(+Ubuntu16)】Ruby / Rails のインストールから Rails �
 emoji: "🌟"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Rails", "Rails4", "Ruby", "Gem"]
-published: false
+published: true
 order: 8
 ---
 
