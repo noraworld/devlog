@@ -27,7 +27,7 @@ Ruby 2.0.0p353
 はじめにNginxをダウンロードします。Ubuntuでは `$ sudo apt install nginx` だけでインストールできると思いますが、CentOS は少し特殊な設定をしなければなりません。
 
 詳しくは別の記事で書いたのでこちらを参照してください。
-[CentOS 7 (5, 6) で "安定版 (最新版)" のNginxをインストールする方法](http://qiita.com/noraworld/items/1aae57dcbe428089c7d5)
+[CentOS 7 (5, 6) で安定版 (最新版) の Nginx をインストールする方法](https://zenn.dev/noraworld/articles/how-to-install-latest-or-stable-version-of-nginx)
 
 # Rails アプリケーション側の設定
 まずはじめに Rails 側での設定を行います。
@@ -320,24 +320,20 @@ $ rake unicorn:stop && rake unicorn:start
 
 # 参考サイト
 ## Unicorn や Nginx の設定ファイルの書き方
-[Rails 4.2 + Unicorn + Nginx でアプリケーションサーバの構築](http://qiita.com/Salinger/items/5350b23f8b4e0dcdbe23)
-
-[Rails unicorn](https://github.com/herokaijp/devcenter/wiki/Rails-unicorn)
-
-[rails + nginx + unicorn連携](http://qiita.com/shinyashikis@github/items/ace49154f0c71c65b2c9)
+* [Rails 4.2 + Unicorn + Nginx でアプリケーションサーバの構築](http://qiita.com/Salinger/items/5350b23f8b4e0dcdbe23)
+* [Rails unicorn](https://github.com/herokaijp/devcenter/wiki/Rails-unicorn)
+* [rails + nginx + unicorn連携](http://qiita.com/shinyashikis@github/items/ace49154f0c71c65b2c9)
 
 ## Unicorn の起動・停止スクリプト
-[Rakefileにunicorn起動・停止のコマンドを追加する](http://qiita.com/teitei_tk/items/2f997d1b916905da6c80)
+* [Rakefileにunicorn起動・停止のコマンドを追加する](http://qiita.com/teitei_tk/items/2f997d1b916905da6c80)
 
 ## `/tmp` にソケットファイルを置くと失敗するときの解決策
-[CentOS 7でNginx、Unicornにハマる](http://blog.tnantoka.com/posts/49)
-
-[nginx＋unicorn、ソケットファイルを/tmp上に置くとNo such file or directoryになる](http://blog.naichilab.com/entry/2015/12/27/234631)
+* [CentOS 7でNginx、Unicornにハマる](http://blog.tnantoka.com/posts/49)
+* [nginx＋unicorn、ソケットファイルを/tmp上に置くとNo such file or directoryになる](http://blog.naichilab.com/entry/2015/12/27/234631)
 
 ## 本番環境での起動方法
-[RailsをローカルでProductionモードで起動させる方法](http://ruby-rails.hatenadiary.com/entry/20141110/1415623670)
-
-[[Rails]production環境で動かす](http://qiita.com/a_ishidaaa/items/74de8bdaecd637063c40)
+* [RailsをローカルでProductionモードで起動させる方法](http://ruby-rails.hatenadiary.com/entry/20141110/1415623670)
+* [[Rails]production環境で動かす](http://qiita.com/a_ishidaaa/items/74de8bdaecd637063c40)
 
 ## 気になったこと
-[unicornとunicorn_railsのオプションの違い](http://unlearned.hatenablog.com/entry/2014/02/28/015554)
+* [unicornとunicorn_railsのオプションの違い](http://unlearned.hatenablog.com/entry/2014/02/28/015554)
