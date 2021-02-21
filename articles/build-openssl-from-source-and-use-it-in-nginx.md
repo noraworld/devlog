@@ -3,7 +3,7 @@ title: "OpenSSLをソースからビルドしてNginxで使用する"
 emoji: "👌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["openssl", "nginx", "CentOS", "centos7"]
-published: false
+published: true
 order: 27
 ---
 
