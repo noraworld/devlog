@@ -3,7 +3,7 @@ title: "Hugo 0.16 で baseurl を指定しないと詐欺サイトに飛ばさ�
 emoji: "🐈"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Hugo"]
-published: false
+published: true
 order: 18
 ---
 
