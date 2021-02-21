@@ -305,6 +305,19 @@ export SECRET_KEY_BASE=ランダムなキー
 
 ブラウザで開発環境のときと同様のドメイン名もしくはIPアドレスにアクセスしてページが表示されればOKです。お疲れさまでした！
 
+# 2回目以降の起動方法
+ここまでがちゃんと動いていたら、2回目以降、コードを編集したりしてUnicornを再起動する際に行うコマンドは以下の通りです。
+
+```bash
+$ rake db:migrate RAILS_ENV=production
+$ rake assets:precompile RAILS_ENV=production
+$ rake unicorn:stop && rake unicorn:start
+```
+
+マイグレーションと、SCSSやCoffeeScriptのコンパイルは、それぞれマイグレーションをしていない場合、CSSやJavaScriptを編集していない場合は実行する必要がありませんが、実行しても特に問題はないです。勘違いを防ぐためにとりあえず実行しておくのでも良いでしょう。
+
+また、作成した`unicorn.rake`のスクリプトには、`restart`というコマンドが用意されていますが、これは前回起動していたプロセスをキルしないので、不要なUnicornプロセスがたまってしまい良くないので、`stop`してから`start`する、というコマンドにしました。
+
 # 参考サイト
 ## Unicorn や Nginx の設定ファイルの書き方
 <a href="http://qiita.com/Salinger/items/5350b23f8b4e0dcdbe23" target="_blank">Rails 4.2 + Unicorn + Nginx でアプリケーションサーバの構築</a>
