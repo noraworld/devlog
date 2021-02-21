@@ -1,5 +1,5 @@
 ---
-title: "CentOS 7 (5, 6) で \"安定版 (最新版)\" のNginxをインストールする方法"
+title: "CentOS 7 (5, 6) で安定版 (最新版) の Nginx をインストールする方法"
 emoji: "😎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nginx", "Yum", "CentOS", "centos7"]
