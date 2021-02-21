@@ -3,7 +3,7 @@ title: "OpenVPNのインストールとセットアップからインターネ�
 emoji: "👋"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["OpenVPN", "VPN", "Ubuntu", "ubuntu16.04", "ネットワーク"]
-published: false
+published: true
 order: 28
 ---
 
