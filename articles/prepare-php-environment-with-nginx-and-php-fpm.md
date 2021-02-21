@@ -3,7 +3,7 @@ title: "CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える"
 emoji: "🐕"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["PHP", "php-fpm", "nginx", "CentOS"]
-published: false
+published: true
 order: 16
 ---
 
