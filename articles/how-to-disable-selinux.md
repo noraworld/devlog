@@ -3,7 +3,7 @@ title: "設定もファイルのパーミッションも所有者も問題ない
 emoji: "🐈"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["SELinux", "nginx", "403", "Forbidden"]
-published: false
+published: true
 order: 26
 ---
 
