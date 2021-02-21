@@ -3,7 +3,7 @@ title: "【Rails】Qiita::Markdownをインストールして使ってみる"
 emoji: "😺"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "Rails", "Markdown", "Qiita"]
-published: false
+published: true
 order: 12
 ---
 
