@@ -136,6 +136,16 @@ IMPORTANT NOTES:
    Donating to EFF:                    https://eff.org/donate-le
 ```
 
+証明書が発行されたら**Nginxを再起動**する必要があります。
+
+```bash
+$ sudo systemctl restart nginx
+
+# または
+
+$ sudo nginx -s reload
+```
+
 これで、リバースプロキシを使用しているNginxでも`webroot`モードで証明書の更新を行うことができました！
 
 ## 次回以降の証明書の更新
@@ -166,6 +176,8 @@ $ sudo certbot --dry-run
 ```
 
 `--dry-run`オプションは現在の設定で`renew`コマンドを実行したときにちゃんと更新できるかどうかを確認できます。確認するだけなので実際の更新処理は行いません。つまり更新制限に引っかかる心配もありません。なので、強制的に更新しなければいけないとき以外は`--force-renew`はつけないことをおすすめします。
+
+繰り返しになりますが、証明書の取得、更新後は**Nginxの再起動**を忘れずに行ってください。
 
 # 参考サイト
 * [Let's Encrypt Auto-Renewal for Nginx Reverse Proxies](http://tom.busby.ninja/letsecnrypt-nginx-reverse-proxy-no-downtime/)
