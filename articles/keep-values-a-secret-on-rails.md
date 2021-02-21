@@ -3,7 +3,7 @@ title: "【Ruby on Rails】GitHubに公開したくない変数や値を隠し�
 emoji: "😸"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Rails", "Rails4", "Ruby", "環境変数"]
-published: false
+published: true
 order: 9
 ---
 
