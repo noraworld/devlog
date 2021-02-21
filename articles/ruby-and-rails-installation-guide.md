@@ -70,10 +70,13 @@ eval "$(rbenv init -)"
 何やら数行のシェルスクリプトが出てきますが、`rbenv は関数です` と表示されていれば成功です。
 
 # ruby-buildのインストール
-これはオプションですが、インストールしておくと新しいRubyのバージョンをインストールするのが楽になるようです。
+これがなくてもrbenvは使えますが、一部のコマンドが使えなかったりするので、通常は導入することが推奨されています。
 
 rbenv同様に<a href="https://github.com/rbenv/ruby-build" target="_blank">GitHubのリポジトリ</a>からパッケージをダウンロードします。
-`$ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build`
+
+```bash
+$ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+```
 
 上記が推奨されたインストール方法です。スタンドアローンプログラム(?)としてインストールすることもできますが、ここでは省略します。詳しくは上記GitHubリポジトリのREADMEを参照してください。
 
