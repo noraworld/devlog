@@ -1,9 +1,9 @@
 ---
-title: "環境変数の設定を間違えてほとんどのコマンドが \"command not found\" になってしまったときの対処法"
+title: "環境変数の設定を間違えてほとんどのコマンドが command not found になってしまったときの対処法"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Bash", "ターミナル", "コンソール", "コマンドプロンプト", "コマンド"]
-published: false
+published: true
 order: 22
 ---
 
