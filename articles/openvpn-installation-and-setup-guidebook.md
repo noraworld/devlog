@@ -160,9 +160,9 @@ group nogroup
 persist-key
 persist-tun
 
-status      openvpn-status.log
-log         openvpn.log
-log-append  openvpn.log
+status      /var/log/openvpn-status.log
+log         /var/log/openvpn.log
+log-append  /var/log/openvpn.log
 
 verb 3
 ```
@@ -245,12 +245,12 @@ OpenVPNのプロセスをどのユーザ、どのグループで実行するか�
 ## 状態(status)
 OpenVPNに接続しているクライアントの状態（情報）を書き込むファイルを指定します。デフォルトは`openvpn-status.log`です。
 
-このファイルは`/etc/openvpn`以下に保存されます。通常はそのままでOKです。
+このファイルはデフォルト設定の場合は`/etc/openvpn`以下に保存されます。ログは`/var/log`以下に置いたほうが管理しやすいので、`/var/log/openvpn-status.log`に変更しています。特に理由がなければこちらをおすすめします。
 
 ## ログ(log, log-append)
 OpenVPNのログを書き込むファイルを指定します。デフォルトは`openvpn.log`です。
 
-このファイルは`/var/log`以下に保存されます。通常はそのままでOKです。
+このファイルはデフォルトの設定の場合は`/etc/openvpn`以下に保存されます。`openvpn-status.log`と同様に`/var/log/openvpn.log`に保存されるように変更しています。
 
 ## ログの冗長性(verb)
 ログファイルに書き込む内容の冗長性の度合いを指定します。デフォルトは`3`です。
