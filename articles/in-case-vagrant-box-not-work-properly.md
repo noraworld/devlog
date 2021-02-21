@@ -28,7 +28,7 @@ order: 19
 
 というのは、FTPクライアントでのログインができなかったボックスで作成したテストサーバに、すでに諸々の環境構築とセッティングを済ませた後にようやく問題に気づいたので、再び環境構築をし直すはめになりました。
 
-もちろんこれは自分の責任ですし、そもそも[Vagrantbox.es](http://www.vagrantbox.es)は自己責任ということを承知した上で使用することになっているので、誰にも文句は言えない（むしろ感謝ですね:pray:）のですが、ちゃんと確認しておかないと後で痛い目を見ることになるよ、という自分に対する警告であります。
+もちろんこれは自分の責任ですし、そもそも[Vagrantbox.es](http://www.vagrantbox.es)は自己責任ということを承知した上で使用することになっているので、誰にも文句は言えない（むしろ感謝ですね🙏）のですが、ちゃんと確認しておかないと後で痛い目を見ることになるよ、という自分に対する警告であります。
 
 # 信頼できるボックス
 これだけで終わってしまうとただの注意書きなので、自分が使用して問題なく動作したボックスのソースをここに載せておきます。ただし、これはあくまでぼくの環境で問題なかっただけなので、**全環境で問題なく動作することを保証するものではない**ことをご了承ください。
@@ -36,12 +36,12 @@ order: 19
 ## CentOS
 https://github.com/CommanderK5/packer-centos-template
 
-:exclamation: [Vagrantbox.es](http://www.vagrantbox.es)のURLではないことに注意してください。Vagrantbox.esのURLはアップデートされることがあるので、このURLをVagrantbox.es内で検索してヒットした際のURLをご使用ください。また検索してもヒットしない場合は削除された可能性があります。ご了承ください。
+❗️ [Vagrantbox.es](http://www.vagrantbox.es)のURLではないことに注意してください。Vagrantbox.esのURLはアップデートされることがあるので、このURLをVagrantbox.es内で検索してヒットした際のURLをご使用ください。また検索してもヒットしない場合は削除された可能性があります。ご了承ください。
 
 ## Ubuntu
 https://atlas.hashicorp.com/gbarbieru/boxes/xenial
 
-:exclamation: CentOSと同様に削除される可能性があります。ご了承ください。
+❗️ CentOSと同様に削除される可能性があります。ご了承ください。
 
 ## 環境
 問題なく動作した環境は以下の通りです。繰り返しになりますが、この環境なら絶対に問題がないという保証はできませんのでご了承ください。
@@ -51,7 +51,7 @@ https://atlas.hashicorp.com/gbarbieru/boxes/xenial
 * VirtualBox バージョン 5.0.22 r108108
 
 # 公式が配布するボックス
-コメントで教えていただきました、ありがとうございます:pray:
+コメントで教えていただきました、ありがとうございます🙏
 Vagrantbox.esは非公式ですが、どうやら公式が配布するボックスがあるらしいです。こちらを使用すれば少なくともボックスによる問題は減らせると思います。
 
 https://atlas.hashicorp.com からダウンロードします。`https://atlas.hashicorp.com/ダウンロードしたいOS` にアクセスします。今回はUbuntuを例に取り、https://atlas.hashicorp.com/ubuntu にアクセスします。CentOSの場合は`ubuntu`の箇所を`centos`とします。
