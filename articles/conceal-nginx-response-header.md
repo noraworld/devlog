@@ -29,11 +29,13 @@ $ make
 $ sudo make install
 ```
 
+`X.XX.X` や `X.XX` にはそれぞれ Nginx や 拡張モジュールのバージョンが入る。Nginx のバージョンについては[公式サイトのダウンロードページ](https://nginx.org/en/download.html)、拡張モジュールのバージョンについては[GitHubのページ](https://github.com/openresty/headers-more-nginx-module/tags)を参照のこと。
+
 ```nginx:/usr/local/nginx/conf/nginx.conf
 load_module  /usr/local/nginx/modules/ngx_http_headers_more_filter_module.so;
 
 http {
-    server_tokens off;
+    server_tokens      off;
     more_clear_headers Server;
     more_clear_headers ETag;
     more_clear_headers Transfer-Encoding;
@@ -46,7 +48,7 @@ http {
     more_clear_headers Connection;
     more_clear_headers X-Powered-By;
 
-  # 以下省略
+    # 以下省略
 }
 ```
 
@@ -56,26 +58,20 @@ export PATH="/usr/local/nginx/sbin:$PATH"
 
 ```bash
 $ source ~/.bashrc
-```
-
-```bash
 $ sudo visudo
 ```
 
-```diff
-- Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin
-+ Defaults secure_path = /sbin:/bin:/usr/local/nginx/sbin:/usr/sbin:/usr/bin
+```diff:visudo
+- Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
++ Defaults    secure_path = /sbin:/bin:/usr/local/nginx/sbin:/usr/sbin:/usr/bin
 ```
 
 ```bash
-$ sudo nginx
-```
+$ sudo nginx # すでに起動している場合は $ sudo nginx -s reload
 
-```bash
 $ curl -I ドメイン名
 HTTP/1.1 200 OK
 Content-Type: text/html
-
 ... # 指定のレスポンスヘッダが隠蔽されていればOK
 ```
 
@@ -136,7 +132,7 @@ HTTP/2を使わない人は`--with-http_v2_module`を外しても良いですが
 
 ```bash
 $ make
-$ make install
+$ sudo make install
 ```
 
 これで`/usr/local`に、拡張モジュール付きでNginxがインストールされます。ちなみに拡張モジュールは`/usr/local/nginx/modules`以下に置かれます。
@@ -172,7 +168,7 @@ http {
     more_clear_headers X-Powered-By;
     # more_clear_headers Content-Type;
 
-    # ... 省略 ...
+    # 以下省略
 }
 ```
 
@@ -241,7 +237,7 @@ $ sudo visudo
 `vim`などのエディタが立ち上がるので、以下の一行を探してください。
 
 ```
-Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 ```
 
 :warning: パスはOSによって異なる場合があります。
@@ -249,7 +245,7 @@ Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 すでにあるパスに対して元々のNginxがあるパス（`/usr/sbin`）より前に`/usr/local/nginx/sbin`を追加します。元々のNginxがなければ（インストールしてなければ）末尾に追加しても問題ないです。
 
 ```
-Defaults secure_path = /sbin:/bin:/usr/local/nginx/sbin:/usr/sbin:/usr/bin
+Defaults    secure_path = /sbin:/bin:/usr/local/nginx/sbin:/usr/sbin:/usr/bin
 ```
 
 :warning: このファイルはかなり特別なファイルなので、くれぐれもタイプミスをしないように注意してください。特に`:`を忘れないように！
