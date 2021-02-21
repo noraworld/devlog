@@ -36,6 +36,14 @@ $ cd nginx-x.xx.x
 $ ./configure --with-http_ssl_module --with-http_v2_module --with-openssl=展開したOpenSSLのディレクトリのパス
 $ make
 $ sudo make install
+```
+
+```diff:~/.bashrc
++ PATH="/usr/local/nginx/sbin:$PATH"
+```
+
+```bash
+$ source ~/.bashrc
 $ nginx -V
 ```
 
@@ -168,7 +176,7 @@ OpenSSL x.x.x  xx xxx xxxx
 [Nginxでレスポンスヘッダの一部を隠蔽する方法](http://qiita.com/noraworld/items/50781bcaa5bf28802cd0)
 
 ```bash
-$ wget http://nginx.org/download/nginx-x.xx.x.tar.gz
+$ wget https://nginx.org/download/nginx-x.xx.x.tar.gz
 $ tar xzvf nginx-x.xx.x.tar.gz
 $ cd nginx-x.xx.x
 $ ./configure --with-http_ssl_module --with-http_v2_module --with-openssl=展開したOpenSSLのディレクトリのパス
@@ -176,11 +184,23 @@ $ make
 $ sudo make install
 ```
 
-`x.xx.x`にはNginxのバージョンを指定します。バージョンは[公式サイト](https://nginx.org)で確認してください。ダウンロードリンクをコピペするのが確実です。
+`x.xx.x`にはNginxのバージョンを指定します。バージョンは[公式サイトのダウンロードページ](https://nginx.org/en/download.html)で確認してください。ダウンロードリンクをコピペするのが確実です。
 
 `展開したOpenSSLのディレクトリのパス`には、OpenSSLのインストール手順で展開した後のOpenSSLのディレクトリのあるパスを指定してください。
 
-ビルドに成功したら、以下のコマンドを実行して、NginxがソースからビルドしたOpenSSLを使用しているか確認します。
+ビルドに成功したら、パスを通します。OpenSSLのときと同様に`.bashrc`に以下の一行を追加します。
+
+```diff:~/.bashrc
++ PATH="/usr/local/nginx/sbin:$PATH"
+```
+
+`.bashrc`を反映させます。
+
+```bash
+$ source ~/.bashrc
+```
+
+パスを通したら、以下のコマンドを実行して、NginxがソースからビルドしたOpenSSLを使用しているか確認します。
 
 ```bash
 $ nginx -V
