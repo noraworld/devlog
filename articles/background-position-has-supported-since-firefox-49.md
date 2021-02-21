@@ -1,5 +1,5 @@
 ---
-title: "Firefox 49 から background-position-x, background-position-y がサポートされるようになった"
+title: "Firefox 49 から background-position がサポートされるようになった"
 emoji: "🙌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["CSS", "firefox", "firefox49", "background-position-x", "background-position-y"]
