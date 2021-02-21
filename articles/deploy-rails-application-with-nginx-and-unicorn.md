@@ -3,7 +3,7 @@ title: "【CentOS 7】Nginx + Unicorn で Rails アプリケーションを本�
 emoji: "🐥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["unicorn", "nginx", "Rails", "CentOS"]
-published: false
+published: true
 order: 14
 ---
 
