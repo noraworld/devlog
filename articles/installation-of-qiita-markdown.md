@@ -179,11 +179,25 @@ load 'tasks/emoji.rake'
 ```ruby:app/helpers/application_helper.rb
 module ApplicationHelper
   def qiita_markdown(markdown)
-    processor = Qiita::Markdown::Processor.new
+    processor = Qiita::Markdown::Processor.new(hostname: "example.com")
     processor.call(markdown)[:output].to_s.html_safe
   end
 end
 ```
+
+:warning: "example.com" の箇所に自分のサイトのドメインを入れてください。開発環境のときやドメインがないときはとりあえず "example.com" のままでもOKです。(v0.15.0以降。それ以前の場合はhostnameオプションを外してください)
+
+Qiitaの仕様変更により、Qiita::Markdownでは外部のサイトへのリンクがすべて新しいタブで開かれるようになりました。
+
+[外部リンクへの属性が変わります](http://blog.qiita.com/post/149486954709/externallinkattrib)
+
+そのため、バージョン0.15.0(v0.15.0)からはhostnameオプションにドメイン名を指定することで、指定したドメイン以外はすべて新しいタブで開かれるようになります。
+
+このhostnameオプションに関してですが、オプションなのでなしでも動くと思っていたのですが、実際に試してみたらエラーになってしまったので、どうやら必須のようです。
+
+そのため、インストールしたQiita::Markdownのバージョンがv0.15.0以降の場合はhostnameオプションをつけるようにしてください。反対に、それ以前のバージョンをお使いの場合はつけるとエラーになると思うのでつけないでください。
+
+そのほか、v0.15.0からは外部リンクに`rel="nofollow"`が付与されます。
 
 次にRailsで、Markdownで書きたいところをQiitaのMarkdownにそって自由に書いてみます。
 
