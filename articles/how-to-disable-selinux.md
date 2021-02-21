@@ -39,8 +39,8 @@ $ getenforce
 |状態|説明|
 |---|---|
 |Enforcing|SELinux機能、アクセス制御が有効|
-|Permissive|SElinuxは警告を出力するが、アクセス制限は無効|
-|Disabled|SElinux機能、アクセス制御が無効|
+|Permissive|SELinuxは警告を出力するが、アクセス制限は無効|
+|Disabled|SELinux機能、アクセス制御が無効|
 
 参考: [SELinuxを無効化する](http://rfs.jp/server/security/selinux01.html)
 
@@ -48,12 +48,12 @@ $ getenforce
 とりあえず停止したい場合は以下のコマンドを実行します。
 
 ```bash
-$ sudo setenforce Disabled
+$ sudo setenforce Permissive
 ```
 
 参考: [nginxで権限を設定した後も403 Forbiddenが出た話](http://kakakazuma.hatenablog.com/entry/2015/04/24/235812)
 
-これで停止できます。が、サーバを再起動すると再び元の状態に戻ってしまいます。
+これでアクセス制限は無効化できます。が、サーバを再起動すると再び元の状態に戻ってしまいます。また`Permissive`でもForbiddenになる問題は解決できますが、SELinuxが停止しているわけではありません。`setenforce`コマンドでは`Disabled`に設定することができません。
 
 ## 恒久的に停止する
 個人的にはこちらをおすすめします。`/etc/selinux/config`ファイルを開き、設定を変更します。
