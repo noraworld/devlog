@@ -14,7 +14,7 @@ Ruby 2.0.0p353
 
 # Qiita::Markdownとは？
 Qiita::Markdownは、いわゆるQiitaの新規投稿画面で使えるQiitaのMarkdownを自分の作った Ruby on Rails のアプリケーションに導入できるパッケージです。
-<a href="https://github.com/increments/qiita-markdown" target="_blank">increments/qiita-markdown</a>
+[increments/qiita-markdown](https://github.com/increments/qiita-markdown)
 
 ---
 
@@ -48,15 +48,15 @@ Markdownはとにかくシンプル！ 書きやすい！
 
 さらに、Markdownだけではなく以下のような絵文字も使えるので、Railsのシステムで気軽にMarkdownを使いたい！ という場合におすすめです。
 
-:smile: `:smile:`
-:relaxed: `:relaxed:`
-:dog: `:dog:`
-:cat: `:cat:`
+😄 `:smile:`
+☺️ `:relaxed:`
+🐶 `:dog:`
+🐱 `:cat:`
 :octocat: `:octocat:`
-:+1: `:+1:`
+👍 `:+1:`
 
-他にも使える絵文字はもっとあります。詳しくは Emoji cheat sheet を参照してください
-<a href="http://www.webpagefx.com/tools/emoji-cheat-sheet/" target="_blank">Emoji cheat sheet</a>
+他にも使える絵文字はもっとあります。詳しくは Emoji cheat sheet を参照してください。
+[Emoji cheat sheet](http://www.webpagefx.com/tools/emoji-cheat-sheet/)
 
 # 導入
 さて、そんな便利なQiita::MarkdownをRailsに導入してみましょう。
@@ -68,7 +68,7 @@ Markdownはとにかくシンプル！ 書きやすい！
 gem 'qiita-markdown'
 ```
 
-そしてコマンドラインで bundle install を実行
+そしてコマンドラインで bundle install を実行。
 `$ bundle install`
 
 するとエラーが2つほど発生します。
@@ -81,7 +81,7 @@ gem 'qiita-markdown'
 
 `$ sudo yum -y install libicu-devel`
 
-参考元: <a href="http://qiita.com/tmf16/items/efcb3a85730d78957249" target="_blank">Gitlab : charlock_holmesのインストールエラー</a>
+参考元: [Gitlab : charlock_holmesのインストールエラー](http://qiita.com/tmf16/items/efcb3a85730d78957249)
 
 そして先ほど失敗したコマンドを再び実行します。
 `$ gem install charlock_holmes -v '0.7.3'`
@@ -107,7 +107,7 @@ Done installing documentation for charlock_holmes after 0 seconds
 
 `$ sudo yum -y install cmake`
 
-参考元: <a href="http://qiita.com/kwappa/items/020f745f880538f0b0ec#rugged" target="_blank">Qiita::Markdownを使う on Yosemite</a>
+参考元: [Qiita::Markdownを使う on Yosemite](http://qiita.com/kwappa/items/020f745f880538f0b0ec#rugged)
 
 そしてさっき失敗したコマンドを実行します。
 
@@ -185,7 +185,7 @@ module ApplicationHelper
 end
 ```
 
-:warning: "example.com" の箇所に自分のサイトのドメインを入れてください。開発環境のときやドメインがないときはとりあえず "example.com" のままでもOKです。(v0.15.0以降。それ以前の場合はhostnameオプションを外してください)
+⚠️ "example.com" の箇所に自分のサイトのドメインを入れてください。開発環境のときやドメインがないときはとりあえず "example.com" のままでもOKです。(v0.15.0以降。それ以前の場合はhostnameオプションを外してください)
 
 Qiitaの仕様変更により、Qiita::Markdownでは外部のサイトへのリンクがすべて新しいタブで開かれるようになりました。
 
@@ -217,7 +217,7 @@ puts 'hello world!'
 猫を見つけた:cat:
 ```
 
-:bangbang: 上記のMarkdownの`\`は必要ありません。
+‼️ 上記のMarkdownの`\`は必要ありません。
 
 そして、これを表示するshow.html.erbでMarkdown形式で表示されるように編集します。
 
@@ -225,7 +225,7 @@ puts 'hello world!'
 <%= qiita_markdown(@変数名.カラム名) %>
 ```
 
-:bangbang: `@変数名.カラム名`はコントローラから渡されたActiveRecordの検索結果を持つ変数とデータベース上のMarkdownで書いた部分を保存するカラムを設定してください。すでにshow.html.erbを作っていた場合はMarkdownで書く前に表示していた@変数名とカラム名をそのまま使えばOKです。
+‼️ `@変数名.カラム名`はコントローラから渡されたActiveRecordの検索結果を持つ変数とデータベース上のMarkdownで書いた部分を保存するカラムを設定してください。すでにshow.html.erbを作っていた場合はMarkdownで書く前に表示していた@変数名とカラム名をそのまま使えばOKです。
 
 これでshowのパスにアクセスし、Markdownになっていて、最後に猫の絵文字が表示されていたらOKです！ お疲れさまでした！
 
@@ -234,7 +234,7 @@ puts 'hello world!'
 これに関してはSCSS(スタイルシート)に自分で記述する必要があります。
 ぼくは面倒だったので、他の方が紹介しているスタイルをお借りしました。
 
-<a href="http://qiita.com/5t111111/items/55ad30a85372ec6febf5#%E3%81%82%E3%81%A8renderer-%E3%81%A3%E3%81%A6%E8%81%9E%E3%81%8F%E3%81%9F%E3%81%B3%E3%81%AB%E3%82%B9%E3%83%9E%E3%83%83%E3%83%97%E3%81%AE%E7%9C%9F%E4%BC%BC%E3%81%99%E3%82%8B%E3%81%AE%E3%81%82%E3%82%8C%E3%81%AF%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E9%9D%A2%E7%99%BD%E3%81%84%E3%81%8B%E3%82%89%E4%BF%BA%E3%81%8C%E3%82%82%E3%82%89%E3%81%86%E3%82%8F%E3%81%8A%E5%89%8D%E3%81%AF2%E5%BA%A6%E3%81%A8%E3%82%84%E3%82%8B%E3%81%AA%E3%82%88" target="_blank">Ruby on Rails で Qiita::Markdown を使えるようにするまで (on Yosemite)</a>
+[Ruby on Rails で Qiita::Markdown を使えるようにするまで (on Yosemite)](http://qiita.com/5t111111/items/55ad30a85372ec6febf5#%E3%81%82%E3%81%A8renderer-%E3%81%A3%E3%81%A6%E8%81%9E%E3%81%8F%E3%81%9F%E3%81%B3%E3%81%AB%E3%82%B9%E3%83%9E%E3%83%83%E3%83%97%E3%81%AE%E7%9C%9F%E4%BC%BC%E3%81%99%E3%82%8B%E3%81%AE%E3%81%82%E3%82%8C%E3%81%AF%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E9%9D%A2%E7%99%BD%E3%81%84%E3%81%8B%E3%82%89%E4%BF%BA%E3%81%8C%E3%82%82%E3%82%89%E3%81%86%E3%82%8F%E3%81%8A%E5%89%8D%E3%81%AF2%E5%BA%A6%E3%81%A8%E3%82%84%E3%82%8B%E3%81%AA%E3%82%88)
 
 この記事のCSSを追加している部分のコードをスタイルシートに追加してください。
 これでシンタックスハイライトが出るようになりました！ あとはお好みで好きなスタイルにしてください。
@@ -260,9 +260,9 @@ $ rake emoji
 $ bundle install
 ```
 
-:warning: この順番でうまくいくことは確認していないので、もしうまくいかなかった場合は記事の最初から読んでみてください。
+⚠️ この順番でうまくいくことは確認していないので、もしうまくいかなかった場合は記事の最初から読んでみてください。
 
 # 参考サイト
-<a href="http://qiita.com/tmf16/items/efcb3a85730d78957249" target="_blank">Gitlab : charlock_holmesのインストールエラー</a>
-<a href="http://qiita.com/kwappa/items/020f745f880538f0b0ec#rugged" target="_blank">Qiita::Markdownを使う on Yosemite</a>
-<a href="http://qiita.com/5t111111/items/55ad30a85372ec6febf5#%E3%81%82%E3%81%A8renderer-%E3%81%A3%E3%81%A6%E8%81%9E%E3%81%8F%E3%81%9F%E3%81%B3%E3%81%AB%E3%82%B9%E3%83%9E%E3%83%83%E3%83%97%E3%81%AE%E7%9C%9F%E4%BC%BC%E3%81%99%E3%82%8B%E3%81%AE%E3%81%82%E3%82%8C%E3%81%AF%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E9%9D%A2%E7%99%BD%E3%81%84%E3%81%8B%E3%82%89%E4%BF%BA%E3%81%8C%E3%82%82%E3%82%89%E3%81%86%E3%82%8F%E3%81%8A%E5%89%8D%E3%81%AF2%E5%BA%A6%E3%81%A8%E3%82%84%E3%82%8B%E3%81%AA%E3%82%88" target="_blank">Ruby on Rails で Qiita::Markdown を使えるようにするまで (on Yosemite)</a>
+[Gitlab : charlock_holmesのインストールエラー](http://qiita.com/tmf16/items/efcb3a85730d78957249)
+[Qiita::Markdownを使う on Yosemite](http://qiita.com/kwappa/items/020f745f880538f0b0ec#rugged)
+[Ruby on Rails で Qiita::Markdown を使えるようにするまで (on Yosemite)](http://qiita.com/5t111111/items/55ad30a85372ec6febf5#%E3%81%82%E3%81%A8renderer-%E3%81%A3%E3%81%A6%E8%81%9E%E3%81%8F%E3%81%9F%E3%81%B3%E3%81%AB%E3%82%B9%E3%83%9E%E3%83%83%E3%83%97%E3%81%AE%E7%9C%9F%E4%BC%BC%E3%81%99%E3%82%8B%E3%81%AE%E3%81%82%E3%82%8C%E3%81%AF%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E9%9D%A2%E7%99%BD%E3%81%84%E3%81%8B%E3%82%89%E4%BF%BA%E3%81%8C%E3%82%82%E3%82%89%E3%81%86%E3%82%8F%E3%81%8A%E5%89%8D%E3%81%AF2%E5%BA%A6%E3%81%A8%E3%82%84%E3%82%8B%E3%81%AA%E3%82%88)
