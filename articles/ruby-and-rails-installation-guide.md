@@ -1,5 +1,5 @@
 ---
-title: "【CentOS7】Ruby / Rails のインストールから Rails サーバの起動までの(ほぼ)完全ガイド"
+title: "【CentOS7(+Ubuntu16)】Ruby / Rails のインストールから Rails サーバの起動までの(ほぼ)完全ガイド"
 emoji: "🌟"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Rails", "Rails4", "Ruby", "Gem"]
@@ -9,9 +9,12 @@ order: 8
 
 # はじめに
 大学のサークルでRailsをやることになったので予習するためにRailsの環境構築をさくっとやってみようと思います。
-CentOSを中心に説明していきますが、基本的にはUbuntuでも同様です。Macでは`brew`を使ってインストールのが簡単です。細かいところは各々の環境に合わせて適宜読み替えてください。
 
-環境: CentOS 7.1 (Vagrant 1.8.1 on OS X 10.11.4)
+:collision: CentOSを中心に説明します。CentOSと異なる部分に関しては:collision:のマークをつけ、個別にUbuntuでのコマンドを紹介します。Ubuntuで環境構築をされる方は必要に応じて`yum`と表記されている部分を`apt`または`apt-get`に置き換えて試してください。
+
+環境
+CentOS 7.1
+Ubuntu 16.04 LTS
 
 # rbenvのインストール
 CentOSでは、以下の4種類の方法でRubyをインストールすることができます。
@@ -36,6 +39,9 @@ Rubyのバージョンを指定してインストールする方法は、上記4
 
 下記コマンドはrbenvの実行速度を速めるためのおまじないのようなものです。もし失敗しても無視してOKです。
 `$ cd ~/.rbenv && src/configure && make -C src`
+
+:collision: 上記コマンドを実行させるには`gcc`と`make`が必要です。CentOS7にははじめからインストールされていますが、Ubuntuではインストールされていないことがあるので、インストールする必要があります。
+`$ sudo apt -y install gcc make`
 
 rbenvコマンドを汎用的に使えるようにパスを通します。
 `$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile`
@@ -118,6 +124,9 @@ Configure options used:
 何だがよくわかりませんが、以下のコマンドを実行してみてねとのことなので素直に実行してみましょう。
 `$ sudo yum install -y openssl-devel readline-devel zlib-devel`
 
+:collision: Ubuntuの場合は上記コマンドの代わりに以下のコマンドを実行してください。
+`$ sudo apt -y install libssl-dev libreadline-dev zlib1g-dev`
+
 そして再びRubyのインストールを試みます。
 `$ rbenv install 2.0.0-p353`
 
@@ -157,16 +166,7 @@ ruby 2.0.0p353 (2013-11-22 revision 43784) [x86_64-linux]
 このように表示されればRubyが正しくインストールされています。Rubyの環境構築が目的の方はここで終了になります。おつかれさまでした :relaxed:
 
 # Railsのインストール
-ようやくRailsがインストールできるようになります。その前にRailsではSQLite3が必要なのでSQLite3がインストールされているかどうかを確認します。
-
-```
-$ sqlite3 --version
-3.7.17 2013-05-20 00:56:22 118a3b35693b134d56ebd780123b7fd6f1497668
-```
-:bangbang: 実行結果は環境によって異なります。
-ほとんどのLinuxには標準インストールされているので、ほとんどの人はインストールする必要はありません。もし`コマンドが見つかりません`と表示されたら各自でインストールしてください。ここではSQLiteのインストール方法については省略します。
-
-さて、rbenvを通してRubyが正しくインストールされていれば、`gem` コマンドが使えるようになっているはずです。確認してみましょう。
+ようやくRailsがインストールできるようになります。rbenvを通してRubyが正しくインストールされていれば、`gem` コマンドが使えるようになっているはずです。確認してみましょう。
 
 ```
 $ which gem
@@ -255,6 +255,9 @@ need configuration options.
 `gem` でSQLite3をインストールするためには `sqlite-devel` が必要みたいです。[ 参考: <a href="http://qiita.com/emahiro/items/fd20764de5160f9611f3" target="_blank">bundle install で エラーが起きたとき…</a> ]
 `$ sudo yum -y install sqlite-devel`
 
+:collision: Ubuntuの場合は`sqlite-devel`の代わりに`libsqlite3-dev`をインストールしてください。
+`$ sudo apt -y install libsqlite3-dev`
+
 インストールが完了したらもう一度 `gem` を実行します。
 `$ gem install sqlite3 -v '1.3.11'`
 
@@ -318,6 +321,13 @@ gem 'therubyracer', platforms: :ruby
 ```
 Bundle complete! 13 Gemfile dependencies, 58 gems now installed.
 Use `bundle show [gemname]` to see where a bundled gem is installed.
+```
+
+:collision: ここで`therubyracer`をインストールするのに失敗した場合は先に`g++`をインストールしてから実行してください。Ubuntuでは`g++`がインストールされていなかったのでインストールします。
+
+```
+$ sudo apt -y install g++
+$ bundle install
 ```
 
 3度目の正直！ Railsサーバを立ち上げてみます。
