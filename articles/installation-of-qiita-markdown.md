@@ -228,7 +228,7 @@ puts 'hello world!'
 # Quick Usage Guide
 
 ```ruby:Gemfile
-gem 'qiita-markdown
+gem 'qiita-markdown'
 gem 'github-linguist'
 gem 'gemoji'
 ```
