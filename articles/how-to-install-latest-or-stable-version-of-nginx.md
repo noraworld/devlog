@@ -83,4 +83,4 @@ enabled=1
 
 # 参考サイト
 <a href="https://nginx.org/en/linux_packages.html" target="_blank">nginx: Linux packages</a>
-<a href="http://qiita.com/kesuzuki/items/4a1644fc0d637993e7d3" target"_blank">CentOS7でnginxをyumでインストール(phpのおまけ付き)</a>
+<a href="http://qiita.com/kesuzuki/items/4a1644fc0d637993e7d3" target="_blank">CentOS7でnginxをyumでインストール(phpのおまけ付き)</a>
