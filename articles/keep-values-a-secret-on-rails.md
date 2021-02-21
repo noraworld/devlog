@@ -50,4 +50,4 @@ ENV['LOGIN_PASSWORD']
 これで`.env`内のデータを隠してGitHubでコードを公開できるようになります。
 
 # 参考サイト
-<a href="http://mikazuki-ttp.hatenablog.com/entry/2015/07/24/170434" target="_blank">Railsで環境変数をライトに使う</a>
+[Railsで環境変数をライトに使う](http://mikazuki-ttp.hatenablog.com/entry/2015/07/24/170434)
