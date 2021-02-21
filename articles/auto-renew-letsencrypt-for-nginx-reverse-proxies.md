@@ -3,7 +3,7 @@ title: "Nginx+リバースプロキシ環境でWebサーバを停止させずに
 emoji: "🌊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["letsencrypt", "certbot", "webroot", "nginx", "リバースプロキシ"]
-published: false
+published: true
 order: 24
 ---
 
