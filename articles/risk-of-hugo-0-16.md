@@ -42,7 +42,7 @@ Hugo で `$ hugo new site yoursite` を実行すると Hugo のディレクト�
 
 Hugo 0.16 ではデフォルトで以下のように記述されています。
 `baseurl = "http://replace-this-with-your-hugo-site.com"`
-:warning: 上記URLにはアクセスしないでください
+⚠️ 上記URLにはアクセスしないでください
 
 この `replace-this-with-your-hugo-site.com` というのが原因で、悪質な人がこのドメインを取得しており、冒頭で示したようなウイルスに感染したなどの警告を出すページに飛ばしています。
 
