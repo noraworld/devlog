@@ -20,29 +20,50 @@ Nginxはデフォルトの設定のままでもセキュリティ的に大きな
 大前提として、Nginxでレスポンスヘッダを編集するには拡張モジュールが必要となります。そしてこの拡張モジュールは、Nginxをソースからビルドして追加する必要があります。
 
 [公式サイト](https://nginx.org)からダウンロードします。
-`$ wget 'http://nginx.org/download/nginx-X.XX.X.tar.gz'`
+
+```bash
+$ wget https://nginx.org/download/nginx-X.XX.X.tar.gz
+```
 
 :warning: `X.XX.X`の箇所はNginxのバージョンを指定してください。バージョンは[公式サイトのダウンロードページ](https://nginx.org/en/download.html)から確認できます。Stable version (安定版) か Mainline version (最新版) のどちらかのバージョンを選んでください。
 
 ダウンロードした圧縮ファイルを展開します。
-`$ tar -xzvf nginx-X.XX.X.tar.gz`
+
+```bash
+$ tar -xzvf nginx-X.XX.X.tar.gz
+```
 
 次に、レスポンスヘッダを編集するための拡張モジュールをダウンロードします。[headers-more-nginx-module](https://github.com/openresty/headers-more-nginx-module) を使用します。
-`$ wget 'https://github.com/openresty/headers-more-nginx-module/archive/vX.XX.tar.gz'`
+
+```bash
+$ wget https://github.com/openresty/headers-more-nginx-module/archive/vX.XX.tar.gz
+```
 
 :warning: `vX.XX.tar.gz`には拡張モジュールの最新版をバージョンを入れてください。最新版のバージョンは[GitHubのページ](https://github.com/openresty/headers-more-nginx-module/tags)から確認できます。たとえば、`v0.31.tar.gz`のような形式です。
 
 ダウンロードした圧縮ファイルを展開します。
-`$ tar -xzvf vX.XX.tar.gz`
+
+```bash
+$ tar -xzvf vX.XX.tar.gz
+```
 
 展開したNginxのディレクトリに移動します。
-`$ cd nginx-X.XX.X`
+
+```bash
+$ cd nginx-X.XX.X
+```
 
 移動したら以下のコマンドを実行します。こちらはSSL/TLS通信（HTTPS通信）を使わない人向けです。
-`$ ./configure --add-dynamic-module=拡張モジュールをインストールしたディレクトリのパス/headers-more-nginx-module-X.XX`
+
+```bash
+$ ./configure --add-dynamic-module=拡張モジュールをインストールしたディレクトリのパス/headers-more-nginx-module-X.XX
+```
 
 こちらはSSL/TLS通信を使う人向けです。
-`$ ./configure --add-dynamic-module=拡張モジュールをインストールしたディレクトリのパス/headers-more-nginx-module-X.XX --with-http_ssl_module --with-http_v2_module`
+
+```bash
+$ ./configure --add-dynamic-module=拡張モジュールをインストールしたディレクトリのパス/headers-more-nginx-module-X.XX --with-http_ssl_module --with-http_v2_module
+```
 
 HTTP/2を使わない人は`--with-http_v2_module`を外しても良いですが、せっかくSSL/TLS対応しているのであればHTTP/2にも対応したほうがオトクです。
 
@@ -50,7 +71,7 @@ HTTP/2を使わない人は`--with-http_v2_module`を外しても良いですが
 
 上記コマンドを実行したら続けて以下のコマンドを実行します。
 
-```
+```bash
 $ make
 $ make install
 ```
@@ -65,6 +86,7 @@ Nginxの設定ファイルにレスポンスヘッダを隠す設定を追加し
 ```nginx:/usr/local/nginx/conf/nginx.conf
 load_module  /usr/local/nginx/modules/ngx_http_headers_more_filter_module.so;
 ```
+
 :warning: `/usr/local`以外にインストールした場合は適宜パスを変更してください
 
 次にレスポンスヘッダを隠す設定を追加します。レスポンスヘッダにはサイトによって色々な情報が含まれますので、実際には他にもたくさん設定があります。以下はその一例です。詳しくは[リポジトリ](https://github.com/openresty/headers-more-nginx-module)を参照してください。また、レスポンスヘッダ情報によっては**隠してしまうとアプリケーションが正しく機能しなくなる可能性がある**ので注意してください。Railsでは`more_clear_headers Content-Type;`を追加するとうまく動きませんでした。適宜、環境に合わせて編集してください。
@@ -90,6 +112,7 @@ http {
     # ... 省略 ...
 }
 ```
+
 参考: [[Nginx] レスポンスヘッダを限りなく消す](http://yume-build.com/blog/archives/257)
 
 `more_clear_headers`で各レスポンスヘッダ情報を隠します。`server_tokens`はNginxのバージョンを表示するかどうかです。なお、`server_tokens`に関してはソースからビルドしなくても（拡張モジュールを使用しなくても）使用できます。
@@ -134,7 +157,10 @@ export PATH="/usr/local/nginx/sbin:$PATH"
 ```
 
 追加したら設定を反映させます。
-`$ source ~/.bashrc`
+
+```bash
+$ source ~/.bashrc
+```
 
 `nginx`のパスを確認して、`/usr/local/nginx/sbin/nginx`となっていればOKです。
 
@@ -144,15 +170,24 @@ $ which nginx
 ```
 
 また、`nginx`コマンドはroot権限で実行することが多いので、`sudo`をつけたときにも同じようにパスが通るようにする必要があります。以下のコマンドでroot権限での設定を変更します。
-`$ sudo visudo`
+
+```bash
+$ sudo visudo
+```
 
 `vim`などのエディタが立ち上がるので、以下の一行を探してください。
-`Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin`
+
+```
+Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+```
 
 :warning: パスはOSによって異なる場合があります。
 
 すでにあるパスに対して元々のNginxがあるパス（`/usr/sbin`）より前に`/usr/local/nginx/sbin`を追加します。元々のNginxがなければ（インストールしてなければ）末尾に追加しても問題ないです。
-`Defaults secure_path = /sbin:/bin:/usr/local/nginx/sbin:/usr/sbin:/usr/bin`
+
+```
+Defaults secure_path = /sbin:/bin:/usr/local/nginx/sbin:/usr/sbin:/usr/bin
+```
 
 :warning: このファイルはかなり特別なファイルなので、くれぐれもタイプミスをしないように注意してください。特に`:`を忘れないように！
 
@@ -188,7 +223,10 @@ Google Chrome を例に紹介します。他のブラウザの場合は各自で
 
 ## cURLを使用する
 `curl`コマンドを使用するとサーバからのレスポンス情報が確認できます。
-`$ curl -I ドメイン名`
+
+```bash
+$ curl -I ドメイン名
+```
 
 :warning: `http://`でリクエストがあった際に`https://`にリダイレクトするような設定にしている場合は明示的に`https://`と入力する必要があります。
 
