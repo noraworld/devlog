@@ -11,6 +11,7 @@ order: 27
 今まではパッケージマネージャのアップデートでOpenSSLのバージョンをアップデートしていましたが、先日はじめてソースからビルドして使用してみたので、そのやり方をまとめます。
 
 # TL;DR
+:warning: 読むのがめんどくさい、急いでいる人向けです。記事を最後まで読む人はTL;DRは読み飛ばしてください
 
 ```bash
 $ wget https://www.openssl.org/source/openssl-x.x.x.tar.gz
