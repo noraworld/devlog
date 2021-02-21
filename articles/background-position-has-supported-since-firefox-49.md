@@ -3,7 +3,7 @@ title: "Firefox 49 から background-position-x, background-position-y がサポ
 emoji: "🙌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["CSS", "firefox", "firefox49", "background-position-x", "background-position-y"]
-published: false
+published: true
 order: 25
 ---
 
