@@ -42,7 +42,7 @@ iTerm2 v3 がリリースされてからターミナル上で画像が表示さ�
 
 ![imgcat.png](https://qiita-image-store.s3.amazonaws.com/0/113895/750f47e6-a992-57b2-198b-7d883eceab2e.png)
 
-:warning: `command not found` と表示された場合は`/usr/local/bin`がパスとして通っていない可能性があります。パスを通してください。
+⚠️ `command not found` と表示された場合は`/usr/local/bin`がパスとして通っていない可能性があります。パスを通してください。
 
 # 特徴
 Macのローカルの画像ファイルを見たいときは、その画像のあるフォルダをFinderで開いてプレビューなどで見ることができるのであまり実用性がないかもしれません。
