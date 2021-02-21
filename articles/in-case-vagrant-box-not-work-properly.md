@@ -51,7 +51,6 @@ https://atlas.hashicorp.com/gbarbieru/boxes/xenial
 * VirtualBox バージョン 5.0.22 r108108
 
 # 公式が配布するボックス
-コメントで教えていただきました、ありがとうございます🙏
 Vagrantbox.esは非公式ですが、どうやら公式が配布するボックスがあるらしいです。こちらを使用すれば少なくともボックスによる問題は減らせると思います。
 
 https://atlas.hashicorp.com からダウンロードします。`https://atlas.hashicorp.com/ダウンロードしたいOS` にアクセスします。今回はUbuntuを例に取り、https://atlas.hashicorp.com/ubuntu にアクセスします。CentOSの場合は`ubuntu`の箇所を`centos`とします。
