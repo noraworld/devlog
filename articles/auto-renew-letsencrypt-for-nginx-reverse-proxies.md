@@ -172,12 +172,21 @@ $ sudo certbot renew --force-renew
 ちなみに更新できるかどうかを確かめたいだけなら以下のオプションをつければOKです。
 
 ```bash
-$ sudo certbot --dry-run
+$ sudo certbot renew --dry-run
 ```
 
 `--dry-run`オプションは現在の設定で`renew`コマンドを実行したときにちゃんと更新できるかどうかを確認できます。確認するだけなので実際の更新処理は行いません。つまり更新制限に引っかかる心配もありません。なので、強制的に更新しなければいけないとき以外は`--force-renew`はつけないことをおすすめします。
 
 繰り返しになりますが、証明書の取得、更新後は**Nginxの再起動**を忘れずに行ってください。
+
+結論だけを完結にまとめると、2回目以降に行わなければいけないコマンドは
+
+```bash
+$ sudo certbot renew
+$ sudo nginx -s reload
+```
+
+の2つだけです。
 
 # 参考サイト
 * [Let's Encrypt Auto-Renewal for Nginx Reverse Proxies](http://tom.busby.ninja/letsecnrypt-nginx-reverse-proxy-no-downtime/)
