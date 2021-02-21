@@ -1,5 +1,5 @@
 ---
-title: "Vagrantのボックスは信頼できるソースを利用しよう"
+title: "Vagrantのボックスは動作を確認してから利用しよう"
 emoji: "👋"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Vagrant", "VagrantBox"]
@@ -50,5 +50,31 @@ https://atlas.hashicorp.com/gbarbieru/boxes/xenial
 * Vagrant 1.8.6
 * VirtualBox バージョン 5.0.22 r108108
 
+# 公式が配布するボックス
+コメントで教えていただきました、ありがとうございます:pray:
+Vagrantbox.esは非公式ですが、どうやら公式が配布するボックスがあるらしいです。こちらを使用すれば少なくともボックスによる問題は減らせると思います。
+
+https://atlas.hashicorp.com からダウンロードします。`https://atlas.hashicorp.com/ダウンロードしたいOS` にアクセスします。今回はUbuntuを例に取り、https://atlas.hashicorp.com/ubuntu にアクセスします。CentOSの場合は`ubuntu`の箇所を`centos`とします。
+
+![ubuntu_box.png](https://qiita-image-store.s3.amazonaws.com/0/113895/59cbe74a-8311-7185-16db-4d43f2ef8056.png)
+
+するとUbuntuのボックス一覧が表示されます。ここからダウンロードしたいOSのバージョンを選択します。今回は Ubuntu 16 をインストールしたいので`ubuntu/xenial64`を選択します。ちなみに`xenial`は Ubuntu 16 のコードネーム、`64`は64bit用を意味します。
+
+![ubuntu_xenial.png](https://qiita-image-store.s3.amazonaws.com/0/113895/20320974-30f8-c2f2-2570-77e34d064322.png)
+
+するとバージョン一覧が表示されます。とりあえず最新バージョンをインストールしたい場合は一番上に表示されたバージョンを選択します。
+
+![ubuntu_versions.png](https://qiita-image-store.s3.amazonaws.com/0/113895/ca54fafb-3ac2-5d59-79e2-0c00e7cb3521.png)
+
+このようなページが表示されたらこのページのURLをコピーします。ボックスのダウンロードURLは、このページのURLに`/providers/virtualbox.box`をつけたURLになります。例えば、`https://atlas.hashicorp.com/ubuntu/boxes/xenial64/versions/xxxxxxxx.x.x/providers/virtualbox.box` のような形式になります。
+参考: [VagrantでUbuntu Server 16.04 LTS "Xenial Xerus"の仮想マシンの構築（未完）](http://qiita.com/__mi_mo/items/0d23b555ce19c3992757#ubuntu-1604%E3%81%AEbox%E3%82%92%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89)
+
+あとはこのURLを使用してボックスをダウンロードすれば公式のボックスが利用できるようになります。
+`$ vagrant box add ボックス名 ボックスのURL`
+
 # さいごに
-今後また他のOSのボックスを使用する機会があれば追加もしていく予定ですが、現状、CentOSとUbuntuがあれば問題ないので、別のバージョンや他の環境に関しては各自動作を確認してから使用してください。
+この記事を書いた時点では解決策が見つかりませんでしたが、後日、FTPクライアントからログインできない問題の解決策が見つかりました。[Vagrantで作成したローカルサーバにFTPクライアント(Cyberduck)からログインできないときの解決法](http://qiita.com/noraworld/items/a0fac559d2d6e76d50f8) を参照してください。
+
+しかし、この解決策を見つけたときにはすでにボックスを削除してしまったので、同様の解決法で解決できたかどうかはわかりません。また、ボックスによってパスワード認証ができたりできなかったりする原因や、`$ vagrant ssh` ができない問題の原因は結局わかりませんでした。
+
+いずれにしてもVagrantのボックスをダウンロードするときは動作を確認してから利用したほうが無難です。
