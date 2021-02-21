@@ -10,7 +10,7 @@ order: 8
 # はじめに
 大学のサークルでRailsをやることになったので予習するためにRailsの環境構築をさくっとやってみようと思います。
 
-:collision: CentOSを中心に説明します。CentOSと異なる部分に関しては:collision:のマークをつけ、個別にUbuntuでのコマンドを紹介します。Ubuntuで環境構築をされる方は必要に応じて`yum`と表記されている部分を`apt`または`apt-get`に置き換えて試してください。
+💥 CentOSを中心に説明します。CentOSと異なる部分に関しては💥のマークをつけ、個別にUbuntuでのコマンドを紹介します。Ubuntuで環境構築をされる方は必要に応じて`yum`と表記されている部分を`apt`または`apt-get`に置き換えて試してください。
 
 環境
 CentOS 7.1
@@ -30,23 +30,23 @@ Ruby on Rails はRubyのバージョン依存が激しいので、Railsのバー
 
 Rubyのバージョンを指定してインストールする方法は、上記4種類のうち、rbenv, RVM の2種類です。どちらでも良いですが、今回はrbenvを使ってRubyをインストールする方法を説明します。
 
-<a href="https://github.com/rbenv/rbenv" target="_blank">GitHubのリポジトリ</a>からrbenvのパッケージをダウンロードします。
+[GitHubのリポジトリ](https://github.com/rbenv/rbenv)からrbenvのパッケージをダウンロードします。
 `$ git clone https://github.com/rbenv/rbenv.git ~/.rbenv`
 
-:bangbang: `コマンドが見つかりません`と表示されたら`git`をインストールしてください。
+‼️ `コマンドが見つかりません`と表示されたら`git`をインストールしてください。
 エラーが出なければ下記のコマンドは実行する必要はありません。
 `$ sudo yum -y install git`
 
 下記コマンドはrbenvの実行速度を速めるためのおまじないのようなものです。もし失敗しても無視してOKです。
 `$ cd ~/.rbenv && src/configure && make -C src`
 
-:collision: 上記コマンドを実行させるには`gcc`と`make`が必要です。CentOS7にははじめからインストールされていますが、Ubuntuではインストールされていないことがあるので、インストールする必要があります。
+💥 上記コマンドを実行させるには`gcc`と`make`が必要です。CentOS7にははじめからインストールされていますが、Ubuntuではインストールされていないことがあるので、インストールする必要があります。
 `$ sudo apt -y install gcc make`
 
 rbenvコマンドを汎用的に使えるようにパスを通します。
 `$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile`
 
-:warning: `>>` は必ず `>` を2つ続けてタイプしてください。
+⚠️ `>>` は必ず `>` を2つ続けてタイプしてください。
 書き込み先ファイルは環境に合わせて変更してください。たとえばzshを使っている場合は `~/.zshrc` に置き換えてください。またUbuntuの場合は `~/.bashrc` に変更してください。
 
 続いて、下記を実行します。
@@ -72,7 +72,7 @@ eval "$(rbenv init -)"
 # ruby-buildのインストール
 これがなくてもrbenvは使えますが、一部のコマンドが使えなかったりするので、通常は導入することが推奨されています。
 
-rbenv同様に<a href="https://github.com/rbenv/ruby-build" target="_blank">GitHubのリポジトリ</a>からパッケージをダウンロードします。
+rbenv同様に[GitHubのリポジトリ](https://github.com/rbenv/ruby-build)からパッケージをダウンロードします。
 
 ```bash
 $ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
@@ -125,13 +125,13 @@ Configure options used:
 何だがよくわかりませんが、以下のコマンドを実行してみてねとのことなので素直に実行してみましょう。
 `$ sudo yum install -y openssl-devel readline-devel zlib-devel`
 
-:collision: Ubuntuの場合は上記コマンドの代わりに以下のコマンドを実行してください。
+💥 Ubuntuの場合は上記コマンドの代わりに以下のコマンドを実行してください。
 `$ sudo apt -y install libssl-dev libreadline-dev zlib1g-dev`
 
 そして再びRubyのインストールを試みます。
 `$ rbenv install 2.0.0-p353`
 
-なお、Rubyのインストールは結構時間がかかります。コーヒーでも飲んで気長に待ちましょう :coffee:
+なお、Rubyのインストールは結構時間がかかります。コーヒーでも飲んで気長に待ちましょう ☕️
 
 以下のように表示されればインストール完了です。
 `Installed ruby-2.0.0-p353 to /home/vagrant/.rbenv/versions/2.0.0-p353`
@@ -150,12 +150,12 @@ The `ruby' command exists in these Ruby versions:
 
 このエラーは「Rubyはちゃんとインストールされてるけど、どのバージョンのRubyを使うかが設定されてないよ」ということらしいです。
 
-ググったら解決法が見つかりました。[ 参考元: <a href="http://babiy3104.hateblo.jp/entry/2014/01/28/185726" target="_blank">Ruby - rbenv で複数バージョンを切り替える(1)</a> ]
+ググったら解決法が見つかりました。[ 参考元: [Ruby - rbenv で複数バージョンを切り替える(1)](http://babiy3104.hateblo.jp/entry/2014/01/28/185726) ]
 
 なので次のコマンドで、使用するRubyのバージョンを設定してあげましょう。
 `$ rbenv global 2.0.0-p353`
 
-:warning: バージョンのところは自分がインストールしたバージョンを入力してください。
+⚠️ バージョンのところは自分がインストールしたバージョンを入力してください。
 
 そして再びバージョンを確認します。
 
@@ -164,7 +164,7 @@ $ ruby -v
 ruby 2.0.0p353 (2013-11-22 revision 43784) [x86_64-linux]
 ```
 
-このように表示されればRubyが正しくインストールされています。Rubyの環境構築が目的の方はここで終了になります。おつかれさまでした :relaxed:
+このように表示されればRubyが正しくインストールされています。Rubyの環境構築が目的の方はここで終了になります。おつかれさまでした ☺️
 
 # Railsのインストール
 ようやくRailsがインストールできるようになります。rbenvを通してRubyが正しくインストールされていれば、`gem` コマンドが使えるようになっているはずです。確認してみましょう。
@@ -196,7 +196,7 @@ Rails 4.2.6
 まずはRailsのプロジェクトファイルを生成します。
 `$ rails new myapp`
 
-:bangbang: `myapp` の部分は好きなプロジェクト名をつけてください。たとえばRailsでブログアプリを作りたいなら、`myapp` の部分を `blog` などにしてください。
+‼️ `myapp` の部分は好きなプロジェクト名をつけてください。たとえばRailsでブログアプリを作りたいなら、`myapp` の部分を `blog` などにしてください。
 
 Railsで汎用的に使うファイル一式が生成されます。`run bundle install` の箇所で時間がかかりますがしばらくすれば完了します。
 
@@ -207,7 +207,7 @@ $ cd myapp/
 $ rails s
 ```
 
-:warning: `myapp` の箇所は `rails new` で指定したプロジェクト名を指定してください。今後 `myapp` と出てきたら、各自で設定したプロジェクト名に読み替えて試してください。
+⚠️ `myapp` の箇所は `rails new` で指定したプロジェクト名を指定してください。今後 `myapp` と出てきたら、各自で設定したプロジェクト名に読み替えて試してください。
 
 しかし、ここでエラーが出ます。
 
@@ -253,10 +253,10 @@ need configuration options.
 ...省略
 ```
 
-`gem` でSQLite3をインストールするためには `sqlite-devel` が必要みたいです。[ 参考: <a href="http://qiita.com/emahiro/items/fd20764de5160f9611f3" target="_blank">bundle install で エラーが起きたとき…</a> ]
+`gem` でSQLite3をインストールするためには `sqlite-devel` が必要みたいです。[ 参考: [bundle install で エラーが起きたとき…](http://qiita.com/emahiro/items/fd20764de5160f9611f3) ]
 `$ sudo yum -y install sqlite-devel`
 
-:collision: Ubuntuの場合は`sqlite-devel`の代わりに`libsqlite3-dev`をインストールしてください。
+💥 Ubuntuの場合は`sqlite-devel`の代わりに`libsqlite3-dev`をインストールしてください。
 `$ sudo apt -y install libsqlite3-dev`
 
 インストールが完了したらもう一度 `gem` を実行します。
@@ -324,7 +324,7 @@ Bundle complete! 13 Gemfile dependencies, 58 gems now installed.
 Use `bundle show [gemname]` to see where a bundled gem is installed.
 ```
 
-:collision: ここで`therubyracer`をインストールするのに失敗した場合は先に`g++`をインストールしてから実行してください。Ubuntuでは`g++`がインストールされていなかったのでインストールします。
+💥 ここで`therubyracer`をインストールするのに失敗した場合は先に`g++`をインストールしてから実行してください。Ubuntuでは`g++`がインストールされていなかったのでインストールします。
 
 ```
 $ sudo apt -y install g++
@@ -356,10 +356,10 @@ Vagrantを使用せずにローカル開発環境で起動している場合は�
 # Vagrantでは起動できない…
 Vagrantを使用している方は、おそらく `http://192.168.33.10:3000` のようなアドレスでアクセスできるはずですが、なぜかアクセスできません。Rails以外のWebサーバは3000番ポートで起動できるのでファイアウォールの問題でもなさそう……
 
-:bangbang: `192.168.33.10` はVagrantで設定したIPアドレスです。適宜読み替えてください。
+‼️ `192.168.33.10` はVagrantで設定したIPアドレスです。適宜読み替えてください。
 
 調べたら、同じ問題で悩んでいた方がいました。
-[ 参考元: <a href="http://qiita.com/hurukiyokimura/items/bd517c463d24ea9059f3" target="_blank">Vagrant CentOS上のlocalhost:3000がホストから開けない</a> ]
+[ 参考元: [Vagrant CentOS上のlocalhost:3000がホストから開けない](http://qiita.com/hurukiyokimura/items/bd517c463d24ea9059f3) ]
 
 どうやらRailsの仕様変更でほかのPCからRailsサーバにアクセスすることができなくなったようです。Vagrantはローカルから見れば別のPCのように見えるので、同じことがいえます。
 
@@ -369,10 +369,10 @@ Vagrantを使用している方は、おそらく `http://192.168.33.10:3000` �
 サーバ起動中に `http://192.168.33.10:3000` (Vagrantで設定したIPアドレス) にアクセスしてRailsのwelcome画面が表示されれば成功です！ 本当におつかれさまでした！！！
 
 # 参考サイト
-* <a href="https://www.ruby-lang.org/ja/documentation/installation/" target="_blank">Rubyのインストール</a>
-* <a href="http://railsguides.jp/getting_started.html" target="_blank">Rails をはじめよう</a>
-* <a href="https://github.com/rbenv/rbenv" target="_blank">rbenv - GitHub</a>
-* <a href="https://github.com/rbenv/ruby-build" target="_blank">ruby-build - GitHub</a>
-* <a href="http://babiy3104.hateblo.jp/entry/2014/01/28/185726" target="_blank">Ruby - rbenv で複数バージョンを切り替える(1)</a>
-* <a href="http://qiita.com/emahiro/items/fd20764de5160f9611f3" target="_blank">bundle install で エラーが起きたとき…</a>
-* <a href="http://qiita.com/hurukiyokimura/items/bd517c463d24ea9059f3" target="_blank">Vagrant CentOS上のlocalhost:3000がホストから開けない</a>
+* [Rubyのインストール](https://www.ruby-lang.org/ja/documentation/installation/)
+* [Rails をはじめよう](http://railsguides.jp/getting_started.html)
+* [rbenv - GitHub](https://github.com/rbenv/rbenv)
+* [ruby-build - GitHub](https://github.com/rbenv/ruby-build)
+* [Ruby - rbenv で複数バージョンを切り替える(1)](http://babiy3104.hateblo.jp/entry/2014/01/28/185726)
+* [bundle install で エラーが起きたとき…](http://qiita.com/emahiro/items/fd20764de5160f9611f3)
+* [Vagrant CentOS上のlocalhost:3000がホストから開けない](http://qiita.com/hurukiyokimura/items/bd517c463d24ea9059f3)
