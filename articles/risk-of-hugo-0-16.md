@@ -1,5 +1,5 @@
 ---
-title: "Hugo 0.16 で怪しいサイトに飛ばされてしまう原因 | Hugo 0.16 で baseurl を指定しないのは危険！"
+title: "Hugo 0.16 で baseurl を指定しないと詐欺サイトに飛ばされてしまうので注意！"
 emoji: "🐈"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Hugo"]
