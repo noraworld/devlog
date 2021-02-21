@@ -23,7 +23,7 @@ $ sudo yum -y install php
 $ php --version
 ```
 
-:memo: 最新版のPHPをインストールしたい場合、あるいはプロジェクトごとに異なるバージョンのPHPを簡単に管理したい場合は、phpenvをおすすめします。phpenv利用したPHPのインストール手順については「[phpenvで最新版のPHPをインストールしてWebサイトで使用する](http://qiita.com/noraworld/items/26e516e0245ff619f648)」を参考にしてください。
+📝 最新版のPHPをインストールしたい場合、あるいはプロジェクトごとに異なるバージョンのPHPを簡単に管理したい場合は、phpenvをおすすめします。phpenv利用したPHPのインストール手順については「[phpenvで最新版のPHPをインストールしてWebサイトで使用する](http://qiita.com/noraworld/items/26e516e0245ff619f648)」を参考にしてください。
 
 # PHP-FPMのインストール
 以下のコマンドを実行します。
@@ -56,7 +56,7 @@ $ sudo systemctl restart php-fpm
 # Nginxの設定を変更
 Nginxの設定を変更してPHPを実行できるようにします。`/etc/nginx/conf.d/default.conf` を編集します。今回はホームディレクトリ以下に `www` というディレクトリを作り、その中にある `index.php` を実行できるようにします。
 
-:warning: 初期設定に戻せるように設定のバックアップを取りたい人はこのファイルを直接編集せずに、コピーして編集してください。コピー先ファイルは `default.conf` と同じディレクトリ、ファイル名は任意ですが、拡張子は `.conf` としてください。なお、今回は `default.conf` を直接編集することを前提として説明します。
+⚠️ 初期設定に戻せるように設定のバックアップを取りたい人はこのファイルを直接編集せずに、コピーして編集してください。コピー先ファイルは `default.conf` と同じディレクトリ、ファイル名は任意ですが、拡張子は `.conf` としてください。なお、今回は `default.conf` を直接編集することを前提として説明します。
 
 ```diff:/etc/nginx/conf.d/default.conf
 - location / {
