@@ -3,7 +3,7 @@ title: "CentOS 7 (5, 6) で \"安定版 (最新版)\" のNginxをインストー
 emoji: "😎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nginx", "Yum", "CentOS", "centos7"]
-published: false
+published: true
 order: 13
 ---
 
