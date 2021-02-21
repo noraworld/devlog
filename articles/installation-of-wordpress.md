@@ -127,18 +127,18 @@ Bye
 [WordPress.org の秘密鍵サービス](https://api.wordpress.org/secret-key/1.1/salt/)
 
 # Nginxの設定をする
-Nginxの設定は [CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える](http://qiita.com/noraworld/items/fd491a77af9d4e1ccffa) でも紹介したのでここでは細かいことは省略しますが、今回はWordPressにアクセスすることだけを前提として、`root`を`wordpress`ディレクトリに変更します。
+Nginxの設定は [CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える](http://qiita.com/noraworld/items/fd491a77af9d4e1ccffa) でも紹介したのでここでは細かいことは省略しますが、今回は説明を簡単にするために`root`をホームディレクトリに変更します。
 
 ```diff:/etc/nginx/conf.d/default.conf
   location / {
 -     root   /home/ユーザ名/www;
-+     root   /home/ユーザ名/wordpress;
++     root   /home/ユーザ名;
       index  index.html index.htm index.php;
   }
 
   location ~ \.php$ {
 -     root           /home/ユーザ名/www;
-+     root           /home/ユーザ名/wordpress;
++     root           /home/ユーザ名;
       fastcgi_pass   127.0.0.1:9000;
       fastcgi_index  index.php;
       fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
