@@ -340,32 +340,32 @@ IPマスカレードを有効にします。その前に、インターネット
 
 ```bash
 $ ifconfig
-ens3 Link encap:Ethernet HWaddr ab:cd:ef:gh:ij:kl
- inet addr:216.58.197.228 Bcast:216.58.198.255 Mask:255.255.254.0
- inet6 addr: 0123:4567:890:1234:216:58:197:228/64 Scope:Global
- inet6 addr: abcd::efgh:ijkl:mnop:qrst/64 Scope:Link
- UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
- RX packets:1892979 errors:0 dropped:0 overruns:0 frame:0
- TX packets:167294 errors:0 dropped:0 overruns:0 carrier:0
- collisions:0 txqueuelen:1000
- RX bytes:241710378 (241.7 MB) TX bytes:107644167 (107.6 MB)
+ens3      Link encap:Ethernet  HWaddr ab:cd:ef:gh:ij:kl
+          inet addr:216.58.197.228  Bcast:216.58.198.255  Mask:255.255.254.0
+          inet6 addr: 0123:4567:890:1234:216:58:197:228/64 Scope:Global
+          inet6 addr: abcd::efgh:ijkl:mnop:qrst/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1892979 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:167294 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:241710378 (241.7 MB)  TX bytes:107644167 (107.6 MB)
 
-lo Link encap:Local Loopback
- inet addr:127.0.0.1 Mask:255.0.0.0
- inet6 addr: ::1/128 Scope:Host
- UP LOOPBACK RUNNING MTU:65536 Metric:1
- RX packets:160 errors:0 dropped:0 overruns:0 frame:0
- TX packets:160 errors:0 dropped:0 overruns:0 carrier:0
- collisions:0 txqueuelen:1
- RX bytes:11840 (11.8 KB) TX bytes:11840 (11.8 KB)
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:160 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:160 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:11840 (11.8 KB)  TX bytes:11840 (11.8 KB)
 
-tun0 Link encap:UNSPEC HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
- inet addr:10.8.0.1 P-t-P:10.8.0.2 Mask:255.255.255.255
- UP POINTOPOINT RUNNING NOARP MULTICAST MTU:1500 Metric:1
- RX packets:38514 errors:0 dropped:0 overruns:0 frame:0
- TX packets:60151 errors:0 dropped:0 overruns:0 carrier:0
- collisions:0 txqueuelen:100
- RX bytes:8130438 (8.1 MB) TX bytes:69942984 (69.9 MB)
+tun0      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
+          inet addr:10.8.0.1  P-t-P:10.8.0.2  Mask:255.255.255.255
+          UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:38514 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:60151 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:100
+          RX bytes:8130438 (8.1 MB)  TX bytes:69942984 (69.9 MB)
 
 ```
 
@@ -394,7 +394,6 @@ $ sudo ufw reload
 
 エラーが出なければOKです。
 
-# OpenVPNサーバの起動
 ### **【注意】さくらの VPS における「ネットワークインターフェース」について**
 実は、今までずっと問題なく接続できていた VPN が、数週間前に、設定も全くいじっていないのに突然接続できなくなってしまいました。その原因が数週間ずっとわからず、数週間調べ続けてようやくわかったのですが、どうやら**さくらの VPS で、ネットワークインターフェース名が変わった**ような気がします。
 
@@ -584,3 +583,4 @@ VPN構築は、簡単なようにも見えますが、ちょっと設定を間�
 * [クライアントのすべてのトラフィック（Webトラフィックを含む）をVPN経由にルーティングする](http://www.openvpn.jp/document/how-to/#AllTraffic)
 * [OpenVPN using TUN & routing](http://d.hatena.ne.jp/johnyuan2000/20141101/1414818243)
 * [Raspberry Pi - unable to start connection to openvpn server](https://forums.openvpn.net/viewtopic.php?t=20772)
+* [OpenVPN環境の構築](https://blog.k3n.link/2016/06/29/openvpn/)
