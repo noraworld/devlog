@@ -3,7 +3,7 @@ title: "Vagrantのボックスは動作を確認してから利用しよう"
 emoji: "👋"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Vagrant", "VagrantBox"]
-published: false
+published: true
 order: 19
 ---
 
