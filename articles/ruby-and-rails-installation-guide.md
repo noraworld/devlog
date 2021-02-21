@@ -78,8 +78,6 @@ rbenv同様に<a href="https://github.com/rbenv/ruby-build" target="_blank">GitH
 $ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 ```
 
-上記が推奨されたインストール方法です。スタンドアローンプログラム(?)としてインストールすることもできますが、ここでは省略します。詳しくは上記GitHubリポジトリのREADMEを参照してください。
-
 # Rubyのインストール
 いよいよRubyのインストールです。説明通りに進めていくと、ここでRubyのバージョンを選んでインストールすることができます。
 
