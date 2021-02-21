@@ -227,6 +227,6 @@ $ sudo nginx
 # 参考
 * [opensslのversion確認はCentOS系ではコツが必要](http://qiita.com/yoshi-taka/items/512cdc64d6a4b03b8c1b)
 * [OpenSSL(1.0.x)をインストールする（ソースからコンパイル）for CentOS 7.2](http://qiita.com/shadowhat/items/68fd55b532c04b13acf5)
-* [Nginxでレスポンスヘッダの一部を隠蔽する方法](http://qiita.com/noraworld/items/50781bcaa5bf28802cd0)
 * [EC2+nginxでhttp2対応できたとおもったらできてなかった話。（解決します）](http://qiita.com/pyonk/items/45626c712e4a9938c980)
+* [Nginxでレスポンスヘッダの一部を隠蔽する方法](http://qiita.com/noraworld/items/50781bcaa5bf28802cd0)
 * [OpenSSL 1.0.2 以降をインストールしてもALPNに対応できないときの対処法](http://noraworld.hatenablog.com/entry/enable-alpn-with-openssl)
