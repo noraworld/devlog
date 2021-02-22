@@ -3,7 +3,7 @@ title: "ナウマンを Docker で立ち上げてデプロイするまで"
 emoji: "🐘"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "マストドン", "naumanni", "ナウマン"]
-published: false
+published: true
 order: 36
 ---
 
