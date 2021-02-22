@@ -4,6 +4,7 @@ emoji: "👌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["PHP", "phpenv", "php-build", "php-fpm", "openssl"]
 published: true
+order: 29
 ---
 
 # はじめに
