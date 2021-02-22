@@ -86,7 +86,7 @@ stash@{0}: WIP on (no branch): 01e011bc Bump version to 1.3.2 (#2623)
 退避ができてリポジトリがクリーンな状態になったらタグ付き最新版にアップデートします。
 
 ```bash
-$ git tag # 最新版のバージョン番号を調べる
+$ git tag  # 最新版のバージョン番号を調べる
 $ git checkout [バージョン番号]
 ```
 
@@ -275,3 +275,8 @@ $ sudo docker-compose stop && sudo docker-compose up -d
 [![mastodon_version.png](https://qiita-image-store.s3.amazonaws.com/0/113895/30a08131-7005-0895-6711-f20b1951d390.png)](https://mastodon.noraworld.jp/about/more)
 
 このバージョンがタグ付き最新版のバージョンと一致していれば、正しくアップデートできたことが確認できます。
+
+# あわせて読みたい
+
+* [Docker を使ってデータの永続化をせずにマストドンをデプロイしてしまったときの対処法](http://qiita.com/noraworld/items/ff775cbad97baf566614)
+* [マストドン運営に必要なデイリータスクとキャッシュ削除タスクを cron ジョブに登録する](http://qiita.com/noraworld/items/9c1be562a717141b5c14)
