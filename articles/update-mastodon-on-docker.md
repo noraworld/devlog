@@ -28,7 +28,7 @@ $ git fetch
 $ git stash
 $ git tag
 $ git checkout [バージョン番号]
-$ git stash pop stash@{0}
+$ git stash pop
 $ sudo docker-compose pull
 $ sudo docker-compose build
 $ sudo docker-compose run --rm web rails db:migrate
@@ -224,12 +224,10 @@ $ git checkout [バージョン番号]
 チェックアウトしてタグ付きの最新版に更新できたら、先ほど退避したコードをリストアします。
 
 ```bash
-$ git stash pop stash@{0}
+$ git stash pop
 ```
 
-以前に別のコードを退避したものが残っていても、今回の退避は `stash@{0}` のはずなので、上記のコマンドで問題ないかと思います。
-
-退避したコードを復帰するコマンドには `git stash pop [番号]` と `git stash apply [番号]` があります。`pop` は、復帰したあと、スタッシュリストから削除するのに対して、`apply` は復帰するだけでスタッシュリストからの削除を行いません。復帰はしたがスタッシュリストに残ってしまったものを削除するには `git stash drop [番号]` を使います。つまり、`pop` は `apply` と `drop` を一緒に行うものだと考えてください。
+退避したコードを復帰するコマンドには `git stash pop` と `git stash apply` があります。`pop` は、復帰したあと、スタッシュリストから削除するのに対して、`apply` は復帰するだけでスタッシュリストからの削除を行いません。復帰はしたがスタッシュリストに残ってしまったものを削除するには `git stash drop` を使います。つまり、`pop` は `apply` と `drop` を一緒に行うものだと考えてください。
 
 復帰済みのコードがスタッシュリストに残り続けていると、退避をするたびにリストが増えてしまい、どのスタッシュがどの内容を退避したのかがわからなくなってきてしまうので、復帰済みのスタッシュは削除することをおすすめします。退避が完了したらスタッシュは不要なので、リストからの削除も一緒に行う `pop` を使用するのが良いかと思います。
 
