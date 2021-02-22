@@ -26,7 +26,8 @@ Docker を使用する場合はデータの永続化を行うために `docker-c
 $ cd path/to/mastodon
 $ git fetch
 $ git stash
-$ git checkout $(git tag | sort -V | tail -n 1)
+$ git tag
+$ git checkout [バージョン番号]
 $ git stash pop stash@{0}
 $ sudo docker-compose pull
 $ sudo docker-compose build
@@ -85,7 +86,8 @@ stash@{0}: WIP on (no branch): 01e011bc Bump version to 1.3.2 (#2623)
 退避ができてリポジトリがクリーンな状態になったらタグ付き最新版にアップデートします。
 
 ```bash
-$ git checkout $(git tag | sort -V | tail -n 1)
+$ git tag # 最新版のバージョン番号を調べる
+$ git checkout [バージョン番号]
 ```
 
 `git checkout [バージョン番号]` で指定したタグ付きバージョンにアップデートできます。手動でタグ付き最新版のバージョンを調べるなら [Releases · tootsuite/mastodon](https://github.com/tootsuite/mastodon/releases) にアクセスして確認することもできますが、`git tag` を上手く利用することでわざわざ手動で確認しなくても済みます。
@@ -161,6 +163,61 @@ v1.4.1
 ```bash
 $ git tag | sort -V | tail -n 1
 v1.4.1
+```
+
+:warning: 【追記】`1.4.x` までのバージョンでは Release Candidate 版は `1.4rc1` のように表記されていたため正しくソートできていましたが、`1.5.x` では `1.5.0rc1` のような表記に変わったため正しくソートできなくなってしまいました。
+
+```bash
+$ git tag | sort -V
+v0.1.0
+v0.1.1
+v0.1.2
+v0.6
+v0.7
+v0.8
+v0.9
+v0.9.9
+v1.0
+v1.1
+v1.1.1
+v1.1.2
+v1.2
+v1.2.1
+v1.2.2
+v1.3
+v1.3.1
+v1.3.2
+v1.3.3
+v1.4rc1
+v1.4rc2
+v1.4rc3
+v1.4rc4
+v1.4rc5
+v1.4rc6
+v1.4.1
+v1.4.2
+v1.4.3
+v1.4.4
+v1.4.5
+v1.4.6
+v1.4.7
+v1.5.0
+v1.5.0rc1
+v1.5.0rc2
+v1.5.0rc3
+```
+
+上記の例では `1.5.0` が最新版ですが、一番下にあるのは `1.5.0rc3` なので、正しくソートされていません。そのため、`1.5.x` 以降において
+
+```bash
+$ git tag | sort -V | tail -n 1
+```
+
+では必ずしも最新版が表示されるとは限らないことにご注意ください。正しい最新版を確認したい場合は、やはり `git tag` して自分で最新版がどれかを手動で確認する必要があります。
+
+```bash
+$ git tag
+$ git checkout [バージョン番号]
 ```
 
 ## ファイルの復帰
