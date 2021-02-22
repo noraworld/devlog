@@ -385,11 +385,11 @@ Docker が稼働している状態で、PostgreSQL のデータをリストア�
 
 アクセスを止めるには、Web サーバ (Nginx) を停止するのが一番手っ取り早いですが、すべてのサービスを止めたくない場合は、マストドンの `server` コンテキストに `deny all;` を追加して、マストドンに対するすべてのアクセスを一時的に拒否してください。
 
-```nginx
+```diff
 server {
  server_name マストドンで使用しているドメイン;
 
- deny all;
++ deny all;
 }
 ```
 
@@ -492,7 +492,7 @@ $ sudo /usr/pgsql-9.6/bin/postgresql96-setup initdb
 
 また、マストドンのアプリケーションからアクセスできるように、`/var/lib/pgsql/9.6/data/pg_hba.conf` を変更します。これは PostgreSQL 9.6 をすでに使用していた場合も、念のため確認してください。ファイルを編集する際は root 権限が必要です。
 
-```diff:/var/lib/pgsql/data/pg_hba.conf
+```diff:/var/lib/pgsql/9.6/data/pg_hba.conf
 # TYPE DATABASE USER ADDRESS METHOD
 
 # "local" is for Unix domain socket connections only
@@ -585,6 +585,12 @@ Redis のバックアップをリストアします。こちらは PostgreSQL �
 $ sudo cp ~/backup/dump.rdb /var/lib/redis
 ```
 
+所有者を redis に変更します。
+
+```bash
+$ sudo chown redis:redis /var/lib/redis/dump.rdb
+```
+
 これだけかと心配になりますが、これで大丈夫です。簡単ですね。
 
 ちなみにサーバ直下で、他のアプリケーションで、すでに Redis を使用していた場合は、これだと他のアプリケーションのデータが消えてしまいます。Docker で使用していたマストドンの Redis データと、すでにサーバ直下で別のアプリケーション用に使われていた Redis データをどのようにリストアするかは、他の記事を調べてください。
@@ -645,6 +651,24 @@ $ systemctl status postgresql-9.6 redis mastodon-web mastodon-sidekiq mastodon-s
 標準リポジトリでインストールできるバージョンの PostgreSQL をインストールした場合 (非推奨) は、`postgresql-9.6` を `postgresql` に読み替えてください。
 
 すべてのサービスの状態が `active` になっていれば OK です。
+
+## Web サーバへのアクセスを許可
+拒否していたマストドンへのアクセスを許可します。
+
+```diff
+server {
+ server_name マストドンで使用しているドメイン;
+
+- deny all;
+}
+```
+
+シンタックスエラーがないか確認して、再起動します。
+
+```bash
+$ sudo nginx -t
+$ sudo nginx -s reload
+```
 
 正しく起動しているかどうか、またデータがちゃんとリストアできているかどうかを、実際に Web にアクセスして確認してみてください。個人のトゥートやタイムライン、通知一覧、お気に入り一覧、設定、自己紹介文、サイト説明文、画像、認証済みアプリの一覧など、すべてのデータが正しく読み取れれば成功です！ お疲れさまでした！
 
