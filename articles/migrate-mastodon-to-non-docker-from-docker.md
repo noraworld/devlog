@@ -659,3 +659,40 @@ postgres=# \q
 `"username"` は読み替えてください。
 
 参考: [Superuser is not permitted to login](https://dba.stackexchange.com/questions/57723/superuser-is-not-permitted-to-login), [PostgreSQL: role is not permitted to log in](https://stackoverflow.com/questions/35254786/postgresql-role-is-not-permitted-to-log-in)
+
+## We're sorry, but something went wrong
+サービスを立ち上げて Web にアクセスしたときにこのエラーページが出たら、以下の 4 点を確認してください。
+
+### Docker コンテナが立ち上がっていないか
+原因はわからないのですが、`docker-compose stop` して止めたはずなのに、non-Docker への移行をしているときの何らかのタイミングで勝手にマストドンの Docker コンテナが立ち上がるときがあります。原因はよくわかりませんが、このときはマストドン Docker コンテナを止めましょう。
+
+```bash
+$ docker-compose stop
+```
+
+### .env.production を書き換え忘れていないか
+これはよくあるミスです。うっかり忘れてしまいます。`REDIS_HOST` と `DB_HOST` を、ともに `localhost` に変更しましょう。
+
+```diff
+- REDIS_HOST=redis
++ REDIS_HOST=localhost
+- DB_HOST=db
++ DB_HOST=localhost
+```
+
+### assets, packs, system の所有者が docker になっていないか
+`public/assets` や `public/packs` の所有者、所有グループが Docker のものになっていると、CSS や JS ファイルを読み取ることができないので、このエラーページが出力されます。また、`public/system` が読み取れないと、画像を読取ることができません。所有者、所有グループを変更して、読み取れる状態にしましょう。
+
+```bash
+$ sudo chown -R $(whoami):$(whoami) public/assets
+$ sudo chown -R $(whoami):$(whoami) public/packs
+$ sudo chown -R $(whoami):$(whoami) public/system
+```
+
+### マイグレーションやプリコンパイルをし忘れていないか
+マイグレーションやプリコンパイルを忘れるとこのエラーページが表示されることがあります。マイグレーションに関しては、データベースを移行する前にすでに行われていた場合はする必要はないですが、不安なら念のためやっておくと良いでしょう。
+
+```bash
+$ RAILS_ENV=production bundle exec rails db:migrate
+$ RAILS_ENV=production bundle exec rails assets:precompile
+```
