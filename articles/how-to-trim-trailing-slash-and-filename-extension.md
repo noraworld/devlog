@@ -229,7 +229,7 @@ Nginxの設定を間違えて、`http://example.com/about`でアクセスした�
 # 誤った設定
 ネットで "nginx remove trailing slash" などで検索するとなぜかほとんどのサイトでは以下のように設定するように紹介されています。
 
-```
+```nginx:nginx.conf
 server {
     listen      80;
     server_name example.com;
