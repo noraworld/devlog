@@ -181,7 +181,7 @@ $ cp ~/.phpenv/versions/x.x.x/etc/php-fpm.conf.default ~/.phpenv/versions/x.x.x/
 次にPHP-FPMのプロセスを起動します。
 
 ```bash
-$ ~/.phpenv/versions/x.x.x/sbin/php-fpm
+$ sudo ~/.phpenv/versions/x.x.x/sbin/php-fpm
 ```
 
 起動できたか確認するには以下のコマンドを実行します。
