@@ -146,7 +146,7 @@ $ php -v
 phpenv: php: command not found
 
 The `php' command exists in these PHP versions:
- x.x.x
+  x.x.x
 ```
 
 これはPHPはインストールされているけど、`php`コマンドとしてのパスが通っていないことを示します。
