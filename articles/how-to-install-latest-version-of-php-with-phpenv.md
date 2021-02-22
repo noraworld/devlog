@@ -3,7 +3,7 @@ title: "phpenvで最新版のPHPをインストールしてWebサイトで使用
 emoji: "👌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["PHP", "phpenv", "php-build", "php-fpm", "openssl"]
-published: false
+published: true
 ---
 
 # はじめに
