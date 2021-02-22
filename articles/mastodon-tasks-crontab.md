@@ -224,6 +224,11 @@ no crontab for root
 
 教えていただいて気づきましたが、一般ユーザで実行したほうが、セキュアですし、今後 `docker`, `docker-compose` コマンドを使用するときにも便利なので、こちらのほうが良いかもしれませんね。
 
+# あわせて読みたい
+
+* [Docker を利用したマストドンのアップデートメモ](http://qiita.com/noraworld/items/54216d13332f9ecb2846)
+* [Docker を使ってデータの永続化をせずにマストドンをデプロイしてしまったときの対処法](http://qiita.com/noraworld/items/ff775cbad97baf566614)
+
 # 参考サイト
 
 * [小規模Mastodonインスタンスを運用するコツ](https://blog.potproject.net/archives/977)
