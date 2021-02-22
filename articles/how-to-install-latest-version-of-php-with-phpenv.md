@@ -26,7 +26,7 @@ $ ./phpenv-install.sh
 ```
 
 ```bash:~/.bashrc
-export PATH="/path/to/.phpenv/bin:$PATH"
+export PATH="$HOME/.phpenv/bin:$PATH"
 eval "$(phpenv init -)"
 ```
 
@@ -80,7 +80,7 @@ $ ./phpenv-install.sh
 インストールが終わったら、以下の設定を`.bashrc`に追加します。
 
 ```bash:~/.bashrc
-export PATH="/path/to/.phpenv/bin:$PATH"
+export PATH="$HOME/.phpenv/bin:$PATH"
 eval "$(phpenv init -)"
 ```
 
