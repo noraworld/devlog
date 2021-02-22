@@ -3,7 +3,7 @@ title: "Docker を利用したマストドンのアップデートメモ"
 emoji: "🐳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "マストドン", "Docker", "docker-compose"]
-published: false
+published: true
 order: 33
 ---
 
