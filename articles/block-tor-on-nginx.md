@@ -3,7 +3,7 @@ title: "Nginx で Tor からのアクセス制限を行う方法"
 emoji: "🈲"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nginx", "Tor", "deny", "geo", "If"]
-published: false
+published: true
 order: 37
 ---
 
