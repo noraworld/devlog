@@ -224,6 +224,19 @@ no crontab for root
 
 教えていただいて気づきましたが、一般ユーザで実行したほうが、セキュアですし、今後 `docker`, `docker-compose` コマンドを使用するときにも便利なので、こちらのほうが良いかもしれませんね。
 
+# 補足2: デイリータスクの必要性について
+`v1.4.x` からデイリータスクは Sidekiq が代わりに行ってくれるようになりました。そのためデイリータスクを自分で（cron で）実行する必要はなくなりました。`v1.4.1` 以降のバージョンの場合はデイリータスクを cron ジョブから外しても大丈夫です。
+
+```diff:root_cron.conf
+- 00 18 * * * echo "" >> /home/username/.log/mastodon/daily.log && cd /path/to/mastodon && date >> /home/username/.log/mastodon/daily.log && /usr/local/bin/docker-compose run --rm web rake mastodon:daily >> /home/username/.log/mastodon/daily.log 2>&1
+
+30 18 * * 0 echo "" >> /home/username/.log/mastodon/remove_remote.log && cd /path/to/mastodon && date >> /home/username/.log/mastodon/remove_remote.log && /usr/local/bin/docker-compose run --rm web rake mastodon:media:remove_remote >> /home/username/.log/mastodon/remove_remote.log 2>&1
+```
+
+キャッシュ削除タスク（`remove_remote`）に関しては Sidekiq は行ってくれないのでそのまま残しておいてください。
+
+なお、冗長的ではありますが、`v1.4.1` 以降のバージョンでもデイリータスクを引き続き cron で実行しておいても問題はありません（現に僕のインスタンスでは、Sidekiq がちゃんとデイリータスクと同じ処理をやってくれているか不安なので、念のため cron でも実行しています）。不安な方はそのまま残しておいても良いですが、冗長性を好まない人や、cron でのデイリータスク実行中の CPU やメモリ使用量が気になる人は cron から外してください。
+
 # あわせて読みたい
 
 * [Docker を利用したマストドンのアップデートメモ](http://qiita.com/noraworld/items/54216d13332f9ecb2846)
