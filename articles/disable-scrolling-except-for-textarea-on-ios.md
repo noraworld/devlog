@@ -1,5 +1,5 @@
 ---
-title: "iOS でページ全体はスクロール無効にしたいけど個別の要素（textarea など）では有効にしたい"
+title: "iOS でページ全体はスクロールを無効にし、個別の要素（textarea など）では有効にする方法"
 emoji: "😊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["iOS", "JavaScript", "CSS", "HTML"]
