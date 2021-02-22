@@ -16,6 +16,52 @@ published: false
 今回の環境構築では「[phpenvで複数のPHPのバージョンを管理する](http://qiita.com/toshiro3/items/2ca2765c1a5fee78d504)」の記事を大変参考にさせていただきました:pray:
 ほとんどこちらのサイト通りで問題ないのですが、一部追加で必要なパッケージがあったり、自分の環境では壮絶なOpenSSL問題が発生したりしたので、そのへんも詳しく紹介していきます。
 
+# TL;DR
+読むのがめんどうな人向けです。
+
+```bash
+$ git clone https://github.com/CHH/phpenv.git
+$ cd phpenv/bin
+$ ./phpenv-install.sh
+```
+
+```bash:~/.bashrc
+export PATH="/path/to/.phpenv/bin:$PATH"
+eval "$(phpenv init -)"
+```
+
+```bash
+$ source ~/.bashrc
+$ git clone https://github.com/CHH/php-build.git ~/.phpenv/plugins/php-build
+$ sudo yum -y install epel-release
+$ sudo yum -y install gcc libxml2 libxml2-devel libcurl libcurl-devel libpng libpng-devel libmcrypt libmcrypt-devel libtidy libtidy-devel libxslt libxslt-devel openssl-devel bison libjpeg-turbo-devel readline-devel autoconf
+$ phpenv install --list
+$ phpenv install x.x.x
+```
+
+**phpenv install で OpenSSL に関するエラーが発生したら「[OpenSSLとの壮絶な闘い](http://qiita.com/noraworld/items/26e516e0245ff619f648#openssl%E3%81%A8%E3%81%AE%E5%A3%AE%E7%B5%B6%E3%81%AA%E9%97%98%E3%81%84)」を参照**
+
+```bash
+$ phpenv global x.x.x
+$ php -v
+$ cp ~/.phpenv/versions/x.x.x/etc/php-fpm.d/www.conf.default ~/.phpenv/versions/x.x.x/etc/php-fpm.d/www.conf
+$ cp ~/.phpenv/versions/x.x.x/etc/php-fpm.conf.default ~/.phpenv/versions/x.x.x/etc/php-fpm.conf
+$ ~/.phpenv/versions/x.x.x/sbin/php-fpm
+$ ps -ef | grep php-fpm | grep -v grep
+```
+
+**Webサーバを起動してPHPが使用できるか確認する**
+
+```bash
+# composerのインストール（任意）
+$ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+$ php -r "if (hash_file('SHA384', 'composer-setup.php') === '55d6ead61b29c7bdee5cccfb50076874187bd9f21f65d8991d46ec5cc90518f447387fb9f76ebae1fbbacf329e583e30') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+$ php composer-setup.php
+$ php -r "unlink('composer-setup.php');"
+$ sudo mv composer.phar /usr/local/bin/composer
+$ composer --version
+```
+
 # 環境
 * CentOS 7
 
@@ -134,7 +180,7 @@ $ cp ~/.phpenv/versions/x.x.x/etc/php-fpm.conf.default ~/.phpenv/versions/x.x.x/
 次にPHP-FPMのプロセスを起動します。
 
 ```bash
-$ ~/.phpenv/versions/7.0.6/sbin/php-fpm
+$ ~/.phpenv/versions/x.x.x/sbin/php-fpm
 ```
 
 起動できたか確認するには以下のコマンドを実行します。
