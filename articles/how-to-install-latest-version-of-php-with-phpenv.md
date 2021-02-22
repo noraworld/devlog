@@ -9,7 +9,7 @@ published: false
 # はじめに
 唐突にPHPを使って簡易的なWebサイトを作りたくなったのでPHPの環境構築をすることにしました。そしてせっかくなので最新版のPHPをインストールすることにしました。公式サイトからソースをダウンロードしてビルドしてもよかったのですが、バージョン管理とか更新がめんどうなので、PHPのバージョン管理ができるphpenvを使ってインストールしたのですが、その作業が結構大変だったので、今回は自分が成功した手順を紹介したいと思います。
 
-ちなみにPHPのバージョン管理にはphpenvとphpbrewがあって、phpbrewのほうがGitHubリポジトリのスターの数が多いですが、Rubyはrbenv, Pythonはpyenvを使用していてコマンド類がとても良く似ていて使いやすいのでこちらを使用することにしました。
+ちなみにPHPのバージョン管理にはphpenvとphpbrewがあって、phpbrewのほうがGitHubリポジトリのスターの数が多いですが、Rubyはrbenv, Pythonはpyenvを使用していてコマンド類がとても良く似ていて使いやすいのでphpenvを使用することにしました。
 
 もう一つの理由としてはphpbrewはどうやら PHP 7 系をインストールするときに発生するバグがあるらしく、自分も試した結果、phpbrewのインストールまではうまくいったけど、その後PHPをビルドする際にエラーが発生して全くインストールできなかったです。またGitHubのIssueを確認すると、多くの人が同じエラーが出ると言っていますが、解決法を試してもダメだったので、諦めました。
 
@@ -43,6 +43,8 @@ eval "$(phpenv init -)"
 $ source ~/.bashrc
 ```
 
+phpenvがインストールできたら、クローンしたリポジトリ（`phpenv`ディレクトリ）は必要ないので削除して大丈夫です。間違って`.phpenv`を削除しないように注意してください。
+
 # php-buildのインストール
 次にphp-buildをインストールします。
 
@@ -59,13 +61,13 @@ $ sudo yum -y install epel-release
 
 参考: [CentOS7.1 64bitのyumリポジトリにEPELを追加](http://www.kakiro-web.com/linux/epel-install.html)
 
-PHPでは非常に多くのパッケージをインストールしないといけなくて、それがパッケージが存在しないぞというエラーが、毎回インストールで時間が経ったあとに出てくるので大変でした。なので、無駄な時間を消費しないために、先に必要なパッケージを一気にインストールします。
+PHPでは非常に多くのパッケージをインストールしないといけなくて、パッケージが存在しないぞというエラーが、毎回インストールで時間が経ったあとに出てくるので大変でした。なので、無駄な時間を消費しないために、先に必要なパッケージを一気にインストールします。
 
 ```bash
 $ sudo yum -y install gcc libxml2 libxml2-devel libcurl libcurl-devel libpng libpng-devel libmcrypt libmcrypt-devel libtidy libtidy-devel libxslt libxslt-devel openssl-devel bison libjpeg-turbo-devel readline-devel autoconf
 ```
 
-`devel`のついているほうとついていないほうはどちらかがインストールできれば良いと思いますが、あとでインストール仕損じてエラーになるのが厄介なので、両方まとめて指定します（どちらか一方のみがインストールされることが多いです）
+`devel`のついているほうとついていないほうはどちらかがインストールできれば良いと思いますが、あとでインストールし損じてエラーになるのが厄介なので、両方まとめて指定します（どちらか一方のみがインストールされることが多いです）
 
 # PHPのインストール
 以下のコマンドでインストール可能なPHPのバージョンを確認します。
@@ -87,6 +89,8 @@ $ phpenv install x.x.x
 なお、インストールにはかなり時間がかかります。自分の環境では20分ちょっとかかりました。時間に余裕があるときにゆっくりと作業してください:coffee:
 
 最後にsuccessfullyと表示されればインストール完了です。
+
+もしここでOpenSSLに関するエラーが発生した場合は後述する[OpenSSLとの壮絶な闘い](http://qiita.com/noraworld/items/26e516e0245ff619f648#openssl%E3%81%A8%E3%81%AE%E5%A3%AE%E7%B5%B6%E3%81%AA%E9%97%98%E3%81%84)を参考にしてください。
 
 この状態でPHPのバージョンを確認しようとすると以下のように表示されます。
 
@@ -116,13 +120,13 @@ $ php -v
 バージョンなどが表示されればOKです。
 
 # PHP-FPMのインストール
-ここまでの設定だと、`php`コマンドを実行した際には、今回インストールしたPHPが使えますが、Webアプリケーションとしては使用できません（`.php`のファイルをWebサーバで配信ができません。仮に実行できたとしたらそれは以前にyumでインストールしたPHPの可能性があります。）
+ここまでの設定だと、`php`コマンドを実行した際には、今回インストールしたPHPが使えますが、Webアプリケーションとしては使用できません（`.php`のファイルをWebサーバで配信することができません。仮に実行できたとしたらそれは以前にyumでインストールしたPHPを使用している可能性があります。）
 
 そのため、今回インストールしたPHPをWebアプリケーションとして実行できるようにするために、PHP-FPMを使えるようにします。
 
 ```bash
-cp ~/.phpenv/versions/x.x.x/etc/php-fpm.d/www.conf.default ~/.phpenv/versions/x.x.x/etc/php-fpm.d/www.conf
-cp ~/.phpenv/versions/x.x.x/etc/php-fpm.conf.default ~/.phpenv/versions/x.x.x/etc/php-fpm.conf
+$ cp ~/.phpenv/versions/x.x.x/etc/php-fpm.d/www.conf.default ~/.phpenv/versions/x.x.x/etc/php-fpm.d/www.conf
+$ cp ~/.phpenv/versions/x.x.x/etc/php-fpm.conf.default ~/.phpenv/versions/x.x.x/etc/php-fpm.conf
 ```
 
 `x.x.x`にはインストールしたPHPのバージョンを指定してください。
@@ -130,7 +134,7 @@ cp ~/.phpenv/versions/x.x.x/etc/php-fpm.conf.default ~/.phpenv/versions/x.x.x/et
 次にPHP-FPMのプロセスを起動します。
 
 ```bash
-~/.phpenv/versions/7.0.6/sbin/php-fpm
+$ ~/.phpenv/versions/7.0.6/sbin/php-fpm
 ```
 
 起動できたか確認するには以下のコマンドを実行します。
@@ -199,7 +203,7 @@ $ source ~/.bashrc
 # OpenSSLとの壮絶な闘い
 **こちらは、OpenSSLでエラーが発生する場合についてです。上記の手順で問題なくインストールできた場合は気にする必要はありません。**
 
-少し前に、「[OpenSSLをソースからビルドしてNginxで使用する](http://qiita.com/noraworld/items/9c1d3c56293b68ca05b0)」という記事を投稿しました。これにある通り、自分はOpenSSLをソースからビルドして、OpenSSL 1.0.2 系の環境にしました。実はこれが、自分の環境でインストールを厄介にさせた一番の理由でした。この問題に悩まされなかったVM上の環境では上記の手順ですんなりいけたのに、1.0.2系をインストールしたマシン上では相当苦労しました…
+少し前に、「[OpenSSLをソースからビルドしてNginxで使用する](http://qiita.com/noraworld/items/9c1d3c56293b68ca05b0)」という記事を投稿しました。これにある通り、自分はOpenSSLをソースからビルドして、OpenSSL 1.0.2 系の環境にしました。実はこれが、自分の環境でのインストールを厄介にさせた一番の理由でした。この問題に悩まされなかったVM上の環境では上記の手順ですんなりいけたのに、1.0.2系をインストールしたマシン上では相当苦労しました…
 
 このようなエラーが発生しました。
 
@@ -241,13 +245,13 @@ configure: error: Cannot find OpenSSL's <evp.h>
 configure: error: Cannot find OpenSSL's libraries
 ```
 
-そして、唯一PHPのビルドに成功したのが、以下のサイトです。
+そして、唯一PHPのビルドに成功したのが、以下のサイトの手順です。
 
 [PHP+OpenSSLバージョンアップ](http://kenzo0107.hatenablog.com/entry/2016/02/22/184456)
 
-上記サイトのOpenSSLバージョンアップの作業に従ってインストールして、`phpenv`でインストールするときに`--with-openssl`オプションをつけると、ようやくビルドが通るようになりました。結局、エラーが直らなかった原因は、OpenSSLのインストール先が違っていたことなんですが、他のサイトでは`/usr/local/openssl`とかにインストールすることが多くて、これだとうまくいきませんでした。`/usr/local`にインストールしたときに限っては`/usr/local/bin`と`/usr/local/include`にそれぞれOpenSSLのバイナリファイルとライブラリ等のファイルがインストールされ、php-buildが正しくOpenSSLを認識してくれるようになりました。でもこれはどこを調べても解決しなかったので、解決するまで非常に時間がかかりました。
+上記サイトのOpenSSLバージョンアップの作業に従ってOpenSSLをインストールして、`phpenv`でインストールするときに`--with-openssl`オプションをつけると、ようやくビルドが通るようになりました。結局、エラーが直らなかった原因は、OpenSSLのインストール先が違っていたことなんですが、他のサイトでは`/usr/local/openssl`とかにインストールすることが多くて、これだとうまくいきませんでした。`/usr/local`にインストールしたときに限っては`/usr/local/bin`と`/usr/local/include`にそれぞれOpenSSLのバイナリファイルとライブラリ等のファイルがインストールされ、php-buildが正しくOpenSSLを認識してくれるようになりました。でもこれはどこを調べても解決しなかったので、解決するまで非常に時間がかかりました。
 
-これで問題は解決かというと実はそうではなくて、今度はComposerをインストールするときに同様にOpenSSLでエラーが発生してインストールできませんでした。Composerのインストールのときにも同様に特定のOpenSSLを指定する方法がわからないし、ここまで来るともはやPHPに関する何かしらをインストールする度にエラーが発生するので、ついにここで心が折れて、yumでインストールできる`oepnssl-devel`に戻すことにしました。せっかく最新版のOpenSSLをビルドからインストールしたので、正直すごく嫌でしたが、これからのことも考えて仕方なく決めました。
+これで問題は解決かというと実はそうではなくて、今度はComposerをインストールするときに同様にOpenSSLでエラーが発生してインストールできませんでした。Composerのインストールのときにも同様に特定のOpenSSLを指定する方法がわからないし、ここまで来るともはやPHPに関する何かしらをインストールする度にエラーが発生するので、ついにここで心が折れて、yumでインストールできる`oepnssl-devel`に戻すことにしました。せっかく最新版のOpenSSLをソースからビルドしたので、正直すごく嫌でしたが、これからのことも考えて仕方なく決めました。
 
 ただ、yumの`openssl-devel`がインストールされていて、`openssl`コマンドを実行するときにもちゃんとそちらが実行されるようになっていたのですが、なぜかビルドするときには、最新版のOpenSSLが使用されてしまってエラーが発生するので、ソースからビルドしたOpenSSLをすべてアンインストールすることにしました。
 
@@ -258,15 +262,17 @@ $ sudo rm -rf /usr/local/bin/openssl
 $ sudo rm -rf /usr/local/include/openssl
 ```
 
-そして、`openssl-devel`をインストールしました。
+そして念のため`openssl`をアンインストールし`openssl-devel`を再インストールしました。
 
 ```bash
+$ sudo yum -y remove openssl
+$ sudo yum -y remove openssl-devel
 $ sudo yum -y install openssl-devel
 ```
 
 `openssl-devel`だけだと`openssl`コマンドは使えませんが、バイナリ自体はどこかに存在するので、今回ビルドを通す分には問題ありませんでした。
 
-念のためサーバを再起動して、もう一度Composerをインストールしようとしましたが、同じエラーでした。そこで一旦インストールしたPHPを削除してもう一度、インストールし直してみました。
+さらに念には念を入れて、サーバを再起動しました。そしてもう一度Composerをインストールしようとしましたが、同じエラーでした。そこで一旦インストールしたPHPを削除してもう一度インストールし直してみました。
 
 ```bash
 $ rm -rf ~/.phpenv/versions/x.x.x
