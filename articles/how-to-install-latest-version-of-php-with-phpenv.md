@@ -46,7 +46,7 @@ $ phpenv global x.x.x
 $ php -v
 $ cp ~/.phpenv/versions/x.x.x/etc/php-fpm.d/www.conf.default ~/.phpenv/versions/x.x.x/etc/php-fpm.d/www.conf
 $ cp ~/.phpenv/versions/x.x.x/etc/php-fpm.conf.default ~/.phpenv/versions/x.x.x/etc/php-fpm.conf
-$ ~/.phpenv/versions/x.x.x/sbin/php-fpm
+$ sudo ~/.phpenv/versions/x.x.x/sbin/php-fpm
 $ ps -ef | grep php-fpm | grep -v grep
 ```
 
