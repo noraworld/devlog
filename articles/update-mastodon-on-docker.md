@@ -274,6 +274,6 @@ $ sudo docker-compose stop && sudo docker-compose up -d
 # アップデートの確認
 正しいバージョンは把握できていませんが、少なくとも `v1.2.2` 以降からは `/about/more` のページにマストドンのバージョンが表示されるようになっています。（バージョン情報が表示されるようになった正しいバージョンを知っている方はコメントで教えていただけるとうれしいです）
 
-![mastodon_version.png](https://qiita-image-store.s3.amazonaws.com/0/113895/30a08131-7005-0895-6711-f20b1951d390.png)
+[![mastodon_version.png](https://qiita-image-store.s3.amazonaws.com/0/113895/30a08131-7005-0895-6711-f20b1951d390.png)](https://mastodon.noraworld.jp/about/more)
 
 このバージョンがタグ付き最新版のバージョンと一致していれば、正しくアップデートできたことが確認できます。
