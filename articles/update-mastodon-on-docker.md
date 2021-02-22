@@ -28,6 +28,7 @@ $ git fetch
 $ git stash
 $ git checkout $(git tag | sort -V | tail -n 1)
 $ git stash pop stash@{0}
+$ sudo docker-compose pull
 $ sudo docker-compose build
 $ sudo docker-compose run --rm web rails db:migrate
 $ sudo docker-compose run --rm web rails assets:precompile
@@ -172,6 +173,13 @@ $ git stash pop stash@{0}
 退避したコードを復帰するコマンドには `git stash pop [番号]` と `git stash apply [番号]` があります。`pop` は、復帰したあと、スタッシュリストから削除するのに対して、`apply` は復帰するだけでスタッシュリストからの削除を行いません。復帰はしたがスタッシュリストに残ってしまったものを削除するには `git stash drop [番号]` を使います。つまり、`pop` は `apply` と `drop` を一緒に行うものだと考えてください。
 
 復帰済みのコードがスタッシュリストに残り続けていると、退避をするたびにリストが増えてしまい、どのスタッシュがどの内容を退避したのかがわからなくなってきてしまうので、復帰済みのスタッシュは削除することをおすすめします。退避が完了したらスタッシュは不要なので、リストからの削除も一緒に行う `pop` を使用するのが良いかと思います。
+
+# Docker コンテナの更新
+Docker のコンテナを更新します。
+
+```bash
+$ sudo docker-compose pull
+```
 
 # Docker のビルドと再起動
 ここまできたらあとは Docker を使用した通常の作業と同様です。まずは最新バージョンの状態になったものをビルドします。
