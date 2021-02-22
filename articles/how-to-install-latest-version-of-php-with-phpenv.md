@@ -51,6 +51,7 @@ $ ps -ef | grep php-fpm | grep -v grep
 ```
 
 **Webサーバを起動してPHPが使用できるか確認する**
+**「[CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える](http://qiita.com/noraworld/items/fd491a77af9d4e1ccffa)」参照**
 
 ```bash
 # composerのインストール（任意）
