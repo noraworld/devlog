@@ -26,7 +26,7 @@ Docker を使用する場合はデータの永続化を行うために `docker-c
 $ cd path/to/mastodon
 $ git fetch
 $ git stash
-$ git checkout $(git tag | tail -n 1)
+$ git checkout $(git tag | sort -V | tail -n 1)
 $ git stash pop stash@{0}
 $ sudo docker-compose build
 $ sudo docker-compose run --rm web rails db:migrate
@@ -84,7 +84,7 @@ stash@{0}: WIP on (no branch): 01e011bc Bump version to 1.3.2 (#2623)
 退避ができてリポジトリがクリーンな状態になったらタグ付き最新版にアップデートします。
 
 ```bash
-$ git checkout $(git tag | tail -n 1)
+$ git checkout $(git tag | sort -V | tail -n 1)
 ```
 
 `git checkout [バージョン番号]` で指定したタグ付きバージョンにアップデートできます。手動でタグ付き最新版のバージョンを調べるなら [Releases · tootsuite/mastodon](https://github.com/tootsuite/mastodon/releases) にアクセスして確認することもできますが、`git tag` を上手く利用することでわざわざ手動で確認しなくても済みます。
@@ -109,15 +109,55 @@ v1.2.2
 v1.3
 v1.3.1
 v1.3.2
+v1.3.3
+v1.4.1
+v1.4rc1
+v1.4rc2
+v1.4rc3
+v1.4rc4
+v1.4rc5
+v1.4rc6
 ```
 
-※ 2017/5/6 現在の出力結果です
+※ 2017/05/30 の出力結果です
 
-この出力結果に対して `tail` で一番下の一行を抽出すればそれがタグ付き最新版のバージョンになります。
+この出力結果だと `1.4.1` が最新版ですが、Release Candidate 版が下に来てしまっているので、本来の最新版が一番下に来るようにソートします。
 
 ```bash
-$ git tag | tail -n 1
+$ git tag | sort -V
+v0.1.0
+v0.1.1
+v0.1.2
+v0.6
+v0.7
+v0.8
+v0.9
+v0.9.9
+v1.0
+v1.1
+v1.1.1
+v1.1.2
+v1.2
+v1.2.1
+v1.2.2
+v1.3
+v1.3.1
 v1.3.2
+v1.3.3
+v1.4rc1
+v1.4rc2
+v1.4rc3
+v1.4rc4
+v1.4rc5
+v1.4rc6
+v1.4.1
+```
+
+そしてこの出力結果に対して `tail` で一番下の一行を抽出すればそれがタグ付き最新版のバージョンになります。
+
+```bash
+$ git tag | sort -V | tail -n 1
+v1.4.1
 ```
 
 ## ファイルの復帰
