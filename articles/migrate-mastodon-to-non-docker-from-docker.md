@@ -358,8 +358,8 @@ $ sudo systemctl daemon-reload
 
 この通りにファイルを変更したら問題なく動作しました。なぜこれでうまくいくのか、そしてなぜプロダクションガイドの例ではうまくいかないのかはわかりませんが、この解決策にたどり着くまで数時間かかりました…
 
-# PostgreSQL と Redis のデータのリストア
-**重要: PostgreSQL と Redis のデータは、必ず同時に、同時期のデータをリストアしてください**。
+# PostgreSQL と Redis のデータのバックアップとリストア
+## **【重要】PostgreSQL と Redis のデータは、必ず同時に、同時期のデータのバックアップを取ること**
 
 これは PostgreSQL のバージョンに次いで重要なことです。Docker 内で使用していた PostgreSQL と Redis のデータをサーバ直下に置くわけですが、このとき、稼働していた時期がそれぞれ別々の状態のデータをリストアしてしまうと予期せぬ問題が発生します。僕のインスタンスで起こった問題は、**ホームタイムラインが空になり、何も表示されない状態**になってしまったことです。
 
@@ -369,127 +369,225 @@ Docker が稼働している状態で、PostgreSQL のデータをリストア�
 
 そのため、PostgreSQL と Redis のデータをリストアする際には、まずマストドンの Docker コンテナを停止させてから、同じタイミングで行う必要があります。
 
-## **推奨**: Docker 内と同じバージョンの PostgreSQL をインストールした場合
-こちらは Docker 内と同じバージョンの PostgreSQL をインストールした場合の方法です。違うバージョンをインストールした場合は、後述のダンプしてリストアする方法を参照してください。
+## **【重要】9 月 11 日より前に記載されていたバックアップとリストアに関して**
+この記事では、PostgreSQL のバックアップとリストアの推奨方法として、マストドンディレクトリ以下の postgres と redis ディレクトリの中身をそのままコピーする、という紹介をしていました。
 
-### postgres と redis のディレクトリがない場合
-マストドンディレクトリ以下に `postgres` ディレクトリと `redis` ディレクトリがない場合は、データの永続化を行っていないと考えられるので、Docker コンテナから引っ張ってきます。
+しかし、これは結果的にバッドケースでした。この方法で [mastodon.noraworld.jp](https://mastodon.noraworld.jp) の移行メンテナンスを行って、この記事を書いたのですが、その後、このインスタンス内で、**一部のユーザアカウントが分裂したり、特定のユーザのトゥートが流れず、検索したりメンションを送ったりできなくなるという不具合**が発生してしまいました。
 
-```bash
-# postgres と redis のディレクトリがない場合のみ実行
+この不具合の原因は、マストドンの開発コアメンバーに診てもらったところ、データベース内のインデックスが壊れているということがわかりました。インデックスが壊れたことにより、アカウントのスクリーンネームとドメインが全く同じレコードは存在してはいけないというユニーク制約を無視してレコードが追加されたことで、アカウントが 2 つに分裂するなどの不具合が起こりました。
 
-$ docker-compose up -d
-$ sudo docker cp mastodon_db_1:/var/lib/postgresql/data /home/mastodon/live/postgres
-$ sudo docker cp mastodon_redis_1:/data /home/mastodon/live/redis
+参考: [Something is wrong with DB of my instance #4856](https://github.com/tootsuite/mastodon/issues/4856)
+
+本来このようなことは起こるはずがないのですが、Docker 内で使われていたデータベースファイルをそのままコピーすると、このような不具合を招く可能性が出てきてしまいます。そのため、そのようなバックアップ方法はおすすめしません。併せて、この記事の説明も修正しました。以降の説明で紹介する `pg_dump` と `pg_restore` を利用したバックアップとリストアを行ってください。
+
+## Web サーバの停止
+以降の説明で `pg_dump` コマンドを使用します。このコマンドを使用した PostgreSQL のバックアップ方法を「論理バックアップ」と呼びます。論理バックアップは、PostgreSQL サーバが起動している最中に実行しなければなりません。なので、バックアップをしている最中にデータベースが書き換わって、整合性が失われることがないように、ここでマストドンへの外部アクセスを止める必要があります。
+
+アクセスを止めるには、Web サーバ (Nginx) を停止するのが一番手っ取り早いですが、すべてのサービスを止めたくない場合は、マストドンの `server` コンテキストに `deny all;` を追加して、マストドンに対するすべてのアクセスを一時的に拒否してください。
+
+```nginx
+server {
+ server_name マストドンで使用しているドメイン;
+
+ deny all;
+}
 ```
 
-参考: [小規模Mastodonインスタンスを運用するコツ](https://blog.potproject.net/archives/977)
-
-マストドンのディレクトリが `/home/mastodon/live` ではない場合は読み替えてください。また、上記の 2 つの `docker cp` コマンドは、片方が終わったらすぐにもう片方のコマンドを実行してください。
-
-### コピー先に古いファイルがある場合
-この後、`/var/lib/pgsql/9.6` (PostgreSQL 9.6 の場合) と `/var/lib/redis` に Docker 内の PostgreSQL と Redis のデータをコピーするのですが、ここに不要なファイルやディレクトリがあった場合は一旦リストアします。
+`deny all;` を追加したら、シンタックスエラーがないか確認して、リロードします。
 
 ```bash
-# すでにファイルやディレクトリがある場合のみ
-
-$ sudo mv /var/lib/redis/* ~/backup
-$ sudo mv /var/lib/pgsql/9.6/data ~/backup
+$ sudo nginx -t
+$ sudo nginx -s reload
 ```
 
-`9.6` の箇所はインストールした PostgreSQL のバージョンに合わせて読み替えてください。なお、すでにそのサーバで PostgreSQL 9.6 (9.6 はこの記事の場合) や Redis を使用していた場合は、**今までのデータは使えなくなりますのでご注意ください**。
-
-## データのリストア
-Docker で使用していた PostgreSQL と Redis のデータをサーバ直下で使用する場所に置きます。先にマストドンの Docker コンテナを停止させてから、コピーします。また、それぞれのファイル、ディレクトリの所有者を変更します。
-
-```bash
-$ docker-compose stop
-$ sudo cp -r postgres /var/lib/pgsql/9.6/data
-$ sudo cp redis/* /var/lib/redis
-$ sudo chown -R postgres:postgres /var/lib/pgsql/9.6/data
-$ sudo chown redis:redis /var/lib/redis/*
-```
-
-`9.6` の箇所はインストールした PostgreSQL のバージョンに読み替えてください。
-
-## **非推奨**: 標準リポジトリでインストールできるバージョンの PostgreSQL をインストールした場合
-この場合は単純にファイルをコピーすることはできないので、Docker で使用していた PostgreSQL をダンプしてリストアします。
-
-マストドンの Docker コンテナを起動して DB コンテナに入ります。
+## PostgreSQL の論理バックアップ
+Docker 内のデータベースのバックアップを取ります。マストドンの Docker コンテナが起動していない場合は、起動します。
 
 ```bash
 $ docker-compose up -d
+```
+
+DB コンテナに接続します。
+
+```bash
 $ docker exec -it mastodon_db_1 /bin/bash
 ```
 
-DB コンテナ内の `postgres` ユーザでログインして、ダンプします。
+postgres ユーザでログインします。
 
 ```bash
 $ su - postgres
-$ pg_dumpall -f mastodon.sql
+```
+
+論理バックアップを行います。バックアップファイル名を `mastodon_docker.dump` とします。
+
+```bash
+pg_dump -Fc -U username dbname > mastodon_docker.dump
+```
+
+`username` と `dbname` にはそれぞれユーザ名と DB 名を入れます。ユーザ名と DB 名を確認するには、`.env.production` ファイル内の `DB_USER` と `DB_NAME` を見てください。
+
+生成されたバックアップファイルはカスタムアーカイブ形式と呼ばれます。他にもスクリプト形式や tar 形式などがありますが、カスタムアーカイブ形式は、ファイルサイズを小さくできる上に、後からスクリプト形式に変化させることもできるので、汎用性が高いです。カスタムアーカイブ形式が個人的におすすめです。
+
+バックアップを取ったら、Docker コンテナからログアウトします。
+
+```bash
 $ exit
 $ exit
 ```
 
-参考: [PostgreSQLでバックアップ・リストアする方法](http://wp.tech-style.info/archives/563)
-
-ダンプしたファイルをコンテナ内からサーバ直下へ持ってきます。その後、すぐにコンテナを停止させます。
+Docker コンテナにあるバックアップファイルを、サーバ直下に移動させます。
 
 ```bash
-$ docker cp mastodon_db_1:/var/lib/postgresql/mastodon.sql .
+$ docker cp mastodon_db_1:/var/lib/postgresql/mastodon_docker.dump ~/backup
+```
+
+## Redis のバックアップ
+PostgreSQL の次は Redis のデータをバックアップします。Redis コンテナに接続します。
+
+```bash
+$ docker exec -it mastodon_redis_1 /bin/sh
+```
+
+データのバックアップを取るのですが、接続した直後のディレクトリ (`/data`) にはすでに `dump.rdb` があるかと思います。もしこのファイルがある場合は別の名前に変更します。
+
+```bash
+# dump.rdb が存在する場合
+
+$ mv dump.rdb dump.rdb.old
+```
+
+`redis-cli` コマンドでバックアップを取ります。
+
+```bash
+$ redis-cli save
+```
+
+すると、`dump.rdb` というファイルが生成されます。生成されていたら、Docker コンテナからログアウトします。
+
+```bash
+$ exit
+```
+
+先ほどと同じように、Docker コンテナにあるバックアップファイルを、サーバ直下に移動させます。
+
+```bash
+$ docker cp mastodon_redis_1:/data/dump.rdb ~/backup
+```
+
+`mastodon_docker.dump` と `dump.rdb` をバックアップしたら、Docker コンテナを停止させます。
+
+```bash
 $ docker-compose stop
 ```
 
-`mastodon.sql` を `/var/lib/pgsql` に移動させ、所有者を変更します
+## PostgreSQL のリストア
+もし、今回はじめて PostgreSQL 9.6 をインストールした場合は、初期化を行う必要があります。以前から PostgreSQL 9.6 を使用していた場合は実行する必要はありませんし、実行するとエラーになります。
 
 ```bash
-$ sudo mv mastodon.sql /var/lib/pgsql
-$ sudo chown postgres:postgres /var/lib/pgsql/mastodon.sql
+# はじめて PostgreSQL 9.6 を使用する場合
+
+$ sudo /usr/pgsql-9.6/bin/postgresql96-setup initdb
 ```
 
-サーバ直下の PostgreSQL サーバを起動します。
+また、マストドンのアプリケーションからアクセスできるように、`/var/lib/pgsql/9.6/data/pg_hba.conf` を変更します。これは PostgreSQL 9.6 をすでに使用していた場合も、念のため確認してください。ファイルを編集する際は root 権限が必要です。
 
-```bash
-$ sudo systemctl start postgresql
+```diff:/var/lib/pgsql/data/pg_hba.conf
+# TYPE DATABASE USER ADDRESS METHOD
+
+# "local" is for Unix domain socket connections only
+- local all all peer
++ local all all trust
+# IPv4 local connections:
+- host all all 127.0.0.1/32 ident
++ host all all 127.0.0.1/32 trust
+# IPv6 local connections:
+- host all all ::1/128 ident
++ host all all ::1/128 trust
 ```
 
-起動しているか確認します。
+この状態で、PostgreSQL 9.6 サーバを起動して、状態を確認します。
 
 ```bash
-$ systemctl status postgresql
+$ sudo systemctl start postgresql-9.6
+$ systemctl status postgresql-9.6
 ```
 
-`active` となっていれば OK です。もし `failed` となっていて起動できなかった場合は、以下のコマンドで PostgreSQL の初期化を行ってください。
+`active` となっていれば起動しています。
+
+先ほどバックアップしたファイルを PostgreSQL のデータがあるディレクトリにコピーします。
 
 ```bash
-$ sudo postgresql-setup initdb
+$ sudo cp ~/backup/mastodon_docker.dump /var/lib/pgsql
 ```
 
-参考: [PostgreSQLの初期設定](http://www.nslabs.jp/postgresql-setup.rhtml)
-
-サーバ直下の `postgres` ユーザでログインして、ダンプしたファイルでリストアします。
+バックアップファイルの所有者を postgres に変更します。
 
 ```bash
-$ su - postgres
-$ psql -f mastodon.sql
+$ sudo chown postgres:postgres /var/lib/pgsql/mastodon_docker.dump
+```
+
+postgres ユーザにログインして、`psql` で SQL が実行できる状態にします。
+
+```bash
+$ sudo -u postgres psql
+```
+
+以下の SQL 文を実行します。
+
+```postgres
+sql> CREATE USER username CREATEDB;
+sql> CREATE DATABASE dbname WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.utf8' LC_CTYPE = 'en_US.utf8';
+sql> ALTER DATABASE dbname OWNER TO username;
+sql> \q
+```
+
+`username` と `dbname` は変更してください。
+
+再び、postgres ユーザでログインします。
+
+```bash
+$ sudo su - postgres
+```
+
+バックアップファイルをリストアします。
+
+```bash
+pg_restore -U username -C -d dbname mastodon_docker.dump --schema=public
+```
+
+`username` と `dbname` は変更してください。
+
+色々なオプションをつけていますが、このオプションの通りに実行すれば、おそらくエラーは出ないはずです。PostgreSQL のバージョンが、Docker 内とこことで異なる場合は、互換性の問題によりエラーが出力されるかもしれません。これが、**同じバージョンの PostgreSQL をインストールすることを推奨する理由**です。
+
+特にエラーがなければ、これでマストドンのデータを復帰させることができました。postgres からログアウトします。
+
+```bash
 $ exit
 ```
 
-これで、リストアはできますが、互換性の問題で一部のデータがリストアできていない可能性があります。`psql` コマンドを実行したときに表示されるエラーを確認してください。
-
-一旦 PostgreSQL サーバを停止します。
+一旦、PostgreSQL 9.6 サーバを停止させます。
 
 ```bash
-$ sudo systemctl stop postgresql
+$ sudo systemctl stop postgresql-9.6
 ```
 
-あとは、Docker 内と同じバージョンの PostgreSQL をインストールした場合 (推奨) の手順と同じように、Redis のデータをリストアします。マストドンディレクトリ以下に `redis` ディレクトリがなかったり、`/var/lib/redis` 以下に何かファイルが入っていた場合は、推奨側の手順を参照してください。
+## Redis のリストア
+**【重要】リストアを行う前に、もし Redis サーバがすでに起動していた場合は、必ず停止してからリストアしてください。**
 
 ```bash
-$ docker-compose stop
-$ sudo cp redis/* /var/lib/redis
-$ sudo chown redis:redis /var/lib/redis/*
+$ sudo systemctl stop redis
 ```
+
+Redis のバックアップをリストアします。こちらは PostgreSQL のようにリストアするためのコマンドはありません。単にファイルを移すだけです。
+
+```bash
+$ sudo cp ~/backup/dump.rdb /var/lib/redis
+```
+
+これだけかと心配になりますが、これで大丈夫です。簡単ですね。
+
+ちなみにサーバ直下で、他のアプリケーションで、すでに Redis を使用していた場合は、これだと他のアプリケーションのデータが消えてしまいます。Docker で使用していたマストドンの Redis データと、すでにサーバ直下で別のアプリケーション用に使われていた Redis データをどのようにリストアするかは、他の記事を調べてください。
 
 # マストドンの環境設定ファイルを編集
 Docker から non-Docker に移行したことで、マストドンの環境設定ファイルを変更する必要があります。具体的には、`REDIS_HOST` と `DB_HOST` を `localhost` に変更します。
@@ -695,4 +793,11 @@ $ sudo chown -R $(whoami):$(whoami) public/system
 ```bash
 $ RAILS_ENV=production bundle exec rails db:migrate
 $ RAILS_ENV=production bundle exec rails assets:precompile
+```
+
+上記の 4 点を確認したら、PostgreSQL 9.6 サーバ、Redis サーバ、マストドン Web サーバ、Sidekiq サーバ、ストリーミングサーバを再起動します。
+
+```bash
+$ sudo systemctl stop postgresql-9.6 redis mastodon-web mastodon-sidekiq mastodon-streaming
+$ sudo systemctl start postgresql-9.6 redis mastodon-web mastodon-sidekiq mastodon-streaming
 ```
