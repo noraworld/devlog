@@ -3,7 +3,7 @@ title: "マストドン運営に必要なデイリータスクとキャッシュ
 emoji: "🐠"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "マストドン", "cron", "crontab"]
-published: false
+published: true
 order: 35
 ---
 
