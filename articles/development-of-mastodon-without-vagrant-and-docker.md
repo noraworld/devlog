@@ -232,7 +232,7 @@ $ brew services start postgresql
 $ ps -ef | grep postgresql | grep -v grep
 ```
 
-起動できていなかった場合は、[こちら](postgresをupgradeした時に起動しない場合の解決策)を参考にしてみてください。
+起動できていなかった場合は、[こちら](https://openbook4.me/sections/1307)を参考にしてみてください。
 
 ## Redis のインストール
 Redis をインストールします。
