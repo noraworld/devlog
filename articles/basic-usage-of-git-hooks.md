@@ -122,7 +122,7 @@ post-update.sample pre-push.sample prepare-commit-msg.sample
 $ git config --global --unset init.templatedir
 ```
 
-その後、もう一度 `git init` すればサンプルフックスクリプトが生成されます。
+その後もう一度、新しくディレクトリを作成し `git init` すればサンプルフックスクリプトが生成されます。
 
 # 自作のスクリプトを読み込む設定を追加
 Git フックの仕組みがわかったところで自作のフックスクリプトを読み込む設定を追加してみましょう。ホームディレクトリに `.git_template` というディレクトリを作成し、その中に `hooks` ディレクトリを作成します。
