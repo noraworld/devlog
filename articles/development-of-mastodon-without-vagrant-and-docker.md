@@ -262,6 +262,10 @@ foreman でサーバを起動します。
 $ foreman start
 ```
 
+起動中に以下のウィンドウが表示されたら、「許可」をクリックします。
+
+![allow_ruby_network_connection.png](https://qiita-image-store.s3.amazonaws.com/0/113895/01eda6cc-7b1f-5656-c976-e16f17817911.png)
+
 アクセス可能になるタイミングは、`webpack: Compiled successfully.` と表示され、そのままの状態 (コマンド入力のプロンプトに戻らない状態) になったときです。
 
 http://localhost:3000 にアクセスして、ウェルカムページが表示されたら成功です！ お疲れさまでした。
