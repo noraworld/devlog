@@ -3,7 +3,8 @@ title: "macOS で idn-ruby がインストールできないときの解決法"
 emoji: "✨"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["idn", "idn-ruby", "Gem", "rubygems", "Mac"]
-published: false
+published: true
+order: 40
 ---
 
 # TL;DR
