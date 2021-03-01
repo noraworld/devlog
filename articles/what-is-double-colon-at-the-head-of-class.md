@@ -3,7 +3,7 @@ title: "Ruby: クラス名の先頭につける :: (先頭二重コロン) は�
 emoji: "💎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "Ruby2.5", "Ruby2.5.1"]
-published: false
+published: true
 order: 52
 ---
 
