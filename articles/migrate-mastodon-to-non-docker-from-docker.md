@@ -3,7 +3,7 @@ title: "Docker で稼働しているマストドンを Docker を使用しない
 emoji: "👋"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "マストドン", "Docker", "docker-compose", "PostgreSQL"]
-published: false
+published: true
 order: 38
 ---
 
