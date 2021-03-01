@@ -3,7 +3,7 @@ title: "ndenv を使用して複数のバージョンの Node.js を管理する
 emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Node.js", "ndenv", "npm"]
-published: false
+published: true
 ---
 
 # はじめに
