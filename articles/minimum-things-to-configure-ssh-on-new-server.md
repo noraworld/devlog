@@ -3,7 +3,7 @@ title: "新しいサーバ起動後に最低限行うべき SSH 設定"
 emoji: "😊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["SSH", "OpenSSH", "ufw", "ファイアウォール", "セキュリティ"]
-published: false
+published: true
 order: 47
 ---
 
