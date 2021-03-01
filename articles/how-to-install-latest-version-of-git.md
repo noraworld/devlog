@@ -46,7 +46,7 @@ $ git --version
 
 ```bash:Ubuntu16.04
 $ date
-Tue Dec 5 21:40:00 JST 2017 # 2017 年 12 月 5 日現在
+Tue Dec  5 21:40:00 JST 2017  # 2017 年 12 月 5 日現在
 $ sudo apt -y update
 $ sudo apt -y upgrade
 $ sudo apt -y install git
@@ -56,7 +56,7 @@ git version 2.7.4
 
 ```bash:CentOS7
 $ date
-Tue Dec 5 21:40:00 JST 2017 # 2017 年 12 月 5 日現在
+Tue Dec  5 21:40:00 JST 2017  # 2017 年 12 月 5 日現在
 $ sudo yum -y update
 $ sudo yum -y install git
 $ git --version
