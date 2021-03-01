@@ -3,7 +3,7 @@ title: "macOS で charlock_holmes がインストールできないときの解�
 emoji: "👻"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Rails", "Ruby", "Rails4", "Rails5"]
-published: false
+published: true
 order: 53
 ---
 
