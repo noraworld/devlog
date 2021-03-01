@@ -3,7 +3,7 @@ title: "OpenVPN のアクセスログを保存しないようにする方法"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["OpenVPN", "VPN", "ネットワーク"]
-published: false
+published: true
 order: 46
 ---
 
