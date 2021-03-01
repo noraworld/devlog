@@ -203,6 +203,7 @@ psql (PostgreSQL) 9.2.18
 9.6 をインストールしたにもかかわらず 9.2 となっています。このような状態になっていると、今後いろいろと不都合が生じるので、修正します。以下のコマンドを実行して、バージョン 9.6 のコマンドがインストールされたバイナリのパスを通します。
 
 ```bash
+# バージョンが異なる場合のみ
 $ echo 'export PATH="/usr/pgsql-9.6/bin:$PATH"' >> ~/.bash_profile
 ```
 
@@ -392,7 +393,7 @@ $ su - postgres
 論理バックアップを行います。バックアップファイル名を `mastodon_docker.dump` とします。
 
 ```bash
-pg_dump -Fc -U username dbname > mastodon_docker.dump
+$ pg_dump -Fc -U username dbname > mastodon_docker.dump
 ```
 
 `username` と `dbname` にはそれぞれユーザ名と DB 名を入れます。ユーザ名と DB 名を確認するには、`.env.production` ファイル内の `DB_USER` と `DB_NAME` を見てください。
@@ -423,7 +424,6 @@ $ docker exec -it mastodon_redis_1 /bin/sh
 
 ```bash
 # dump.rdb が存在する場合
-
 $ mv dump.rdb dump.rdb.old
 ```
 
@@ -582,9 +582,9 @@ Docker から non-Docker に移行したことで、マストドンの環境設�
 PostgreSQL サーバを起動してマイグレーションを実行します。
 
 ```bash
-$ sudo systemctl start postgresql
+$ sudo systemctl start postgresql-9.6
 $ RAILS_ENV=production bundle exec rails db:migrate
-$ sudo systemctl stop postgresql
+$ sudo systemctl stop postgresql-9.6
 ```
 
 # プリコンパイル
