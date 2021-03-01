@@ -400,6 +400,9 @@ $ pg_dump -Fc -U username dbname > mastodon_docker.dump
 
 生成されたバックアップファイルはカスタムアーカイブ形式と呼ばれます。他にもスクリプト形式や tar 形式などがありますが、カスタムアーカイブ形式は、ファイルサイズを小さくできる上に、後からスクリプト形式に変化させることもできるので、汎用性が高いです。カスタムアーカイブ形式が個人的におすすめです。
 
+参考: [論理バックアップ（pg_dump と pg_dumpall）](https://lets.postgresql.jp/documents/technical/backup/2)
+参考: [PostgresSQLのbackup, restore方法まとめ](http://qiita.com/rice_american/items/ceae28dad13c3977e3a8)
+
 バックアップを取ったら、Docker コンテナからログアウトします。
 
 ```bash
@@ -526,6 +529,9 @@ $ sudo su - postgres
 ```bash
 $ pg_restore -U username -C -d dbname mastodon_docker.dump --schema=public
 ```
+
+参考: [pg_restore で --table オプションを指定しないほうがよい](http://d.hatena.ne.jp/dayflower/20060717/1153120647)
+参考: [PostgreSQL: 非特権ユーザーによる pg_dump と pg_restore](http://tkrd.hatenablog.com/entry/2017/04/27/012832)
 
 `username` と `dbname` は変更してください。
 
