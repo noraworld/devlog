@@ -286,8 +286,8 @@ development 環境では、`admin` というユーザがすでに用意されて
 
 |data|value|
 |---|---|
-|メールアドレス|**admin@localhost:3000**|
-|パスワード|**mastodonadmin**|
+|メールアドレス|admin@localhost:3000|
+|パスワード|mastodonadmin|
 
 # 本家にプルリクエストを送信
 `Ctrl-C` を押して、一旦 foreman を停止させます。
