@@ -3,7 +3,7 @@ title: "[Mac] peco で複数選択ができないときの対処法"
 emoji: "🐕"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Peco", "IME", "Mac", "MacOSX", "macos"]
-published: false
+published: true
 order: 50
 ---
 
