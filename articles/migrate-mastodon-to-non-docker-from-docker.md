@@ -368,9 +368,9 @@ Docker が稼働している状態で、PostgreSQL のデータをリストア�
 
 ```diff
 server {
- server_name マストドンで使用しているドメイン;
+    server_name マストドンで使用しているドメイン;
 
-+ deny all;
++   deny all;
 }
 ```
 
@@ -475,17 +475,17 @@ $ sudo /usr/pgsql-9.6/bin/postgresql96-setup initdb
 また、マストドンのアプリケーションからアクセスできるように、`/var/lib/pgsql/9.6/data/pg_hba.conf` を変更します。これは PostgreSQL 9.6 をすでに使用していた場合も、念のため確認してください。ファイルを編集する際は root 権限が必要です。
 
 ```diff:/var/lib/pgsql/9.6/data/pg_hba.conf
-# TYPE DATABASE USER ADDRESS METHOD
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 # "local" is for Unix domain socket connections only
-- local all all peer
-+ local all all trust
+- local   all             all                                     peer
++ local   all             all                                     trust
 # IPv4 local connections:
-- host all all 127.0.0.1/32 ident
-+ host all all 127.0.0.1/32 trust
+- host    all             all             127.0.0.1/32            ident
++ host    all             all             127.0.0.1/32            trust
 # IPv6 local connections:
-- host all all ::1/128 ident
-+ host all all ::1/128 trust
+- host    all             all             ::1/128                 ident
++ host    all             all             ::1/128                 trust
 ```
 
 参考: [PostgreSQLのerror FATAL: Ident authentication failed for user](http://qiita.com/pugiemonn/items/7ec47bc82bd56b0458b9)
@@ -647,9 +647,9 @@ $ sudo systemctl enable postgresql-9.6 redis mastodon-web mastodon-sidekiq masto
 
 ```diff
 server {
- server_name マストドンで使用しているドメイン;
+    server_name マストドンで使用しているドメイン;
 
-- deny all;
+-   deny all;
 }
 ```
 
@@ -702,17 +702,17 @@ $ RAILS_ENV=production bundle exec rails mastodon:remove_remote
 このエラーが起きた場合は `/var/lib/pgsql/9.6/data/pg_hba.conf` を開き、以下の該当する箇所を変更してください。
 
 ```diff:/var/lib/pgsql/9.6/data/pg_hba.conf
-# TYPE DATABASE USER ADDRESS METHOD
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 # "local" is for Unix domain socket connections only
-- local all all peer
-+ local all all trust
+- local   all             all                                     peer
++ local   all             all                                     trust
 # IPv4 local connections:
-- host all all 127.0.0.1/32 ident
-+ host all all 127.0.0.1/32 trust
+- host    all             all             127.0.0.1/32            ident
++ host    all             all             127.0.0.1/32            trust
 # IPv6 local connections:
-- host all all ::1/128 ident
-+ host all all ::1/128 trust
+- host    all             all             ::1/128                 ident
++ host    all             all             ::1/128                 trust
 ```
 
 すべて `trust` に変更します。
@@ -744,10 +744,10 @@ $ sudo mv /var/lib/pgsql/9.6/data ~/backup
 
 参考: [Postgres CentOS and Amazon Linux initdb error: Data directory is not empty! [FAILED]](https://gist.github.com/kennwhite/2a3227165b14eca73b99)
 
-## ERROR: permission denied to create database
+## ERROR:  permission denied to create database
 おそらくこのエラーに遭遇することはないと思います。もしこのエラーに当たった場合は、何かを間違えている (勘違いやコマンドミス、実行順序ミス等の) 可能性が高いので、実行したコマンドの履歴を見ておかしなところがないか確認してください。
 
-## FATAL: role "username" is not permitted to log in
+## FATAL:  role "username" is not permitted to log in
 `"username"` の箇所にはデータベースのロールが入ります。
 
 これはエラーの内容通り、ログインする権限がないということです。まずは PostgreSQL に接続します。
