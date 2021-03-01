@@ -4,6 +4,7 @@ emoji: "📚"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Git", "submodule", "GitHub", "git-submodule"]
 published: false
+order: 49
 ---
 
 # サブモジュールが更新されない
@@ -47,3 +48,6 @@ $ git submodule update --remote
 サブモジュールを最新に追従するたびにコミットが発生しますし、常に最新を追従していると、サブモジュール側のバグを取り込んでしまう可能性も高くなります。
 
 サブモジュールの運用としては、サブモジュール側のプロジェクトのメジャーアップデートが行われたタイミングなど、更新を頻繁に行う必要がない程度に管理すると良いでしょう。
+
+# 参考サイト
+* [git submodule tracking latest](https://stackoverflow.com/questions/9189575/git-submodule-tracking-latest)
