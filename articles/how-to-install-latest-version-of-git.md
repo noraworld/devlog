@@ -8,8 +8,6 @@ order: 42
 ---
 
 # TL;DR
-最新の Git のバージョンは、[Releases · git/git](https://github.com/git/git/releases) を参照のこと
-
 ### Ubuntu
 
 ```bash:Ubuntu
@@ -40,6 +38,8 @@ $ make all doc info
 $ sudo make install install-doc install-html install-info
 $ git --version
 ```
+
+※ 最新の Git のバージョンは、[Releases · git/git](https://github.com/git/git/releases) を参照のこと
 
 # パッケージマネージャーの Git は古いことが多い
 `apt` や `yum` などの Linux のパッケージマネージャーでインストールした Git は、バージョンが古いことが多いです。
