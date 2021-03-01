@@ -2,7 +2,7 @@
 title: "Docker で稼働しているマストドンを Docker を使用しない環境に移行する方法"
 emoji: "👋"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["mastodon", "マストドン", "Docker", "docker-compose", "Rails"]
+topics: ["mastodon", "マストドン", "Docker", "docker-compose", "PostgreSQL"]
 published: false
 order: 38
 ---
