@@ -3,7 +3,7 @@ title: "Ubuntu クライアントから OpenVPN サーバに接続する方法"
 emoji: "🗂"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["OpenVPN", "Ubuntu", "VPN", "ubuntu16.04", "ネットワーク"]
-published: false
+published: true
 order: 45
 ---
 
