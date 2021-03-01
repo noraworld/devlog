@@ -12,7 +12,7 @@ order: 42
 
 ```bash:Ubuntu
 $ sudo apt -y remove git
-$ sudo apt -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev autoconf asciidoc xmlto docbook2x
+$ sudo apt -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev autoconf asciidoc xmlto docbook2x make gcc
 $ wget https://github.com/git/git/archive/v2.15.1.tar.gz
 $ tar -zxf v2.15.1.tar.gz
 $ cd git-2.15.1
@@ -27,7 +27,7 @@ $ git --version
 
 ```bash:CentOS
 $ sudo yum -y remove git
-$ sudo yum -y install curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel autoconf asciidoc xmlto docbook2X
+$ sudo yum -y install curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel autoconf asciidoc xmlto docbook2X make gcc
 $ sudo ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi
 $ wget https://github.com/git/git/archive/v2.15.1.tar.gz
 $ tar -zxf v2.15.1.tar.gz
@@ -96,13 +96,13 @@ $ sudo yum -y remove git
 ### Ubuntu の場合
 
 ```bash:Ubuntu
-$ sudo apt -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev autoconf asciidoc xmlto docbook2x
+$ sudo apt -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev autoconf asciidoc xmlto docbook2x make gcc
 ```
 
 ### CentOS の場合
 
 ```bash:CentOS
-$ sudo yum -y install curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel autoconf asciidoc xmlto docbook2X
+$ sudo yum -y install curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel autoconf asciidoc xmlto docbook2X make gcc
 $ sudo ln -s /usr/bin/db2x_docbook2texi /usr/bin/docbook2x-texi
 ```
 
