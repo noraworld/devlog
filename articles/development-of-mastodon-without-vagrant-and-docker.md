@@ -48,6 +48,17 @@ Docker も、macOS 直の環境を汚すことは防げますし、構築も簡�
 # macOS にマストドンの環境を構築
 以上の理由から、Vagrant や Docker を使用せずに、macOS 直の環境にマストドンを構築していきます。
 
+## 目次
+* [リポジトリをフォークしてクローン](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF%E3%81%97%E3%81%A6%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3)
+* [Ruby のインストール](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#ruby-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+* [Yarn のインストール](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#yarn-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+* [bundle install](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#bundle-install)
+* [yarn install](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#yarn-install)
+* [PostgreSQL のインストール](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#postgresql-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+* [Redis のインストール](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#redis-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+* [データベースのセットアップ](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97)
+* [サーバを起動](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#%E3%82%B5%E3%83%BC%E3%83%90%E3%82%92%E8%B5%B7%E5%8B%95)
+
 ## リポジトリをフォークしてクローン
 [マストドンの公式リポジトリ](https://github.com/tootsuite/mastodon)にアクセスして、リポジトリをフォークします。
 
@@ -270,8 +281,13 @@ $ foreman start
 
 http://localhost:3000 にアクセスして、ウェルカムページが表示されたら成功です！ お疲れさまでした。
 
-## ログイン
-development 環境では、`admin` というユーザがすでに用意されています。メールアドレスは、 `admin@localhost:3000` で、パスワードは、`mastodonadmin` です。
+# ログイン
+development 環境では、`admin` というユーザがすでに用意されています。
+
+|data|value|
+|---|---|
+|メールアドレス|**admin@localhost:3000**|
+|パスワード|**mastodonadmin**|
 
 # 本家にプルリクエストを送信
 `Ctrl-C` を押して、一旦 foreman を停止させます。
