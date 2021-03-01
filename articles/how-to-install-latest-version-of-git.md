@@ -3,7 +3,7 @@ title: "最新版の Git をインストールする"
 emoji: "📑"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Git", "GitHub", "CentOS", "Ubuntu"]
-published: false
+published: true
 order: 42
 ---
 
