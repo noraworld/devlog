@@ -3,7 +3,7 @@ title: "ディレクトリ構成から見る Rails 初心者のための Mastodo
 emoji: "📑"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "Rails", "Ruby"]
-published: false
+published: true
 order: 44
 ---
 
