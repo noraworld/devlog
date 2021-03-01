@@ -3,7 +3,7 @@ title: "Vagrant や Docker を使わずに macOS でマストドンの開発環�
 emoji: "🍣"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "development", "Mac", "Ruby", "Rails"]
-published: false
+published: true
 order: 41
 ---
 
