@@ -156,12 +156,12 @@ Web のルーティングを設定する重要なファイルです。先ほど�
 ただ、About ページに関しては、記事の投稿や更新などがあるわけではなく、単にページを表示するだけなので、`resource` を使用しておらず、以下のように定義されています。
 
 ```ruby
-get '/about', to: 'about#show'
+get '/about',      to: 'about#show'
 get '/about/more', to: 'about#more'
-get '/terms', to: 'about#terms'
+get '/terms',      to: 'about#terms'
 ```
 
-1 行目の `get '/about', to: 'about#show'` は、`/about` で GET リクエストがあった場合に、[about_controller.rb](https://github.com/tootsuite/mastodon/blob/master/app/controllers/about_controller.rb) の `show` メソッドが実行される、という意味です。そして、それに対応する HTML である、[app/views/about/show.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/show.html.haml) が表示されるわけです。
+1 行目の `get '/about',      to: 'about#show'` は、`/about` で GET リクエストがあった場合に、[about_controller.rb](https://github.com/tootsuite/mastodon/blob/master/app/controllers/about_controller.rb) の `show` メソッドが実行される、という意味です。そして、それに対応する HTML である、[app/views/about/show.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/show.html.haml) が表示されるわけです。
 
 同じように 2 行目は、`/about/more` でアクセスがあったときに、[about_controller.rb](https://github.com/tootsuite/mastodon/blob/master/app/controllers/about_controller.rb) の `more` メソッドが呼ばれ、[app/views/about/more.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/more.html.haml) が表示されます。
 
