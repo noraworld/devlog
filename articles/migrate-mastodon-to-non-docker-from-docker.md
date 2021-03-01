@@ -190,47 +190,41 @@ $ sudo yum -y install postgresql96 postgresql96-devel postgresql96-contrib postg
 
 9.6 ではない場合は、`9.6` や `96` となっている部分を、該当する数字に置き換えてください。うまくいかない場合は、該当バージョンのインストール方法を各自調べてください。
 
-### psql コマンドが存在する場合
-この時点ではまだ `psql` コマンドは使用できないはずですが、もし使用できた場合は、別のバージョンの PostgreSQL がすでにインストールされています。
+### PostgreSQL 関連のコマンドのバージョンが異なる場合
+上記の例では PostgreSQL 9.6 をインストールしたので、関連するコマンドも 9.6 であるべきですが、そうなっていない場合があります。それは、古いバージョンまたは、別のバージョンの PostgreSQL がすでにインストールされていたからです。
+
+これを確認するにはたとえば `psql` コマンドのバージョンを調べます。
 
 ```bash
 $ psql --version
 psql (PostgreSQL) 9.2.18
 ```
 
-`command not found` とならなかった場合は、一旦 `psql` コマンドを別の場所に退避させてください。
+9.6 をインストールしたにもかかわらず 9.2 となっています。このような状態になっていると、今後いろいろと不都合が生じるので、修正します。以下のコマンドを実行して、バージョン 9.6 のコマンドがインストールされたバイナリのパスを通します。
 
 ```bash
-# psql コマンドが存在する場合のみ
-
-$ which psql
-/usr/bin/psql
-$ sudo mv /usr/bin/psql ~/backup
+$ echo 'export PATH="/usr/pgsql-9.6/bin:$PATH"' >> ~/.bash_profile
 ```
 
-### psql コマンドのシンボリックリンクを貼る
-現状だと、PostgreSQL はインストールされていますが、`psql` コマンドが使用できません。そのため、シンボリックリンクを貼って `psql` コマンドを使用できるようにします。
+通したパスを反映させます。
 
 ```bash
-$ sudo ln -s /usr/pgsql-9.6/bin/psql /usr/bin/psql
+$ exec -l $SHELL
 ```
 
-9.6 ではない場合は該当する数字を置き換えてください。
-
-シェルを再起動します。
-
-```bash
-$ exec $SHELL
-```
-
-`psql` コマンドが、インストールした PostgreSQL と同じバージョンになっていれば成功です。
+これでもう一度、`psql` コマンドのバージョンを確認します。インストールした PostgreSQL のバージョンになっていることを確認してください。
 
 ```bash
 $ psql --version
 psql (PostgreSQL) 9.6.5
 ```
 
-参考: [【PostgreSQL】psql version 8.4, server version 9.5](http://mementoo.info/archives/2146)
+他にも、`pg_dump` や `pg_restore` などを使用するので、バージョンがそろっているか念のため確認してください。
+
+```bash
+$ pg_dump --version
+$ pg_restore --version
+```
 
 # マストドンサービスファイルの作成
 マストドンを起動するのに必要なサービスファイルを作成します。作成するサービスは以下の 3 つです。
@@ -325,7 +319,7 @@ mastodon-streaming.service の `ExecStart` のパスは、ここで表示され�
 $ sudo systemctl daemon-reload
 ```
 
-### 苦労話
+## 苦労話
 上記のファイルは、[マストドン公式リポジトリのプロダクションガイド](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Production-guide.md#mastodon-systemd-service-files)に書かれていたものを参考にしているのですが、なぜかこのガイドのサービスファイルだと、エラーが発生してデーモンが起動できませんでした。(厳密には起動するのですが、その数秒後に謎のエラーが出て落ちてしまいます)
 
 エラーログを細かく見ながらひたすら調べていたら、やっと解決策が見つかりました。
