@@ -97,7 +97,7 @@ Controller 内のファイル (`/app/controllers` 内のファイル) の中を�
 
 このように、Rails では、ディレクトリの構成やファイル名を見て、呼び出すメソッドや HTML を判断するので、ファイル名を見れば、どの Controller (Controller 内のメソッド) と View が結びついているかがわかるようになっています。
 
-7 つのメソッド以外のファイル名になっているファイル ([more.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/more.html.haml) や [terms.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/more.html.haml)) がどこのページと対応しているのかについては、[config/routes.rb](https://github.com/tootsuite/mastodon/blob/master/config/routes.rb) を見るとわかるようになっています。詳しくは後述します。
+7 つのメソッド以外のファイル名になっているファイル ([more.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/more.html.haml) や [terms.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/terms.html.haml)) がどこのページと対応しているのかについては、[config/routes.rb](https://github.com/tootsuite/mastodon/blob/master/config/routes.rb) を見るとわかるようになっています。詳しくは後述します。
 
 また、アンダースコアから始まっているファイル ([_registration.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/_registration.html.haml) など) は、`render` を使うことで、他の HTML から呼び出すことができます。
 
@@ -149,7 +149,7 @@ Rails で使用されるコマンドの設定ファイルが入っています�
 ## config/routes.rb
 Web のルーティングを設定する重要なファイルです。先ほど、Controller 内の 7 つの特殊なメソッドは View と対応していると説明しましたが、それ以外のメソッドと View の対応は、このファイルを見ればわかります。
 
-たとえば、[more.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/more.html.haml) や [terms.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/more.html.haml) は、`/app/views/about` 直下のファイルなので、About に関するどこかのページの HTML だということまではわかるのですが、具体的にどのページなのかはわかりません。(ファイル名がわかりやすいので、想像でわかる気もしますが…)
+たとえば、[more.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/more.html.haml) や [terms.html.haml](https://github.com/tootsuite/mastodon/blob/master/app/views/about/terms.html.haml) は、`/app/views/about` 直下のファイルなので、About に関するどこかのページの HTML だということまではわかるのですが、具体的にどのページなのかはわかりません。(ファイル名がわかりやすいので、想像でわかる気もしますが…)
 
 そこで、[config/routes.rb](https://github.com/tootsuite/mastodon/blob/master/config/routes.rb) を見てみましょう。`resource` や `resources` となっている箇所が多いことがわかりますが、これが 7 つの特殊なメソッドとルーティングの対応関係を定義している部分になります。`resource` や `resources` を使うことで、たとえば記事一覧にアクセスがあったときに、この Controller の index メソッドを呼び出して、記事の詳細にアクセスがあったときに show メソッドを呼び出して、新しい記事を書くページで POST リクエストがあったら create メソッドを呼び出して、…… などと、個別に設定する必要がありません。
 
