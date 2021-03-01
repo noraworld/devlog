@@ -51,9 +51,9 @@ $ git commit -m "Add test.txt"
 
 # コミット時に以下のようなメッセージが表示されることを確認
 Committed as:
- (use "git reset --soft HEAD^" to undo)
+  (use "git reset --soft HEAD^" to undo)
 
- test <test@exmaple.com>
+    test <test@exmaple.com>
 
 Check if they are correct
 ```
@@ -62,13 +62,13 @@ Check if they are correct
 #!/bin/sh
 
 if [ -z "`git config --local user.name`" ]; then
- echo "fatal: user.name is not set locally"
- exit 1
+  echo "fatal: user.name is not set locally"
+  exit 1
 fi
 
 if [ -z "`git config --local user.email`" ]; then
- echo "fatal: user.email is not set locally"
- exit 1
+  echo "fatal: user.email is not set locally"
+  exit 1
 fi
 ```
 
@@ -76,8 +76,8 @@ fi
 #!/bin/bash
 
 echo -e "Committed as:"
-echo -e " (use \"git reset --soft HEAD^\" to undo)\n"
-echo -e " \033[1;93m`git config --local user.name` <`git config --local user.email`>\033[00m\n"
+echo -e "  (use \"git reset --soft HEAD^\" to undo)\n"
+echo -e "	\033[1;93m`git config --local user.name` <`git config --local user.email`>\033[00m\n"
 echo -e "\033[1;95mCheck if they are correct\033[00m\n"
 ```
 
@@ -106,9 +106,9 @@ $ git init
 
 ```bash
 $ ls .git/hooks
-applypatch-msg.sample pre-applypatch.sample pre-rebase.sample update.sample
-commit-msg.sample pre-commit.sample pre-receive.sample
-post-update.sample pre-push.sample prepare-commit-msg.sample
+applypatch-msg.sample  pre-applypatch.sample  pre-rebase.sample          update.sample
+commit-msg.sample      pre-commit.sample      pre-receive.sample
+post-update.sample     pre-push.sample        prepare-commit-msg.sample
 ```
 
 ファイルがたくさん入っていることがわかります。ファイル名の `.sample` を外せばフックスクリプトとして動作します。たとえば `pre-commit` ならコミットする直前に実行されますし、`commit-msg` ならコミットされたときに実行されます。
@@ -153,13 +153,13 @@ $ touch ~/.git_template/hooks/pre-commit
 #!/bin/sh
 
 if [ -z "`git config --local user.name`" ]; then
- echo "fatal: user.name is not set locally"
- exit 1
+  echo "fatal: user.name is not set locally"
+  exit 1
 fi
 
 if [ -z "`git config --local user.email`" ]; then
- echo "fatal: user.email is not set locally"
- exit 1
+  echo "fatal: user.email is not set locally"
+  exit 1
 fi
 ```
 
@@ -186,8 +186,8 @@ $ touch ~/.git_template/hooks/commit-msg
 #!/bin/bash
 
 echo -e "Committed as:"
-echo -e " (use \"git reset --soft HEAD^\" to undo)\n"
-echo -e " \033[1;93m`git config --local user.name` <`git config --local user.email`>\033[00m\n"
+echo -e "  (use \"git reset --soft HEAD^\" to undo)\n"
+echo -e "	\033[1;93m`git config --local user.name` <`git config --local user.email`>\033[00m\n"
 echo -e "\033[1;95mCheck if they are correct\033[00m\n"
 ```
 
@@ -223,7 +223,7 @@ $ cd git-hooks-test2
 $ git init
 
 # 適当なファイルを作成
-$ touch test.txt # エディタを開き test.txt に適当な文字を入力
+$ touch test.txt  # エディタを開き test.txt に適当な文字を入力
 
 $ git add test.txt
 $ git commit -m "Add test.txt"
@@ -242,9 +242,9 @@ $ git commit -m "Add test.txt"
 
 # コミット時に以下のようなメッセージが表示されることを確認
 Committed as:
- (use "git reset --soft HEAD^" to undo)
+  (use "git reset --soft HEAD^" to undo)
 
- test <test@exmaple.com>
+    test <test@exmaple.com>
 
 Check if they are correct
 ```
