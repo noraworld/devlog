@@ -69,7 +69,7 @@ $ docker-compose ps
 * Mastodon v1.6.0rc1
 
 # Ruby と Bundler のインストール
-サーバ直下に、まだ Ruby がインストールされていない場合はインストールします。このときに Docker 内の Ruby と同じバージョンのものをインストールすることをおすすめします。
+サーバ直下に、まだ Ruby がインストールされていない、もしくはインストールされていても、Docker 内と同じバージョンの Ruby がインストールされていない場合はインストールします。Docker 内と違うバージョンの Ruby を使用しても大きな問題は出ないかもしれませんが、あまり古いとエラーになる可能性があるので同じバージョンのインストールをおすすめします。
 
 Docker 内の Ruby のバージョンを確認します。
 
@@ -634,6 +634,13 @@ $ systemctl status postgresql-9.6 redis mastodon-web mastodon-sidekiq mastodon-s
 ```
 
 すべてのサービスの状態が `active` になっていれば OK です。
+
+## デーモンの自動起動を有効
+すべてのデーモンが正しく起動していることを確認したら、サーバをリブートしたときにこれらのサービスが自動で起動されるように設定を有効にしましょう。
+
+```bash
+$ sudo systemctl enable postgresql-9.6 redis mastodon-web mastodon-sidekiq mastodon-streaming
+```
 
 ## マストドンへのアクセスを許可
 拒否していたマストドンへのアクセスを許可します。
