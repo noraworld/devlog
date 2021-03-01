@@ -3,7 +3,7 @@ title: "Git でサブコマンドを補完しようとしたときに Unknown op
 emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Git", "git-completion", "git-completion.bash", "git-v2.18", "list-cmds"]
-published: false
+published: true
 order: 51
 ---
 
