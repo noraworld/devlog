@@ -231,10 +231,9 @@ $ psql --version
 psql (PostgreSQL) 9.6.5
 ```
 
-他にも、`pg_dump` や `pg_restore` などを使用するので、バージョンがそろっているか念のため確認してください。
+他にも、`pg_restore` を使用するので、バージョンがそろっているか念のため確認してください。
 
 ```bash
-$ pg_dump --version
 $ pg_restore --version
 ```
 
