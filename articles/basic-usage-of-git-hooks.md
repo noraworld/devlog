@@ -3,7 +3,7 @@ title: "Git フックの基本的な使い方"
 emoji: "😽"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Git", "githooks", "pre-commit", "commit-msg", "GitHub"]
-published: false
+published: true
 order: 48
 ---
 
