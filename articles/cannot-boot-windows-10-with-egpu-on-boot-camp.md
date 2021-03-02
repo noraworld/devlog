@@ -170,7 +170,6 @@ macOS または Windows 10 を、再起動、またはシステム終了して�
 そこには、`Windows` (Windows 10) と `Macintosh HD` (macOS) の他に、`EFI Boot` という起動ディスクがあると思いますので、それを選択して起動します。
 
 ![IMG_6386.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/1220bd8e-0f6b-7d7b-f041-64b4a5790d93.jpeg)
-
 ▲ キーボードの左右の矢印キーで移動して `EFI Boot` を選択した状態でリターンキーを押します。
 
 すると apple_set_os の黒い画面が表示されます（下図のような画面）。その画面が表示されたら約 6 秒以内に（その黒い画面が消えてしまう前に）Blackmagic eGPU Pro を接続します。
@@ -272,29 +271,29 @@ Mac mini には USB-C 端子が 4 つあります。どの端子に接続して�
 │   │   ├── BOOTX64.efi
 │   │   └── automate-eGPU.efi
 │   └── CLOVER
-│   ├── ACPI
-│   │   └── WINDOWS
-│   ├── config.plist
-│   ├── drivers64UEFI
-│   │   └── apple_set_os.efi
-│   └── misc
+│       ├── ACPI
+│       │   └── WINDOWS
+│       ├── config.plist
+│       ├── drivers64UEFI
+│       │   └── apple_set_os.efi
+│       └── misc
 └── __MACOSX
- ├── ._EFI
- └── EFI
- ├── ._BOOT
- ├── ._CLOVER
- ├── BOOT
- │   ├── ._BOOTX64.efi
- │   └── ._automate-eGPU.efi
- └── CLOVER
- ├── ._ACPI
- ├── ._config.plist
- ├── ._drivers64UEFI
- ├── ._misc
- ├── ACPI
- │   └── ._WINDOWS
- └── drivers64UEFI
- └── ._apple_set_os.efi
+    ├── ._EFI
+    └── EFI
+        ├── ._BOOT
+        ├── ._CLOVER
+        ├── BOOT
+        │   ├── ._BOOTX64.efi
+        │   └── ._automate-eGPU.efi
+        └── CLOVER
+            ├── ._ACPI
+            ├── ._config.plist
+            ├── ._drivers64UEFI
+            ├── ._misc
+            ├── ACPI
+            │   └── ._WINDOWS
+            └── drivers64UEFI
+                └── ._apple_set_os.efi
 ```
 </div></details>
 
