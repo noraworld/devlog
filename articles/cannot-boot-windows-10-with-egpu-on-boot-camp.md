@@ -198,9 +198,11 @@ Mac mini には USB-C 端子が 4 つあります。どの端子に接続して�
 | eGPU 未接続時 | eGPU 接続時 |
 |:---:|:---:|
 | ![IMG_6404.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/f6fedad9-a420-b7b7-fad1-808e09bc692d.jpeg) | ![IMG_6405.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/a5aaa8a3-4e68-f5f9-3544-d0bd85154b2e.jpeg) |
-▲ `GPU(s)` の欄に `[0x1002 0x687F]` が追加されていれば Blackmagic eGPU Pro を認識している状態だと思います。本来なら `eGPU not detected` ではなく `eGPU detected` となるはずな気がしますが。
+▲ 表の右の画像のように、`GPU(s)` の欄に `[0x1002 0x687F]` が追加されていれば Blackmagic eGPU Pro を認識している状態だと思います。`eGPU not detected` というのが気になりますが。
 
 その画面でキーボードの `q` を押すと、macOS を起動するか Windows を起動するかを選択できますので、Windows を選択してリターンキーを押します。すると Windows 10 が起動します。
+
+なお、`apple_set_os.efi` のときはこの黒い画面が表示されている間に eGPU を接続すると認識して画面を更新してくれますが、automate-eGPU EFI の場合は接続を認識してくれなかったので、電源を入れる前に Blackmagic eGPU Pro を接続しておく必要があります。
 
 しかしこれも同じ結果でした。発生した症状も試したことも `apple_set_os.efi` と同じです。
 
