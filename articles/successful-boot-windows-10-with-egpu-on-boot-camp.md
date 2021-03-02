@@ -1,5 +1,5 @@
 ---
-title: "MacBook Pro (2018) + Blackmagic eGPU Pro の組み合わせで Boot Camp 環境の Windows 10 を使用することができた！（おそらく）"
+title: "MacBook Pro (2018) + Blackmagic eGPU Pro で Windows 10 を起動できた！ (おそらく)"
 emoji: "😇"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Bootcamp", "egpu", "Windows10", "Mac", "blackmagicdesign"]
