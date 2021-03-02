@@ -3,7 +3,7 @@ title: "RSpec の Compound Matcher Expressions を not_to と一緒に使用す�
 emoji: "😽"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "RSpec", "rspec3"]
-published: false
+published: true
 order: 61
 ---
 
