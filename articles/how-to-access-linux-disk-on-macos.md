@@ -15,10 +15,10 @@ $ diskutil list
 # /dev/disk0 と /dev/disk1 は macOS のものなので省略
 
 /dev/disk2 (external, physical):
- #: TYPE NAME SIZE IDENTIFIER
- 0: FDisk_partition_scheme *63.9 GB disk2
- 1: Windows_FAT_32 ⁨system-boot⁩ 268.4 MB disk2s1
- 2: Linux ⁨⁩ 63.6 GB disk2s2
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:     FDisk_partition_scheme                        *63.9 GB    disk2
+   1:             Windows_FAT_32 ⁨system-boot⁩             268.4 MB   disk2s1
+   2:                      Linux ⁨⁩                        63.6 GB    disk2s2
 
 # /dev/disk2s2 が Linux のディスクということがわかったが、マウントできず...
 $ diskutil mount /dev/disk2s2
@@ -63,10 +63,10 @@ $ diskutil list
 # /dev/disk0 と /dev/disk1 は macOS のものなので省略
 
 /dev/disk2 (external, physical):
- #: TYPE NAME SIZE IDENTIFIER
- 0: FDisk_partition_scheme *63.9 GB disk2
- 1: Windows_FAT_32 ⁨system-boot⁩ 268.4 MB disk2s1
- 2: Linux ⁨⁩ 63.6 GB disk2s2
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:     FDisk_partition_scheme                        *63.9 GB    disk2
+   1:             Windows_FAT_32 ⁨system-boot⁩             268.4 MB   disk2s1
+   2:                      Linux ⁨⁩                        63.6 GB    disk2s2
 ```
 
 いくつか表示されると思いますが、どれが Ubuntu (Linux) がインストールされている SD カード (あるいは USB メモリーなど) のものなのかはなんとなく勘でわかると思います。自分の環境では `/dev/disk2` が SD カードのディスクでした。
@@ -85,7 +85,7 @@ $ sudo ext4fuse /dev/disk2s2 ~/raspberrypi4 -o allow_other
 
 ```shell
 $ ls ~/raspberrypi4
-bin boot dev etc home lib lost+found media mnt opt proc root run sbin snap srv swapfile sys tmp usr var
+bin  boot  dev  etc  home  lib  lost+found  media  mnt  opt  proc  root  run  sbin  snap  srv  swapfile  sys  tmp  usr  var
 ```
 
 ## アンマウント
