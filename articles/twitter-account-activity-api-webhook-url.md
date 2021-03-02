@@ -358,6 +358,7 @@ Nginx + Let’s Encrypt での対応方法については以前に記事にま�
 # 正しい設定方法
 正しい設定方法でまとめると、以下のようになります。以下は Postman での設定例です。
 
+## Authorization
 まず `Authorization` タブを開きます。そして以下の通りにパラメータ等を指定します。
 ![スクリーンショット 2020-11-20 16.47.50.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/6fe54164-12aa-9293-5a98-84e07114c371.png)
 
@@ -373,6 +374,7 @@ Nginx + Let’s Encrypt での対応方法については以前に記事にま�
 ![スクリーンショット 2020-11-20 17.02.05.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/d8589c89-185c-df5d-5fcb-3cdee2b10d99.png)
 `Access token & secret` は一度だけしか表示されずあとから見ることができませんので、忘れてしまった場合は `Regenerate` で再発行してください。
 
+## Headers
 次に `Headers` タブを開きます。そして以下の通りにパラメータを指定します。
 ![スクリーンショット 2020-11-20 17.08.39.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/29ec8395-dd91-b01e-e8cc-92295992e1fb.png)
 
@@ -382,6 +384,7 @@ Nginx + Let’s Encrypt での対応方法については以前に記事にま�
 
 これは設定しなくてもうまくいくかもしれません。うまくいかなかったら設定してみてください。
 
+## Body
 最後に `Body` タブを開きます。そして以下の通りにパラメータ等を指定します。
 ![スクリーンショット 2020-11-20 17.13.17.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/b2edf5ee-1cad-a985-050e-453d91ccf784.png)
 
