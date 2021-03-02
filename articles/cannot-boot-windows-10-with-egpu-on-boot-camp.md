@@ -1,5 +1,5 @@
 ---
-title: "Mac mini (2018) + Blackmagic eGPU Pro の組み合わせで Boot Camp 環境の Windows 10 を使用することはできない（たぶん......）"
+title: "Mac mini (2018) + Blackmagic eGPU Pro で Windows 10 は起動できない (たぶん)"
 emoji: "😭"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Mac", "egpu", "blackmagicdesign", "Bootcamp", "Windows10"]
