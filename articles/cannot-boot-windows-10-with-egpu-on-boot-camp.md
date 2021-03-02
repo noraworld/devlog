@@ -33,7 +33,8 @@ order: 65
 # TL;DR
 以下に示す記事の内容・ツール等は一通り試しましたが、ぼくの環境ではどれもうまくいきませんでした。
 
-<details><summary>解決法を試した記事・使用したツール・参考にした記事一覧（クリックで展開）</summary>
+<details><summary>解決法を試した記事・使用したツール・参考にした記事一覧（クリックで展開）</summary><div>
+
 - [Boot CampのWindows10でeGPUが使えるように！](https://bobsmac.com/egpu/166.html)
 - [[EFI Loader] Error 12 Fix in Boot Camp for Apple T2 Security Chip Macs (apple_set_os loader v0.5)](https://egpu.io/forums/bootcamp/macbook-pro-16-windows-egpu-error-12-fix/)
 - [0xbb / apple_set_os.efi](https://github.com/0xbb/apple_set_os.efi)
@@ -52,7 +53,7 @@ order: 65
 - [eGPU でどこまでゲームが速くなるか？](http://battleformac.blog.jp/archives/52437855.html)
 - [MacBookPro(mojave)のbootcampでblackmagic egpuを使う方法](https://qiita.com/nierlain/items/1c10600a3e494a5aed7c)
 - [MacBookにBoot CampしてeGPUを繋ごう](https://kouki.hatenadiary.com/entry/2018/11/26/210530)
-</summary>
+</div></details>
 
 # そもそもなぜ Boot Camp 環境では使えないのか？
 Blackmagic eGPU Pro という商品は、Apple が公式でサポートしている eGPU なので、当然 macOS では動作します。Mac と Blackmagic eGPU Pro を Thunderbolt 3 対応の USB-C ケーブルで接続するだけで使えます。
