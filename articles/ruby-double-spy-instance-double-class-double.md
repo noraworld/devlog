@@ -132,7 +132,7 @@ describe Human do
       experiment_spy = spy(Experiment)
 
       allow(Experiment).to receive(:new).and_return(experiment_spy)
-      allow(experiment_double).to receive(:fail).and_return('fail!')
+      allow(experiment_spy).to receive(:fail).and_return('fail!')
 
       expect(Human.new.conduct_experiment).to eq('fail!')
     end
@@ -179,8 +179,8 @@ describe Human do
       experiment_instance_double = instance_double(Experiment)
 
       allow(Experiment).to receive(:new).and_return(experiment_instance_double)
-      allow(experiment_double).to receive(:succeed)
-      allow(experiment_double).to receive(:failure).and_return('fail!')
+      allow(experiment_instance_double).to receive(:succeed)
+      allow(experiment_instance_double).to receive(:failure).and_return('fail!')
 
       expect(Human.new.conduct_experiment).to eq('fail!')
     end
