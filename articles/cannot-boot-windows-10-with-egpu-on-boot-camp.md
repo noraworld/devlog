@@ -202,6 +202,9 @@ Mac mini には USB-C 端子が 4 つあります。どの端子に接続して�
 
 その画面でキーボードの `q` を押すと、macOS を起動するか Windows を起動するかを選択できますので、Windows を選択してリターンキーを押します。すると Windows 10 が起動します。
 
+![IMG_6401.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/e8f1f881-7019-2846-c7f7-8bd644526f5a.jpeg)
+▲ キーボードの上下の矢印キーで移動し、`Load Windows` を選択してリターンキーを押します。
+
 なお、`apple_set_os.efi` のときはこの黒い画面が表示されている間に eGPU を接続すると認識して画面を更新してくれますが、automate-eGPU EFI の場合は接続を認識してくれなかったので、電源を入れる前に Blackmagic eGPU Pro を接続しておく必要があります。
 
 しかしこれも同じ結果でした。発生した症状も試したことも `apple_set_os.efi` と同じです。
@@ -223,6 +226,8 @@ Blackmagic eGPU Pro に搭載されている GPU は AMD Radeon RX Vega 56 な�
 [Radeon™ RX Vega 56 Drivers & Support](https://www.amd.com/ja/support/graphics/radeon-rx-vega-series/radeon-rx-vega-series/radeon-rx-vega-56)
 
 Windows 10 - 64 ビット版を選択してダウンロードします。Revision Number が異なるものがいくつかありますが、試したのは一番上のものです。
+
+<img width="1864" alt="radeon_driver_download_page.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/25512e1f-f114-cbdd-e3fb-abbb52fa41b8.png">
 
 ダウンロードしたら、EXE ファイルを実行します。Blackmagic eGPU Pro を接続していない状態で実行すると、AMD の GPU を認識できませんという趣旨のエラーが表示されるのであらかじめ接続しておきます。この時点ではドライバエラーと表示されていても問題ありません。
 
