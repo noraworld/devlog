@@ -3,7 +3,7 @@ title: "RSpec でインスタンスメソッドがスタブできないときは
 emoji: "👻"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "RSpec"]
-published: false
+published: true
 order: 60
 ---
 
