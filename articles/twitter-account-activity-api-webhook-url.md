@@ -12,6 +12,9 @@ Twitter の Account Activity API を使う機会があり、[こちらの記事]
 
 Webhook の登録はかなり罠があり、調べても解決法が全然出てこなかったため、この記事では、発生するエラーコードを紹介し、その原因と解決法について解説します。参考になりましたら幸いです。
 
+# 正しい設定方法だけ見たい
+[正しい設定方法](#正しい設定方法)
+
 # 事前準備
 Webhook URL を登録する際には POST リクエストを Twitter に送る必要があります。そのリクエストを送るために、本記事では [Postman](https://www.postman.com) を利用します。あらかじめアカウント登録し、デスクトップ版アプリをインストールしておいてください。
 
@@ -71,6 +74,8 @@ Postman は Web 版で使用することもできます。しかし、ブラウ�
 ```
 https://api.twitter.com/1.1/account_activity/all/:ENV_NAME/webhooks.json?url=https%3A%2F%2Fyour_domain.com%2Fwebhook%2Ftwitter
 ```
+
+`:ENV_NAME` には、設定した Dev environment label が入ります。何を意味しているかわからない場合は「[エラーコード 200](#エラーコード-200)」の解説をご覧ください。
 
 [公式ドキュメント](https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/subscribe-account-activity/api-reference/aaa-premium) にはクエリパラメータとして Webhook URL を指定する例が載っているのでこれが正しそうな気がしますが、なぜかこれではうまくいきません。
 
