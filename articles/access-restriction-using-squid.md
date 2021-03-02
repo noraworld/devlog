@@ -134,11 +134,11 @@ $ brew services restart squid
 
 「ネットワーク」を開きます。
 
-<img width="664" alt="スクリーンショット 2020-01-17 17.48.56.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/d11130ac-dd96-879e-3b24-ca51baf9bcac.png">
+![スクリーンショット 2020-01-17 17.48.56.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/d11130ac-dd96-879e-3b24-ca51baf9bcac.png)
 
 「IPv4 の設定」の箇所が「DHCP サーバを使用」になっていたら、「手入力」に変更してください。すると、IP アドレス、サブネットマスク、ルーターが入力できるようになりますので、入力してください。たいていの場合は「手入力」にする前に設定されていた値と同じものをそのまま入力すれば良いはずです。
 
-<img width="602" alt="スクリーンショット 2020-01-17 17.52.34.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/af693dd3-3282-e36e-053a-8416a8a9ccde.png">
+![スクリーンショット 2020-01-17 17.52.34.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/af693dd3-3282-e36e-053a-8416a8a9ccde.png)
 
 これでプロキシサーバ側の設定は終了となります。
 
