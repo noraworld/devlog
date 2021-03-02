@@ -3,7 +3,7 @@ title: "便利！ AtCoder で競技プログラミングをするときに重宝
 emoji: "🐈"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AtCoder", "atcoder-tools", "AtCoderBeginnersSelection", "Python", "pip"]
-published: false
+published: true
 order: 69
 ---
 
