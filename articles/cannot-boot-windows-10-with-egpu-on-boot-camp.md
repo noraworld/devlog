@@ -134,8 +134,10 @@ SIP を無効化する方法に関してはこちらを参考にしてくださ�
 
 パーティションの作成方法に関しては以下を参考にしてください。
 
-- macOS から作業する場合 → [Macのディスクユーティリティで物理ディスクにパーティションを作成する](https://support.apple.com/ja-jp/guide/disk-utility/dskutl14027/mac)
-- Windows 10 から作業する場合 → [Windows10　新しいドライブ(パーティション)を作成する](https://pc-chain.com/windows10-create-partition/2046/)
+| OS | リンク |
+|---|---|
+| macOS で作業する場合 | [Macのディスクユーティリティで物理ディスクにパーティションを作成する](https://support.apple.com/ja-jp/guide/disk-utility/dskutl14027/mac) |
+| Windows 10 で作業する場合 | [Windows10　新しいドライブ(パーティション)を作成する](https://pc-chain.com/windows10-create-partition/2046/) |
 
 ## 手順 2: apple_set_os.efi を配置する
 `apple_set_os.efi` を以下の GitHub のページからダウンロードします。
