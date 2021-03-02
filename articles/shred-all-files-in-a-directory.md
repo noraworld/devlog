@@ -3,7 +3,7 @@ title: "ディレクトリ内の全ファイルを shred する方法"
 emoji: "💣"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["完全消去", "rm", "shred", "find", "sed"]
-published: false
+published: true
 order: 70
 ---
 
