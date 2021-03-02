@@ -60,3 +60,5 @@ You said he!
 
 # その他
 `Readline.readline` は、他にもヒストリを使うことができたりして便利です。カーソルの上キーや `ctrl` + `P` を押すと、前に入力した文字列を表示することができます。詳しくは [module Readline のリファレンスマニュアル](https://docs.ruby-lang.org/ja/latest/class/Readline.html) を参照ください。
+
+ASCII 制御文字については [Wikipedia](https://ja.wikipedia.org/wiki/%E5%88%B6%E5%BE%A1%E6%96%87%E5%AD%97) をご覧ください。
