@@ -12,6 +12,9 @@ order: 55
 
 今回は Let's Encrypt に登録したメールアドレスを確認する方法と変更する方法について紹介します。
 
+## 証明書の発行と更新
+証明書の発行と更新の方法について知りたい方は、「[Nginx+リバースプロキシ環境でWebサーバを停止させずに Let’s Encrypt (Certbot) のSSL証明書を自動更新する](https://qiita.com/noraworld/items/a2b4a5fabd7bf6ca25e0)」をご覧ください。
+
 # TL;DR
 ```
 # 確認
