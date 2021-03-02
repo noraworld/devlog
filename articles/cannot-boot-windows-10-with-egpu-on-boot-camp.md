@@ -3,7 +3,7 @@ title: "Mac mini (2018) + Blackmagic eGPU Pro で Windows 10 は起動できな�
 emoji: "😭"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Mac", "egpu", "blackmagicdesign", "Bootcamp", "Windows10"]
-published: false
+published: true
 order: 65
 ---
 
