@@ -47,7 +47,7 @@ Mac mini (2018) に Blackmagic eGPU Pro を接続して Boot Camp 環境で Wind
 </div></details>
 
 <details><summary>この Mac について (macOS)</summary><div>
-(あとでここにスクリーンショット)
+![スクリーンショット 2020-11-14 4.42.07.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/f2a12b7e-087a-8f13-242a-6f136210d29f.png)
 </div></details>
 
 
@@ -85,19 +85,19 @@ MEGA のダウンロードページに飛び、ダウンロードボタンを押
 ![スクリーンショット 2020-11-16 191651.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/95b7b370-c9e6-7d3d-d410-55fb5b670ae5.png)
 
 すると、「オプションの選択」という画面が表示されるので、その中の「トラブルシューティング」を選択します。
-(あとでここに写真)
+![IMG_7880.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/53be6b35-927e-f296-6f46-ecde3eaf1435.jpeg)
 
 「トラブルシューティング」の画面が表示されたら「詳細オプション」を選択します。
-(あとでここに写真)
+![IMG_7882.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/7cce925f-e540-4686-6250-6d395d51de35.jpeg)
 
 「詳細オプション」の画面が表示されたら「スタートアップ設定」を選択します。
-(あとでここに写真)
+![IMG_7885.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/3ffe36c6-0d3c-6f65-c6c3-d7cd592db8c1.jpeg)
 
 「スタートアップ設定」の画面が表示されたら、再起動ボタンをクリックします。
-(あとでここに写真)
+![IMG_7887.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/626efd14-b1c1-9348-018e-39e879ba1319.jpeg)
 
 その後しばらくすると先ほどとは別の「スタートアップ設定」の画面が表示されるので、キーボードの「**4**」を押します。
-(あとでここに写真)
+![IMG_7888.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/10851bd6-85b5-16c6-dc87-db619a2bf4be.jpeg)
 
 するとセーフモードで起動できます。デスクトップの壁紙が真っ黒で、画面の四隅に「セーフモード」と表示されていれば成功です。
 
