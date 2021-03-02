@@ -55,6 +55,14 @@ order: 65
 - [MacBookにBoot CampしてeGPUを繋ごう](https://kouki.hatenadiary.com/entry/2018/11/26/210530)
 </div></details>
 
+# 使用したデバイス・環境
+| 種類 | 内容 |
+|---|---|
+| Mac | Mac mini (2018) |
+| eGPU | Blackmagic eGPU Pro (AMD Radeon RX Vega 56) |
+| macOS | macOS Catalina バージョン 10.15.4 と 10.15.5 |
+| Windows | Windows 10 バージョン 1909 と 2020 (Insider Program) |
+
 # そもそもなぜ Boot Camp 環境では使えないのか？
 Blackmagic eGPU Pro という商品は、Apple が公式でサポートしている eGPU なので、当然 macOS では動作します。Mac と Blackmagic eGPU Pro を Thunderbolt 3 対応の USB-C ケーブルで接続するだけで使えます。
 
@@ -83,6 +91,12 @@ macOS では上記のいずれの問題も発生しないように設計され�
 というわけで、この問題を解決しないと Boot Camp 環境では eGPU が使用できないというわけです。ここから先は、ぼくが実際に試した方法（結局どれもうまくいきませんでしたが）を順番に紹介していきます。
 
 # 🍎 事前準備
+| 作業する際に使用する OS |
+|:---:|
+| macOS (リカバリーモード) |
+
+---
+
 以下のいくつかの方法を試す前に、あらかじめ SIP やセキュリティブートを無効化しておく必要があります。
 
 SIP を無効化する方法に関してはこちらを参考にしてください。
@@ -94,6 +108,12 @@ SIP を無効化する方法に関してはこちらを参考にしてくださ�
 「安全な起動」は「完全なセキュリティ」から「セキュリティなし」に変更し、「外部起動」は「外部メディアからの起動を許可しない」から「外部メディアからの起動を許可」に変更します。
 
 # 🍎 🏴󠁧󠁢󠁳󠁣󠁴󠁿 apple_set_os.efi を使用する
+| 作業する際に使用する OS |
+|:---:|
+| macOS または Windows 10 |
+
+---
+
 おそらく一番最初（か 2 番目）に出てくる方法が `apple_set_os.efi` を使用する方法ではないでしょうか。
 
 仕組みとしては、Apple のファームウェアをバイパスして Windows 10 を起動させるための UEFI みたいです。この UEFI を間にかませて Windows 10 を起動することで eGPU を認識した状態にすることができるようです。
@@ -102,6 +122,11 @@ SIP を無効化する方法に関してはこちらを参考にしてくださ�
 `apple_set_os.efi` をブートローダから読み込ませるためのパーティションを用意します。この作業は、macOS、Windows 10 のどちらからでも作業できます。
 
 `apple_set_os.efi` ファイルを置くだけなので、パーティションのサイズは小さくて良いです。フォーマットの際のファイルシステムについては後述します。
+
+パーティションの作成方法に関しては以下を参考にしてください。
+
+- macOS から作業する場合 → [Macのディスクユーティリティで物理ディスクにパーティションを作成する](https://support.apple.com/ja-jp/guide/disk-utility/dskutl14027/mac)
+- Windows 10 から作業する場合 → [Windows10　新しいドライブ(パーティション)を作成する](https://pc-chain.com/windows10-create-partition/2046/)
 
 ## 手順 2: apple_set_os.efi を配置する
 `apple_set_os.efi` を以下の GitHub のページからダウンロードします。
@@ -203,6 +228,12 @@ Mac mini には USB-C 端子が 4 つあります。どの端子に接続して�
 というわけでいろいろ試しましたがダメでした。
 
 # 🍎 🏴󠁧󠁢󠁳󠁣󠁴󠁿 automate-eGPU EFI を使用する
+| 作業する際に使用する OS |
+|:---:|
+| macOS または Windows 10 |
+
+---
+
 これが 2 番目（か一番最初）に出てくる方法だと思います。
 
 [[Solved] automate-eGPU EFI - eGPU boot manager for macOS and Windows](https://egpu.io/forums/mac-setup/automate-egpu-efi-egpu-boot-manager-for-macos-and-windows/)
@@ -265,6 +296,12 @@ Mac mini には USB-C 端子が 4 つあります。どの端子に接続して�
 しかしこれも同じ結果でした。発生した症状も試したことも `apple_set_os.efi` と同じです。
 
 # 🍎 rEFInd を使用する
+| 作業する際に使用する OS |
+|:---:|
+| macOS |
+
+---
+
 rEFInd というのは、フリーで使用できるブートローダです。これを使わなくても Mac の電源を入れてオプションキーを押し続けた状態で起動する Apple のブートローダを使用すれば良いような気もしますが、これでうまくいったという例もあったので念のため試してみました。
 
 [eGPU でどこまでゲームが速くなるか？](http://battleformac.blog.jp/archives/52437855.html)
@@ -274,6 +311,12 @@ rEFInd のインストール方法は、上記の記事に書いてあるもの�
 再起動するかシステム終了してからもう一度電源を入れると rEFInd の画面が表示されます。ここで先ほど紹介した `apple_set_os.efi` や automate-eGPU EFI をロードして Windows 10 を起動しますが、やはりこれも結果は変わりませんでした。
 
 # 🏴󠁧󠁢󠁳󠁣󠁴󠁿 AMD の公式ページからドライバをインストールする
+| 作業する際に使用する OS |
+|:---:|
+| Windows 10 |
+
+---
+
 ドライバエラー（エラー 12）と表示されることが多かったですが、そもそも正しいドライバがインストールされていないのでは？ と思い、公式ページからドライバをインストールすることにしました。
 
 Blackmagic eGPU Pro に搭載されている GPU は AMD Radeon RX Vega 56 なので、このチップに対応したドライバを AMD のページからダウンロードします。
@@ -297,6 +340,12 @@ Windows 10 - 64 ビット版を選択してダウンロードします。Revisio
 このエラー（エラー 207）に関してインターネットで調べてみてもよくわかりませんでした。
 
 # 🏴󠁧󠁢󠁳󠁣󠁴󠁿 BootCampDrivers を使用する
+| 作業する際に使用する OS |
+|:---:|
+| Windows 10 |
+
+---
+
 [bootcampdrivers.com](https://www.bootcampdrivers.com/) にアクセスすると、ロゴの下に "Unofficial, turbo-charged AMD graphics drivers for Mac users running BootCamp" と書かれていたので、もしかして Boot Camp 環境では、AMD の公式ページのドライバではダメで、こちらを使用しないとうまくいかないのかな？ と思いました。なのでこれを試してみることにしました。
 
 ページ左上あたりの "Downloads" から "Windows 10 ..." → "2020 drivers ..." と進み、"Adrenalin April 2020 Red Gaming edition (Best FPS in games)" を選択しダウンロードします。
@@ -347,7 +396,7 @@ BootCampDrivers からダウンロードしてきたドライバも、公式ペ�
 
 しかも、Mac mini には最近の MacBook Pro のように dGPU が搭載されていない分、dGPU を共存させて動作させるとかさせないとかいうことを考える必要もないのでむしろうまくいく可能性は高い気がするんです（詳しくはわかりませんが egpu.io のフォーラムではそのように書かれていました）。
 
-#
+# まだ試していない方法
 調べた限りで出てきた方法はほとんど試しましたが、まだ試していないものといえば少し古いバージョンの Windows 10 を使うとか、古いバージョンの macOS を使うというものです。
 
 でもここ数日、さんざんやってダメだったので、これでうまくいく希望は正直持てないし、わざわざ古いバージョンの OS を入れ直すという気力も起こりません。仮にこれでうまくいったとしても、そうなるともう OS のアップデートができなくなってしまうということになります。古いバージョンで脆弱性が発見されたとなればもうお終いです。
