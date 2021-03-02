@@ -1,5 +1,5 @@
 ---
-title: "RSpec の Compound Matcher Expressions (合成マッチャ式) を使う際に not_to (〜でないこと) と同等の検証をする方法"
+title: "RSpec の Compound Matcher Expressions を not_to と一緒に使用する方法"
 emoji: "😽"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "RSpec", "rspec3"]
