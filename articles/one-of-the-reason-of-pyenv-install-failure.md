@@ -1,5 +1,5 @@
 ---
-title: "macOS で pyenv install すると BUILD FAILED となり Python のインストールに失敗するときの解決法 (の一つ)"
+title: "macOS で pyenv install すると BUILD FAILED となりインストールに失敗するときの解決法 (の一つ)"
 emoji: "🔖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Python", "Python3", "pyenv", "pip"]
