@@ -3,7 +3,7 @@ title: "macOS で pyenv install すると BUILD FAILED となりインストー�
 emoji: "🔖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Python", "Python3", "pyenv", "pip"]
-published: false
+published: true
 order: 68
 ---
 
