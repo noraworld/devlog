@@ -3,7 +3,7 @@ title: "Dnsmasq を使って特定のウェブサイトに OpenVPN 経由でア�
 emoji: "👻"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["dnsmasq", "OpenVPN", "dns", "VPN"]
-published: false
+published: true
 order: 62
 ---
 
