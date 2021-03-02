@@ -28,14 +28,28 @@ Mac mini (2018) に Blackmagic eGPU Pro を接続して Boot Camp 環境で Wind
 
 そして最近になって、その気持ちが爆発してもう一度チャレンジしてみたくなりました。おとなしく Windows PC 用意すれば良いんですが、5 ヶ月前にどうしてもうまくいかなかった Boot Camp with eGPU にリベンジしたかったんですよね。諦めの悪い人間です。
 
-しかし、前回使用していた Mac mini はメルカリで売却してしまったので、今回は MacBook Pro でチャレンジしてみました。
+しかし、[前回使用していた Mac mini はメルカリで売却してしまった](https://www.mercari.com/jp/items/m98158423391/) ので、今回は MacBook Pro でチャレンジしてみました。
 
 すると、なんということでしょう。前回あれだけ苦労していろいろ試しても解決しなかったのに、今回やってみたらあっさりと eGPU を有効化させることができてしまいました。前回は `apple_set_os.efi` を使って Apple のファームウェアをバイパスするなどのトリッキーなことをやっていましたが、それすら今回は必要なかったです。
 
 ただし、表記上は eGPU が有効になっているのに全然使われていなかったり、VR ゲームをやる際に HMD (ヘッドマウントディスプレイ) に何も映像が映らないという問題にぶち当たって、原因を探るのに 3 日ほどかかってしまったので、今回はそれらの罠も踏まえつつ、eGPU を有効化して Mac で Windows 10 を使う方法について紹介します。
 
 # 環境
-(あとで書く)
+| 種類 | 内容 |
+|---|---|
+| Mac | MacBook Pro (2018) |
+| eGPU | Blackmagic eGPU Pro (AMD Radeon RX Vega 56) |
+| macOS | macOS Catalina バージョン 10.15.7 |
+| Windows | Windows 10 20H2 |
+
+<details><summary>詳細情報 (Windows 10)</summary><div>
+![スクリーンショット 2020-11-17 004601.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/78cfc488-f1bc-7df8-4a49-2a7930406007.png)
+</div></details>
+
+<details><summary>この Mac について (macOS)</summary><div>
+(あとでここにスクリーンショット)
+</div></details>
+
 
 # 必要なもの
 - Mac
