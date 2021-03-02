@@ -131,6 +131,7 @@ eGPU を認識したら、そのまま待つか、`z` 以外の何かしらの�
 これは `apple_set_os.efi` などを使わずに、Blackmagic eGPU Pro も接続せずにふつうに Windows 10 を起動して、そのあと Blackmagic eGPU Pro を接続した場合と同じ症状です。つまり、エラー 12 を解決できていません。
 
 <img width="293" alt="driver_error.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/834f0d37-d4d7-469c-0424-08ceb1042dcc.png">
+▲ Blackmagic eGPU Pro を認識はしているものの、「ドライバエラー」となり使用できません。「再起動してください」と出ることもありますが、再起動しても「ドライバエラー」のままです。
 
 ## 症状 2: 映像が全く映らない
 これは `apple_set_os.efi` などを使わずに、Blackmagic eGPU Pro を接続した状態で電源を入れて Windows 10 を起動した場合と同じ症状です。Mac mini 本体側、Blackmagic eGPU Pro 側含め、どの端子を使用してもモニターには何も映像が映りません。はじめからモニターと接続した状態で電源を入れたり、電源を入れてからモニターと接続したり、いろいろ試しましたが、ダメでした。
