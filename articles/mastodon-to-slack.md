@@ -7,7 +7,7 @@ published: false
 order: 56
 ---
 
-<img width="658" alt="mastodon_to_slack.png" src="https://qiita-image-store.s3.amazonaws.com/0/113895/f5f99674-e266-0e12-2f0b-fc5a93bd6a9b.png">
+![mastodon_to_slack.png](https://qiita-image-store.s3.amazonaws.com/0/113895/f5f99674-e266-0e12-2f0b-fc5a93bd6a9b.png)
 
 こんな感じで Mastodon のトゥートを Slack に流すことができます。
 
@@ -67,7 +67,7 @@ Slack App ディレクトリの検索フィールドに `Incoming WebHooks` と�
 
 「インテグレーションの設定」の項目にある「説明ラベル」「名前をカスタマイズ」「アイコンをカスタマイズする」をお好みの設定に変更します。一例として、以下のスクリーンショットのようになっているとわかりやすいでしょう。
 
-<img width="970" alt="integration_preview.png" src="https://qiita-image-store.s3.amazonaws.com/0/113895/8088d0f2-7112-ef2e-477d-6d23a93c360b.png">
+![integration_preview.png](https://qiita-image-store.s3.amazonaws.com/0/113895/8088d0f2-7112-ef2e-477d-6d23a93c360b.png)
 
 # Mastodon-to-Slack の設定
 Mastodon のトゥートを検知し、Slack に流すためのツールの設定を行います。
