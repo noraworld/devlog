@@ -110,7 +110,7 @@ macOS または Windows 10 を、再起動、またはシステム終了して�
 
 ![IMG_6386.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/1220bd8e-0f6b-7d7b-f041-64b4a5790d93.jpeg)
 
-キーボードの左右の矢印キーで移動して `EFI Boot` を選択した状態でリターンキーを押します。
+▲ キーボードの左右の矢印キーで移動して `EFI Boot` を選択した状態でリターンキーを押します。
 
 すると CPU やメモリの情報が表示された黒い画面が表示されます。その画面が表示されたら約 6 秒以内に（その黒い画面が消えてしまう前に）Blackmagic eGPU Pro を接続します。
 
