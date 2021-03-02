@@ -69,6 +69,7 @@ Postman は Web 版で使用することもできます。しかし、ブラウ�
 
 ネットで調べてみると、このエラーで苦しんでいる人が多くいるようでした。何を隠そう、自分もこのエラーで苦しみました。
 
+## 原因
 このエラーが発生する原因として考えられるのは、**Webhook URL をクエリパラメータとして設定していること** です。つまり、リクエストの URL を、以下のように指定しているためです。
 
 ```
@@ -79,11 +80,12 @@ https://api.twitter.com/1.1/account_activity/all/:ENV_NAME/webhooks.json?url=htt
 
 [公式ドキュメント](https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/subscribe-account-activity/api-reference/aaa-premium) にはクエリパラメータとして Webhook URL を指定する例が載っているのでこれが正しそうな気がしますが、なぜかこれではうまくいきません。
 
+## 解決方法
 これの解決方法は、**POST リクエストの Body にこのパラメータを入れること** です。つまり、
 ![スクリーンショット 2020-11-20 13.54.52.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/e126caac-4c82-6890-d556-6efd4b6bd26c.png)
-**こうではなく**
+**↑ こうではなく**
 ![スクリーンショット 2020-11-20 13.56.20.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/447548bf-cdec-b3c7-269f-83c5f4f91b40.png)
-**こうしてください**。
+**↑ こうしてください**。
 
 `Body` タブを開き `x-www-form-urlencoded` を選択して、`KEY` に `url`、`VALUE` にあなたの Webhook URL を指定してください。
 
@@ -105,7 +107,11 @@ https://api.twitter.com/1.1/account_activity/all/:ENV_NAME/webhooks.json?url=htt
 
 エラーメッセージに「Twitter プラットフォームオペレータに連絡してください」とありますが、アカウントが凍結したりアプリが停止処理を受けていない限りは連絡しても解決しません。そもそもまだ Webhook URL の登録すらできていないのでアプリが停止処理を受けているなんてことはふつうありえません。
 
-このエラーが発生する原因として考えられるのは、**アプリに書き込み権限を与えていないため** です。[Twitter Portal Dashboard](https://developer.twitter.com/en/portal/dashboard) にアクセスし、アプリの権限を変更してやります。
+## 原因
+このエラーが発生する原因として考えられるのは、**アプリに書き込み権限を与えていないこと** です。
+
+## 解決方法
+[Twitter Portal Dashboard](https://developer.twitter.com/en/portal/dashboard) にアクセスし、アプリの権限を変更してやります。
 
 左カラムの `Projects & Apps` のタブを開き、使用しているプロジェクトまたはアプリを開き、`App permissions` を確認します。ここが `Read only` になっている場合は右上の `Edit` をクリックして権限を変更します。
 ![スクリーンショット 2020-11-20 14.13.24.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/0ceaf50a-9d2e-1918-2797-4d3281fe0522.png)
@@ -132,7 +138,11 @@ DM の権限がいらない場合は、おそらく `Read and Write` でも問�
 }
 ```
 
-おそらくこれは先ほどのエラーコード 261 の解決法の手順でトークンを変更したのを忘れていた場合に発生すると思います。`Regenerate` を実行したあとはキーやトークンが変わるので忘れずに変更してください。
+## 原因
+おそらくこれは先ほどのエラーコード 261 の解決法の手順でトークンを変更したのを忘れていた場合に発生すると思います。
+
+## 解決方法
+`Regenerate` を実行したあとはキーやトークンが変わるので忘れずに変更してください。
 
 # エラーコード 200
 エラーメッセージは `Forbidden` です。これまたシンプルなメッセージですね。シンプルすぎて原因が不明です。
@@ -148,8 +158,10 @@ DM の権限がいらない場合は、おそらく `Read and Write` でも問�
 }
 ```
 
+## 原因
 このエラーが発生する原因として考えられるのは、**Account Activity API の Dev environment label を、認証しようとしているアプリに紐づけていないためです**。何を言っているのかわからないかと思いますのでスクリーンショットで解説します。
 
+## 解決方法
 左カラムの `Products` のタブを開き、`Dev Environments` を開きます。すると 3 つの環境をセットできる画面が表示されます。そのうちの `Account Activity API / Sandbox` の項目を見てください。まだ何も設定していない場合は `NOT SET UP` と表示されているはずです。その場合は `Set up dev environment` をクリックし、環境をセットアップしてください。
 ![スクリーンショット 2020-11-20 14.41.17.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/0442c2bb-e90b-3199-2dca-471a43749454.png)
 
@@ -176,7 +188,11 @@ https://api.twitter.com/1.1/account_activity/all/production/webhooks.json
 # エラーコード 357
 エラーメッセージは `url: queryParam is required` です。Webhook URL が設定されていないのが原因です。
 
-このエラーが発生する原因として考えられるのは、主に Webhook URL を指定し忘れているか、指定するキーが間違っていることです。Postman を使用している場合は、Webhook URL のパラメータにチェックが入っていることと、`KEY` を間違えていないことを確認してください。正しい `KEY` は `url` です。
+## 原因
+このエラーが発生する原因として考えられるのは、主に Webhook URL を指定し忘れているか、指定するキーが間違っていることです。
+
+## 解決方法
+Postman を使用している場合は、Webhook URL のパラメータにチェックが入っていることと、`KEY` を間違えていないことを確認してください。正しい `KEY` は `url` です。
 ![スクリーンショット 2020-11-20 15.35.51.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/9b26b653-868b-220a-7051-3d76a1c7a3a2.png)
 
 # エラーコード 34
@@ -193,9 +209,11 @@ https://api.twitter.com/1.1/account_activity/all/production/webhooks.json
 }
 ```
 
+## 原因
 これはおそらく URL の `:ENV_NAME` の部分をそのままにしているパターンです。
 ![スクリーンショット 2020-11-20 15.43.06.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/a5a89c81-6992-bac6-7961-6fe3aaa353fb.png)
 
+## 解決方法
 `:ENV_NAME` には Dev environment label を指定します。詳細は「[エラーコード 200](#エラーコード-200)」の解説を確認してください。
 
 # エラーコード 131
@@ -212,9 +230,11 @@ https://api.twitter.com/1.1/account_activity/all/production/webhooks.json
 }
 ```
 
+## 原因
 これはおそらく Webhook URL をサンプルのまま書いているパターンです。
 ![スクリーンショット 2020-11-20 16.39.03.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/1e8d4ac1-28d9-3ed0-1846-34a7026142ee.png)
 
+## 解決方法
 `https://your_domain.com/webhook/twitter` はあくまで例なので、実際に自分が用意した Webhook URL を使用してください。
 
 # エラーコード 214
@@ -234,6 +254,7 @@ https://api.twitter.com/1.1/account_activity/all/production/webhooks.json
 }
 ```
 
+### 原因
 これの原因として考えられるのは、Webhook URL が間違っていて Webhook 先のサーバにアクセスできないということです。Postman で Webhook URL として指定した URL をコピーしてその後ろに `?crc_token=foo` とつけてブラウザでアクセスしてください。たとえば以下のような URL です。
 
 ```
@@ -262,10 +283,12 @@ https://your_domain.com/webhook/twitter?crc_token=foo
 }
 ```
 
-`Unable to connect during CRC GET request` と同じように Webhook URL の後ろに `?crc_token=foo` とつけてアクセスした際に 404 Not Found や 500 Internal Server Error などが表示されるはずです。
+[Unable to connect during CRC GET request](#unable-to-connect-during-crc-get-request) と同じように Webhook URL の後ろに `?crc_token=foo` とつけてアクセスした際に 404 Not Found や 500 Internal Server Error などが表示されるはずです。
 
+### 原因
 おそらくこれは Nginx などの Web サーバの設定が間違っているか、Webhook を受け付けるスクリプトの実装が間違っているかです。どちらもサーバのログを見てエラー内容を調べる必要があります。
 
+### 参考スクリプト
 ぼくが使用した Node.js のスクリプトを載せておきます。Node.js で実装しましたが、他のプログラミング言語でも問題ありません。参考にしてみてください。
 
 ```javascript:index.js
@@ -314,23 +337,24 @@ $ node index.js
 }
 ```
 
+### 原因
 主な原因としては 2 つ考えられます。
 
-### HTTPS 対応していない
+#### HTTPS 対応していない
 エラーメッセージに `Please use HTTPS` と書かれていることからもわかる通り、Webhook URL は HTTPS でなければなりません。もし HTTPS になっていない場合は Let’s Encrypt などを使用して HTTPS 対応をしてください。
 
 Nginx + Let’s Encrypt での対応方法については以前に記事にまとめていますので参考にしてください。
 [Nginx+リバースプロキシ環境でWebサーバを停止させずに Let's Encrypt (Certbot) のSSL証明書を自動更新する](https://qiita.com/noraworld/items/a2b4a5fabd7bf6ca25e0)
 
-### URL の指定方法が間違っている
+#### URL の指定方法が間違っている
 有効な URL が指定されていないとこのメッセージが表示されます。ご丁寧にも `Please use HTTPS` と書かれているのが逆にややこしいですが、`http://` になっているだけでなく、それ以外の無効な URL だった場合も同様のメッセージなので、正しい URL かどうかを確認してください。
 
 よくありがちなのは、パーセントエンコーディングしてしまっている場合です。「[エラーコード 32](#エラーコード-32)」のときにも書きましたが、POST リクエストの Body に Webhook URL を含める際に、パーセントエンコーディングしてはいけません。
 
 ![スクリーンショット 2020-11-20 16.30.29.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/0e29299b-5e10-a6ea-4a63-5a10e075b21e.png)
-**こうではなく**
+**↑ こうではなく**
 ![スクリーンショット 2020-11-20 16.31.19.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/45cf0dd9-fd74-2ba3-ff3c-0510ea3458c1.png)
-**こうしてください**。
+**↑ こうしてください**。
 
 ## Too many resources already created
 エラーメッセージは `Too many resources already created` です。すでに Webhook URL の登録が完了しています。おめでとうございます 🎉
@@ -364,11 +388,11 @@ Nginx + Let’s Encrypt での対応方法については以前に記事にま�
 
 | 番号 | 値 | 補足 |
 |:---:|---|---|
-| ① | POST ||
-| ② | Dev environment label | 詳しくは「[エラーコード 200](#エラーコード-200)」の解説を参照 |
-| ③ | OAuth 1.0 ||
-| ④ | Request Headers ||
-| ⑤ | Signature Method は HMAC-SHA1 を指定 ||
+| ① | `POST` ||
+| ② | Dev environment label に設定した値 | 詳しくは「[エラーコード 200](#エラーコード-200)」の解説を参照 |
+| ③ | `OAuth 1.0` ||
+| ④ | `Request Headers` ||
+| ⑤ | Signature Method は `HMAC-SHA1` を指定 ||
 
 なお、`Consumer Key` と `Consumer Secret` というのは [Twitter Developer Portal](https://developer.twitter.com/en/portal/dashboard) の画面でいう `API key & secret` のことです。`View Keys` をクリックすれば見ることができます。
 ![スクリーンショット 2020-11-20 17.02.05.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/d8589c89-185c-df5d-5fcb-3cdee2b10d99.png)
@@ -380,7 +404,7 @@ Nginx + Let’s Encrypt での対応方法については以前に記事にま�
 
 | KEY | VALUE |
 |---|---|
-| Content-type | application/x-www-form-urlencoded |
+| `Content-type` | `application/x-www-form-urlencoded` |
 
 これは設定しなくてもうまくいくかもしれません。うまくいかなかったら設定してみてください。
 
@@ -390,7 +414,7 @@ Nginx + Let’s Encrypt での対応方法については以前に記事にま�
 
 | 番号 | 値 | 補足 |
 |:---:|---|---|
-| ⑥ | x-www-form-urlencoded ||
+| ⑥ | `x-www-form-urlencoded` ||
 | ⑦ | KEY に `url` ||
 | ⑧ | VALUE に Webhook URL | `https://your_domain.com/webhook/twitter` ではなく、自分の Webhook URL を設定すること |
 
