@@ -82,6 +82,17 @@ macOS では上記のいずれの問題も発生しないように設計され�
 
 というわけで、この問題を解決しないと Boot Camp 環境では eGPU が使用できないというわけです。ここから先は、ぼくが実際に試した方法（結局どれもうまくいきませんでしたが）を順番に紹介していきます。
 
+# 事前準備
+以下のいくつかの方法を試す前に、あらかじめ SIP やセキュリティブートを無効化しておく必要があります。
+
+SIP を無効化する方法に関してはこちらを参考にしてください。
+[【上級者向け】System Integrity Protection (SIP) を無効にする方法](https://www.too.com/support/faq/mac/maintenance/23554.html)
+
+セキュリティブートを無効化する方法に関してはこちらを参考にしてください。
+[「安全な起動」について](https://support.apple.com/ja-jp/HT208330)
+
+「安全な起動」は「完全なセキュリティ」から「セキュリティなし」に変更し、「外部起動」は「外部メディアからの起動を許可しない」から「外部メディアからの起動を許可」に変更します。
+
 # apple_set_os.efi を使用する
 おそらく一番最初（か 2 番目）に出てくる方法が `apple_set_os.efi` を使用する方法ではないでしょうか。
 
@@ -93,9 +104,13 @@ macOS では上記のいずれの問題も発生しないように設計され�
 `apple_set_os.efi` ファイルを置くだけなので、パーティションのサイズは小さくて良いです。フォーマットの際のファイルシステムについては後述します。
 
 ## 手順 2: apple_set_os.efi を配置する
-作成したパーティションに `apple_set_os.efi` を配置します。
+`apple_set_os.efi` を以下の GitHub のページからダウンロードします。
 
-ファイルを置くだけなのですが、ブートローダに認識させるためにはディレクトリ構造とファイル名が重要になります。具体的には
+[Releases · 0xbb/apple_set_os.efi](https://github.com/0xbb/apple_set_os.efi/releases)
+
+最新バージョンの `apple_set_os.efi` をダウンロードします。
+
+先ほど作成したパーティションに `apple_set_os.efi` を配置します。ファイルを置くだけなのですが、ブートローダに認識させるためにはディレクトリ構造とファイル名が重要になります。具体的には
 
 ```
 EFI/BOOT/bootx64.efi
@@ -177,6 +192,11 @@ Mac mini には USB-C 端子が 4 つあります。どの端子に接続して�
 最初は Blackmagic eGPU Pro を接続しない状態で電源を入れ、`apple_set_os.efi` がロードされてから接続して認識させていましたが、電源を入れる前からあらかじめ接続しておき、`apple_set_os.efi` をロードする方法も試してみました。
 
 結果的には、これでも `apple_set_os.efi` の黒い画面上では Blackmagic eGPU Pro を認識していました。でも結果は同じです。
+
+## 試行錯誤 6: apple_set_os loader v0.5 を試してみる
+以下のフォーラムにある手順を試してみても変わらず。
+
+[[EFI Loader] Error 12 Fix in Boot Camp for Apple T2 Security Chip Macs (apple_set_os loader v0.5)](https://egpu.io/forums/bootcamp/macbook-pro-16-windows-egpu-error-12-fix/)
 
 ---
 
