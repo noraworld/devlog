@@ -51,3 +51,4 @@ $ rm -rf dir
 
 # 参考
 - [ファイル・ディスクの中身を完全消去](http://yang.amp.i.kyoto-u.ac.jp/~yyama/Ubuntu/strage/shred.html)
+- [xargs: unmatched single quote; by default quotes are special to xargs unless you use the -0 option](https://askubuntu.com/questions/1106805/xargs-unmatched-single-quote-by-default-quotes-are-special-to-xargs-unless-you)
