@@ -20,6 +20,12 @@ order: 65
 
 ところが、ゲームはまともに動作しませんでした。それもそのはず、ぼくが持っている Mac mini (2018) は GPU を積んでいない（Intel UHD Graphics 630 を除く）ので、動画編集やゲームのような大量のグラフィック処理を行うことができません。
 
+| 標準品質 1920 x 1080 | 軽量品質 1920 x 1080 |
+|:---:|:---:|
+| <img width="583" alt="finalfantasyxvbenchmarkscore.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/bb107ae1-b38c-208a-337c-69050b045ce1.png"> | ![コメント 2020-05-31 174935.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/303a83d6-820d-9732-6665-d1a90f9b8562.png) |
+
+▲ FINAL FANTASY XV のベンチマークスコア。FPS は一桁台でまともにプレイできる品質ではなかった。
+
 それならば、ということで、Apple が公式に販売・サポートしている Blackmagic eGPU Pro を使用すればゲームも快適にできるのではないかと考えたのです（現在、Blackmagic eGPU Pro は販売終了しており、Apple Store から購入することはできません）。
 
 実は、Apple は Boot Camp 環境の Windows 10 は eGPU には「対応していない」と言っています。
