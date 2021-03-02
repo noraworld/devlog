@@ -55,12 +55,12 @@ Postman は Web 版で使用することもできます。しかし、ブラウ�
 
 ```json
 {
- "errors": [
- {
- "code": 32,
- "message": "Could not authenticate you."
- }
- ]
+    "errors": [
+        {
+            "code": 32,
+            "message": "Could not authenticate you."
+        }
+    ]
 }
 ```
 
@@ -96,12 +96,12 @@ https://api.twitter.com/1.1/account_activity/all/:ENV_NAME/webhooks.json?url=htt
 
 ```json
 {
- "errors": [
- {
- "code": 261,
- "message": "Application cannot perform write actions. Contact Twitter Platform Operations through https://help.twitter.com/forms/platform."
- }
- ]
+    "errors": [
+        {
+            "code": 261,
+            "message": "Application cannot perform write actions. Contact Twitter Platform Operations through https://help.twitter.com/forms/platform."
+        }
+    ]
 }
 ```
 
@@ -129,12 +129,12 @@ DM の権限がいらない場合は、おそらく `Read and Write` でも問�
 
 ```json
 {
- "errors": [
- {
- "code": 89,
- "message": "Invalid or expired token."
- }
- ]
+    "errors": [
+        {
+            "code": 89,
+            "message": "Invalid or expired token."
+        }
+    ]
 }
 ```
 
@@ -149,12 +149,12 @@ DM の権限がいらない場合は、おそらく `Read and Write` でも問�
 
 ```json
 {
- "errors": [
- {
- "code": 200,
- "message": "Forbidden."
- }
- ]
+    "errors": [
+        {
+            "code": 200,
+            "message": "Forbidden."
+        }
+    ]
 }
 ```
 
@@ -200,12 +200,12 @@ Postman を使用している場合は、Webhook URL のパラメータにチェ
 
 ```json
 {
- "errors": [
- {
- "message": "Sorry, that page does not exist",
- "code": 34
- }
- ]
+    "errors": [
+        {
+            "message": "Sorry, that page does not exist",
+            "code": 34
+        }
+    ]
 }
 ```
 
@@ -221,12 +221,12 @@ Postman を使用している場合は、Webhook URL のパラメータにチェ
 
 ```json
 {
- "errors": [
- {
- "message": "Internal error",
- "code": 131
- }
- ]
+    "errors": [
+        {
+            "message": "Internal error",
+            "code": 131
+        }
+    ]
 }
 ```
 
@@ -245,12 +245,12 @@ Postman を使用している場合は、Webhook URL のパラメータにチェ
 
 ```json
 {
- "errors": [
- {
- "code": 214,
- "message": "Unable to connect during CRC GET request."
- }
- ]
+    "errors": [
+        {
+            "code": 214,
+            "message": "Unable to connect during CRC GET request."
+        }
+    ]
 }
 ```
 
@@ -274,12 +274,12 @@ https://your_domain.com/webhook/twitter?crc_token=foo
 
 ```json
 {
- "errors": [
- {
- "code": 214,
- "message": "Non-200 response code during CRC GET request (i.e. 404, 500, etc)."
- }
- ]
+    "errors": [
+        {
+            "code": 214,
+            "message": "Non-200 response code during CRC GET request (i.e. 404, 500, etc)."
+        }
+    ]
 }
 ```
 
@@ -295,18 +295,18 @@ https://your_domain.com/webhook/twitter?crc_token=foo
 require('dotenv').config();
 
 const express = require('express');
-const app = express();
-const port = 5000;
-const crypto = require('crypto');
+const app     = express();
+const port    = 5000;
+const crypto  = require('crypto');
 
 app.get('/webhook', (req, res) => {
- console.log('GET /webhook');
- const hmac = crypto.createHmac('sha256', process.env.CONSUMER_SECRET).update(req.query.crc_token).digest('base64');
- res.send('{"response_token":"sha256=' + hmac + '"}');
+  console.log('GET /webhook');
+  const hmac = crypto.createHmac('sha256', process.env.CONSUMER_SECRET).update(req.query.crc_token).digest('base64');
+  res.send('{"response_token":"sha256=' + hmac + '"}');
 });
 
 app.listen(port, () => {
- console.log(`App listening at http://localhost:${port}`);
+  console.log(`App listening at http://localhost:${port}`);
 });
 ```
 
@@ -328,12 +328,12 @@ $ node index.js
 
 ```json
 {
- "errors": [
- {
- "code": 214,
- "message": "Webhook URL does not meet the requirements. Please use HTTPS."
- }
- ]
+    "errors": [
+        {
+            "code": 214,
+            "message": "Webhook URL does not meet the requirements. Please use HTTPS."
+        }
+    ]
 }
 ```
 
@@ -361,12 +361,12 @@ Nginx + Let’s Encrypt での対応方法については以前に記事にま�
 
 ```json
 {
- "errors": [
- {
- "code": 214,
- "message": "Too many resources already created."
- }
- ]
+    "errors": [
+        {
+            "code": 214,
+            "message": "Too many resources already created."
+        }
+    ]
 }
 ```
 
