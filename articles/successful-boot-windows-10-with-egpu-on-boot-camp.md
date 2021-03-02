@@ -50,7 +50,6 @@ Mac mini (2018) に Blackmagic eGPU Pro を接続して Boot Camp 環境で Wind
 ![スクリーンショット 2020-11-14 4.42.07.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/f2a12b7e-087a-8f13-242a-6f136210d29f.png)
 </div></details>
 
-
 # 必要なもの
 - Mac
 - eGPU
