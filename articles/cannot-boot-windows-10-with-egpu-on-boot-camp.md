@@ -211,6 +211,41 @@ Mac mini には USB-C 端子が 4 つあります。どの端子に接続して�
 
 先ほど `apple_set_os.efi` を作成したパーティションがあるので、そのパーティションを空にして（`apple_set_os.efi` は削除して）代わりに automate-eGPU EFI を配置します。展開した `EFI` フォルダの中身をそのまま配置すれば OK です。
 
+<details><summary>ディレクトリ構造としてはこのような感じです（クリックで展開）</summary><div>
+
+```
+.
+├── EFI
+│   ├── BOOT
+│   │   ├── BOOTX64.efi
+│   │   └── automate-eGPU.efi
+│   └── CLOVER
+│   ├── ACPI
+│   │   └── WINDOWS
+│   ├── config.plist
+│   ├── drivers64UEFI
+│   │   └── apple_set_os.efi
+│   └── misc
+└── __MACOSX
+ ├── ._EFI
+ └── EFI
+ ├── ._BOOT
+ ├── ._CLOVER
+ ├── BOOT
+ │   ├── ._BOOTX64.efi
+ │   └── ._automate-eGPU.efi
+ └── CLOVER
+ ├── ._ACPI
+ ├── ._config.plist
+ ├── ._drivers64UEFI
+ ├── ._misc
+ ├── ACPI
+ │   └── ._WINDOWS
+ └── drivers64UEFI
+ └── ._apple_set_os.efi
+```
+</div></details>
+
 この状態で、`apple_set_os.efi` のときと同じようにブートローダを起動し、automate-eGPU EFI をロードします。ブートローダ上では `apple_set_os.efi` のときと同じように `EFI Boot` という名前の起動ディスクがありますのでそれを選択してロードします。
 
 すると `apple_set_os.efi` と似たような黒い画面が表示されます。なぜか Blackmagic eGPU Pro を接続しても `eGPU not detected` と表示されるのですが、GPU の情報が書かれている欄には 2 つの GPU が表示されているので Blackmagic eGPU Pro も認識していることがわかります。（片方は CPU 内蔵の Intel UHD Graphics 630 で、もう片方が Blackmagic eGPU Pro だと思います）。
