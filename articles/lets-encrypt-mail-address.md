@@ -3,7 +3,7 @@ title: "Let's Encrypt (Certbot) に登録したメールアドレスを確認す
 emoji: "👋"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["letsencrypt", "certbot"]
-published: false
+published: true
 order: 55
 ---
 
