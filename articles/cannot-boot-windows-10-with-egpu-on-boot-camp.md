@@ -152,8 +152,8 @@ Windows 10 上では、まるでケーブルを挿していないのと全く同
 ## 試行錯誤 1: パーティションのファイルシステムやサイズを変えてみる
 `apple_set_os.efi` を置くパーティションのフォーマットをいろいろ変えてフォーマットしてみました。
 
-- FAT → 動かない
-- FAT32 → 動かない
+- FAT → eGPU が使えない
+- FAT32 → eGPU が使えない
 - APFS → そもそもブートローダに表示されない
 
 FAT のときは 80 MB、FAT 32 のときは 10 GB、APFS のときは 6 GB と、試すたびにパーティションをサイズがバラバラでしたが、それは本質的ではないような気がします。
@@ -189,11 +189,16 @@ Mac mini には USB-C 端子が 4 つあります。どの端子に接続して�
 
 上記のフォーラムにある通りに進めます。[EFI Package](https://egpu.io/wp-content/uploads/2018/10/EFI.zip) をダウンロードして展開すると、`EFI` というフォルダが出てきます。
 
-先ほど `apple_set_os.efi` を作成したパーティションがあるので、そのパーティションを空にして（`apple_set_os.efi` は削除して）代わりに automate-eGPU EFI を配置します。展開した `EFI` フォルダをそのまま配置すれば OK です。
+先ほど `apple_set_os.efi` を作成したパーティションがあるので、そのパーティションを空にして（`apple_set_os.efi` は削除して）代わりに automate-eGPU EFI を配置します。展開した `EFI` フォルダの中身をそのまま配置すれば OK です。
 
 この状態で、`apple_set_os.efi` のときと同じようにブートローダを起動し、automate-eGPU EFI をロードします。ブートローダ上では `apple_set_os.efi` のときと同じように `EFI Boot` という名前の起動ディスクがありますのでそれを選択してロードします。
 
-すると `apple_set_os.efi` と同じように黒い画面が表示されます。なぜか `eGPU not detected` と表示されるのですが、GPU の情報が書かれている欄には 2 つの GPU が表示されているので Blackmagic eGPU Pro も認識していることがわかります。（片方は CPU 内蔵の Intel UHD Graphics 630 で、もう片方が Blackmagic eGPU Pro だと思います）。
+すると `apple_set_os.efi` と似たような黒い画面が表示されます。なぜか Blackmagic eGPU Pro を接続しても `eGPU not detected` と表示されるのですが、GPU の情報が書かれている欄には 2 つの GPU が表示されているので Blackmagic eGPU Pro も認識していることがわかります。（片方は CPU 内蔵の Intel UHD Graphics 630 で、もう片方が Blackmagic eGPU Pro だと思います）。
+
+| eGPU 未接続時 | eGPU 接続時 |
+|:---:|:---:|
+| ![IMG_6404.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/f6fedad9-a420-b7b7-fad1-808e09bc692d.jpeg) | ![IMG_6405.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/a5aaa8a3-4e68-f5f9-3544-d0bd85154b2e.jpeg) |
+▲ `GPU(s)` の欄に `[0x1002 0x687F]` が追加されていれば Blackmagic eGPU Pro を認識している状態だと思います。本来なら `eGPU not detected` ではなく `eGPU detected` となるはずな気がしますが。
 
 その画面でキーボードの `q` を押すと、macOS を起動するか Windows を起動するかを選択できますので、Windows を選択してリターンキーを押します。すると Windows 10 が起動します。
 
