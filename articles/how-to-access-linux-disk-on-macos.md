@@ -3,7 +3,7 @@ title: "Mac で Linux のディスクの中身にアクセスする方法 (た�
 emoji: "🐧"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["ext4", "ext4fuse", "osxfuse", "macfuse", "diskutil"]
-published: false
+published: true
 order: 73
 ---
 
