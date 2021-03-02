@@ -242,13 +242,15 @@ Windows 10 - 64 ビット版を選択してダウンロードします。Revisio
 このエラー（エラー 207）に関してインターネットで調べてみてもよくわかりませんでした。
 
 # BootCampDrivers を使用する
-[bootcampdrivers.com](https://www.bootcampdrivers.com/) にアクセスするとロゴの下に `Unofficial, turbo-charged AMD graphics drivers for Mac users running BootCamp` と書かれていたので、もしかして Boot Camp 環境では、AMD の公式ページのドライバではダメで、こちらを使用しないとうまくいかないのかな？ と思いました。なのでこれを試してみることにしました。
+[bootcampdrivers.com](https://www.bootcampdrivers.com/) にアクセスすると、ロゴの下に "Unofficial, turbo-charged AMD graphics drivers for Mac users running BootCamp" と書かれていたので、もしかして Boot Camp 環境では、AMD の公式ページのドライバではダメで、こちらを使用しないとうまくいかないのかな？ と思いました。なのでこれを試してみることにしました。
 
-ページ左上のダウンロードから「Windows 10」→「2020 drivers」と進み、「Adrenalin April 2020 Red Gaming edition (Best FPS in games)」を選択しダウンロードします。
+ページ左上あたりの "Downloads" から "Windows 10 ..." → "2020 drivers ..." と進み、"Adrenalin April 2020 Red Gaming edition (Best FPS in games)" を選択しダウンロードします。
+
+<img width="1238" alt="bootcampdrivers_download_page.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/7a7716bb-cf08-286d-3864-b968e71fb4c6.png">
 
 外部ページに飛び、ダウンロードボタンを押すと何やらサインイン（サインアップ）を求められますが、サインインしなくても問題なくダウンロードできます。
 
-インストール手順に関しては以下のリンクに YouTube 動画が公開されているのでそちらの動画を見ながら進めます。
+インストール手順に関しては以下のリンクで YouTube 動画が公開されているのでそちらの動画を見ながら進めます。
 
 [BootCampDrivers Installation Video](https://www.youtube.com/watch?v=pmBWGdIGke8)
 
