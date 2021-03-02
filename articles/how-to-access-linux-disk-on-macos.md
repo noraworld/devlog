@@ -88,6 +88,13 @@ $ ls ~/raspberrypi4
 bin boot dev etc home lib lost+found media mnt opt proc root run sbin snap srv swapfile sys tmp usr var
 ```
 
+## アンマウント
+`umount` コマンドでアンマウントできます。アンマウントすると `~/raspberrypi4` は空のディレクトリに戻ります。
+
+```shell
+$ sudo umount ~/raspberrypi4
+```
+
 # 欠点
 この方法なら無料で Linux のディスクをマウントすることができますが、**リードオンリーである** という点に注意してください。つまりマウントしたディスクの中身のファイルを編集したりすることはできません。
 
