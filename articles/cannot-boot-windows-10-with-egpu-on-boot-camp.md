@@ -55,6 +55,9 @@ order: 65
 - [eGPU でどこまでゲームが速くなるか？](http://battleformac.blog.jp/archives/52437855.html)
 - [MacBookPro(mojave)のbootcampでblackmagic egpuを使う方法](https://qiita.com/nierlain/items/1c10600a3e494a5aed7c)
 - [MacBookにBoot CampしてeGPUを繋ごう](https://kouki.hatenadiary.com/entry/2018/11/26/210530)
+- [Macbook Pro and Oculus Link - Unity Forum](https://forum.unity.com/threads/macbook-pro-and-oculus-link.842770/)
+- [2019 16" MacBook Pro (RP5300M) [9th,6C,H] + RX 5700 XT @ 32Gbps-TB3 (ASUS XG Station 2) + macOS 10.15.2 & Win10 1903 [itsage]](https://egpu.io/forums/builds/2019-16-macbook-pro-rp5300m-9th6ch-rx-5700-xt-32gbps-tb3-asus-xg-station-2-macos-10-15-2-win10-1903-itsage/)
+- [Mac mini(2018)のBootCampでeGPUを使う方法](https://ana.coppo.la/20190213-macmini-2018-bootcamp-with-egpu/)
 </div></details>
 
 # 使用したデバイス・環境
