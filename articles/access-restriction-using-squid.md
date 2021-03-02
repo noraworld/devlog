@@ -3,7 +3,7 @@ title: "Web プロキシサーバ Squid を利用して、特定のサイト・�
 emoji: "😸"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["プロキシ", "squid"]
-published: false
+published: true
 order: 64
 ---
 
