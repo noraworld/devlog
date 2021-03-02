@@ -72,7 +72,7 @@ Mac 本体とモニターと接続しても、eGPU 側とモニターを接続�
 
 Windows 10 は仕様上、4 GB 以上のメモリを使用するデバイスが接続された際にリソース不足というエラーを出します。コード 12 というエラーです。
 
-eGPU は大量のリソースを消費するため、起動後に接続してもコード 12 エラーで使用不可能な状態となってしまいます。
+eGPU は大量のリソースを消費するため、起動後に接続してもエラー 12 で使用不可能な状態となってしまいます。
 
 <img width="347" alt="error_12.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/22660069-db12-f8a1-c7bb-f98e71dd4dd0.png">
 
@@ -125,11 +125,17 @@ macOS または Windows 10 を、再起動、またはシステム終了して�
 ## 症状 1: ドライバエラー（エラー 12）になる
 これは `apple_set_os.efi` などを使わずに、Blackmagic eGPU Pro も接続せずにふつうに Windows 10 を起動して、そのあと Blackmagic eGPU Pro を接続した場合と同じ症状です。つまり、エラー 12 を解決できていません。
 
+<img width="293" alt="driver_error.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/834f0d37-d4d7-469c-0424-08ceb1042dcc.png">
+
 ## 症状 2: 映像が全く映らない
 これは `apple_set_os.efi` などを使わずに、Blackmagic eGPU Pro を接続した状態で電源を入れて Windows 10 を起動した場合と同じ症状です。Mac mini 本体側、Blackmagic eGPU Pro 側含め、どの端子を使用してもモニターには何も映像が映りません。はじめからモニターと接続した状態で電源を入れたり、電源を入れてからモニターと接続したり、いろいろ試しましたが、ダメでした。
 
 ## 症状 3: そもそも認識しない
 Windows 10 上では、まるでケーブルを挿していないのと全く同じ状態となります。デバイスマネージャーを開いてみても、そもそも認識していません。
+
+| 認識はしている場合 (症状 1) | 認識すらしていない場合 (症状 3) |
+|---|---|
+| <img width="226" alt="device_manager_with_egpu.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/c0a90cbf-9edc-c3a6-9f8e-71eb30608c11.png"> | <img width="287" alt="device_manager_no_egpu.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/adc7e422-8230-2c2a-bdc8-7b7658b2d278.png"> |
 
 `apple_set_os.efi` をロードしたときの黒い画面では Blackmagic eGPU Pro を認識していたので、ケーブルが抜けているとか接触が悪いとかそういうことではありません。
 
