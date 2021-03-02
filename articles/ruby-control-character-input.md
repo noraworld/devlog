@@ -3,7 +3,7 @@ title: "[Ruby] 標準入力を受け付ける際に ^H などの ASCII 制御文
 emoji: "🌊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "readline", "stdin", "ascii"]
-published: false
+published: true
 order: 66
 ---
 
