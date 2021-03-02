@@ -112,14 +112,14 @@ macOS または Windows 10 を、再起動、またはシステム終了して�
 
 ▲ キーボードの左右の矢印キーで移動して `EFI Boot` を選択した状態でリターンキーを押します。
 
-すると CPU やメモリの情報が表示された黒い画面が表示されます。その画面が表示されたら約 6 秒以内に（その黒い画面が消えてしまう前に）Blackmagic eGPU Pro を接続します。
+すると CPU やメモリの情報が表示された黒い画面が表示されます（下図のような画面）。その画面が表示されたら約 6 秒以内に（その黒い画面が消えてしまう前に）Blackmagic eGPU Pro を接続します。
 
 | eGPU 接続前 | eGPU 接続後 |
-|---|---|
+|:---:|:---:|
 | ![IMG_6392.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/fca0fe70-ac2e-ead3-8bea-9f9588dc4438.jpeg) | ![IMG_6389.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/6abfabec-7229-2410-539b-a35337238ec8.jpeg) |
 ▲ eGPU 接続後は一番下に `00001002 0000687F AMD - Vega 10 XL/XT [Radeon RX Vega 56/64]` という行が追加されているのがわかります。Blackmagic eGPU Pro を認識しています。
 
-接続すると eGPU を認識して、画面に表示されます。そのまま待つか、`z` 以外の何かしらのキー（リターンキーで良いと思います）を押すと Windows 10 が起動します。
+eGPU を認識したら、そのまま待つか、`z` 以外の何かしらのキー（リターンキーで良いと思います）を押すと Windows 10 が起動します。
 
 ---
 
