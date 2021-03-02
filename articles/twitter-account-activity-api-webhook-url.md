@@ -402,3 +402,10 @@ Nginx + Let’s Encrypt での対応方法については以前に記事にま�
 それから、Twitter のアプリを登録するページの UI や URL が昔とだいぶ変わっていて、現在の UI で紹介されている記事がほとんど見つからなかったのも地味に戸惑ったポイントでした。
 
 この記事が参考になりましたら幸いです。
+
+# 参考サイト
+- [TwitterのAccount Activity APIとwebhookを使用する](https://qiita.com/sbtseiji/items/7957de5db0987d9a6891)
+- [TwitterのAccount Activity APIとwebhookでDM自動応答Botを作成する](https://qiita.com/sbtseiji/items/f21398495cc2841fc4a5)
+- [TwitterのAccount Activity APIを叩くnodejsコード](https://qiita.com/Fushihara/items/79913a5b933af15c5cf4)
+- [Twitter API 1.1でなぜか"Could not authenticate you"と言われる](https://fkm.hatenablog.com/entry/20130216/p1)
+- [Twitter Account Activity API を使ってリプライ自動返信する(Go)](https://kotaroooo0-dev.hatenablog.com/entry/2020/06/25/005036)
