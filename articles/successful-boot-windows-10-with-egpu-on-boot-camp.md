@@ -3,7 +3,7 @@ title: "MacBook Pro (2018) + Blackmagic eGPU Pro で Windows 10 を起動でき�
 emoji: "😇"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Bootcamp", "egpu", "Windows10", "Mac", "blackmagicdesign"]
-published: false
+published: true
 order: 71
 ---
 
