@@ -3,7 +3,7 @@ title: "Homebrew Cask でインストールするアプリケーションが、�
 emoji: "👌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["homebrew", "homebrew-cask", "brew", "brew-cask"]
-published: false
+published: true
 order: 67
 ---
 
