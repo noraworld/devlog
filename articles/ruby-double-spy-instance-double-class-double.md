@@ -3,7 +3,7 @@ title: "RSpec における double / spy / instance_double / class_double のそ�
 emoji: "🐡"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "RSpec"]
-published: false
+published: true
 order: 59
 ---
 
