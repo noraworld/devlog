@@ -3,7 +3,7 @@ title: "Ruby で class や module をネストして書く場合と Foo::Bar の
 emoji: "🦔"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "RuboCop"]
-published: false
+published: true
 order: 58
 ---
 
