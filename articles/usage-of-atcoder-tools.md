@@ -19,9 +19,9 @@ AtCoder の問題を解くとき、みなさんはどのようにプログラミ
 こんな要望を満たしてくれる CLI ツールが [AtCoder Tools](https://github.com/kyuridenamida/atcoder-tools) です。この記事ではインストールから基本的な使いかたまでを紹介します。
 
 # 長い説明は良いからはやく使いたいんだけど？
-了。最低限の使いかただけ説明します。
+_了。最低限の使いかただけ説明します。_
 
-```
+```shell
 # インストール
 $ pip install atcoder-tools
 
@@ -39,6 +39,18 @@ $ atcoder-tools test
 # プログラムの提出
 $ atcoder-tools submit
 ```
+
+# 環境
+| 環境 | バージョン | インストール元 |
+|---|---|---|
+| AtCoder Tools | [1.1.7.1](https://github.com/noraworld/dotfiles/blob/a5f4ff63d6727c5ba6125f33eb5a625248c4057d/Pipfile.lock#L19-L25) | pipenv (pip) |
+| pipenv | 2020.8.13 | pip |
+| pip | 20.1.1 (python 3.8) | pyenv |
+| Python | [3.8.5](https://github.com/noraworld/dotfiles/blob/a5f4ff63d6727c5ba6125f33eb5a625248c4057d/.python-version#L1) | pyenv |
+| pyenv | 1.2.20-3-g58c776a1 | anyenv |
+| anyenv | [1.1.1](https://github.com/noraworld/dotfiles/blob/a5f4ff63d6727c5ba6125f33eb5a625248c4057d/core/Brewfile.lock.json#L24-L48) | Homebrew |
+| Homebrew | [2.4.9](https://github.com/noraworld/dotfiles/blob/a5f4ff63d6727c5ba6125f33eb5a625248c4057d/core/Brewfile.lock.json#L867) | n/a |
+| macOS | [10.15.6](https://github.com/noraworld/dotfiles/blob/a5f4ff63d6727c5ba6125f33eb5a625248c4057d/core/Brewfile.lock.json#L872) | n/a |
 
 # インストール方法
 AtCoder Tools は Python で作られているツールです。pip を使ってインストールすることができます。Homebrew からインストールしたいところですがフォーミュラが用意されていないので今のところは pip を使ったインストール方法しかありません。
@@ -218,10 +230,10 @@ $ atcoder-tools gen abs --workspace=path/to/atcoder-workspace/ --lang=python --w
 | `gen` | サブコマンド名 | (省略不可) |
 | `abs` | コンテスト ID | (省略不可) |
 | `--workspace` | ダウンロードするパス | `~/atcoder-workspace`
-| `--lang` | 自動生成されるテンプレートコードの言語 | C++ |
+| `--lang` | 自動生成されるテンプレートコードの言語 | `cpp` (C++) |
 | `--without-login` | ログインせずに使用する | `nil` (ログインを要求される) |
 
-"[gen コマンドの --without-login をデフォルトにしたい #99](https://github.com/kyuridenamida/atcoder-tools/issues/99)" という issue が上がっているのでもしかしたら今後のバージョンで `--without-login` がデフォルトにあなるかもしれません。
+"[gen コマンドの --without-login をデフォルトにしたい #99](https://github.com/kyuridenamida/atcoder-tools/issues/99)" という issue が上がっているのでもしかしたら今後のバージョンで `--without-login` がデフォルトになるかもしれません。
 
 ## 毎回オプション指定するのめんどくさい……
 `--workspace` や `--lang` などのオプションを毎回指定するのはめんどくさいと思います。
@@ -286,7 +298,7 @@ Passed all test cases!!!
 ## 実行可能ファイルであれば非対応言語でも OK!
 このコマンドでテストされるプログラムは実行権限のあるファイルです。
 
-つまり、プログラムに shebang を設定して実行権限を与えれば、AtCoder Tools で対応していない言語 (たとえば Ruby) のコードでもテストできます！
+つまり、プログラムに shebang を設定して実行権限を与えれば、AtCoder Tools で対応していない言語 (たとえば Ruby) のプログラムでもテストできます！
 
 ```ruby:main.rb
 #!/usr/bin/env ruby
@@ -323,7 +335,11 @@ $ atcoder-tools submit
 [README](https://github.com/kyuridenamida/atcoder-tools/blob/4db78505e97522619be9c2564eba80ac1fc46e2a/README.md) をご覧ください。日本語で書かれているので英語苦手な方でも大丈夫です。
 
 # さいごに
-自分はまだ AtCoder (競プロ) 歴 2 日くらいなんですが、このツールは絶対あったほうが便利だとすぐにわかったので速攻でインストールしました。
+自分はまだ AtCoder (競プロ) 歴 2 日[^1]なんですが、このツールは絶対あったほうが便利だとすぐにわかったので速攻でインストールしました。
+
+[^1]: 「2 日」なので「不束者」です[^2]。
+
+[^2]: え？
 
 自分は今のところ Ruby で問題を解いているのでコード生成が Ruby に対応していなかったり、ところどころオプションや設定が使えなかったりなどの問題はありますが、これらも徐々に改善されていくでしょう。
 
