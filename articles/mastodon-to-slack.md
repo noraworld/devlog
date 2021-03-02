@@ -3,7 +3,7 @@ title: "Mastodon のトゥート (発言) を Slack に流す方法"
 emoji: "🐙"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "Slack"]
-published: false
+published: true
 order: 56
 ---
 
