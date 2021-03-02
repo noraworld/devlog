@@ -63,6 +63,15 @@ order: 65
 | macOS | macOS Catalina バージョン 10.15.4 と 10.15.5 |
 | Windows | Windows 10 バージョン 1909 と 2020 (Insider Program) |
 
+<details><summary>補足情報（クリックで展開）</summary><div>
+
+<img width="577" alt="スクリーンショット 2020-06-01 0.32.44.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/6bce32d8-7843-0caf-5553-5361e8cf674b.png">
+
+作業時は macOS Catalina バージョン 10.15.4 でしたが、そのあと 10.15.5 のアップデートが来てインストールしました。そのあとにも試してみましたがやはりダメでした。
+
+それから、最初は Windows 10 バージョン 1909 でしたが、Insider Program に参加する（新しいバージョンをインストールする）とうまくいくという例もあったので、2020 にアップグレードして試してみましたがこちらもダメでした。
+</div></details>
+
 # そもそもなぜ Boot Camp 環境では使えないのか？
 Blackmagic eGPU Pro という商品は、Apple が公式でサポートしている eGPU なので、当然 macOS では動作します。Mac と Blackmagic eGPU Pro を Thunderbolt 3 対応の USB-C ケーブルで接続するだけで使えます。
 
