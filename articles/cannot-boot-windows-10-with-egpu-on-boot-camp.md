@@ -229,7 +229,7 @@ Mac mini には USB-C 端子が 4 つあります。どの端子に接続して�
 
 しかしこれも同じ結果でした。発生した症状も試したことも `apple_set_os.efi` と同じです。
 
-# 🍎 🏴󠁧󠁢󠁳󠁣󠁴󠁿 rEFInd を使用する
+# 🍎 rEFInd を使用する
 rEFInd というのは、フリーで使用できるブートローダです。これを使わなくても Mac の電源を入れてオプションキーを押し続けた状態で起動する Apple のブートローダを使用すれば良いような気もしますが、これでうまくいったという例もあったので念のため試してみました。
 
 [eGPU でどこまでゲームが速くなるか？](http://battleformac.blog.jp/archives/52437855.html)
@@ -238,7 +238,7 @@ rEFInd のインストール方法は、上記の記事に書いてあるもの�
 
 再起動するかシステム終了してからもう一度電源を入れると rEFInd の画面が表示されます。ここで先ほど紹介した `apple_set_os.efi` や automate-eGPU EFI をロードして Windows 10 を起動しますが、やはりこれも結果は変わりませんでした。
 
-# 🍎 🏴󠁧󠁢󠁳󠁣󠁴󠁿 AMD の公式ページからドライバをインストールする
+# 🏴󠁧󠁢󠁳󠁣󠁴󠁿 AMD の公式ページからドライバをインストールする
 ドライバエラー（エラー 12）と表示されることが多かったですが、そもそも正しいドライバがインストールされていないのでは？ と思い、公式ページからドライバをインストールすることにしました。
 
 Blackmagic eGPU Pro に搭載されている GPU は AMD Radeon RX Vega 56 なので、このチップに対応したドライバを AMD のページからダウンロードします。
@@ -261,7 +261,7 @@ Windows 10 - 64 ビット版を選択してダウンロードします。Revisio
 
 このエラー（エラー 207）に関してインターネットで調べてみてもよくわかりませんでした。
 
-# 🍎 🏴󠁧󠁢󠁳󠁣󠁴󠁿 BootCampDrivers を使用する
+# 🏴󠁧󠁢󠁳󠁣󠁴󠁿 BootCampDrivers を使用する
 [bootcampdrivers.com](https://www.bootcampdrivers.com/) にアクセスすると、ロゴの下に "Unofficial, turbo-charged AMD graphics drivers for Mac users running BootCamp" と書かれていたので、もしかして Boot Camp 環境では、AMD の公式ページのドライバではダメで、こちらを使用しないとうまくいかないのかな？ と思いました。なのでこれを試してみることにしました。
 
 ページ左上あたりの "Downloads" から "Windows 10 ..." → "2020 drivers ..." と進み、"Adrenalin April 2020 Red Gaming edition (Best FPS in games)" を選択しダウンロードします。
