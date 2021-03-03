@@ -38,23 +38,27 @@ iPhone や MacBook から流れる音を同時に聞けるようにするメリ�
 ```bash:autoconnector.sh
 #!/bin/bash
 
-function is_connected() {
- {
- printf "select $adapter\n\n"
- printf "info $device\n\n"
- } | bluetoothctl | grep "Connected: " | sed -e 's/Connected: //' | sed -e 's/^[[:blank:]]*//'
-}
-
 function paired_devices() {
  {
  printf "select $adapter\n\n"
- printf "paired-devices\n\n"
+ printf "paired-devices
+
+ "
  } | bluetoothctl | grep "Device " | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'
 }
 
-bluetoothctl -- list | while read adapter_line
+function is_connected() {
+ {
+ printf "select $adapter\n\n"
+ printf "info $device
+
+ "
+ } | bluetoothctl | grep "Connected: " | sed -e 's/Connected: //' | sed -e 's/^[[:blank:]]*//'
+}
+
+bluetoothctl -- list | while read line
 do
- adapter=`echo $adapter_line | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'`
+ adapter=`echo $line | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'`
 
  paired_devices | while read device
  do
@@ -101,6 +105,15 @@ done
 後述する `is_connected()` 関数は `yes` または `no` を返します。そのデバイスが接続されている場合は `yes`、切断されている場合は `no` を返します。返り値が `no` だった場合は切断されているので、Bluetooth コントローラに対してデバイスを接続するよう試みます。
 
 ### paired_devices()
+```bash
+function paired_devices() {
+ {
+ printf "select $adapter\n\n"
+ printf "paired-devices\n\n"
+ } | bluetoothctl | grep "Device " | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'
+}
+```
+
 一つの Bluetooth コントローラにペアリングされている複数のデバイスの BD アドレスを返します。
 
 `bluetoothctl` コマンド内で、`select <BD_ADDR>` (`<BD_ADDR>` は Bluetooth コントローラの BD アドレス) とすると、Bluetooth コントローラを指定できます。
@@ -112,6 +125,15 @@ Bluetooth コントローラが一つしかない場合はわざわざ `select <
 今回ほしいのは BD アドレスだけなので grep や sed で BD アドレスのみを抽出しています。
 
 ### is_connected()
+```bash
+function is_connected() {
+ {
+ printf "select $adapter\n\n"
+ printf "info $device\n\n"
+ } | bluetoothctl | grep "Connected: " | sed -e 's/Connected: //' | sed -e 's/^[[:blank:]]*//'
+}
+```
+
 デバイスが接続されているかどうかを調べます。接続されていたら `yes` を返し、切断されていれば `no` を返します。
 
 先ほどと同じように `select <BD_ADDR>` で Bluetooth コントローラを選択します。次に `info <BD_ADDR>` (この `BD_ADDR` は Bluetooth コントローラーではなくデバイスの BD アドレス) で、そのデバイスの接続情報などが表示されます。
