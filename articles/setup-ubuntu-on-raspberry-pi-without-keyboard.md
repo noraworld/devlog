@@ -3,7 +3,7 @@ title: "モニターやキーボードを接続せずに最初から SSH でき�
 emoji: "⌨️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ubuntu", "RaspberryPi", "SSH"]
-published: false
+published: true
 order: 74
 ---
 
