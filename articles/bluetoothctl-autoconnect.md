@@ -16,8 +16,7 @@ bluetoothctl を使って、Linux マシンにペアリングした Bluetooth �
 ```shell
 $ git clone https://github.com/noraworld/bluetoothctl-autoconnector.git
 $ cd bluetoothctl-autoconnector
-$ vi cron.conf # パスを編集
-$ crontab cron.conf
+$ ./setup.sh
 ```
 
 # モチベーション
