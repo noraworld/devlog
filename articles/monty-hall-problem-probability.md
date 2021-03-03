@@ -21,6 +21,8 @@ order: 78
 >
 さて、プレイヤーはドアを変更するべきでしょうか？ (どちらのほうが新車を当てられる確率が高いでしょうか？)
 
+[モンティ・ホール問題 - Wikipedia](https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%B3%E3%83%86%E3%82%A3%E3%83%BB%E3%83%9B%E3%83%BC%E3%83%AB%E5%95%8F%E9%A1%8C)
+
 「司会者がハズレのヤギのドアを開けたんだから、残るドアは 2 つで、ドアを変更してもしなくても確率 1/2 でしょ？」と思った方。実はこれは不正解です。
 
 正解は、「ドアを変更したほうが当たる確率が高い」です。ドアを変更しなかった場合は当たる確率 1/3 で、ドアを変更した場合は当たる確率 2/3 になります。
@@ -91,7 +93,7 @@ def reveal(doors, first_choice)
  end
 
  doors.map.with_index { |door, index| door if door || index == leftover }
- else # the first choice is uncorrect
+ else # the first choice is incorrect
  doors.map.with_index { |door, index| door if door || index == first_choice }
  end
 end
@@ -179,3 +181,30 @@ Never: 333181 times (Actual: 33.32%, Expected: 33.33%)
 ドアを変更した場合はほぼ 2/3 の確率で正解し、ドアを変更しなかった場合はほぼ 1/3 の確率で正解しました。
 
 というわけで、ドアを変更してもしなくても確率 50% というのは間違いで、たしかに変更したほうが正解率が高くなる、ということがわかりました。
+
+# おまけ: 暗号論的擬似乱数を使った理由
+たいていの言語には、(ただの) 擬似乱数と暗号論的擬似乱数の 2 種類あります。
+
+Ruby にももちろん両方あります。
+
+```irb:擬似乱数
+irb(main):001:0> rand
+=> 0.3204722194100945
+```
+
+```irb:暗号論的擬似乱数
+irb(main):001:0> require 'securerandom'
+=> true
+irb(main):002:0> SecureRandom.rand
+=> 0.6596803273103891
+```
+
+今回のプログラムでは、ただの擬似乱数ではなく暗号論的擬似乱数 (`SecureRandom.random_number`) を使いました。その理由は、**ただの擬似乱数だと偏りが発生する可能性があるから**[^3] です。
+
+だからといって、暗号論的擬似乱数が全く偏りの生じない真の乱数列であるというわけではないのですが、暗号に使われている乱数ということもあって、予測できないほど偏りの生じない乱数であるとはいえます。
+
+今回は数学的な確率を求める検証だったので、なるべく偏りの生じない乱数を使用したほうが良いと判断し、暗号論的擬似乱数を使用しました。
+
+参考: [各言語での、本当に安全な乱数の作り方](https://qiita.com/gakuri/items/27cca8f0fa28b78ddeca)
+
+[^3]: [擬似乱数 - Wikipedia](https://ja.wikipedia.org/wiki/%E6%93%AC%E4%BC%BC%E4%B9%B1%E6%95%B0)
