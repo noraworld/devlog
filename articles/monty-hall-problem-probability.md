@@ -49,69 +49,69 @@ require 'securerandom'
 
 options = {}
 OptionParser.new do |opt|
- opt.on('-d NUMBER', '--doors=NUMBER') { |v| options[:doors_count] = v }
- opt.on('-t NUMBER', '--trials=NUMBER') { |v| options[:trials] = v }
- opt.parse!(ARGV)
+  opt.on('-d NUMBER', '--doors=NUMBER') { |v| options[:doors_count] = v }
+  opt.on('-t NUMBER', '--trials=NUMBER') { |v| options[:trials] = v }
+  opt.parse!(ARGV)
 end
 
 DOORS_COUNT = options[:doors_count].to_i >= 3 ? options[:doors_count].to_i : 3
-TRIALS = options[:trials].to_i >= 1 ? options[:trials].to_i : 100
+TRIALS      = options[:trials].to_i      >= 1 ? options[:trials].to_i      : 100
 
 def main
- correct_count = { changed: 0, never: 0 }
+  correct_count = { changed: 0, never: 0 }
 
- TRIALS.times do
- correct_count[:changed] += 1 if try(changed: true)
- end
+  TRIALS.times do
+    correct_count[:changed] += 1 if try(changed: true)
+  end
 
- TRIALS.times do
- correct_count[:never] += 1 if try(changed: false)
- end
+  TRIALS.times do
+    correct_count[:never] += 1 if try(changed: false)
+  end
 
- puts "Number of doors: #{DOORS_COUNT} doors"
- puts "Number of trials: #{TRIALS} times each"
- puts
- puts "Changed: #{correct_count[:changed]} times (Actual: #{((correct_count[:changed].to_f / TRIALS.to_f) * 100).round(2)}%, Expected: #{(((DOORS_COUNT - 1).to_f / DOORS_COUNT.to_f) * 100).round(2)}%)"
- puts "Never: #{correct_count[:never]} times (Actual: #{((correct_count[:never].to_f / TRIALS.to_f) * 100).round(2)}%, Expected: #{((1.0 / DOORS_COUNT.to_f) * 100).round(2)}%)"
+  puts "Number of doors:  #{DOORS_COUNT} doors"
+  puts "Number of trials: #{TRIALS} times each"
+  puts
+  puts "Changed: #{correct_count[:changed]} times (Actual: #{((correct_count[:changed].to_f / TRIALS.to_f) * 100).round(2)}%, Expected: #{(((DOORS_COUNT - 1).to_f / DOORS_COUNT.to_f) * 100).round(2)}%)"
+  puts "Never:   #{correct_count[:never]} times (Actual: #{((correct_count[:never].to_f / TRIALS.to_f) * 100).round(2)}%, Expected: #{((1.0 / DOORS_COUNT.to_f) * 100).round(2)}%)"
 end
 
 def try(changed:)
- doors = Array.new(DOORS_COUNT, false)
- doors[SecureRandom.random_number(DOORS_COUNT)] = true
- first_choice = SecureRandom.random_number(DOORS_COUNT)
+  doors = Array.new(DOORS_COUNT, false)
+  doors[SecureRandom.random_number(DOORS_COUNT)] = true
+  first_choice = SecureRandom.random_number(DOORS_COUNT)
 
- doors = reveal(doors, first_choice)
+  doors = reveal(doors, first_choice)
 
- doors[second_choice(doors, first_choice, changed: changed)]
+  doors[second_choice(doors, first_choice, changed: changed)]
 end
 
 def reveal(doors, first_choice)
- if doors[first_choice] # the first choice is correct
- leftover = nil
+  if doors[first_choice] # the first choice is correct
+    leftover = nil
 
- loop do
- leftover = SecureRandom.random_number(DOORS_COUNT)
- break if leftover != first_choice
- end
+    loop do
+      leftover = SecureRandom.random_number(DOORS_COUNT)
+      break if leftover != first_choice
+    end
 
- doors.map.with_index { |door, index| door if door || index == leftover }
- else # the first choice is incorrect
- doors.map.with_index { |door, index| door if door || index == first_choice }
- end
+    doors.map.with_index { |door, index| door if door || index == leftover }
+  else # the first choice is incorrect
+    doors.map.with_index { |door, index| door if door || index == first_choice }
+  end
 end
 
 def second_choice(doors, first_choice, changed:)
- return first_choice unless changed
+  return first_choice unless changed
 
- second_choice = nil
- doors.each_with_index do |door, index|
- unless door.nil? || index == first_choice
- second_choice = index
- break
- end
- end
+  second_choice = nil
+  doors.each_with_index do |door, index|
+    unless door.nil? || index == first_choice
+      second_choice = index
+      break
+    end
+  end
 
- second_choice
+  second_choice
 end
 
 main
@@ -165,11 +165,11 @@ $ ruby monty_hall_problem.rb -t 1000000
 ```
 
 ```
-Number of doors: 3 doors
+Number of doors:  3 doors
 Number of trials: 1000000 times each
 
 Changed: 666764 times (Actual: 66.68%, Expected: 66.67%)
-Never: 333181 times (Actual: 33.32%, Expected: 33.33%)
+Never:   333181 times (Actual: 33.32%, Expected: 33.33%)
 ```
 
 わかりやすく表にまとめると以下のとおりです。
