@@ -162,6 +162,14 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 
 ログインできたら成功です！ おつかれさまでした。あとは鍵を作成して公開鍵を Raspberry Pi に設置して公開鍵認証にしたりして各々の環境にセットアップしてください。
 
+SSH の設定ファイルやファイアウォールの設定については以下の記事を参考にしてみてください。
+
+[新しいサーバ起動後に最低限行うべき SSH 設定](https://qiita.com/noraworld/items/2f72035544a04d88b9e3)
+
+固定 IP アドレスにする方法については以下の記事を参考にしてみてください。
+
+[コマンドラインで Ubuntu を固定 IP アドレスにする方法 (なるべく丁寧に解説)](https://qiita.com/noraworld/items/3e232fb7a25ed16c6a63)
+
 ## WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! と表示された場合
 Raspberry Pi を何度も再インストールしている場合は、以下のようなメッセージが表示されるかもしれません。
 
