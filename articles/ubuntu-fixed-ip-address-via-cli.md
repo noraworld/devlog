@@ -18,15 +18,15 @@ Ubuntu 20.10
 
 ```yaml:/etc/netplan/99_config.yaml
 network:
- version: 2
- renderer: networkd
- ethernets:
- <NETWORK_INTERFACE_NAME>:
- addresses:
- - <STATIC_IP_ADDR_WITH_NETMASK>
- gateway4: <DEFAULT_GATEWAY>
- nameservers:
- addresses: [<DNS, DNS, ...>]
+  version: 2
+  renderer: networkd
+  ethernets:
+    <NETWORK_INTERFACE_NAME>:
+      addresses:
+        - <STATIC_IP_ADDR_WITH_NETMASK>
+      gateway4: <DEFAULT_GATEWAY>
+      nameservers:
+          addresses: [<DNS, DNS, ...>]
 ```
 
 `<>` で囲まれている部分はそれぞれ以下の環境に置き換えます。
@@ -58,8 +58,8 @@ $ ip a | grep -E '192\.168\.[0-9]*\.[0-9]*|172\.(1[6-9]|2[0-9]|3[0-1])\.[0-9]*\.
 ...
 ...
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
- link/ether xx:xx:xx:xx:xx:xx brd ff:ff:ff:ff:ff:ff
- inet 192.168.3.14/24 brd 192.168.3.255 scope global dynamic eth0
+    link/ether xx:xx:xx:xx:xx:xx brd ff:ff:ff:ff:ff:ff
+    inet 192.168.3.14/24 brd 192.168.3.255 scope global dynamic eth0
 ```
 
 grep が引っかかった部分 (上記の例だと `192.168.3.14` と `192.168.3.255`) に該当するインターフェース名 (上記の例だと `eth0` の部分) を `<NETWORK_INTERFACE_NAME>` に書きます。
@@ -124,15 +124,15 @@ DNS サーバの IP アドレスをカンマ区切りで複数指定できます
 
 ```yaml:/etc/netplan/99_config.yaml
 network:
- version: 2
- renderer: networkd
- ethernets:
- eth0:
- addresses:
- - 192.168.3.2/24
- gateway4: 192.168.3.1
- nameservers:
- addresses: [8.8.8.8, 8.8.4.4]
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      addresses:
+        - 192.168.3.2/24
+      gateway4: 192.168.3.1
+      nameservers:
+          addresses: [8.8.8.8, 8.8.4.4]
 ```
 
 上記の例では `192.168.3.2` で固定しています。
@@ -152,11 +152,11 @@ $ ip a
 
 ```
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
- link/ether xx:xx:xx:xx:xx:xx brd ff:ff:ff:ff:ff:ff
- inet 192.168.3.2/24 brd 192.168.3.255 scope global eth0
- valid_lft forever preferred_lft forever
- inet 192.168.3.14/24 brd 192.168.3.255 scope global secondary dynamic eth0
- valid_lft 83119sec preferred_lft 83119sec
+    link/ether xx:xx:xx:xx:xx:xx brd ff:ff:ff:ff:ff:ff
+    inet 192.168.3.2/24 brd 192.168.3.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet 192.168.3.14/24 brd 192.168.3.255 scope global secondary dynamic eth0
+       valid_lft 83119sec preferred_lft 83119sec
 ```
 
 ちゃんと `192.168.3.2` が設定されていることが確認できました。
