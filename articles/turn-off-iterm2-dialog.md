@@ -3,7 +3,7 @@ title: "iTerm2 v3 終了時に確認ダイアログを表示させない方法"
 emoji: "🖥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["iTerm2"]
-published: false
+published: true
 order: 85
 ---
 
