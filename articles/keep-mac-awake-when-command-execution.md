@@ -35,26 +35,26 @@ need_caffeine=true
 _tn_caffeinate_pid=''
 
 preexec() {
- _tn_cmd=$1
- need_caffeine=true
+  _tn_cmd=$1
+  need_caffeine=true
 
- while read line
- do
- if [[ $_tn_cmd =~ ^([[:blank:]]+.*)*$line([[:blank:]]+.*)*$ ]]; then
- need_caffeine=false
- fi
- done < ~/.decaffeinated_command_list
+  while read line
+  do
+    if [[ $_tn_cmd =~ ^([[:blank:]]+.*)*$line([[:blank:]]+.*)*$ ]]; then
+      need_caffeine=false
+    fi
+  done < ~/.decaffeinated_command_list
 
- if type caffeinate 1>/dev/null 2>/dev/null && "${need_caffeine}"; then
- (caffeinate -d & echo $!) | read _tn_caffeinate_pid
- fi
+  if type caffeinate 1>/dev/null 2>/dev/null && "${need_caffeine}"; then
+    (caffeinate -d & echo $!) | read _tn_caffeinate_pid
+  fi
 }
 
 precmd() {
- if "${need_caffeine}" && [[ "$_tn_caffeinate_pid" =~ ^[0-9]+$ ]]; then
- kill "$_tn_caffeinate_pid"
- fi
- _tn_caffeinate_pid=''
+  if "${need_caffeine}" && [[ "$_tn_caffeinate_pid" =~ ^[0-9]+$ ]]; then
+    kill "$_tn_caffeinate_pid"
+  fi
+  _tn_caffeinate_pid=''
 }
 ```
 
@@ -157,49 +157,49 @@ script
 + export PROMPT_STATE=""
 +
 + caffeine_count() {
-+ echo -e "\033[38;05;172m$(ps aux | grep caffeinate | grep -cv grep)\033[00m"
++   echo -e "\033[38;05;172m$(ps aux | grep caffeinate | grep -cv grep)\033[00m"
 + }
 +
 + get_prompt_state() {
-+ PROMPT_STATE="☕️ $(caffeine_count)"
++   PROMPT_STATE="☕️ $(caffeine_count)"
 + }
 + get_prompt_state
 
- _tn_cmd=''
- need_caffeine=true
- _tn_caffeinate_pid=''
+  _tn_cmd=''
+  need_caffeine=true
+  _tn_caffeinate_pid=''
 
- preexec() {
- _tn_cmd=$1
- need_caffeine=true
+  preexec() {
+    _tn_cmd=$1
+    need_caffeine=true
 
- while read line
- do
- if [[ $_tn_cmd =~ ^([[:blank:]]+.*)*$line([[:blank:]]+.*)*$ ]]; then
- need_caffeine=false
- fi
- done < ~/.decaffeinated_command_list
+    while read line
+    do
+      if [[ $_tn_cmd =~ ^([[:blank:]]+.*)*$line([[:blank:]]+.*)*$ ]]; then
+        need_caffeine=false
+      fi
+    done < ~/.decaffeinated_command_list
 
- if type caffeinate 1>/dev/null 2>/dev/null && "${need_caffeine}"; then
- (caffeinate -d & echo $!) | read _tn_caffeinate_pid
- fi
+    if type caffeinate 1>/dev/null 2>/dev/null && "${need_caffeine}"; then
+      (caffeinate -d & echo $!) | read _tn_caffeinate_pid
+    fi
 +
-+ if "${need_caffeine}"; then
-+ if ! { [ "$(ps aux | grep caffeinate | grep "$_tn_caffeinate_pid" | grep -cv grep)" -eq 1 ] && [[ "$_tn_caffeinate_pid" =~ ^[0-9]+$ ]]; } then
-+ echo -e "\033[1;93mWARNING:\033[00m Running out of caffeine! Computer may sleep while executing \`\033[1m$_tn_cmd\033[00m' if it takes long time\033[00m"
-+ echo
-+ fi
-+ fi
- }
++   if "${need_caffeine}"; then
++     if ! { [ "$(ps aux | grep caffeinate | grep "$_tn_caffeinate_pid" | grep -cv grep)" -eq 1 ] && [[ "$_tn_caffeinate_pid" =~ ^[0-9]+$ ]]; } then
++       echo -e "\033[1;93mWARNING:\033[00m Running out of caffeine! Computer may sleep while executing \`\033[1m$_tn_cmd\033[00m' if it takes long time\033[00m"
++       echo
++     fi
++   fi
+  }
 
- precmd() {
- if "${need_caffeine}" && [[ "$_tn_caffeinate_pid" =~ ^[0-9]+$ ]]; then
- kill "$_tn_caffeinate_pid"
- fi
- _tn_caffeinate_pid=''
+  precmd() {
+    if "${need_caffeine}" && [[ "$_tn_caffeinate_pid" =~ ^[0-9]+$ ]]; then
+      kill "$_tn_caffeinate_pid"
+    fi
+    _tn_caffeinate_pid=''
 +
-+ get_prompt_state
- }
++   get_prompt_state
+  }
 ```
 
 `preexec()` では、以下のいずれかの条件がそろっているときに、コマンド実行前に `caffeinate` コマンドが実行されていないという警告を出します。
@@ -237,8 +237,8 @@ Bash だと [Bash-Preexec](https://github.com/rcaloras/bash-preexec) を使え�
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 
 preexec() {
- # バックグラウンドで実行する処理を書く
- caffeinate -d &
+  # バックグラウンドで実行する処理を書く
+  caffeinate -d &
 }
 ```
 ```shell
