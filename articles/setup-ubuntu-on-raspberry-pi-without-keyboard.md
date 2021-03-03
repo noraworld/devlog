@@ -39,7 +39,7 @@ Raspberry Pi 用の Ubuntu イメージは [ここ](https://ubuntu.com/download/
 
 OS を焼いたあとは SD カードのディスクがアンマウントされているかもしれないので、アンマウントされていたら一度 SD カードを抜いてもう一度挿します。
 
-マウントされた SD カード内のディスクは `system-boot` となっていると思います。その中にある `network-config` というファイルを編集します。ちなみに Mac で CUI でマウントされたものは `/Volumes` 以下にあります。
+マウントされた SD カード内のディスクは `system-boot` となっていると思います。その中にある `network-config` というファイルを編集します。ちなみに Mac でマウントされたものは `/Volumes` 以下にあります。
 
 ファイル内にコメントアウトされた以下のような記述がどこかにあると思いますのでアンコメントして有効化します。
 
@@ -66,7 +66,7 @@ Raspberry Pi の IP アドレスを固定していないので、このままで
 IP アドレスを調べるには `arp-scan` コマンドを使います。Mac で Homebrew を使っている場合は、以下のコマンドでインストールできます。
 
 ```shell
-$ brew get arp-scan
+$ brew install arp-scan
 ```
 
 次に以下のコマンドを実行します。
