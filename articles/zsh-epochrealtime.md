@@ -3,7 +3,7 @@ title: "Zsh で $EPOCHREALTIME を使いたい"
 emoji: "😎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Zsh", "Bash", "EPOCHREALTIME"]
-published: false
+published: true
 order: 81
 ---
 
