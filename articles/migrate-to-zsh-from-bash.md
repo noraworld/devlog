@@ -3,7 +3,7 @@ title: "6 年 8 ヶ月お世話になった Bash から Zsh に移行した (移
 emoji: "👋"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Bash", "Zsh", "shell", "ShellScript"]
-published: false
+published: true
 order: 82
 ---
 
