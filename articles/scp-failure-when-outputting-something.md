@@ -3,7 +3,7 @@ title: "ログイン時に何かを出力するようにしていると scp が�
 emoji: "🐈"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["scp", "SSH", "Bash", "bashrc", "Zsh"]
-published: false
+published: true
 order: 80
 ---
 
