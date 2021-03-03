@@ -3,7 +3,7 @@ title: "bluetoothctl で自動接続 (常時接続) をする方法"
 emoji: "⛳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["bluetooth", "bluetoothctl", "cron", "crontab", "pulseaudio"]
-published: false
+published: true
 order: 79
 ---
 
