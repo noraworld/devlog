@@ -117,8 +117,8 @@ grep の場合は `//` の代わりに `''` で囲みます。また、表示さ
 ...
 ...
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
- link/ether xx:xx:xx:xx:xx:xx brd ff:ff:ff:ff:ff:ff
- inet 192.168.3.2/24 brd 192.168.3.255 scope global eth0
+    link/ether xx:xx:xx:xx:xx:xx brd ff:ff:ff:ff:ff:ff
+    inet 192.168.3.2/24 brd 192.168.3.255 scope global eth0
 ```
 
 `inet 192.168.3.2/24 brd 192.168.3.255 scope global eth0` の行にマッチして、さらにその上の 10 行も表示されています。
