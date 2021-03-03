@@ -190,8 +190,12 @@ $ crontab cron.conf
 
  function is_connected() {
  {
- printf "select $adapter\n\n"
- printf "info $device\n\n"
+ printf "select $adapter
+
+ "
+ printf "info $device
+
+ "
  } | bluetoothctl | grep "Connected: " | sed -e 's/Connected: //' | sed -e 's/^[[:blank:]]*//'
  }
 +
@@ -202,7 +206,6 @@ $ crontab cron.conf
 +
 + if [[ $(is_playing) -gt 0 ]]; then
 + echo -e "Error: Some devices now playing sounds" >&2
-+ echo -e " Specify option -i to ignore devices to play sounds" >&2
 + exit 2
 + fi
 
