@@ -3,7 +3,7 @@ title: "シェルでコマンドを実行中は Mac をスリープさせない�
 emoji: "☕️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["ShellScript", "shell", "Zsh", "macos", "Mac"]
-published: false
+published: true
 order: 83
 ---
 
