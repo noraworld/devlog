@@ -2,7 +2,7 @@
 title: "bluetoothctl で自動接続 (常時接続) をする方法"
 emoji: "⛳"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["bluetooth", "bluetoothctl", "cron", "crontab"]
+topics: ["bluetooth", "bluetoothctl", "cron", "crontab", "pulseaudio"]
 published: false
 order: 79
 ---
@@ -162,8 +162,82 @@ $ crontab cron.conf
 
 これで 1 分ごとに前項のスクリプトを実行するようになりました。
 
-# さいごに
+# 動作確認
 実際に MacBook で試してみると、スリープから復帰したあと、ちゃんと 1 分以内に Raspberry Pi に自動接続されるようになりました。
+
+# (optional) 音声の再生中は自動接続しないようにする (音切れ問題対策)
+:information_source: 「[モチベーション](#%E3%83%A2%E3%83%81%E3%83%99%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3)」の項で説明したように、Raspberry Pi に複数デバイスを接続して音声をミキシングして使う用途の場合は、次に紹介するスクリプトが役に立つかもしれません。
+
+さて、自動接続はできるようになったのですが、少し問題が発生しました。Raspberry Pi にすでに接続されたデバイスで音声が再生されている間に、他のデバイスを接続しようとすると、再生中の音声が一時的に乱れてしまいます。プツプツする感じです。
+
+たとえば、iPhone を Raspberry Pi に Bluetooth 接続している状態で、iPhone から音楽を流しているとします。その状態で、接続されていない MacBook に接続しようとすると、その間、iPhone から流れる音声が乱れます。
+
+その接続要求で MacBook が接続されれば、それ以降は接続要求を行わないので音声が途切れることはありません。しかし、たとえば MacBook がスリープ状態で、Bluetooth 接続に応じない場合は、1 分ごとに接続要求をして失敗、を繰り返します。そうなると、iPhone から流れる音声が 1 分おきに乱れることになります。
+
+なので、Raspberry Pi に Bluetooth 接続されているデバイスのうち、少なくとも一つが音声を再生している場合は自動接続を行わないようにすることでこの問題を解決します。接続されていないデバイスがあっても、すでに接続されているデバイスで音声が再生されていると、その間は自動接続されなくなってしまいますが、そこは妥協することにします。再生中の音楽がプツプツするほうが気になるので……。
+
+これを実現するには先ほどのスクリプトに数行追加します。
+
+```diff
+ #!/bin/bash
+
+ function paired_devices() {
+ {
+ printf "select $adapter\n\n"
+ printf "paired-devices\n\n"
+ } | bluetoothctl | grep "Device " | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'
+ }
+
+ function is_connected() {
+ {
+ printf "select $adapter\n\n"
+ printf "info $device\n\n"
+ } | bluetoothctl | grep "Connected: " | sed -e 's/Connected: //' | sed -e 's/^[[:blank:]]*//'
+ }
++
++ function is_playing() {
++ export PULSE_RUNTIME_PATH="/run/user/$(id -u)/pulse/"
++ pacmd list-sink-inputs | grep -c "state: RUNNING"
++ }
++
++ if [[ $(is_playing) -gt 0 ]]; then
++ echo -e "Error: Some devices now playing sounds" >&2
++ echo -e " Specify option -i to ignore devices to play sounds" >&2
++ exit 2
++ fi
+
+ bluetoothctl -- list | while read line
+ do
+ adapter=`echo $line | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'`
+
+ paired_devices | while read device
+ do
+ if [[ $(is_connected) = "no" ]]; then
+ {
+ printf "select $adapter\n\n"
+ printf "connect $device\n\n"
+ } | bluetoothctl
+ fi
+ done
+ done
+```
+
+## 解説
+`is_playing()` 関数と、`is_playing()` 関数の結果が `0` だったら `exit` する処理を追加しました。
+
+`is_playing()` 関数は 0 以上の整数を返します。そしてこの数値は音声を再生中の入力装置の数を表しています。`0` であれば音声を再生中の入力装置がないということになるのでそのまま処理を続行します (自動接続します) が、そうでなければ音声を再生しているデバイスが少なくとも一つは存在することになるので `exit` して処理を中断します。
+
+`pacmd` コマンドの代わりに `pactl` コマンドを使用しても良いです。つまり、`pacmd list-sink-inputs | grep -c "state: RUNNING"` の部分は、以下に置き換えても問題ありません。
+
+```bash
+pactl list sink-inputs | grep -c -E "Sink Input #[0-9]{1,}"
+```
+
+いずれも音声を再生中の入力装置の情報を取得し、特徴的な文字列を grep してヒットした数を出力します。
+
+`export PULSE_RUNTIME_PATH="/run/user/$(id -u)/pulse/"` という行がないと、crontab で実行した際に `pacmd` コマンド (`pactl` コマンド) が PulseAudio の情報を取得できず失敗します。crontab ではなくカレントシェルで実行する際はこの行がなくても動作してしまうので注意が必要です。
+
+[pacmd - Why doesn't it work from cron?](https://superuser.com/questions/1207581/pacmd-why-doesnt-it-work-from-cron#answer-1243363)
 
 # 参考サイト
 - [Bash inline version of piping file to bluetoothctl](https://stackoverflow.com/questions/54443399/bash-inline-version-of-piping-file-to-bluetoothctl#54443626)
