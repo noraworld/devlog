@@ -3,7 +3,7 @@ title: "Ubuntu 再起動時に自動でログインする方法"
 emoji: "🌊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ubuntu", "ubuntu20.04", "pulseaudio"]
-published: false
+published: true
 order: 75
 ---
 
