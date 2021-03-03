@@ -122,6 +122,8 @@ script
 
 なお、上記の理屈により、`ssh` で別のマシンにログイン中も Mac はスリープしません。SSH 先では `caffeinate` コマンドが使えないので、SSH 接続中はずっとスリープしないようにしても良いと個人的には思っていますが、これが気に入らない場合は `ssh` も `~/.decaffeinated_command_list` に追加してください。
 
+他にも、`man` や `less` や `vim` を開きっぱなしにしている間もスリープしてほしい場合は、それらを `~/.decaffeinated_command_list` に追加してください。
+
 ### `$!` について
 ```zsh
 (caffeinate -d & echo $!) | read _tn_caffeinate_pid
