@@ -45,12 +45,12 @@ OS を焼いたあとは SD カードのディスクがアンマウントされ�
 
 ```:/Volumes/system-boot/network-config
 wifis:
- wlan0:
- dhcp4: true
- optional: true
- access-points:
- <wifi network name>:
- password: "<wifi password>"
+  wlan0:
+  dhcp4: true
+  optional: true
+  access-points:
+    <wifi network name>:
+      password: "<wifi password>"
 ```
 
 `<wifi network name>` には使用している Wi-Fi の SSID、`<wifi password>` には Wi-Fi のパスワードを設定します。
@@ -80,7 +80,7 @@ $ sudo arp-scan -l --interface <NETWORK_INTERFACE_NAME> | grep -i "Raspberry Pi"
 すると、以下のような行が表示されるはずです。
 
 ```
-192.168.3.14 xx:xx:xx:xx:xx:xx Raspberry Pi Trading Ltd
+192.168.3.14	xx:xx:xx:xx:xx:xx	Raspberry Pi Trading Ltd
 ```
 
 ここで表示された `192.168.3.14` が Raspberry Pi の IP アドレスです。この数値はもちろん環境によって異なります。
@@ -129,16 +129,16 @@ $ ifconfig | grep <IP_ADDR> -B 10
 すると以下のような結果が出ます。
 
 ```
- ... (無視して OK)
- ...
- ...
+        ... (無視して OK)
+        ...
+        ...
 en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
- ... (省略)
- ...
- ...
- ...
- ...
- inet 192.168.3.28 netmask 0xffffff00 broadcast 192.168.3.255
+        ... (省略)
+        ...
+        ...
+        ...
+        ...
+        inet 192.168.3.28 netmask 0xffffff00 broadcast 192.168.3.255
 ```
 
 上記の例だとネットワークインターフェース名が `en0` であることがわかりました。上記の例は Wi-Fi なので、Wi-Fi で接続されているネットワークのインターフェイス名が `en0` だったというわけです。ちなみに有線接続だと `en7` でした。これらの結果は環境によって異なります。
@@ -175,7 +175,7 @@ Raspberry Pi を何度も再インストールしている場合は、以下の�
 
 ```
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
 Someone could be eavesdropping on you right now (man-in-the-middle attack)!
@@ -238,25 +238,25 @@ $ arp -na
 ? (239.255.255.250) at x:x:xx:xx:xx:xx on en7 ifscope permanent [ethernet]
 ```
 
-重複している IP アドレスとマルチキャストアドレス (`224.0.0.0` 〜 `239.255.255.255` の範囲内にある IP アドレス、上記の例では下の 4 行) を除くと 5 つの IP アドレスが見つかりました。
+重複している IP アドレスとマルチキャストアドレス (`224.0.0.0`  〜 `239.255.255.255` の範囲内にある IP アドレス、上記の例では下の 4 行) を除くと 5 つの IP アドレスが見つかりました。
 
 ```shell
 $ sudo arp-scan -l --interface en0
 Interface: en0, type: EN10MB, MAC: xx:xx:xx:xx:xx:xx, IPv4: 192.168.3.28
 Starting arp-scan 1.9.7 with 256 hosts (https://github.com/royhills/arp-scan)
-192.168.3.1 xx:xx:xx:xx:xx:xx Hon Hai Precision Ind. Co.,Ltd.
-192.168.3.11 xx:xx:xx:xx:xx:xx Apple, Inc.
-192.168.3.12 xx:xx:xx:xx:xx:xx ELECOM CO.,LTD.
-192.168.3.14 xx:xx:xx:xx:xx:xx Raspberry Pi Trading Ltd
-192.168.3.18 xx:xx:xx:xx:xx:xx Luxshare Precision Industry Company Limited
-192.168.3.20 xx:xx:xx:xx:xx:xx ASIX ELECTRONICS CORP.
-192.168.3.25 xx:xx:xx:xx:xx:xx Sony Interactive Entertainment Inc.
-192.168.3.19 xx:xx:xx:xx:xx:xx (Unknown: locally administered)
-192.168.3.26 xx:xx:xx:xx:xx:xx Oculus VR, LLC
-192.168.3.21 xx:xx:xx:xx:xx:xx Texas Instruments
-192.168.3.102 xx:xx:xx:xx:xx:xx Belkin International Inc.
-192.168.3.27 xx:xx:xx:xx:xx:xx (Unknown)
-192.168.3.23 xx:xx:xx:xx:xx:xx Espressif Inc.
+192.168.3.1		xx:xx:xx:xx:xx:xx	Hon Hai Precision Ind. Co.,Ltd.
+192.168.3.11	xx:xx:xx:xx:xx:xx	Apple, Inc.
+192.168.3.12	xx:xx:xx:xx:xx:xx	ELECOM CO.,LTD.
+192.168.3.14	xx:xx:xx:xx:xx:xx	Raspberry Pi Trading Ltd
+192.168.3.18	xx:xx:xx:xx:xx:xx	Luxshare Precision Industry Company Limited
+192.168.3.20	xx:xx:xx:xx:xx:xx	ASIX ELECTRONICS CORP.
+192.168.3.25	xx:xx:xx:xx:xx:xx	Sony Interactive Entertainment Inc.
+192.168.3.19	xx:xx:xx:xx:xx:xx	(Unknown: locally administered)
+192.168.3.26	xx:xx:xx:xx:xx:xx	Oculus VR, LLC
+192.168.3.21	xx:xx:xx:xx:xx:xx	Texas Instruments
+192.168.3.102	xx:xx:xx:xx:xx:xx	Belkin International Inc.
+192.168.3.27	xx:xx:xx:xx:xx:xx	(Unknown)
+192.168.3.23	xx:xx:xx:xx:xx:xx	Espressif Inc.
 
 525 packets received by filter, 0 packets dropped by kernel
 Ending arp-scan 1.9.7: 256 hosts scanned in 1.994 seconds (128.39 hosts/sec). 13 responded
