@@ -28,7 +28,7 @@ order: 84
 ```
 abcdef
 abcefg
- ^ ここで false を返す
+   ^ ここで false を返す
 ```
 
 この仕様は、処理の高速化のために採用されているものですが、これを攻撃に利用されてしまう可能性があるということです。
@@ -47,29 +47,29 @@ abcefg
 では、`Rack::Utils.secure_compare` はいったいどんな実装になっているのでしょうか。さっそく見てみましょう。
 
 ```ruby
- # Constant time string comparison.
- #
- # NOTE: the values compared should be of fixed length, such as strings
- # that have already been processed by HMAC. This should not be used
- # on variable length plaintext strings because it could leak length info
- # via timing attacks.
- if defined?(OpenSSL.fixed_length_secure_compare)
- def secure_compare(a, b)
- return false unless a.bytesize == b.bytesize
+    # Constant time string comparison.
+    #
+    # NOTE: the values compared should be of fixed length, such as strings
+    # that have already been processed by HMAC. This should not be used
+    # on variable length plaintext strings because it could leak length info
+    # via timing attacks.
+    if defined?(OpenSSL.fixed_length_secure_compare)
+      def secure_compare(a, b)
+        return false unless a.bytesize == b.bytesize
 
- OpenSSL.fixed_length_secure_compare(a, b)
- end
- else
- def secure_compare(a, b)
- return false unless a.bytesize == b.bytesize
+        OpenSSL.fixed_length_secure_compare(a, b)
+      end
+    else
+      def secure_compare(a, b)
+        return false unless a.bytesize == b.bytesize
 
- l = a.unpack("C*")
+        l = a.unpack("C*")
 
- r, i = 0, -1
- b.each_byte { |v| r |= v ^ l[i += 1] }
- r == 0
- end
- end
+        r, i = 0, -1
+        b.each_byte { |v| r |= v ^ l[i += 1] }
+        r == 0
+      end
+    end
 ```
 https://github.com/rack/rack/blob/a05f8d56f9ac4da14dddb8f312a3b43644f73397/lib/rack/utils.rb#L371-L393
 
@@ -77,13 +77,13 @@ https://github.com/rack/rack/blob/a05f8d56f9ac4da14dddb8f312a3b43644f73397/lib/r
 
 ```ruby
 def secure_compare(a, b)
- return false unless a.bytesize == b.bytesize
+  return false unless a.bytesize == b.bytesize
 
- l = a.unpack("C*")
+  l = a.unpack("C*")
 
- r, i = 0, -1
- b.each_byte { |v| r |= v ^ l[i += 1] }
- r == 0
+  r, i = 0, -1
+  b.each_byte { |v| r |= v ^ l[i += 1] }
+  r == 0
 end
 ```
 
