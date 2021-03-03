@@ -18,11 +18,11 @@ order: 82
 そんな期間が長く続いたのですが、ついに Zsh に移行することにしました。きっかけとしては、
 
 - Bash に Zsh や Fish のようなプラグインマネージャがないのがすごく不便に感じていた
- - Homebrew などで管理されていないスクリプトを dotfiles で管理しようとすると、そのスクリプトをそのまま置くしかない
- - Bash-Preexec など
+  - Homebrew などで管理されていないスクリプトを dotfiles で管理しようとすると、そのスクリプトをそのまま置くしかない
+  - Bash-Preexec など
 - [Bash-Preexec](https://github.com/rcaloras/bash-preexec) が正常に機能しない
 - [Starship](https://github.com/starship/starship) の一部の機能が正常に機能しない
- - おそらく Bash-Preexec が原因
+  - おそらく Bash-Preexec が原因
 
 あたりです。今後もシェルの環境は定期的に見直して便利にしていきたいと思っていて、Bash のままカスタマイズし続けるのにそろそろ限界を感じていました。
 
@@ -51,7 +51,7 @@ order: 82
 ```shell
 mkdir $1
 if [[ -d $1 ]]; then
- cd $1
+  cd $1
 fi
 ```
 
@@ -68,35 +68,25 @@ fi
 
 たとえば `history` や `dirs`、`pushd`、`popd` などが該当します。
 
-ビルトインコマンドなのかどうかは `which` コマンドで調べられます。ビルトインコマンドだった場合、Bash の場合は何も出力されず、Zsh の場合は `shell built-in command` と表示されます。
+ビルトインコマンドなのかどうかは `type` コマンドで調べられます。
 
-```bash:Bash
-$ which history
+```shell
+$ type history
+history is a shell builtin
 
-$ which dirs
+$ type dirs
+dirs is a shell builtin
 
-$ which pushd
+$ type pushd
+pushd is a shell builtin
 
-$ which popd
-```
-
-```zsh:Zsh
-$ which history
-history: shell built-in command
-
-$ which dirs
-dirs: shell built-in command
-
-$ which pushd
-pushd: shell built-in command
-
-$ which popd
-popd: shell built-in command
+$ type popd
+popd is a shell builtin
 ```
 
 重要なのは Bash と Zsh でビルトインコマンドの挙動が異なる場合があることです。たとえば Bash の場合、`history` コマンドを実行すると全件表示されますが、Zsh の場合、デフォルトだと最新の 16 件のみが表示されます。
 
-もし自分で作ったシェルスクリプトやエイリアスで `history` のような挙動の異なるコマンドを使用している場合は、これらの仕様の違いについても考慮する必要があります。
+もし自分で作ったシェルスクリプトやエイリアスで、`history` のような挙動の異なるコマンドを使用している場合は、これらの仕様の違いについても考慮する必要があります。
 
 ### dirs コマンドの引数について
 ビルトインコマンドの挙動の違いに関して、ぼくが遭遇したのは `dirs` コマンドの引数です。
@@ -104,28 +94,28 @@ popd: shell built-in command
 Bash だと `+N` (`N` は数値) を指定すると N 番目のディレクトリスタックを取得できるのですが、Zsh だとそれができませんでした。
 
 ```bash:Bash
-$ dirs -l -v
- 0 /Users/noraworld/Workspace
- 1 /Users/noraworld/Workspace/dotfiles/bin/src
- 2 /Users/noraworld/Workspace/dotfiles/bin/src/currentshell
- 3 /Users/noraworld
+$  dirs -l -v
+ 0  /Users/noraworld/Workspace
+ 1  /Users/noraworld/Workspace/dotfiles/bin/src
+ 2  /Users/noraworld/Workspace/dotfiles/bin/src/currentshell
+ 3  /Users/noraworld
 
 $ dirs -l -v +0
- 0 /Users/noraworld/Workspace
+ 0  /Users/noraworld/Workspace
 ```
 
 ```zsh:Zsh
 $ dirs -l -v
-0 /Users/noraworld/Workspace
-1 /Users/noraworld/Workspace/dotfiles/bin/src
-2 /Users/noraworld/Workspace/dotfiles/bin/src/currentshell
-3 /Users/noraworld
+0	/Users/noraworld/Workspace
+1	/Users/noraworld/Workspace/dotfiles/bin/src
+2	/Users/noraworld/Workspace/dotfiles/bin/src/currentshell
+3	/Users/noraworld
 
 $ dirs -l -v +0
-0 /Users/noraworld/Workspace
-1 /Users/noraworld/Workspace/dotfiles/bin/src
-2 /Users/noraworld/Workspace/dotfiles/bin/src/currentshell
-3 /Users/noraworld
+0	/Users/noraworld/Workspace
+1	/Users/noraworld/Workspace/dotfiles/bin/src
+2	/Users/noraworld/Workspace/dotfiles/bin/src/currentshell
+3	/Users/noraworld
 ```
 
 ぼくの環境では `dirs -l -v +0` を使っていたので `dirs -l -v | head -1` に置き換えました。[[差分](https://github.com/noraworld/dotfiles/commit/a0a52815d9fcb0744ae2813d03c97a124138274e#diff-0de4bbc9d94f96e68a1e18f016f8b8147a7e25b0e09aba11290288c46f66fb23L3-R1)]
@@ -150,10 +140,10 @@ zsh: command not found: history
 
 ```diff:~/.zprofile
 - if [ -f ~/.bashrc ]; then
-- . ~/.bashrc
+-   . ~/.bashrc
 - fi
 + if [ -f ~/.zshrc ]; then
-+ . ~/.zshrc
++   . ~/.zshrc
 + fi
 ```
 
@@ -162,19 +152,19 @@ zsh: command not found: history
 
 ```diff:~/.zshrc
 - if [ -e /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
-- . /usr/local/etc/bash_completion.d/git-prompt.sh
+-   . /usr/local/etc/bash_completion.d/git-prompt.sh
 - fi
 ```
 
 ```diff:~/.zshrc
 - if [ -e /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-- . /usr/local/etc/bash_completion.d/git-completion.bash
+-   . /usr/local/etc/bash_completion.d/git-completion.bash
 - fi
 ```
 
 ```diff:~/.zshrc
 - if [ -e /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
-- GIT_PS1_SHOWDIRTYSTATE=true
+-   GIT_PS1_SHOWDIRTYSTATE=true
 - fi
 ```
 
@@ -184,7 +174,7 @@ zsh: command not found: history
 
 ```diff:~/.zshrc
 - if [ -f `brew --prefix`/etc/bash_completion ]; then
-- . `brew --prefix`/etc/bash_completion
+-    . `brew --prefix`/etc/bash_completion
 - fi
 ```
 
@@ -197,22 +187,22 @@ Zsh では `$PROMPT_COMMAND` の代わりに `precmd()` という関数を作っ
 
 ```diff:~/.zshrc
 - if ! [[ "$PROMPT_COMMAND" =~ "<YOUR_COMMAND>" ]]; then
-- PROMPT_COMMAND="<YOUR_COMMAND>;$PROMPT_COMMAND"
+-   PROMPT_COMMAND="<YOUR_COMMAND>;$PROMPT_COMMAND"
 - fi
 + precmd() {
-+ <YOUR_COMMAMD>
++   <YOUR_COMMAMD>
 + }
 ```
 
 あるいは、`$PROMPT_COMMAND` をそのまま残しつつ、`eval` コマンドを使って以下のように書くこともできます。
 
 ```diff:~/.zshrc
- if ! [[ "$PROMPT_COMMAND" =~ "<YOUR_COMMAND>" ]]; then
- PROMPT_COMMAND="<YOUR_COMMAND>;$PROMPT_COMMAND"
- fi
+  if ! [[ "$PROMPT_COMMAND" =~ "<YOUR_COMMAND>" ]]; then
+    PROMPT_COMMAND="<YOUR_COMMAND>;$PROMPT_COMMAND"
+  fi
 +
 + precmd() {
-+ eval "$PROMPT_COMMAND"
++   eval "$PROMPT_COMMAND"
 + }
 ```
 
@@ -223,13 +213,13 @@ Zsh では `$PROMPT_COMMAND` の代わりに `precmd()` という関数を作っ
 ```diff:~/.zshrc
 - [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 -
- preexec() {
- <YOUR_PROCESSING>
- }
+  preexec() {
+    <YOUR_PROCESSING>
+  }
 
- precmd() {
- <YOUR_PROCESSING>
- }
+  precmd() {
+    <YOUR_PROCESSING>
+  }
 ```
 
 ## イニシャルスクリプトをロードしている部分を Bash から Zsh に変える
