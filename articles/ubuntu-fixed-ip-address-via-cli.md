@@ -3,7 +3,7 @@ title: "コマンドラインで Ubuntu を固定 IP アドレスにする方法
 emoji: "🗂"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ubuntu", "固定IP", "RaspberryPi", "ubuntu20.04"]
-published: false
+published: true
 order: 76
 ---
 
