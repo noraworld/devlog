@@ -38,36 +38,32 @@ iPhone や MacBook から流れる音を同時に聞けるようにするメリ�
 #!/bin/bash
 
 function paired_devices() {
- {
- printf "select $adapter\n\n"
- printf "paired-devices
-
- "
- } | bluetoothctl | grep "Device " | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'
+  {
+    printf "select $adapter\n\n"
+    printf "paired-devices\n\n"
+  } | bluetoothctl | grep "Device " | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'
 }
 
 function is_connected() {
- {
- printf "select $adapter\n\n"
- printf "info $device
-
- "
- } | bluetoothctl | grep "Connected: " | sed -e 's/Connected: //' | sed -e 's/^[[:blank:]]*//'
+  {
+    printf "select $adapter\n\n"
+    printf "info $device\n\n"
+  } | bluetoothctl | grep "Connected: " | sed -e 's/Connected: //' | sed -e 's/^[[:blank:]]*//'
 }
 
 bluetoothctl -- list | while read line
 do
- adapter=`echo $line | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'`
+  adapter=`echo $line | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'`
 
- paired_devices | while read device
- do
- if [[ $(is_connected) = "no" ]]; then
- {
- printf "select $adapter\n\n"
- printf "connect $device\n\n"
- } | bluetoothctl
- fi
- done
+  paired_devices | while read device
+  do
+    if [[ $(is_connected) = "no" ]]; then
+      {
+        printf "select $adapter\n\n"
+        printf "connect $device\n\n"
+      } | bluetoothctl
+    fi
+  done
 done
 ```
 
@@ -79,17 +75,17 @@ done
 ```bash
 bluetoothctl -- list | while read line
 do
- adapter=`echo $line | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'`
+  adapter=`echo $line | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'`
 
- paired_devices | while read device
- do
- if [[ $(is_connected) = "no" ]]; then
- {
- printf "select $adapter\n\n"
- printf "connect $device\n\n"
- } | bluetoothctl
- fi
- done
+  paired_devices | while read device
+  do
+    if [[ $(is_connected) = "no" ]]; then
+      {
+        printf "select $adapter\n\n"
+        printf "connect $device\n\n"
+      } | bluetoothctl
+    fi
+  done
 done
 ```
 
@@ -106,10 +102,10 @@ done
 ### paired_devices()
 ```bash
 function paired_devices() {
- {
- printf "select $adapter\n\n"
- printf "paired-devices\n\n"
- } | bluetoothctl | grep "Device " | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'
+  {
+    printf "select $adapter\n\n"
+    printf "paired-devices\n\n"
+  } | bluetoothctl | grep "Device " | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'
 }
 ```
 
@@ -126,10 +122,10 @@ Bluetooth コントローラが一つしかない場合はわざわざ `select <
 ### is_connected()
 ```bash
 function is_connected() {
- {
- printf "select $adapter\n\n"
- printf "info $device\n\n"
- } | bluetoothctl | grep "Connected: " | sed -e 's/Connected: //' | sed -e 's/^[[:blank:]]*//'
+  {
+    printf "select $adapter\n\n"
+    printf "info $device\n\n"
+  } | bluetoothctl | grep "Connected: " | sed -e 's/Connected: //' | sed -e 's/^[[:blank:]]*//'
 }
 ```
 
@@ -179,50 +175,46 @@ $ crontab cron.conf
 これを実現するには先ほどのスクリプトに数行追加します。
 
 ```diff
- #!/bin/bash
+  #!/bin/bash
 
- function paired_devices() {
- {
- printf "select $adapter\n\n"
- printf "paired-devices\n\n"
- } | bluetoothctl | grep "Device " | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'
- }
+  function paired_devices() {
+    {
+      printf "select $adapter\n\n"
+      printf "paired-devices\n\n"
+    } | bluetoothctl | grep "Device " | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'
+  }
 
- function is_connected() {
- {
- printf "select $adapter
-
- "
- printf "info $device
-
- "
- } | bluetoothctl | grep "Connected: " | sed -e 's/Connected: //' | sed -e 's/^[[:blank:]]*//'
- }
+  function is_connected() {
+    {
+      printf "select $adapter\n\n"
+      printf "info $device\n\n"
+    } | bluetoothctl | grep "Connected: " | sed -e 's/Connected: //' | sed -e 's/^[[:blank:]]*//'
+  }
 +
 + function is_playing() {
-+ export PULSE_RUNTIME_PATH="/run/user/$(id -u)/pulse/"
-+ pacmd list-sink-inputs | grep -c "state: RUNNING"
++   export PULSE_RUNTIME_PATH="/run/user/$(id -u)/pulse/"
++   pacmd list-sink-inputs | grep -c "state: RUNNING"
 + }
 +
 + if [[ $(is_playing) -gt 0 ]]; then
-+ echo -e "Error: Some devices now playing sounds" >&2
-+ exit 2
++   echo -e "Error: Some devices now playing sounds" >&2
++   exit 2
 + fi
 
- bluetoothctl -- list | while read line
- do
- adapter=`echo $line | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'`
+  bluetoothctl -- list | while read line
+  do
+    adapter=`echo $line | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'`
 
- paired_devices | while read device
- do
- if [[ $(is_connected) = "no" ]]; then
- {
- printf "select $adapter\n\n"
- printf "connect $device\n\n"
- } | bluetoothctl
- fi
- done
- done
+    paired_devices | while read device
+    do
+      if [[ $(is_connected) = "no" ]]; then
+        {
+          printf "select $adapter\n\n"
+          printf "connect $device\n\n"
+        } | bluetoothctl
+      fi
+    done
+  done
 ```
 
 ## 解説
