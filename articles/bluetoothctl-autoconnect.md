@@ -232,13 +232,14 @@ $ crontab cron.conf
 
 `pacmd` コマンドの代わりに `pactl` コマンドを使用しても良いです。つまり、`pacmd list-sink-inputs | grep -c "state: RUNNING"` の部分は、以下に置き換えても問題ありません。
 
-```bash
-pactl list sink-inputs | grep -c -E "Sink Input #[0-9]{1,}"
+```diff:(任意)
+- pacmd list-sink-inputs | grep -c "state: RUNNING"
++ pactl list sink-inputs | grep -c -E "Sink Input #[0-9]{1,}"
 ```
 
 いずれも音声を再生中の入力装置の情報を取得し、特徴的な文字列を grep してヒットした数を出力します。
 
-`export PULSE_RUNTIME_PATH="/run/user/$(id -u)/pulse/"` という行がないと、crontab で実行した際に `pacmd` コマンド (`pactl` コマンド) が PulseAudio の情報を取得できず失敗します。crontab ではなくカレントシェルで実行する際はこの行がなくても動作してしまうので注意が必要です。
+`export PULSE_RUNTIME_PATH="/run/user/$(id -u)/pulse/"` という行がないと、crontab で実行した際に `pacmd` コマンド (`pactl` コマンド) が PulseAudio の情報を取得できず失敗します。crontab ではなくカレントシェルで実行する際は、この行がなくても動作してしまうのでハマるポイントです。
 
 [pacmd - Why doesn't it work from cron?](https://superuser.com/questions/1207581/pacmd-why-doesnt-it-work-from-cron#answer-1243363)
 
