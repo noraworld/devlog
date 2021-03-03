@@ -78,9 +78,9 @@ done
 
 ### (**main)
 ```bash
-bluetoothctl -- list | while read adapter_line
+bluetoothctl -- list | while read line
 do
- adapter=`echo $adapter_line | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'`
+ adapter=`echo $line | sed -r 's/^.*(([0-9A-F]{2}:){5}[0-9A-F]{2}).*$/\1/'`
 
  paired_devices | while read device
  do
