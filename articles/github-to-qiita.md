@@ -269,7 +269,9 @@ published: true
 ### Qiita の編集履歴のメッセージを記入することはできない
 Qiita 上で、投稿した記事を編集する際に、どんな編集をしたのかを示すメッセージをつけることができます。いわゆる Git のコミットメッセージと同じものです。
 
-`https://qiita.com/<QIITA_USERNAME>/items/<QIITA_ITEM_ID>/revisions/<REVISION_NUMBER>` で確認できます。以下は例です。
+`https://qiita.com/<QIITA_USERNAME>/items/<QIITA_ITEM_ID>/revisions/<REVISION_NUMBER>` で確認できます。
+
+以下は例です。
 
 https://qiita.com/noraworld/items/79100783ba95d8c48924/revisions/1
 
@@ -301,7 +303,7 @@ Qiita アカウントと Twitter アカウントを連携させている場合�
 
 このファイルがないと、すでにリポジトリ上にすでにある記事を更新した際に、どの Qiita 記事を更新すれば良いのかわからなくなってしまいます。
 
-そのため、`git push` したら、その後、数十秒ほど待ってから `git pull` することをおすすめします。
+そのため、新しい記事を追加して `git push` したら、その後、数十秒ほど待ってから `git pull` することをおすすめします。すでにある記事を編集する場合は不要です。
 
 なお、マッピングファイルのファイル名は環境変数 (`.env`) で変更可能です。
 
