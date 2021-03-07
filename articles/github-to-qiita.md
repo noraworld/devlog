@@ -29,12 +29,17 @@ Git / GitHub で技術記事を管理するメリットとしては以下のと�
 * GitHub API v3
 * Qiita API v2
 
+主な流れとしては下記のとおりです。
+
 1. GitHub リポジトリに技術記事を push する
 2. GitHub Webhook の設定であらかじめ登録しておいた URL 宛に、GitHub のサーバから push event が送られる
 3. GitHub API を使って、新しく追加または編集されたファイル (技術記事) を取得する
 4. Qiita API を使用して、追加または編集されたファイル (技術記事) を Qiita に投稿する
 
-主な流れとしては上記のとおりです。
+# 必要なもの
+* インターネットに常時接続し、常時稼働している Linux サーバ
+
+この記事で紹介するツールを実運用するには、サーバが必要になります。とりあえずどんな感じで動作するのか確認するだけなら手元の PC でも問題ありません。
 
 # セットアップ
 以下の作業の中のコマンドはすべて、稼働しているサーバ内で実行します。
@@ -46,13 +51,20 @@ Git / GitHub で技術記事を管理するメリットとしては以下のと�
 $ git clone https://github.com/noraworld/github-to-qiita.git
 ```
 
+https://github.com/noraworld/github-to-qiita
+
 ## GitHub リポジトリを作成する
 技術記事を管理する GitHub リポジトリを、以下の URL から作成します。
 
 https://github.com/new
 
 ## GitHub Webhook を設定する
-`https://github.com/<GITHUB_USERNAME>/<GITHUB_REPOSITORY>/settings/hooks/new` にアクセスします。`<GITHUB_USERNAME>` にはあなたの GitHub のユーザ名、`<GITHUB_REPOSITORY>` には、先ほど作成した GitHub リポジトリ名を入れます。
+`https://github.com/<GITHUB_USERNAME>/<GITHUB_REPOSITORY>/settings/hooks/new` にアクセスします。
+
+| 変数 | 説明 |
+|---|---|
+| `<GITHUB_USERNAME>` | あなたの GitHub のユーザ名 |
+| `<GITHUB_REPOSITORY>` | 先ほど作成した GitHub リポジトリ名 |
 
 アクセスしたページに、必要な情報を入力します。
 
@@ -69,9 +81,6 @@ https://github.com/new
 
 ```shell
 $ ruby -rsecurerandom -e 'puts SecureRandom.hex(20)'
-```
-```
-35517d2a37e38bf9c8b5ac2f24fe34fb8e2b1510
 ```
 
 必要事項を入力したら、ページ下部の `Add webhook` をクリックして Webhook を登録します。
@@ -90,11 +99,11 @@ https://github.com/settings/tokens/new
 
 必要事項を入力したら、ページ下部の `Generate token` をクリックしてアクセストークンを生成します。
 
-その後、アクセストークンが **1 度だけ表示される** のでコピーしてローカルのどこかに一時的にメモしておきます。
+その後、アクセストークンが **1 度だけ表示される** ので、コピーしてローカルのどこかに一時的にメモしておきます。
 
 **このトークンは他の人に知られないように注意してください**。
 
-また、アクセストークンを忘れてしまった場合は同じ手順を踏んで新しく作り直してください。
+また、アクセストークンを忘れてしまった場合や、他人に知られてしまった場合は、同じ手順を踏んで新しく作り直してください。
 
 ## Qiita 個人用アクセストークンを生成する
 以下の URL にアクセスします。
@@ -110,11 +119,11 @@ https://qiita.com/settings/tokens/new
 
 必要事項を入力したら `発行する` クリックしてアクセストークンを生成します。
 
-その後、アクセストークンが **1 度だけ表示される** のでコピーしてローカルのどこかに一時的にメモしておきます。
+その後、アクセストークンが **1 度だけ表示される** ので、コピーしてローカルのどこかに一時的にメモしておきます。
 
 **このトークンは他の人に知られないように注意してください**。
 
-また、アクセストークンを忘れてしまった場合は同じ手順を踏んで新しく作り直してください。
+また、アクセストークンを忘れてしまった場合や、他人に知られてしまった場合は、同じ手順を踏んで新しく作り直してください。
 
 ## 環境変数を設定する
 「[ツールをダウンロードする](#ツールをダウンロードする)」でダウンロードしたディレクトリに移動します。
@@ -166,7 +175,7 @@ WantedBy=multi-user.target
 このツールを稼働させる際のポート番号は `4567` としていますが、他のポート番号にする必要がある場合は適宜書き換えてください。
 
 ## Web サーバの設定ファイルを編集
-「[GitHub Webhook を設定する](#GitHub+Webhook+を設定する)」で設定した `Payload URL` を、実際にインターネット上で公開できるように Nginx / Apache などの設定を編集します。
+「[GitHub Webhook を設定する](#github-webhook-を設定する)」で設定した `Payload URL` を、実際にインターネット上で公開できるように Nginx / Apache などの設定を編集します。
 
 また、HTTPS で受け付けるため、Let’s Encrypt などを利用して HTTPS 対応します。
 
@@ -200,12 +209,14 @@ $ systemctl status github-to-qiita
 ```
 
 ## GitHub Webhook の ping event を成功させる
-「[GitHub Webhook を設定する](#GitHub+Webhook+を設定する)」で GitHub Webhook を最初に登録した直後に、おそらく GitHub サーバから ping event が `Payload URL` 宛に飛んでいると思いますが、その時点ではまだ `Payload URL` で待ち受けていなかったはずなので、delivery (ping event) が失敗していると思います。
+「[GitHub Webhook を設定する](#github-webhook-を設定する)」で GitHub Webhook を最初に登録した直後に、おそらく GitHub サーバから ping event が `Payload URL` 宛に飛んでいると思います。
+
+しかし、その時点ではまだ `Payload URL` で待ち受けていなかったはずなので、delivery (ping event) が失敗していると思います。
 
 なので、再送要求を送り、ping event を成功させます。
 
 1. `https://github.com/<GITHUB_USERNAME>/<GITHUB_REPOSITORY>/settings/hooks` にアクセスします
-2. 作成した GitHub Webhook をクリックして詳細 / 編集ページにアクセスします
+2. 作成した GitHub Webhook をクリックして詳細・編集ページにアクセスします
 3. ページ下部に `Recent Deliveries` という項目があるので、失敗している (⚠️ マークがついている) delivery をクリックして展開します
 4. `Redeliver` ボタンをクリックします
 5. `Yes, redeliver this payload` ボタンをクリックします
@@ -240,7 +251,7 @@ published: true
 | 項目 | 説明 | 型 | 備考 |
 |---|---|---|---|
 | `title` | 記事のタイトル | 文字列 | |
-| `topics` | 記事のタグ | 配列 | |
+| `topics` | 記事のタグ | 配列 | タグの数は 1 〜 5 個にします |
 | `published` | 公開有無 | 真偽値 | `false` にすると [限定共有記事](https://help.qiita.com/ja/articles/qiita-private-article) になります |
 
 ちなみに、上記の 3 つの項目は必須なのですが、これ以外にメモ的な感じで項目を追加することができます。たとえば、ぼくは記事の投稿順序を GitHub 上でもわかるようにするために `order` という項目を追加するようにしています。
@@ -258,7 +269,9 @@ published: true
 ### Qiita の編集履歴のメッセージを記入することはできない
 Qiita 上で、投稿した記事を編集する際に、どんな編集をしたのかを示すメッセージをつけることができます。いわゆる Git のコミットメッセージと同じものです。
 
-`https://qiita.com/<QIITA_USERNAME>/items/<QIITA_ITEM_ID>/revisions/<REVISION_NUMBER>` で確認できます。
+`https://qiita.com/<QIITA_USERNAME>/items/<QIITA_ITEM_ID>/revisions/<REVISION_NUMBER>` で確認できます。以下は例です。
+
+https://qiita.com/noraworld/items/79100783ba95d8c48924/revisions/1
 
 ところが、このツールを使用して Qiita API 経由で記事を編集した場合は編集履歴を記入することはできません。編集履歴のメッセージは常に「コメントなし」となります。
 
@@ -280,6 +293,17 @@ Qiita アカウントと Twitter アカウントを連携させている場合�
 投稿済みの記事を編集した場合や、Twitter とアカウント連携していない場合は共有されません。
 
 これは今後、環境変数で変更可能にする予定です。
+
+### 新しい記事を push 直後、マッピングファイルが自動的に追加・更新される
+環境変数 `INCLUDED_DIR` で設定したディレクトリ以下に新規ファイル (記事) を追加して push すると、その後すぐ、同リポジトリに自動的にマッピングファイルが追加または更新されます。
+
+このマッピングファイルは、リポジトリ上のファイル名と、Qiita の item id (URL の一部になっている記事の ID、この記事だと `79100783ba95d8c48924` がそれに該当する) とを対応付けるファイルです。
+
+このファイルがないと、すでにリポジトリ上にすでにある記事を更新した際に、どの Qiita 記事を更新すれば良いのかわからなくなってしまいます。
+
+そのため、`git push` したら、その後、数十秒ほど待ってから `git pull` することをおすすめします。
+
+なお、マッピングファイルのファイル名は環境変数 (`.env`) で変更可能です。
 
 # 機能追加要求・バグ報告
 https://github.com/noraworld/github-to-qiita/issues
