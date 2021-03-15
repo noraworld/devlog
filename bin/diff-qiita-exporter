@@ -83,10 +83,11 @@ def print_diff(github_side_content, qiita_side_content, article_path, item_id)
     return
   end
 
+  options, arguments = parse_options
   CE.once.ch :magenta
   puts "#{article_path} / #{qiita_item_url(item_id)}"
   Diffy::Diff.default_format = :color
-  puts Diffy::Diff.new(qiita_side_content, github_side_content, context: 3)
+  puts Diffy::Diff.new(qiita_side_content, github_side_content, context: options[:context])
   puts "===============================================================================\n\n\n"
 end
 
@@ -135,11 +136,16 @@ def parse_options
   parser = OptionParser.new
 
   options = {
-    renew: false
+    renew: false,
+    context: 3
   }
 
   parser.on('-r', '--renew') do |option|
     options[:renew] = true
+  end
+
+  parser.on('-c', '--context VALUE', Integer) do |option|
+    options[:context] = option
   end
 
   arguments = parser.parse(ARGV)
