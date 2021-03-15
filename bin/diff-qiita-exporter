@@ -31,28 +31,7 @@ def diff_by_item_dir(item_dir)
     end
   end
 
-  if github_side_content.empty? && qiita_side_content.empty?
-    CE.once.ch :yellow
-    puts 'Both GitHub side content and Qiita side content are empty. It is probably a bug. Skip.'
-    puts "\n\n"
-    return
-  elsif github_side_content.empty?
-    CE.once.ch :yellow
-    puts 'GitHub side content is empty. This content is probably private content on Qiita. Skip.'
-    puts "Qiita item id: #{item_id}, Qiita URL: #{qiita_private_item_url(item_id)}\n\n"
-    return
-  elsif qiita_side_content.empty?
-    CE.once.ch :yellow
-    puts 'Qiita side content is empty. Maybe something went wrong. Skip.'
-    puts "GitHub article path: #{article_path}\n\n"
-    return
-  end
-
-  CE.once.ch :magenta
-  puts article_path
-  Diffy::Diff.default_format = :color
-  puts Diffy::Diff.new(qiita_side_content, github_side_content, context: 3)
-  puts "===============================================================================\n\n\n"
+  print_diff(github_side_content, qiita_side_content, article_path, item_id)
 end
 
 def diff_by_article_path(article_path)
@@ -82,6 +61,10 @@ def diff_by_article_path(article_path)
     end
   end
 
+  print_diff(github_side_content, qiita_side_content, article_path, item_id)
+end
+
+def print_diff(github_side_content, qiita_side_content, article_path, item_id)
   if github_side_content.empty? && qiita_side_content.empty?
     CE.once.ch :yellow
     puts 'Both GitHub side content and Qiita side content are empty. It is probably a bug. Skip.'
@@ -100,10 +83,14 @@ def diff_by_article_path(article_path)
   end
 
   CE.once.ch :magenta
-  puts article_path
+  puts "#{article_path} / #{qiita_item_url(item_id)}"
   Diffy::Diff.default_format = :color
   puts Diffy::Diff.new(qiita_side_content, github_side_content, context: 3)
   puts "===============================================================================\n\n\n"
+end
+
+def qiita_item_url(item_id)
+  "https://qiita.com/#{ENV['QIITA_USERNAME']}/items/#{item_id}"
 end
 
 def qiita_private_item_url(item_id)
@@ -119,10 +106,16 @@ def main
     Dir.glob('items/**').each do |item_dir|
       diff_by_item_dir(item_dir)
     end
-  else
+  elsif ARGV.all? { |arg| arg.include?(ENV['INCLUDED_DIR']) && arg.include?('.md') }
     ARGV.each do |article_path|
       diff_by_article_path(article_path)
     end
+  elsif ARGV.all? { |arg| arg.include?('items/') }
+    ARGV.each do |item_dir|
+      diff_by_item_dir(item_dir)
+    end
+  else
+    raise 'Arguments invalid'
   end
 end
 
