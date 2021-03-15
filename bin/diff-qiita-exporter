@@ -1,0 +1,129 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'color_echo'
+require 'diffy'
+require 'diff-lcs'
+require 'dotenv'
+require 'json'
+require 'pry'
+
+Dotenv.load
+
+def diff_by_item_dir(item_dir)
+  raise 'Qiita item file not found' unless File.exists?("#{item_dir}/info.json") && File.exists?("#{item_dir}/README.md")
+
+  item_id = begin
+              # broken JSON detected!
+              # "tags":["Ruby"]}]}on"]}e","アプリ","テーマ","拡張機能"]
+              JSON.parse(File.open("#{item_dir}/info.json").read)['id']
+            rescue
+              File.open("#{item_dir}/info.json").read.match(%r{"id":"(.*?)"})[1]
+            end
+  qiita_side_content = File.open("#{item_dir}/README.md").read
+
+  article_path = ''
+  github_side_content = ''
+  File.open(ENV['MAPPING_FILEPATH']).each_line do |line|
+    if line.include?(item_id)
+      article_path = line.split(',').first.gsub(/[\s\r\n]/, '')
+      github_side_content = File.open(article_path).read
+    end
+  end
+
+  if github_side_content.empty? && qiita_side_content.empty?
+    CE.once.ch :yellow
+    puts 'Both GitHub side content and Qiita side content are empty. It is probably a bug. Skip.'
+    puts "\n\n"
+    return
+  elsif github_side_content.empty?
+    CE.once.ch :yellow
+    puts 'GitHub side content is empty. This content is probably private content on Qiita. Skip.'
+    puts "Qiita item id: #{item_id}, Qiita URL: #{qiita_private_item_url(item_id)}\n\n"
+    return
+  elsif qiita_side_content.empty?
+    CE.once.ch :yellow
+    puts 'Qiita side content is empty. Maybe something went wrong. Skip.'
+    puts "GitHub article path: #{article_path}\n\n"
+    return
+  end
+
+  CE.once.ch :magenta
+  puts article_path
+  Diffy::Diff.default_format = :color
+  puts Diffy::Diff.new(qiita_side_content, github_side_content, context: 3)
+  puts "===============================================================================\n\n\n"
+end
+
+def diff_by_article_path(article_path)
+  raise 'GitHub article path not found' unless File.exists?(article_path)
+
+  github_side_content = File.open(article_path).read
+
+  item_id = ''
+  File.open(ENV['MAPPING_FILEPATH']).each_line do |line|
+    if line.include?(article_path)
+      item_id = line.split(',').last.gsub(/[\s\r\n]/, '')
+    end
+  end
+
+  qiita_side_content = ''
+  Dir.glob('items/**').each do |item_dir|
+    item_id_from_info_json = begin
+                               # broken JSON detected!
+                               # "tags":["Ruby"]}]}on"]}e","アプリ","テーマ","拡張機能"]
+                               JSON.parse(File.open("#{item_dir}/info.json").read)['id']
+                             rescue
+                               File.open("#{item_dir}/info.json").read.match(%r{"id":"(.*?)"})[1]
+                             end
+
+    if item_id == item_id_from_info_json
+      qiita_side_content = File.open("#{item_dir}/README.md").read
+    end
+  end
+
+  if github_side_content.empty? && qiita_side_content.empty?
+    CE.once.ch :yellow
+    puts 'Both GitHub side content and Qiita side content are empty. It is probably a bug. Skip.'
+    puts "\n\n"
+    return
+  elsif github_side_content.empty?
+    CE.once.ch :yellow
+    puts 'GitHub side content is empty. This content is probably private content on Qiita. Skip.'
+    puts "Qiita item id: #{item_id}, Qiita URL: #{qiita_private_item_url(item_id)}\n\n"
+    return
+  elsif qiita_side_content.empty?
+    CE.once.ch :yellow
+    puts 'Qiita side content is empty. Maybe something went wrong. Skip.'
+    puts "GitHub article path: #{article_path}\n\n"
+    return
+  end
+
+  CE.once.ch :magenta
+  puts article_path
+  Diffy::Diff.default_format = :color
+  puts Diffy::Diff.new(qiita_side_content, github_side_content, context: 3)
+  puts "===============================================================================\n\n\n"
+end
+
+def qiita_private_item_url(item_id)
+  "https://qiita.com/#{ENV['QIITA_USERNAME']}/private/#{item_id}"
+end
+
+def main
+  unless Dir.exists?('items')
+    raise "\"items\" directory not found\nExecute \`export QIITA_ACCESS_TOKEN=<YOUR_TOKEN> && npx qiita_export_all\`"
+  end
+
+  if ARGV.empty?
+    Dir.glob('items/**').each do |item_dir|
+      diff_by_item_dir(item_dir)
+    end
+  else
+    ARGV.each do |article_path|
+      diff_by_article_path(article_path)
+    end
+  end
+end
+
+main
