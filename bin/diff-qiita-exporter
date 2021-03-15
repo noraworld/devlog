@@ -6,6 +6,7 @@ require 'diffy'
 require 'diff-lcs'
 require 'dotenv'
 require 'json'
+require 'optparse'
 require 'pry'
 
 Dotenv.load
@@ -98,8 +99,14 @@ def qiita_private_item_url(item_id)
 end
 
 def main
-  unless Dir.exists?('items')
-    puts "INFO: \"items\" directory not found. Execute `npx qiita_export_all`.\n\n"
+  options, arguments = parse_options
+
+  if !Dir.exists?('items') || options[:renew]
+    if !Dir.exists?('items')
+      puts "INFO: \"items\" directory not found. Execute `npx qiita_export_all`.\n\n"
+    elsif options[:renew]
+      puts "INFO: Execute `npx qiita_export_all`.\n\n"
+    end
 
     # exportation of QIITA_ACCESS_TOKEN is not necessary because load from .env automatically
     `npx qiita_export_all`
@@ -107,21 +114,37 @@ def main
     raise '"items" directory not found' unless Dir.exists?('items')
   end
 
-  if ARGV.empty?
+  if arguments.empty?
     Dir.glob('items/**').each do |item_dir|
       diff_by_item_dir(item_dir)
     end
-  elsif ARGV.all? { |arg| arg.include?(ENV['INCLUDED_DIR']) && arg.include?('.md') }
-    ARGV.each do |article_path|
+  elsif arguments.all? { |arg| arg.include?(ENV['INCLUDED_DIR']) && arg.include?('.md') }
+    arguments.each do |article_path|
       diff_by_article_path(article_path)
     end
-  elsif ARGV.all? { |arg| arg.include?('items/') }
-    ARGV.each do |item_dir|
+  elsif arguments.all? { |arg| arg.include?('items/') }
+    arguments.each do |item_dir|
       diff_by_item_dir(item_dir)
     end
   else
     raise 'Arguments invalid'
   end
+end
+
+def parse_options
+  parser = OptionParser.new
+
+  options = {
+    renew: false
+  }
+
+  parser.on('-r', '--renew') do |option|
+    options[:renew] = true
+  end
+
+  arguments = parser.parse(ARGV)
+
+  [options, arguments]
 end
 
 main
