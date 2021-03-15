@@ -99,7 +99,12 @@ end
 
 def main
   unless Dir.exists?('items')
-    raise "\"items\" directory not found\nExecute \`export QIITA_ACCESS_TOKEN=<YOUR_TOKEN> && npx qiita_export_all\`"
+    puts "INFO: \"items\" directory not found. Execute `npx qiita_export_all`.\n\n"
+
+    # exportation of QIITA_ACCESS_TOKEN is not necessary because load from .env automatically
+    `npx qiita_export_all`
+
+    raise '"items" directory not found' unless Dir.exists?('items')
   end
 
   if ARGV.empty?
