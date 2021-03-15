@@ -140,11 +140,11 @@ def parse_options
     context: 3
   }
 
-  parser.on('-r', '--renew') do |option|
+  parser.on('-r', '--renew', 'Renew Qiita contents by qiita_export_all') do |option|
     options[:renew] = true
   end
 
-  parser.on('-c', '--context VALUE', Integer) do |option|
+  parser.on('-c', '--context VALUE', Integer, 'Specify the number of lines of context around changes', 'Default is 3') do |option|
     options[:context] = option
   end
 
