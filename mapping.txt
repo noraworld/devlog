@@ -1,3 +1,4 @@
+articles/docker-stdin-easily.md, 
 articles/github-to-qiita.md, 79100783ba95d8c48924
 articles/turn-off-iterm2-dialog.md, b4c2804cbadb047087fd
 articles/secure-compare-confidential-info.md, 5820115cecf7998075a0
