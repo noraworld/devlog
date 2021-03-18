@@ -2,7 +2,7 @@
 title: "Docker で binding.pry などの標準入力を \"簡単に\" 行う方法"
 emoji: "🐳"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["Docker", "Shell Script"]
+topics: ["Docker", "ShellScript"]
 published: true
 ---
 
