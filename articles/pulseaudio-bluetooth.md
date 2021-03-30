@@ -45,7 +45,27 @@ $ sudo apt -y install pulseaudio pulseaudio-utils alsa-base alsa-utils bluetooth
 + default-fragment-size-msec = 125
 ```
 
+## 音声の出力先の設定
 Raspberry Pi でループバック & ミキシングした音声の出力先を設定する。
+
+```shell:Shell
+pactl list sinks short | awk '{ print $2 }'
+```
+
+上記コマンドを実行すると、以下のように音声の出力先一覧が表示される。
+
+```
+alsa_output.usb-ZOOM_Corporation_U-44-00.analog-surround-40
+alsa_output.platform-bcm2835_audio.stereo-fallback
+```
+
+ぼくの環境だと、Raspberry Pi に Zoom U-44 というオーディオインターフェース[^1]を接続しているので、Zoom U-44 とイヤフォンジャック (3.5mm ステレオミニプラグを挿すところ) の 2 種類が表示される。
+
+https://amzn.to/3u8rXs0
+
+[^1]: このオーディオインターフェースは USB-DAC としても機能し、Raspberry Pi ではこの用途で使用している。
+
+今回は、オーディオインターフェースに音を流したいので、`alsa_output.usb-ZOOM_Corporation_U-44-00.analog-surround-40` を選択する。
 
 ```diff:/etc/pulse/default.pa
 - #set-default-sink output
@@ -53,6 +73,13 @@ Raspberry Pi でループバック & ミキシングした音声の出力先を�
 ```
 
 ⚠️ `alsa_output.usb-ZOOM_Corporation_U-44-00.analog-surround-40` の部分は各々の環境に合わせて変更すること。
+
+### 余談
+Raspberry Pi はノイズの影響を受けやすく、Bluetooth 経由で送られてきた音声にノイズが混じりやすい。
+
+快適に音楽を楽しみたいなら Raspberry Pi をオーディオインターフェースに接続してそちら側に音声を流したほうが良い。
+
+ただし、Raspberry Pi (というか Ubuntu、というか Linux) に対応したオーディオインターフェースじゃないとダメなので注意。Windows のみ対応の製品によくある、ドライバをインストールしないと使えない系のものはおそらく使えない。
 
 ## グループ追加
 `pactl` コマンドを `ubuntu` ユーザでも使えるようにする。
@@ -62,9 +89,19 @@ sudo gpasswd -a ubuntu pulse-access
 ```
 
 ## システムワイド
+ネットの記事を見ていると、PulseAudio をシステムワイドで起動する方法 (`/etc/systemd/system/pulseaudio.service` と `/etc/dbus-1/system.d/pulseaudio-bluetooth.conf` を作る方法) が散見されるが、これはおすすめしない。これを設定すると、音が出なくなったり、音が飛び飛びになったり、ノイズだらけになったりする。
+
 https://qiita.com/nattof/items/3db73a95e63100d7580a
 
+しかも、一度システムワイドで PulseAudio を起動してしまうと、そのあとはシステムワイドで起動する用のユニットファイルをロードしないようにしても、削除しても、もとに戻らなくなってしまう。設定を全く同じ状態に戻して、再起動して、Bluetooth のペアリングをし直しても直らなかった。PulseAudio のキャッシュを消したりもしたがダメだった。結局 OS をクリーンインストールしたら直った。
+
+とにかく PulseAudio をシステムワイドで起動するのは本当におすすめしない。
+
+ちなみに、上記のサイトでは `/etc/pulse/system.pa` に追記しているが、追記している内容はすでに `/etc/pulse/default.pa` に最初から記載されているはずなので不要。
+
 ## asoundrc
+これは設定しなくても良いかも。
+
 ```shell:~/.asoundrc
 pcm.!default {
   type plug
@@ -80,15 +117,17 @@ ctl.!default {
 ```
 
 ```shell
-$ sudo /etc/init.d/alsa-utils restart
+sudo /etc/init.d/alsa-utils restart
 ```
 
 # 設定変更後の再起動
 ```shell
-$ sudo systemctl daemon-reload
-$ sudo systemctl restart bluetooth
-$ systemctl --user restart pulseaudio
+sudo systemctl daemon-reload
+sudo systemctl restart bluetooth
+systemctl --user restart pulseaudio
 ```
+
+`pulseaudio` はシステムワイドではなくユーザレベルでの起動であることに注意。
 
 # 各デバイスとの Bluetooth ペアリング登録 & 接続
 ふつうに `bluetoothctl` コマンドを使えば良いのだが、めんどくさいのでもっと簡単にペアリング登録ができるツールを紹介する。
