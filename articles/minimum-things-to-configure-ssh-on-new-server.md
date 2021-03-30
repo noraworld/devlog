@@ -68,8 +68,6 @@ UsePrivilegeSeparation yes
 
 # Lifetime and size of ephemeral version 1 server key
 KeyRegenerationInterval 3600
-- ServerKeyBits 1024
-+ ServerKeyBits 4096
 
 # Logging
 SyslogFacility AUTH
@@ -142,15 +140,11 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 UsePAM yes
 ```
 
-変更点は 4 つです。
+変更点は 3 つです。
 
-`Port` をデフォルトの 22 番から別の番号に変更します。番号は 1024 〜 65535 までの任意の数値を指定します。
-
-`ServerKeyBits` を 1024 から 4096 に変更します。
-
-`PermitRootLogin` を `prohibit-password` から `no` に変更します。
-
-`PasswordAuthentication` が `yes` になっている場合は `no` に変更します。
+* `Port` をデフォルトの 22 番から別の番号に変更します。番号は 1024 〜 65535 までの任意の数値を指定します。
+* `PermitRootLogin` を `prohibit-password` から `no` に変更します。
+* `PasswordAuthentication` が `yes` になっている場合は `no` に変更します。
 
 # ファイアウォールの設定の変更
 SSH のポート番号を変更したので、ファイアウォールの設定を変更する必要があります。デフォルトの 22 番を遮断して、設定した番号（本記事では 2222 番）を通過させます。
