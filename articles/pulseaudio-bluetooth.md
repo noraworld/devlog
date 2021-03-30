@@ -98,6 +98,7 @@ Ubuntu 20.10 でも動いていた。そのあといろいろいじっていた�
 
 # Ubuntu のインストール
 下記の記事を参考に、Raspberry Pi に Ubuntu をインストールする。
+
 https://zenn.dev/noraworld/articles/setup-ubuntu-on-raspberry-pi-without-keyboard
 
 
@@ -370,6 +371,7 @@ iPhone や iPad など、iOS デバイスではなぜか音楽が再生されな
 iPhone は通話ができるので、A2DP だけではなく HFP も有効にしないといけないのかなと思い、oFono (HFP を使えるようにするライブラリ) を試したりもしたのだが、改善せず。
 
 原因がわかったらその設定方法についても追記する。
+
 
 # 参考サイト
 * [Raspberry Piを使って無線ヘッドホンを複数入力から同時に出力出来るようにする](https://dev.classmethod.jp/articles/linux_as_bluetooth_a2dp_mixer/)
