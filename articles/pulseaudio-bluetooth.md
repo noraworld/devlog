@@ -102,8 +102,8 @@ https://zenn.dev/noraworld/articles/setup-ubuntu-on-raspberry-pi-without-keyboar
 
 
 # 必要なパッケージのインストール
-```shell
-$ sudo apt -y install pulseaudio pulseaudio-utils alsa-base alsa-utils bluetooth bluez pulseaudio-module-bluetooth
+```shell:Shell
+sudo apt -y install pulseaudio pulseaudio-utils alsa-base alsa-utils bluetooth bluez pulseaudio-module-bluetooth
 ```
 
 
@@ -164,6 +164,14 @@ PulseAudio の設定を行う。ちなみに PulseAudio とは音声を流すた
 + default-fragment-size-msec = 125
 ```
 
+### グループ追加
+`pactl` コマンドをログインユーザでも使えるようにする。
+
+```shell:Shell
+sudo gpasswd -a $(whoami) pulse
+sudo gpasswd -a $(whoami) pulse-access
+```
+
 ### 音声の出力先の設定
 Raspberry Pi でループバック & ミキシングした音声の出力先を設定する。
 
@@ -189,15 +197,7 @@ alsa_output.platform-bcm2835_audio.stereo-fallback
 
 ⚠️ `alsa_output.usb-ZOOM_Corporation_U-44-00.analog-surround-40` の部分は各々の環境に合わせて変更すること。
 
-## グループ追加
-`pactl` コマンドを `ubuntu` ユーザでも使えるようにする。
-```shell:Shell
-sudo gpasswd -a ubuntu pulse
-sudo gpasswd -a ubuntu pulse-access
-```
-
-
-## PulseAudio をシステムワイドで起動する件について
+### 余談: PulseAudio をシステムワイドで起動する件について
 興味なければ読み飛ばしても問題ない。
 
 ネットの記事を見ていると、PulseAudio をシステムワイドで起動する方法 (`/etc/systemd/system/pulseaudio.service` と `/etc/dbus-1/system.d/pulseaudio-bluetooth.conf` を作る方法) が散見されるが、これはおすすめしない。これを設定すると、音が出なくなったり、音が飛び飛びになったり、ノイズだらけになったりする。
@@ -227,7 +227,7 @@ ctl.!default {
 }
 ```
 
-```shell
+```shell:Shell
 sudo /etc/init.d/alsa-utils restart
 ```
 
@@ -240,7 +240,7 @@ systemctl --user restart pulseaudio
 
 `pulseaudio` はシステムワイドではなくユーザレベルでの起動であることに注意。
 
-うまくいかない場合はシステムの再起動も試してみる。
+うまくいかない場合は下記コマンドでシステムの再起動も試してみる。
 
 ```shell:Shell
 sudo reboot
@@ -251,8 +251,8 @@ sudo reboot
 ふつうに `bluetoothctl` コマンドを使えば良いのだが、めんどくさいのでもっと簡単にペアリング登録ができるツールを紹介する。
 
 ## セットアップ
-```shell
-$ git clone https://github.com/noraworld/bluetoothctl-autoconnector.git
+```shell:Shell
+git clone https://github.com/noraworld/bluetoothctl-autoconnector.git
 ```
 
 このリポジトリ内に `bin/marlin` というスクリプトがあるので、これを使う。
@@ -277,8 +277,8 @@ XX:XX:XX:XX:XX:XX KJ-43X8500F
 これで、たとえば `MacBook Pro 15` をペアリング登録したりしたい場合は、BD アドレス (`XX:XX:XX:XX:XX:XX`) を指定する代わりに `MacBook Pro 15` を使うことができる。
 
 ## Bluetooth ペアリング登録 & 接続
-```shell
-$ marlin macbook register
+```shell:Shell
+marlin macbook register
 ```
 
 エイリアスは正確に入力する必要はない。`MacBook Pro 15` を指定したかったら `macbook` でも良い。大文字小文字は無視される。前方一致で一意に定まれば問題ない。
@@ -286,8 +286,8 @@ $ marlin macbook register
 コマンド実行中に、接続しようとしているデバイスで Raspberry Pi と Bluetooth 接続するかどうかの確認ダイアログが出てくるので、ダイアログを確認して接続する。
 
 ## デバイスの接続状況確認
-```shell
-$ marlin macbook info
+```shell:Shell
+marlin macbook info
 ```
 ```
 Name: MacBook Pro 15
@@ -300,8 +300,8 @@ Connected: yes
 ペアリングされているかどうか、接続されているかどうかなどがわかる。ペアリングされていない場合はそもそも `No such device` となってしまうのだが。
 
 ## Bluetooth ペアリング削除
-```shell
-$ marlin macbook remove
+```shell:Shell
+marlin macbook remove
 ```
 
 これで Raspberry Pi 側からは該当デバイスの Bluetooth ペアリング情報が削除され、接続されなくなる。ただし、クライアント側 (デバイス側) はペアリング情報が削除されるわけではないので、そちらは手動で削除する。
@@ -312,8 +312,8 @@ Bluetooth や PulseAudio の設定を一部し忘れていたり間違えてい�
 ## 他の機能
 以下のコマンドでこのツールの他の機能を確認できる。
 
-```shell
-$ marlin --help
+```shell:Shell
+marlin --help
 ```
 
 
