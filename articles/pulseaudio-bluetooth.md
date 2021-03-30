@@ -1,9 +1,9 @@
 ---
-title: "Raspberry Pi に複数の Bluetooth デバイスをペアリングしてオーディオミキサーを作る"
-emoji: "💬"
+title: "Raspberry Pi に複数の Bluetooth デバイスを接続して同時に音を流す"
+emoji: "🎶"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["PulseAudio", "Bluetooth", "RaspberryPi"]
-published: false
+published: true
 ---
 
 # はじめに
