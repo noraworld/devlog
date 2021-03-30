@@ -193,13 +193,21 @@ alsa_output.platform-bcm2835_audio.stereo-fallback
 ### 余談: PulseAudio をシステムワイドで起動する件について
 興味なければ読み飛ばしても問題ない。
 
-ネットの記事を見ていると、PulseAudio をシステムワイドで起動する方法 (`/etc/systemd/system/pulseaudio.service` と `/etc/dbus-1/system.d/pulseaudio-bluetooth.conf` を作る方法) が散見されるが、これはおすすめしない。これを設定すると、音が出なくなったり、音が飛び飛びになったり、ノイズだらけになったりする。
+ネットの記事を見ていると、PulseAudio をシステムワイドで起動する方法 (`/etc/systemd/system/pulseaudio.service` と `/etc/dbus-1/system.d/pulseaudio-bluetooth.conf` を作る方法) が散見されるが、これはおすすめしない。
+
+これを設定すると、音が出なくなったり、音が飛び飛びになったり、ノイズだらけになったりする。
 
 https://qiita.com/nattof/items/3db73a95e63100d7580a
 
-しかも、一度システムワイドで PulseAudio を起動してしまうと、そのあとはシステムワイドで起動する用のユニットファイルをロードしないようにしても、削除しても、もとに戻らなくなってしまう。設定を全く同じ状態に戻して、再起動して、Bluetooth のペアリングをし直しても直らなかった。PulseAudio のキャッシュを消したりもしたがダメだった。結局 OS をクリーンインストールしたら直った。
+しかも、一度システムワイドで PulseAudio を起動してしまうと、そのあとはシステムワイドで起動する用のユニットファイルをロードしないようにしても、削除しても、もとに戻らなくなってしまう。
+
+設定を全く同じ状態に戻して、再起動して、Bluetooth のペアリングをし直しても直らなかった。PulseAudio のキャッシュを消したりもしたがダメだった。
+
+結局 OS をクリーンインストールしたら直った。
 
 とにかく PulseAudio をシステムワイドで起動するのは本当におすすめしない。
+
+そもそも PulseAudio はユーザレベルで動作させることを前提にしているため、システムワイドで動作させようとするとおかしくなる。
 
 ちなみに、上記のサイトでは `/etc/pulse/system.pa` に追記しているが、追記している内容はすでに `/etc/pulse/default.pa` に最初から記載されているはずなので不要。
 
@@ -353,6 +361,15 @@ PulseAudio のデーモンは、システム起動後に初回ログインした
 
 https://zenn.dev/noraworld/articles/ubuntu-reboot-auto-login
 
+
+# 問題点
+iPhone や iPad など、iOS デバイスではなぜか音楽が再生されない。正確には、再生されているのだが、音が聞こえない。
+
+これの原因は調査中なのだが、いろいろ調べても原因がよくわからなかった。
+
+iPhone は通話ができるので、A2DP だけではなく HFP も有効にしないといけないのかなと思い、oFono (HFP を使えるようにするライブラリ) を試したりもしたのだが、改善せず。
+
+原因がわかったらその設定方法についても追記する。
 
 # 参考サイト
 * [Raspberry Piを使って無線ヘッドホンを複数入力から同時に出力出来るようにする](https://dev.classmethod.jp/articles/linux_as_bluetooth_a2dp_mixer/)
