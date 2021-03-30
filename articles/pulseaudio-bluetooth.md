@@ -138,13 +138,6 @@ https://dev.classmethod.jp/articles/linux_as_bluetooth_a2dp_mixer/
 + Class 0x20041c
 ```
 
-これはたぶん要らない。
-
-```diff:/etc/bluetooth/audio.conf
-+ [General]
-+ Enable=Source,Sink,Headset,Gateway,Control,Socket,Media
-```
-
 ## PulseAudio の設定
 PulseAudio の設定を行う。ちなみに PulseAudio とは音声を流すための Linux のライブラリである。
 
