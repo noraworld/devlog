@@ -55,12 +55,11 @@ Raspberry Pi でループバック & ミキシングした音声の出力先を�
 ⚠️ `alsa_output.usb-ZOOM_Corporation_U-44-00.analog-surround-40` の部分は各々の環境に合わせて変更すること。
 
 ## グループ追加
-```shell
-$ sudo gpasswd -a ubuntu pulse
-$ sudo gpasswd -a ubuntu pulse-access
+`pactl` コマンドを `ubuntu` ユーザでも使えるようにする。
+```shell:Shell
+sudo gpasswd -a ubuntu pulse
+sudo gpasswd -a ubuntu pulse-access
 ```
-
-これで `pactl` がユーザ `ubuntu` でも使えるようになる。
 
 ## システムワイド
 https://qiita.com/nattof/items/3db73a95e63100d7580a
