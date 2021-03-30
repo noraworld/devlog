@@ -55,37 +55,6 @@ Raspberry Pi でループバック & ミキシングした音声の出力先を�
 ⚠️ `alsa_output.usb-ZOOM_Corporation_U-44-00.analog-surround-40` の部分は各々の環境に合わせて変更すること。
 
 ## グループ追加
-### サイトで見たほう
-PulseAudio を実行するユーザ `pulse` をグループ `lp` に追加する
-
-```shell
-$ cat /etc/group | grep pulse
-audio:x:29:ubuntu,pulse
-pulse:x:120:ubuntu
-pulse-access:x:121:
-
-$ cat /etc/group | grep lp
-lp:x:7:
-```
-
-```
-$ sudo usermod -a -G lp pulse
-```
-
-```shell
-$ cat /etc/group | grep pulse
-lp:x:7:pulse
-audio:x:29:ubuntu,pulse
-pulse:x:120:ubuntu
-pulse-access:x:121:
-
-$ cat /etc/group | grep lp
-lp:x:7:pulse
-```
-
-https://penkoba.hatenadiary.org/entry/20130909/1378744109
-
-### YouTube のほう
 ```shell
 $ sudo gpasswd -a ubuntu pulse
 $ sudo gpasswd -a ubuntu pulse-access
