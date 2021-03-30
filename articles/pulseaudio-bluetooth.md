@@ -11,10 +11,8 @@ https://zenn.dev/noraworld/articles/setup-ubuntu-on-raspberry-pi-without-keyboar
 
 # 必要なパッケージのインストール
 ```shell
-$ sudo apt -y install pulseaudio pulseaudio-utils alsa-base alsa-utils bluetooth bluez pulseaudio-module-bluetooth blueman
+$ sudo apt -y install pulseaudio pulseaudio-utils alsa-base alsa-utils bluetooth bluez pulseaudio-module-bluetooth
 ```
-
-`blueman` は要らないかも？
 
 # 設定の変更
 クライアント側 (各デバイス側) で音量調整ができるように設定を変更する。
