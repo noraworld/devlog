@@ -1,11 +1,47 @@
 ---
-title: "モニターやキーボードを接続せずに最初から SSH できるようにセットアップする方法 [Raspberry Pi, Ubuntu]"
+title: "モニター・キーボード不要！ Raspberry Pi に Ubuntu を超簡単にインストールして SSH する方法"
 emoji: "⌨️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ubuntu", "RaspberryPi", "SSH"]
 published: true
 order: 74
 ---
+
+# クイックセットアップガイド
+1. [Ubuntu の公式ページ](https://ubuntu.com/download/raspberry-pi) から Ubuntu Server のイメージファイルをダウンロードする
+2. SD カードにイメージを焼く
+3. (optional) Wi-Fi を設定する
+4. Raspberry Pi の電源を入れる
+5. Raspberry Pi の IP アドレスを調べる
+6. SSH してみる
+7. (optional) Ubuntu Desktop をインストールする
+
+## 3. (optional) Wi-Fi を設定する
+```yaml:/Volumes/system-boot/network-config
+wifis:
+  wlan0:
+  dhcp4: true
+  optional: true
+  access-points:
+    <wifi network name>:
+      password: "<wifi password>"
+```
+
+## 5. Raspberry Pi の IP アドレスを調べる
+```shell:Shell
+ifconfig | grep <IP_ADDR> -B 10
+sudo arp-scan -l --interface <NETWORK_INTERFACE_NAME> | grep -i "Raspberry Pi"
+```
+
+## 6. SSH してみる
+```shell:Shell
+ssh ubuntu@<IP_ADDR>
+```
+
+## 7. (optional) Ubuntu Desktop をインストールする
+```shell:Shell
+sudo apt -y install ubuntu-desktop
+```
 
 # はじめに
 Raspberry Pi で遊んだり、何かの作業のサンドボックスとして使用したりするとき、しょっちゅう OS を再インストールすることがあります。
@@ -43,7 +79,7 @@ OS を焼いたあとは SD カードのディスクがアンマウントされ�
 
 ファイル内にコメントアウトされた以下のような記述がどこかにあると思いますのでアンコメントして有効化します。
 
-```:/Volumes/system-boot/network-config
+```yaml:/Volumes/system-boot/network-config
 wifis:
   wlan0:
   dhcp4: true
