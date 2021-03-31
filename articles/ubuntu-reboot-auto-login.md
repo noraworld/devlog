@@ -1,11 +1,23 @@
 ---
-title: "Ubuntu 再起動時に自動でログインする方法"
+title: "Ubuntu 再起動時に自動ログインする方法"
 emoji: "🌊"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["Ubuntu", "ubuntu20.04", "pulseaudio"]
+topics: ["Ubuntu", "PulseAudio"]
 published: true
 order: 75
 ---
+
+# クイックセットアップガイド (CUI)
+```shell:Shell
+sudo systemctl edit getty@tty1.service
+```
+```
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --noissue --autologin <USERNAME> %I $TERM
+Type=idle
+```
+入力し終えたら、`Ctrl + X` → `y` → `[ENTER]` の順に押す。
 
 # はじめに
 Ubuntu を起動・再起動する際、通常はログインユーザ名とパスワードを入力する必要がありますが、ユーザ名とパスワードを入力せずに自動でログインされた状態にする方法を紹介します。
