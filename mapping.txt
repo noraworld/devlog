@@ -1,3 +1,4 @@
+articles/sudo-path-env.md, 88f56975cdfc69bbf30b
 articles/pulseaudio-bluetooth.md, d078a4967dd775d8e5b3
 articles/docker-stdin-easily.md, f1962bb87875d29a1250
 articles/github-to-qiita.md, 79100783ba95d8c48924
