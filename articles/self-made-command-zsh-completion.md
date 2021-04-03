@@ -63,20 +63,20 @@ exec -l $SHELL
 #compdef foo
 
 _foo() {
-  local -a devices
-  devices=( ${(uf)"$(cat ~/.marlin_aliases | sed -r "s/([0-9A-F]{2}:){5}[0-9A-F]{2} //g" | sed -r "s/ /\\\ /g")"} )
+  local -a val
+  val=(foo bar baz)
 
-  local -a operations
-  operations=(connect disconnect info register remove)
+  local -a fruits
+  fruits=(apple banana orange)
 
-  _arguments '1: :->device' '2: :->operation'
+  _arguments '1: :->arg1' '2: :->arg2'
 
   case "$state" in
-    device)
-      _values $state $devices
+    arg1)
+      _values $state $val
       ;;
-    operation)
-      _values $state $operations
+    arg2)
+      _values $state $fruits
       ;;
   esac
 }
