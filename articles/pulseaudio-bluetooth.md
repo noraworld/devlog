@@ -336,16 +336,27 @@ XX:XX:XX:XX:XX:XX KJ-43X8500F
 
 ## Bluetooth ペアリング登録 & 接続
 ```shell:Shell
-marlin macbook register
+marlin register macbook
 ```
-
-エイリアスは正確に入力する必要はない。`MacBook Pro 15` を指定したかったら `macbook` でも良い。大文字小文字は無視される。前方一致で一意に定まれば問題ない。
 
 コマンド実行中に、接続しようとしているデバイスで Raspberry Pi と Bluetooth 接続するかどうかの確認ダイアログが出てくるので、ダイアログを確認して接続する。
 
+### デバイス名の指定方法と補完について
+エイリアス (デバイス名) は正確に入力する必要はない。
+
+`MacBook Pro 15` を指定したかったら `macbook` でも良い。大文字小文字は無視される。前方一致で一意に定まれば問題ない。
+
+さらに、Zsh を使っている場合は `bin/_marlin` を読み込めば、オペレーション (第一引数) やデバイス名 (第二引数) を補完することもできる。
+
+デバイス名は、先ほど設定した `~/.marlin_aliases` に記載されたデバイス名から補完候補が表示されるようになっている。
+
+補完スクリプトの使い方については以下を参照してほしい。
+
+https://zenn.dev/noraworld/articles/self-made-command-zsh-completion#%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97
+
 ## デバイスの接続状況確認
 ```shell:Shell
-marlin macbook info
+marlin info macbook
 ```
 ```
 Name: MacBook Pro 15
@@ -361,12 +372,12 @@ Connected: yes
 `register` を実行した際に自動的に接続まで行ってくれるが、もし接続されなかった場合は、接続のみを行うことももちろんできる。
 
 ```shell:Shell
-marlin macbook connect
+marlin connect macbook
 ```
 
 ## Bluetooth ペアリング削除
 ```shell:Shell
-marlin macbook remove
+marlin remove macbook
 ```
 
 これで Raspberry Pi 側からは該当デバイスの Bluetooth ペアリング情報が削除され、接続されなくなる。
@@ -386,7 +397,7 @@ marlin --help
 ```
 
 # 自動接続
-さらに、一度ペアリングしたデバイスとは、再接続したい。
+さらに、一度ペアリングしたデバイスとは、自動的に再接続したい。
 
 たとえば PC をスリープしたりシャットダウンしたりすると当然 Bluetooth 接続は切れるが、PC 起動後、自動的に Raspberry Pi と再接続してほしい。
 
