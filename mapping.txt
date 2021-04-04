@@ -1,3 +1,4 @@
+articles/sudo-completion-zsh.md, 4618b73e8a480e63aa60
 articles/no-sudo-chsh.md, c3d89cdee204bea21bb8
 articles/self-made-command-zsh-completion.md, 563633bdcf08df75d502
 articles/sudo-path-env.md, 88f56975cdfc69bbf30b
