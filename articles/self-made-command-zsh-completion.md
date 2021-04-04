@@ -2,7 +2,7 @@
 title: "Zsh: 自作コマンドで補完できるようにする"
 emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["Zsh"]
+topics: ["ShellScript", "Zsh"]
 published: true
 ---
 
