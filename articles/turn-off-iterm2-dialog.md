@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["iTerm2"]
 published: true
 order: 85
+layout: article
 ---
 
 ![スクリーンショット 2021-02-28 12.43.29.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/113895/4f7fb45a-3f6f-d9af-ccbc-364bb4d1053c.png)

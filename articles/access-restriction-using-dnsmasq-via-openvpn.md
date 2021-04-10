@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["dnsmasq", "OpenVPN", "dns", "VPN"]
 published: true
 order: 62
+layout: article
 ---
 
 # はじめに

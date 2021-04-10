@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["CSS", "CSS3"]
 published: true
 order: 11
+layout: article
 ---
 
 # Media Queries とは

@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Charles", "Vagrant", "ローカル開発環境", "スマホ", "ネットワーク"]
 published: true
 order: 7
+layout: article
 ---
 
 【環境】

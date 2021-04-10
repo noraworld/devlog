@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["bluetooth", "bluetoothctl", "cron", "crontab", "pulseaudio"]
 published: true
 order: 79
+layout: article
 ---
 
 # はじめに

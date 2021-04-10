@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ubuntu", "PulseAudio"]
 published: true
 order: 75
+layout: article
 ---
 
 # クイックセットアップガイド (CUI)

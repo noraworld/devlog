@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Vagrant", "VagrantBox"]
 published: true
 order: 19
+layout: article
 ---
 
 # はじめに

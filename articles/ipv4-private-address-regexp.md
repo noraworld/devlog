@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["regexp", "regex", "grep", "正規表現"]
 published: true
 order: 77
+layout: article
 ---
 
 # 解説不要な方向け

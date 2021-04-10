@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Hugo"]
 published: true
 order: 18
+layout: article
 ---
 
 # はじめに

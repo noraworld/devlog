@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Node.js", "ndenv", "npm"]
 published: true
 order: 39
+layout: article
 ---
 
 # はじめに

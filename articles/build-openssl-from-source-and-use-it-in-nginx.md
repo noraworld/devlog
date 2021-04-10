@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["openssl", "nginx", "CentOS", "centos7"]
 published: true
 order: 27
+layout: article
 ---
 
 # はじめに

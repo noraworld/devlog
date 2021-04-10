@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["idn", "idn-ruby", "Gem", "rubygems", "Mac"]
 published: true
 order: 40
+layout: article
 ---
 
 # TL;DR

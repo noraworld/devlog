@@ -4,6 +4,8 @@ emoji: "🎶"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["PulseAudio", "Bluetooth", "RaspberryPi"]
 published: true
+order: 88
+layout: article
 ---
 
 # はじめに

@@ -4,6 +4,8 @@ emoji: "🐚"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Shell", "Zsh"]
 published: true
+order: 92
+layout: article
 ---
 
 自作コマンドを `sudo` をつけて実行しようとしたときに補完できない場合は、以下を `~/.zshrc` に追加する。

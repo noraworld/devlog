@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Vagrant", "Cyberduck", "SSH", "ssh公開鍵認証"]
 published: true
 order: 20
+layout: article
 ---
 
 # はじめに

@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Bash", "ターミナル", "コンソール", "コマンドプロンプト", "コマンド"]
 published: true
 order: 22
+layout: article
 ---
 
 # はじめに

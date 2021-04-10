@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Bash", "Zsh", "shell", "ShellScript"]
 published: true
 order: 82
+layout: article
 ---
 
 # はじめに

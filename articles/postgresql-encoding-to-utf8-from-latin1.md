@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["PostgreSQL", "Ubuntu", "Debian"]
 published: true
 order: 43
+layout: article
 ---
 
 # はじめに

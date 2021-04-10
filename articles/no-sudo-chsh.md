@@ -4,6 +4,8 @@ emoji: "🙅‍♂️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Shell"]
 published: true
+order: 91
+layout: article
 ---
 
 厳密には、してはいけないというより、意図した挙動にならない。

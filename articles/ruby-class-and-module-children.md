@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "RuboCop"]
 published: true
 order: 58
+layout: article
 ---
 
 # はじめに

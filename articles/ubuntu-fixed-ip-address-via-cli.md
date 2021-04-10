@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ubuntu", "固定IP", "RaspberryPi", "ubuntu20.04"]
 published: true
 order: 76
+layout: article
 ---
 
 # はじめに

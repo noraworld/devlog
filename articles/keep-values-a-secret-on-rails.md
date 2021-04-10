@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Rails", "Rails4", "Ruby", "環境変数"]
 published: true
 order: 9
+layout: article
 ---
 
 GitHubで公開したくないデータ(パスワードなど)を別ファイルに書いておいて、viewやcontrollerでそのデータを使う方法を紹介します。今回は環境変数を使用してデータを参照できるようにします。

@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Git"]
 published: true
 order: 10
+layout: article
 ---
 
 # リモートのブランチを確認したい

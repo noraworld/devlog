@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Peco", "IME", "Mac", "MacOSX", "macos"]
 published: true
 order: 50
+layout: article
 ---
 
 # peco で複数選択する方法

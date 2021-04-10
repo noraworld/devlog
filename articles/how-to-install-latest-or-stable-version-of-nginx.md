@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nginx", "Yum", "CentOS", "centos7"]
 published: true
 order: 13
+layout: article
 ---
 
 # 前置き

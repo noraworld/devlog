@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["完全消去", "rm", "shred", "find", "sed"]
 published: true
 order: 70
+layout: article
 ---
 
 # ディレクトリを shred することはできない

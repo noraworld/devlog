@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AtCoder", "atcoder-tools", "AtCoderBeginnersSelection", "Python", "pip"]
 published: true
 order: 69
+layout: article
 ---
 
 # はじめに

@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Node.js", "Express", "GitHub", "Git"]
 published: true
 order: 5
+layout: article
 ---
 
 GitHub にパブリックでソースコードを公開するときに、そのソースコードに API key やパスワードなどが含まれていた場合は、その部分だけを隠す必要があります。

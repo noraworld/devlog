@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["OpenVPN", "VPN", "ネットワーク"]
 published: true
 order: 46
+layout: article
 ---
 
 # はじめに

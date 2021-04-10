@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "マストドン", "cron", "crontab"]
 published: true
 order: 35
+layout: article
 ---
 
 # はじめに

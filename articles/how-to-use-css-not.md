@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["CSS"]
 published: true
 order: 6
+layout: article
 ---
 
 CSS でスタイルを適用したいけど、ここだけは適用したくない！ っていうときがたまにあります。

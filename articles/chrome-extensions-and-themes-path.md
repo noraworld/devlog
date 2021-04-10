@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["google", "Chrome", "アプリ", "拡張機能", "テーマ"]
 published: true
 order: 1
+layout: article
 ---
 
 今回が初投稿です。よろしくお願いします。

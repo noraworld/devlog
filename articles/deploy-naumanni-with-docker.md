@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "マストドン", "naumanni", "ナウマン"]
 published: true
 order: 36
+layout: article
 ---
 
 # はじめに

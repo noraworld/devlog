@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["github-pages", "独自ドメイン", "cloudflare", "SSL", "HTTPS"]
 published: true
 order: 23
+layout: article
 ---
 
 # はじめに

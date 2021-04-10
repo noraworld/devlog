@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nginx", "Tor", "deny", "geo", "If"]
 published: true
 order: 37
+layout: article
 ---
 
 # はじめに

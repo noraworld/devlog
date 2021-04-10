@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nginx", "トレイリングスラッシュ", "拡張子"]
 published: true
 order: 30
+layout: article
 ---
 
 # はじめに

@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["rubygems", "Ruby", "Gem", "Linux"]
 published: true
 order: 4
+layout: article
 ---
 
 環境: Vagrant (CentOS 7.1)

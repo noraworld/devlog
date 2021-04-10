@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["letsencrypt", "certbot", "webroot", "nginx", "リバースプロキシ"]
 published: true
 order: 24
+layout: article
 ---
 
 # はじめに

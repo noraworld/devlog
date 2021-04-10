@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["homebrew", "Mojave", "MacOSX", "macOSMojave", "macos"]
 published: true
 order: 54
+layout: article
 ---
 
 # 症状

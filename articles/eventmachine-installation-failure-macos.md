@@ -4,6 +4,8 @@ emoji: "⚙️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["eventmachine", "Ruby", "RubyGems", "Bundler", "macOS"]
 published: true
+order: 93
+layout: article
 ---
 
 # 結果だけ知りたい

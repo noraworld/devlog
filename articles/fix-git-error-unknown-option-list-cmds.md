@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Git", "git-completion", "git-completion.bash", "git-v2.18", "list-cmds"]
 published: true
 order: 51
+layout: article
 ---
 
 # 症状

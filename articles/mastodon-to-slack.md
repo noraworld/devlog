@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "Slack"]
 published: true
 order: 56
+layout: article
 ---
 
 ![mastodon_to_slack.png](https://qiita-image-store.s3.amazonaws.com/0/113895/f5f99674-e266-0e12-2f0b-fc5a93bd6a9b.png)

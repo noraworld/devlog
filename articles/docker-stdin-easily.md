@@ -4,6 +4,8 @@ emoji: "🐳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Docker", "ShellScript"]
 published: true
+order: 87
+layout: article
 ---
 
 # はじめに

@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Rails", "Rails4", "Ruby", "Gem"]
 published: true
 order: 8
+layout: article
 ---
 
 # はじめに

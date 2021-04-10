@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["scp", "SSH", "Bash", "bashrc", "Zsh"]
 published: true
 order: 80
+layout: article
 ---
 
 # TL;DR

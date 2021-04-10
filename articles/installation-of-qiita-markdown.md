@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "Rails", "Markdown", "Qiita"]
 published: true
 order: 12
+layout: article
 ---
 
 # 環境

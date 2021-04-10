@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ubuntu", "RaspberryPi", "SSH"]
 published: true
 order: 74
+layout: article
 ---
 
 # クイックセットアップガイド

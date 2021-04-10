@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["GitHub", "Qiita", "Webhook"]
 published: true
 order: 86
+layout: article
 ---
 
 # はじめに

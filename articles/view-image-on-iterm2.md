@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["iTerm2", "ターミナル", "シェル", "シェルスクリプト"]
 published: true
 order: 15
+layout: article
 ---
 
 # 環境

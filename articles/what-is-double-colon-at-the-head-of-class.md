@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "Ruby2.5", "Ruby2.5.1"]
 published: true
 order: 52
+layout: article
 ---
 
 # TL;DR

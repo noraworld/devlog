@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["ShellScript", "shell", "Zsh", "macos", "Mac"]
 published: true
 order: 83
+layout: article
 ---
 
 :warning: この記事は macOS 専用です。

@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Git", "githooks", "pre-commit", "commit-msg", "GitHub"]
 published: true
 order: 48
+layout: article
 ---
 
 # TL;DR

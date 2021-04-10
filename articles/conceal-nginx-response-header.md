@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nginx", "nginx-build"]
 published: true
 order: 21
+layout: article
 ---
 
 # はじめに

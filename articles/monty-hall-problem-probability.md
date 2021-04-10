@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "モンティ・ホール問題", "モンティホール", "暗号論的擬似乱数"]
 published: true
 order: 78
+layout: article
 ---
 
 # モンティホール問題とは？

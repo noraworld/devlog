@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "development", "Mac", "Ruby", "Rails"]
 published: true
 order: 41
+layout: article
 ---
 
 # なぜ Vagrant を使わないのか

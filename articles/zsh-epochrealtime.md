@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Zsh", "Bash", "EPOCHREALTIME"]
 published: true
 order: 81
+layout: article
 ---
 
 # 答え

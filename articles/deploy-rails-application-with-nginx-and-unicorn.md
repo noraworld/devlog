@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["unicorn", "nginx", "Rails", "CentOS"]
 published: true
 order: 14
+layout: article
 ---
 
 # はじめに

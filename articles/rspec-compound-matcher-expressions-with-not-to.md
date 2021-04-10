@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "RSpec", "rspec3"]
 published: true
 order: 61
+layout: article
 ---
 
 # はじめに

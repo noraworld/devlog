@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Python", "Python3", "pyenv", "pip"]
 published: true
 order: 68
+layout: article
 ---
 
 # 解決法

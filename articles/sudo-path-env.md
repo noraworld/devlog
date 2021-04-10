@@ -4,6 +4,8 @@ emoji: "🌟"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["UNIX", "Ubuntu", "root", "sudo"]
 published: true
+order: 89
+layout: article
 ---
 
 # 要注意事項

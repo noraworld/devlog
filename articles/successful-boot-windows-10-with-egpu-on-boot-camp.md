@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Bootcamp", "egpu", "Windows10", "Mac", "blackmagicdesign"]
 published: true
 order: 71
+layout: article
 ---
 
 # 前回のあらすじ

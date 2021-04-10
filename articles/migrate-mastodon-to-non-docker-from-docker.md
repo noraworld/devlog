@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "マストドン", "Docker", "docker-compose", "PostgreSQL"]
 published: true
 order: 38
+layout: article
 ---
 
 # はじめに

@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["ハードディスク", "完全消去", "shred", "rm", "dd"]
 published: true
 order: 57
+layout: article
 ---
 
 # はじめに

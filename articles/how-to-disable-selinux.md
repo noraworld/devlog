@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["SELinux", "nginx", "403", "Forbidden"]
 published: true
 order: 26
+layout: article
 ---
 
 # 前置き

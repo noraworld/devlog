@@ -4,6 +4,8 @@ emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["ShellScript", "Zsh"]
 published: true
+order: 90
+layout: article
 ---
 
 # はじめに

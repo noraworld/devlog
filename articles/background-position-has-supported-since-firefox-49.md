@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["CSS", "firefox", "firefox49", "background-position-x", "background-position-y"]
 published: true
 order: 25
+layout: article
 ---
 
 # はじめに

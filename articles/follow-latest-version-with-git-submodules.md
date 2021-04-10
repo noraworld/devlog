@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Git", "submodule", "GitHub", "git-submodule"]
 published: true
 order: 49
+layout: article
 ---
 
 # サブモジュールが更新されない

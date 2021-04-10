@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["iOS", "JavaScript", "CSS", "HTML"]
 published: true
 order: 31
+layout: article
 ---
 
 # iOS 以外での実現方法

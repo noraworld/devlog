@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Mac", "egpu", "blackmagicdesign", "Bootcamp", "Windows10"]
 published: true
 order: 65
+layout: article
 ---
 
 :warning: **この記事は、もしかすると読むだけ時間の無駄になる可能性があるのでご注意ください。**

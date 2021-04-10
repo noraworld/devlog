@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mastodon", "Rails", "Ruby"]
 published: true
 order: 44
+layout: article
 ---
 
 # あいさつ

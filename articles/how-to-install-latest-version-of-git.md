@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Git", "GitHub", "CentOS", "Ubuntu"]
 published: true
 order: 42
+layout: article
 ---
 
 # TL;DR

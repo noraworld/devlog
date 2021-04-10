@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Rails", "Ruby", "Rails4", "Rails5"]
 published: true
 order: 53
+layout: article
 ---
 
 macOS で Rails アプリケーションの環境構築をするために `bundle install` をしたら、charlock_holmes のインストールでエラーが出ました。

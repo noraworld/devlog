@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["JavaScript"]
 published: true
 order: 63
+layout: article
 ---
 
 # はじめに

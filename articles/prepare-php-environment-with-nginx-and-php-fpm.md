@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["PHP", "php-fpm", "nginx", "CentOS"]
 published: true
 order: 16
+layout: article
 ---
 
 # はじめに

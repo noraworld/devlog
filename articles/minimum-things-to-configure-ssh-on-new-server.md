@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["SSH", "OpenSSH", "ufw", "ファイアウォール", "セキュリティ"]
 published: true
 order: 47
+layout: article
 ---
 
 # はじめに

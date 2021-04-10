@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["ext4", "ext4fuse", "osxfuse", "macfuse", "diskutil"]
 published: true
 order: 73
+layout: article
 ---
 
 # はじめに

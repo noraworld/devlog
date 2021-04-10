@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Twitter", "TwitterAPI", "AccountActivityApi", "Webhook", "Node.js"]
 published: true
 order: 72
+layout: article
 ---
 
 # はじめに
