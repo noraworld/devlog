@@ -1,11 +1,20 @@
+# Zenn
 node_modules
 .DS_Store
 
+# Jekyll
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+
+# developers-blog-tools
 bin
-Gemfile
-Gemfile.lock
+#Gemfile
+#Gemfile.lock
 .env
 .env.sample
-.ruby-version
+#.ruby-version
 items/
 img/
