@@ -1,3 +1,4 @@
+articles/eventmachine-installation-failure-macos.md, 834dd11a6a0f45a2d7ed
 articles/sudo-completion-zsh.md, 4618b73e8a480e63aa60
 articles/no-sudo-chsh.md, c3d89cdee204bea21bb8
 articles/self-made-command-zsh-completion.md, 563633bdcf08df75d502
