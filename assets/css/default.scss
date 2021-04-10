@@ -2,3 +2,13 @@
 ---
 
 @import "{{ site.theme }}";
+
+body {
+  max-width: 750px;
+  margin: 0 auto;
+
+  .site-title {
+    width: 100%;
+    text-align: center;
+  }
+}
