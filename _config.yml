@@ -1,22 +1,32 @@
-# 基本設定
+# General settings
 title: Noraworld Developers Blog
 description: >- # この行以降、次のプロパティが登場するまでは複数行の説明文として扱われる
   日々の開発や趣味プログラミングで得た技術的な知見を共有するブログです
 url: "https://ja.developers.noraworld.blog"
 baseurl: ""
 
-# 今のところはとりあえず使わない
-# email: me@example.com
-# twitter_username: noraworld_com
-# github_username: noraworld
 
-# サイト設定
+# Personal info
+username: noraworld
+profile: >-
+  Ruby / Rails / Shell Script / macOS / Ubuntu / Network / Security
+profile_icon: "assets/img/profile.png"
+twitter_username: noraworld_com
+github_username: noraworld
+
+## below is not used so far
+# email: me@example.com
+
+
+# Site settings
 theme: minima
 markdown: kramdown
 plugins:
   - jekyll-feed
+  - jemoji
 
-# 除外ファイルリスト
+
+# Excluded file list
 ## 上の 10 個はデフォルトで除外されるらしいが、一応、除外リストとして明記しておく
 exclude:
   - .sass-cache/
@@ -34,7 +44,8 @@ exclude:
   - README.md
   - mapping.txt
 
-# GitHub Pages で公開する記事の指定
+
+# Articles info published at GitHub Pages
 collections:
   articles:
     output: true

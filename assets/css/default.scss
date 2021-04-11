@@ -2,13 +2,153 @@
 ---
 
 @import "{{ site.theme }}";
+@import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@4/distr/fira_code.css);
+
+$article-sidebar-left-right-margin: 10px;
+$header-footer-bottom-top-margin: 65px;
+$margin-between-topics: 25px;
+$pre-color: #292b32;
 
 body {
-  max-width: 750px;
-  margin: 0 auto;
+  background-color: #e5efff;
+
+  .header {
+    margin: 30px 0 $header-footer-bottom-top-margin;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  code {
+    font-family: 'Fira Code', Menlo, monospace;
+    font-weight: 500;
+    font-variant-ligatures: none; // disable ligatures
+  }
 
   .site-title {
     width: 100%;
     text-align: center;
+    float: none;
+  }
+
+  .page-title-box {
+    text-align: center;
+    width: auto;
+    box-sizing: border-box;
+    margin: 0 $article-sidebar-left-right-margin ($article-sidebar-left-right-margin * 3);
+    background-color: rgb(255, 255, 255);
+
+    .page-title {
+      font-size: 32px;
+    }
+  }
+
+  .content {
+    overflow: visible;
+  }
+
+  .clearfix {
+    display: block;
+
+    &:after {
+      content: ".";
+      display: block;
+      clear: both;
+      height: 0;
+      visibility: hidden;
+    }
+  }
+
+  .article {
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    margin-left: $article-sidebar-left-right-margin;
+    overflow-wrap: break-word;
+    font-size: 16px;
+    line-height: 2.0;
+
+    table {
+      display: block;
+      overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
+      border: none;
+    }
+
+    pre, code, .highlight {
+      border: none;
+    }
+    pre, .highlight {
+      background-color: $pre-color;
+      border-radius: 3.5px;
+
+      code {
+        background-color: $pre-color;
+        color: rgb(230, 230, 230);
+      }
+    }
+    code {
+      border-radius: 2px;
+      background-color: #dfdfec;
+      color: rgb(25, 25, 25);
+    }
+  }
+
+  .sidebar {
+    padding: 0;
+    float: right;
+    margin-right: $article-sidebar-left-right-margin;
+    position: sticky;
+    top: $margin-between-topics;
+
+    .sidebar-content-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .profile, .topics {
+      background-color: rgb(255, 255, 255);
+      padding: 20px;
+      box-sizing: border-box;
+      border-radius: 8px;
+    }
+
+    .profile {
+      .icon {
+        width: 55px;
+        height: auto;
+        border-radius: 100%;
+      }
+
+      .username {
+        display: inline-block;
+        font-weight: bold;
+        padding-left: 6px;
+      }
+
+      .description {
+        font-size: 14px;
+        padding-top: 10px;
+      }
+    }
+
+    .topics {
+      margin-top: $margin-between-topics;
+
+      .topic {
+        display: inline-block;
+        box-sizing: border-box;
+        padding: 5px 15px;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .footer {
+    margin-top: $header-footer-bottom-top-margin;
   }
 }

@@ -1,0 +1,17 @@
+<div class="profile">
+  <div class="sidebar-content-title">Profile</div>
+  <img class="icon" src="{{ site.profile_icon | relative_url }}">
+  <div class="username">{{ site.username }}</div>
+  <div class="description">{{ site.profile }}</div>
+</div>
+
+<div class="topics siimple-grid">
+  <div class="sidebar-content-title">Topics</div>
+  <div class="siimple-grid-row">
+    {% for topic in page.topics %}
+      <div class="siimple-grid-col siimple-grid-col--6">
+        <span class="topic siimple-tag siimple-tag--primary siimple-tag--rounded">{{ topic }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>

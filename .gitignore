@@ -17,4 +17,4 @@ bin
 .env.sample
 #.ruby-version
 items/
-img/
+/img/

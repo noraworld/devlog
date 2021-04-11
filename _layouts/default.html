@@ -2,16 +2,30 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>{{ page.title }}</title>
+    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@4/distr/fira_code.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/siimple@3.3.1/dist/siimple.min.css">
     <link rel="stylesheet" type="text/css" href={{ "/assets/css/default.css" | relative_url }}>
   </head>
   <body>
+    <div class="header">
+      {% include header.html %}
+    </div>
+
     <div class="container">
-      <div class="site-title"><a href="{{ "/" | relative_url }}">{{ site.title }}</a></div>
-      <div class="page-title">{{ page.title }}</div>
-      <div class="content">
-      {{ content }}
+      {% if page.title %}
+        <div class="page-title-box siimple-box">
+          <div class="page-title siimple-box-title">{{ page.title }}</div>
+        </div>
+      {% endif %}
+
+      <div class="siimple-grid content clearfix">
+        {{ content }}
       </div>
+    </div>
+
+    <div class="footer" align="center">
+      {% include footer.html %}
     </div>
   </body>
 </html>
