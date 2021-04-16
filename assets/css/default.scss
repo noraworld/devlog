@@ -87,6 +87,7 @@ body {
       border: none;
       line-height: 1.9;
       font-size: 14.5px;
+      text-shadow: none;
     }
     pre, .highlight {
       background-color: $pre-color;
@@ -195,5 +196,9 @@ body {
 
   .footer {
     margin-top: $header-footer-bottom-top-margin;
+  }
+
+  ::selection {
+    background-color: rgba(116, 192, 255, 0.295);
   }
 }
