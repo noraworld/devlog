@@ -10,6 +10,7 @@ $margin-between-topics: 25px;
 $pre-color: #292b32;
 $code-font: 'Fira Code', Menlo, monospace;
 $code-block-border-radius: 3.5px;
+$topic-cell-padding: 7px;
 
 body {
   background-color: #e5efff;
@@ -166,11 +167,28 @@ body {
     .topics {
       margin-top: $margin-between-topics;
 
-      .topic {
-        display: inline-block;
-        box-sizing: border-box;
-        padding: 5px 15px;
-        font-size: 13px;
+      .topics-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+        .topic-cell {
+          display: flex;
+          height: 100%;
+          overflow-wrap: break-word;
+          width: calc(49.99% - 2 * #{$topic-cell-padding});
+          padding: 9px $topic-cell-padding;
+
+          .topic {
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 5px 10px;
+            font-size: 12px;
+            width: 100%;
+            text-align: center;
+          }
+        }
       }
     }
   }
