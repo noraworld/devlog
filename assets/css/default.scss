@@ -8,6 +8,7 @@ $article-sidebar-left-right-margin: 10px;
 $header-footer-bottom-top-margin: 65px;
 $margin-between-topics: 25px;
 $pre-color: #292b32;
+$code-font: 'Fira Code', Menlo, monospace;
 
 body {
   background-color: #e5efff;
@@ -22,9 +23,11 @@ body {
   }
 
   code {
-    font-family: 'Fira Code', Menlo, monospace;
     font-weight: 500;
     font-variant-ligatures: none; // disable ligatures
+  }
+  code, code[class*="language-"], pre[class*="language-"] {
+    font-family: $code-font;
   }
 
   .site-title {
@@ -94,6 +97,25 @@ body {
       border-radius: 2px;
       background-color: #dfdfec;
       color: rgb(25, 25, 25);
+    }
+    // https://hachy.github.io/2018/11/14/add-file-name-to-code-block-in-jekyll-on-github-pages.html
+    pre.code-block-header {
+      position: relative;
+      padding-top: 32px;
+
+      &::before {
+        content: attr(data-lang);
+        background: darken(#f6f8fa, 8%);
+        color: darken(#f6f8fa, 50%);
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 1px 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+      }
     }
   }
 
