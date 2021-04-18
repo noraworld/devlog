@@ -222,7 +222,7 @@ sudo gpasswd -a $(whoami) pulse
 sudo gpasswd -a $(whoami) pulse-access
 ```
 
-### 音声の出力先の設定
+### 音声出力先の設定
 Raspberry Pi でループバック & ミキシングした音声の出力先を設定する。
 
 ```shell:Shell
@@ -246,6 +246,23 @@ alsa_output.platform-bcm2835_audio.stereo-fallback
 ```
 
 ⚠️ `alsa_output.usb-ZOOM_Corporation_U-44-00.analog-surround-40` の部分は各々の環境に合わせて変更すること。
+
+### 音声出力先の固定
+稼働して最初のうちはこの設定がなくてもうまく機能していたのだが、しばらく経つと、前項で設定した音声出力先が変わってしまっていることに気づいた。
+
+最初は設定が反映されていないのかと思ったが、どうやら途中で別の出力先に勝手に切り替わってしまっているようだ。
+
+これを防ぐために、`module-switch-on-port-available` と `module-switch-on-connect` を読み込まないようにして音声出力先を固定する。
+
+```diff:/etc/pulse/default.pa
+- load-module module-switch-on-port-available
+
+- .ifexists module-switch-on-connect.so
+- load-module module-switch-on-connect
+- .endif
+```
+
+https://rohhie.net/ubuntu20-04-fix-the-audio-output-destination/
 
 ### 余談: PulseAudio をシステムワイドで起動する件について
 興味なければ読み飛ばしても問題ない。
