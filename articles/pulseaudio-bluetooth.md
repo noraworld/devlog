@@ -247,6 +247,14 @@ alsa_output.platform-bcm2835_audio.stereo-fallback
 
 ⚠️ `alsa_output.usb-ZOOM_Corporation_U-44-00.analog-surround-40` の部分は各々の環境に合わせて変更すること。
 
+この設定は PulseAudio を再起動するまで反映されないが、再起動後に音声出力先 (が正しく変更されているか) を確認するには以下のコマンドを実行する。
+
+```shell:Shell
+pactl info | sed -En 's/Default Sink: (.*)/\1/p'
+```
+
+https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/issues/445#note_389766
+
 ### 音声出力先の固定
 稼働して最初のうちはこの設定がなくてもうまく機能していたのだが、しばらく経つと、前項で設定した音声出力先が変わってしまっていることに気づいた。
 
@@ -565,3 +573,4 @@ watch -n 1 -d pacmd list-sink-inputs
 * [Raspberry PI 3 で Bluetooth(A2DP)](https://qiita.com/nattof/items/3db73a95e63100d7580a)
 * [Ubuntu20.04 音声出力先を固定](https://rohhie.net/ubuntu20-04-fix-the-audio-output-destination/)
 * [Always a pop sound whenever alsa/pulseaudio is idle for exactly 5 seconds? [closed]](https://unix.stackexchange.com/questions/466429/always-a-pop-sound-whenever-alsa-pulseaudio-is-idle-for-exactly-5-seconds)
+* [pactl get-default-sink](https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/issues/445#note_389766)
