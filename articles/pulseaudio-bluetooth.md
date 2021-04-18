@@ -286,7 +286,7 @@ https://qiita.com/nattof/items/3db73a95e63100d7580a
 ちなみに、上記のサイトでは `/etc/pulse/system.pa` に追記しているが、追記している内容はすでに `/etc/pulse/default.pa` に最初から記載されているはずなので不要。
 
 ## asoundrc
-これは設定しなくても良いかも。
+これは設定しなくても良かった。もしうまく機能しなかったら試してみても良いかもしれない。
 
 ```shell:~/.asoundrc
 pcm.!default {
@@ -441,6 +441,84 @@ Bluetooth 接続が 1 回で成功すれば音声が途切れるのも 1 回だ�
 https://zenn.dev/noraworld/articles/bluetoothctl-autoconnect
 
 
+# ダミー音声の出力
+iPhone や iPad など、iOS デバイスではなぜか音楽が再生されない問題が発生する。正確には、再生されているのだが、音が聞こえない[^1]。
+
+[^1]: 最近 (この方法を試す前) では Oculus Quest でも音が聞こえなくなってしまった。以前は Oculus Quest は正常に音が聞こえていたのだが。もちろん設定は変えていない。どうも Linux の音声関係のライブラリは挙動が不安定である。
+
+これの原因はいろいろ調べてもよくわからなかった。
+
+しかし、例外として、MacBook など、正常に音を流せるデバイスで音を流している最中に iPhone や iPad などで音楽を再生すると、ちゃんと聞こえる。MacBook ではなく、Raspberry Pi で直接 WAVE ファイルを再生している最中でも同じだった。
+
+ならば、Raspberry Pi で「無音」を永遠に流し続ければ、iPhone や iPad で音が聞こえない問題は解消されるのではないかと推測した。再生する音声ファイルに `/dev/zero` を指定して、無音をずっと流し続けてみた。
+
+https://unix.stackexchange.com/questions/466429/always-a-pop-sound-whenever-alsa-pulseaudio-is-idle-for-exactly-5-seconds
+
+これが大成功で、見事に iPhone や iPad でも音楽が流せるようになった。
+
+そこで、無音を流すスクリプトファイルを作り、それを systemd でデーモン化して、システム起動後に勝手に起動しずっと無音を流し続けるようにする。
+
+## セットアップ
+先ほど clone したリポジトリに `dummysound` というスクリプトがあるので、これを systemd に追加し、デーモン化する。
+
+このスクリプトはユーザレベルで起動したいので、以下のユニットファイルは `/lib/systemd/user` 以下に置く。
+
+```config:/lib/systemd/user/dummy-sound.service
+[Unit]
+Description=dummy sound service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/path/to/bluetoothctl-autoconnector
+ExecStart=/usr/bin/env bash dummysound
+TimeoutSec=15
+Restart=always
+
+[Install]
+WantedBy=default.target
+```
+
+`/path/to/bluetoothctl-autoconnector` には clone したリポジトリの絶対パスを指定する。
+
+デーモンをリロードし、自動起動を有効にし、起動する。
+
+```shell:Shell
+systemctl --user daemon-reload
+systemctl --user enable dummy-sound
+systemctl --user start dummy-sound
+```
+
+## 注意点
+**他のデバイスで音声を再生中は無音を流さない仕様になっている**。
+
+iPhone や iPad など、なぜか音が流れないデバイスで音声を再生している最中にこのダミー音声を流しても、音が聞こえない問題が解消しないからだ。
+
+これも理屈はよくわからないが、正常に音が聞こえるデバイスで音を流している間に、正常に音が聞こえないデバイスで音を流すと正常に音が聞こえるようになるが、その逆も成り立つ。
+
+つまり、正常に音が聞こえないデバイスで音を流している間に、正常に音が聞こえるデバイスで音を流すと正常に音が聞こえなくなってしまう。
+
+なので、Raspberry Pi と接続しているどのデバイスも音声を再生していない状態じゃないと、このダミー音声を流す意味がなくなってしまう。
+
+ただし、このダミー音声を流すスクリプトは、他のデバイスで音声が流れているかどうかを検知し、すべてのデバイスで音声を停止するまで何度も確認し続けるので、音声が流れているときにデーモンを起動するのは問題ない。
+
+すべてのデバイスで音声が流れなくなったことを確認すると、勝手にダミー音声が流れるようになる。
+
+また、一度ダミー音声が流れ始めれば、その後はずっと無音が流れ続けるので、あとは何も気にする必要はない。
+
+なので、気にするべきこととしては、このデーモンを正しく機能させるためには、いったんすべてのデバイスで音声を停止し、1 分くらい待つか、Raspberry Pi を再起動する必要があるということだ。
+
+ちなみにダミー音声が流れているかどうかは、以下のコマンドを実行して `1` が出てくれば良い。
+
+```shell:Shell
+pacmd list-sink-inputs | grep -c "media\.name = \"ALSA Playback\""
+```
+
+`0` が出てきたら、すべてのデバイスで音声が停止していないか、デーモンが正しく機能していない可能性があるので、それらを確認する。
+
+それでもダメだったらいったん再起動してみる。
+
+
 # それ以外の設定
 PulseAudio のデーモンは、システム起動後に初回ログインした際に起動される。そのため、Raspberry Pi 再起動時に自動的にログインするように設定を追加する。
 
@@ -480,18 +558,10 @@ watch -n 1 -d pacmd list-sink-inputs
 終了する場合は `Ctrl + C` を押す。
 
 
-## 問題点
-iPhone や iPad など、iOS デバイスではなぜか音楽が再生されない。正確には、再生されているのだが、音が聞こえない。
-
-これの原因は調査中なのだが、いろいろ調べても原因がよくわからなかった。
-
-iPhone は通話ができるので、A2DP だけではなく HFP も有効にしないといけないのかなと思い、oFono (HFP を使えるようにするライブラリ) を試したりもしたのだが、改善せず。
-
-原因がわかったらその設定方法についても追記する。
-
-
 # 参考サイト
 * [Raspberry Piを使って無線ヘッドホンを複数入力から同時に出力出来るようにする](https://dev.classmethod.jp/articles/linux_as_bluetooth_a2dp_mixer/)
 * [RaspberryPiをBluetoothオーディオレシーバにしてみた](https://blog.bnikka.com/raspberrypi/raspberrypibluetooth.html)
 * [Raspberry Pi をA2DPのsinkにして携帯やタブレットから音楽を再生する](https://penkoba.hatenadiary.org/entry/20130909/1378744109)
 * [Raspberry PI 3 で Bluetooth(A2DP)](https://qiita.com/nattof/items/3db73a95e63100d7580a)
+* [Ubuntu20.04 音声出力先を固定](https://rohhie.net/ubuntu20-04-fix-the-audio-output-destination/)
+* [Always a pop sound whenever alsa/pulseaudio is idle for exactly 5 seconds? [closed]](https://unix.stackexchange.com/questions/466429/always-a-pop-sound-whenever-alsa-pulseaudio-is-idle-for-exactly-5-seconds)
