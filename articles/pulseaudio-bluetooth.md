@@ -578,6 +578,16 @@ watch -n 1 -d pacmd list-sink-inputs
 
 今のところ筆者は特に困ってはいないので対応していないが、気が向いたら HFP プロファイルにも対応して記事を更新しようと思う。
 
+ちなみに、音楽の音声と、音楽ではない音声 (通話や一部のアプリの音声) は、以下のように、通知センターやコントロールセンターに再生中の音声が出てくるかどうかでわかる。
+
+![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/pulseaudio-bluetooth/B676680A-FEA8-4A09-AC9B-6651F9E72F99_1_201_a.jpeg)
+
+![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/pulseaudio-bluetooth/5F8A9458-40BE-4918-8E83-92A866573677_1_102_o.jpeg)
+
+![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/pulseaudio-bluetooth/E728EB2E-4068-4872-945E-D2129B41A9CA_1_102_o.jpeg)
+
+ここに出てくれば A2DP での再生なので音は聞こえるが、ここに出てこないものは A2DP ではないので音は聞こえない。
+
 ### iPhone が Raspberry Pi に自動接続されない
 これに関しては原因がよくわかっていない。
 
