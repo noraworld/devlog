@@ -272,6 +272,26 @@ https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/issues/445#note_389766
 
 https://rohhie.net/ubuntu20-04-fix-the-audio-output-destination/
 
+### [optional] スマートフォンの通話や、音楽ではないアプリの音声 (英語の発音など) にも対応する
+通話の音声や、音楽ではないアプリの音声は、HFP という Bluetooth プロファイルでないと再生できない。通話の音声等も聴けるようにするには HFP にも対応する必要がある。
+
+まずは PulseAudio と Bluetooth を HFP に対応させるためのライブラリ oFono をインストールする。
+
+```shell:Shell
+sudo apt -y install ofono
+```
+
+そして PulseAudio の設定を変更し、oFono を使用するようにする。
+
+```diff:/etc/pulse/default.pa
+- load-module module-bluetooth-discover
++ load-module module-bluetooth-discover headset=ofono
+```
+
+https://askubuntu.com/questions/845195/how-to-set-up-ubuntu-pc-as-bluetooth-headset-to-attend-calls#answer-852687
+
+ちなみに音楽を流すための Bluetooth プロファイルは A2DP というもので、これは特別なライブラリや設定を追加しなくても最初から対応している。
+
 ### 余談: PulseAudio をシステムワイドで起動する件について
 興味なければ読み飛ばしても問題ない。
 
@@ -566,27 +586,7 @@ watch -n 1 -d pacmd list-sink-inputs
 終了する場合は `Ctrl + C` を押す。
 
 ## 課題点
-現在、以下の 2 つの課題がある。
-
-* iPhone で、通話の音声や、音楽ではないアプリの音声は流せない
-* iPhone が Raspberry Pi に自動接続されない
-
-### iPhone で、通話の音声や、音楽ではないアプリの音声は流せない
-通話の音声や、音楽ではないアプリの音声は、HFP という Bluetooth プロファイルでないと再生できない。今回の設定方法では、音楽を流すための A2DP という Bluetooth プロファイルのみを使用している。
-
-通話の音声等も聴けるようにするには HFP にも対応する必要がある。
-
-今のところ筆者は特に困ってはいないので対応していないが、気が向いたら HFP プロファイルにも対応して記事を更新しようと思う。
-
-ちなみに、音楽の音声と、音楽ではない音声 (通話や一部のアプリの音声) は、以下のように、通知センターやコントロールセンターに再生中の音声が出てくるかどうかでわかる。
-
-![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/pulseaudio-bluetooth/B676680A-FEA8-4A09-AC9B-6651F9E72F99_1_201_a.jpeg)
-
-![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/pulseaudio-bluetooth/5F8A9458-40BE-4918-8E83-92A866573677_1_102_o.jpeg)
-
-![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/pulseaudio-bluetooth/E728EB2E-4068-4872-945E-D2129B41A9CA_1_102_o.jpeg)
-
-ここに出てくれば A2DP での再生なので音は聞こえるが、ここに出てこないものは A2DP ではないので音は聞こえない。
+現在、以下の課題がある。
 
 ### iPhone が Raspberry Pi に自動接続されない
 これに関しては原因がよくわかっていない。
@@ -597,7 +597,7 @@ iPhone の設定アプリから Bluetooth の項目に行き、iPhone 側から 
 
 なので、現状では iPhone に関しては Raspberry Pi からの自動接続ができない。
 
-解決方法がわかったらそれも追記する。
+解決方法がわかったら追記する。
 
 
 # 参考サイト
