@@ -95,6 +95,13 @@ Agent registered
 exit|quit
 ```
 
+
+
+# 環境
+bluetoothctl 5.53
+
+
+
 # コマンド一覧
 コマンド一覧とどのような操作を行うものかを順番に説明していく。
 
@@ -416,6 +423,24 @@ Device XX:XX:XX:XX:XX:XX MacBook Pro 15
 pair <DEVICE_BD_ADDRESS>
 ```
 
+```
+Attempting to pair with XX:XX:XX:XX:XX:XX
+[CHG] Device XX:XX:XX:XX:XX:XX Connected: yes
+[CHG] Device XX:XX:XX:XX:XX:XX Modalias: bluetooth:xxxxxxxxxxxxxxx
+[CHG] Device XX:XX:XX:XX:XX:XX UUIDs: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+[CHG] Device XX:XX:XX:XX:XX:XX UUIDs: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+[CHG] Device XX:XX:XX:XX:XX:XX UUIDs: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+[CHG] Device XX:XX:XX:XX:XX:XX UUIDs: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+[CHG] Device XX:XX:XX:XX:XX:XX UUIDs: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+[CHG] Device XX:XX:XX:XX:XX:XX UUIDs: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+[CHG] Device XX:XX:XX:XX:XX:XX UUIDs: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+[CHG] Device XX:XX:XX:XX:XX:XX UUIDs: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+[CHG] Device XX:XX:XX:XX:XX:XX UUIDs: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+[CHG] Device XX:XX:XX:XX:XX:XX ServicesResolved: yes
+[CHG] Device XX:XX:XX:XX:XX:XX Paired: yes
+Pairing successful
+```
+
 `<DEVICE_BD_ADDRESS>` はペアリングしたいデバイスの Bluetooth アドレスを指定する。これはデバイス側の Bluetooth 設定画面に記載されていることもあるが、調べ方がわからない場合は `scan on` で検索したときや `devices` で確認することができる。
 
 その後、ペアリング可能な場合は、ペアリングしようとしているデバイス側で接続するかどうかのダイアログが表示されるはずなので、「接続」を選択する。
@@ -427,6 +452,10 @@ pair <DEVICE_BD_ADDRESS>
 
 ```shell:bluetoothctl
 agent on|off|DisplayOnly|DisplayYesNo|KeyboardDisplay|KeyboardOnly|NoInputNoOutput
+```
+
+```
+Agent registered/unregistered
 ```
 
 ペアリングする際に、このデバイスと接続するかどうかを、デバイス同士でそれぞれ確認 (認証) するのだが、その際にどのように認証を行うのかを指定することができる。
@@ -520,6 +549,13 @@ Device XX:XX:XX:XX:XX:XX (public)
 connect <DEVICE_BD_ADDRESS>
 ```
 
+```
+Attempting to connect to XX:XX:XX:XX:XX:XX
+[CHG] Device XX:XX:XX:XX:XX:XX Connected: yes
+Connection successful
+[CHG] Device XX:XX:XX:XX:XX:XX ServicesResolved: yes
+```
+
 事前に `pair` でペアリングを行っておかないと接続できないのだが、もしペアリングをしていなかった場合は自動的にペアリングも行ってくれる。
 
 なお、ペアリングが完了しているなら、ペアリングしているデバイス側で接続しようとすれば接続することができる。`connect` は bluetoothctl 側から接続を行いたいときに使う。
@@ -564,6 +600,13 @@ info <DEVICE_BD_ADDRESS>
 disconnect <DEVICE_BD_ADDRESS>
 ```
 
+```
+Attempting to disconnect from XX:XX:XX:XX:XX:XX
+[CHG] Device XX:XX:XX:XX:XX:XX ServicesResolved: no
+Successful disconnected
+[CHG] Device XX:XX:XX:XX:XX:XX Connected: no
+```
+
 ペアリング情報が削除されるわけではないので、ペアリングしているデバイス側から接続することもできる。bluetoothctl 側から接続したい場合は `connect` を実行すれば良い。
 
 `info` を実行すると接続状況が変更されたことがわかる。
@@ -604,6 +647,11 @@ info <DEVICE_BD_ADDRESS>
 
 ```shell:bluetoothctl
 trust <DEVICE_BD_ADDRESS>
+```
+
+```
+[CHG] Device XX:XX:XX:XX:XX:XX Trusted: yes
+Changing XX:XX:XX:XX:XX:XX trust succeeded
 ```
 
 信頼することによって、再起動した場合でもペアリング情報を保持することができる。
@@ -650,6 +698,11 @@ info <DEVICE_BD_ADDRESS>
 untrust <DEVICE_BD_ADDRESS>
 ```
 
+```
+[CHG] Device XX:XX:XX:XX:XX:XX Trusted: no
+Changing XX:XX:XX:XX:XX:XX untrust succeeded
+```
+
 `info` を実行すると信頼状況が変更されたことがわかる。
 
 ```shell:bluetoothctl
@@ -690,6 +743,13 @@ info <DEVICE_BD_ADDRESS>
 block <DEVICE_BD_ADDRESS>
 ```
 
+```
+[CHG] Device XX:XX:XX:XX:XX:XX Blocked: yes
+Changing XX:XX:XX:XX:XX:XX block succeeded
+[CHG] Device XX:XX:XX:XX:XX:XX ServicesResolved: no
+[CHG] Device XX:XX:XX:XX:XX:XX Connected: no
+```
+
 `info` を実行するとブロック状況が変更されたことがわかる。
 
 ```shell:bluetoothctl
@@ -728,6 +788,11 @@ info <DEVICE_BD_ADDRESS>
 
 ```shell:bluetoothctl
 unblock <DEVICE_BD_ADDRESS>
+```
+
+```
+[CHG] Device XX:XX:XX:XX:XX:XX Blocked: no
+Changing XX:XX:XX:XX:XX:XX unblock succeeded
 ```
 
 `info` を実行するとブロック状況が変更されたことがわかる。
