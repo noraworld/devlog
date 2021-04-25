@@ -103,12 +103,17 @@ A に Bluetooth キーボードを接続して、B に Bluetooth マウスを接
 select XX:XX:XX:XX:XX:XX
 ```
 
+```
+Controller XX:XX:XX:XX:XX:XX BlueZ 5.53 [default]
+```
+
 `XX:XX:XX:XX:XX:XX` にはコントローラの BD アドレスを指定する。コントローラの BD アドレスは、先ほど `list` コマンドで表示されたものだ。
 
 先の `list` の例では、`XX:XX:XX:XX:XX:XA` がデフォルトになっていた。`XX:XX:XX:XX:XX:XB` を選択して再度 `list` を実行すれば `[default]` が変更されていることがわかる。
 
 ```shell:bluetoothctl
 select XX:XX:XX:XX:XX:XB
+list
 ```
 
 ```
@@ -218,6 +223,38 @@ pairable on|off
 Changing pairable on/off succeeded
 ```
 
+`show` を実行するとペアリング可能かどうかが変更されたことがわかる。
+
+```shell:bluetoothctl
+show
+```
+
+```diff
+  Controller XX:XX:XX:XX:XX:XX (public)
+  	Name: BlueZ 5.53
+  	Alias: BlueZ 5.53
+  	Class: 0x00000000
+  	Powered: yes
+  	Discoverable: no
+  	DiscoverableTimeout: 0x00000000
+- 	Pairable: yes
++ 	Pairable: no
+  	UUID: Audio Source              (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Generic Attribute Profile (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Generic Access Profile    (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: PnP Information           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Handsfree                 (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Audio Sink                (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	Modalias: usb:xxxxxxxxxxxxxxx
+  	Discovering: no
+  Advertising Features:
+  	ActiveInstances: 0x00
+  	SupportedInstances: 0x00
+  	SupportedIncludes: tx-power
+  	SupportedIncludes: appearance
+  	SupportedIncludes: local-name
+```
+
 ## discoverable
 Bluetooth 送信機を、他のデバイスから検索可能な状態にする。
 
@@ -234,6 +271,38 @@ Changing discoverable on/off succeeded
 | discoverable off | discoverable on |
 |---|---|
 | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/bluetoothctl-commands/E9F3AFE5-3282-4ABC-A222-E7B988660259.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/bluetoothctl-commands/D69FDECE-8E04-418B-AC2A-D27D8D7696CB.png) |
+
+また、`show` を実行すると他のデバイスから検索可能な状態かどうかが変更されたことがわかる。
+
+```shell:bluetoothctl
+show
+```
+
+```diff
+  Controller XX:XX:XX:XX:XX:XX (public)
+  	Name: BlueZ 5.53
+  	Alias: BlueZ 5.53
+  	Class: 0x00000000
+  	Powered: yes
+- 	Discoverable: no
++ 	Discoverable: yes
+  	DiscoverableTimeout: 0x00000000
+  	Pairable: yes
+  	UUID: Audio Source              (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Generic Attribute Profile (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Generic Access Profile    (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: PnP Information           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Handsfree                 (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Audio Sink                (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	Modalias: usb:xxxxxxxxxxxxxxx
+  	Discovering: no
+  Advertising Features:
+  	ActiveInstances: 0x00
+  	SupportedInstances: 0x00
+  	SupportedIncludes: tx-power
+  	SupportedIncludes: appearance
+  	SupportedIncludes: local-name
+```
 
 ## discoverable-timeout
 `discoverable on` を実行したあとに、自動的に `discoverable off` にするまでの時間を設定する。
@@ -379,67 +448,6 @@ Device XX:XX:XX:XX:XX:XX MacBook Pro 15
 
 ここで表示されるのは選択されている (デフォルトの) コントローラにペアリングされているデバイス一覧なので、別のコントローラにペアリングされているデバイス一覧を見たかったら `select` でコントローラを変更する必要がある。
 
-## connect
-デバイスと接続する。
-
-```shell:bluetoothctl
-connect <DEVICE_BD_ADDRESS>
-```
-
-事前に `pair` でペアリングを行っておかないと接続できないのだが、もしペアリングをしていなかった場合は自動的にペアリングも行ってくれる。
-
-なお、ペアリングが完了しているなら、ペアリングしているデバイス側で接続しようとすれば接続することができる。`connect` は bluetoothctl 側から接続を行いたいときに使う。
-
-## disconnect
-デバイスを切断する。
-
-```shell:bluetoothctl
-disconnect <DEVICE_BD_ADDRESS>
-```
-
-ペアリング情報が削除されるわけではないので、ペアリングしているデバイス側から接続することもできる。bluetoothctl 側から接続したい場合は `connect` を実行すれば良い。
-
-## trust
-デバイスを信頼する。
-
-```shell:bluetoothctl
-trust <DEVICE_BD_ADDRESS>
-```
-
-信頼することによって、再起動した場合でもペアリング情報を保持することができる。
-
-https://mumeiyamibito.0am.jp/bluetoothctl
-
-## untrust
-信頼したデバイスを信頼しない状態に戻す。
-
-```shell:bluetoothctl
-untrust <DEVICE_BD_ADDRESS>
-```
-
-## block
-デバイスをブロックする。
-
-```shell:bluetoothctl
-block <DEVICE_BD_ADDRESS>
-```
-
-## unblock
-ブロックされているデバイスのブロックを解除する。
-
-```shell:bluetoothctl
-unblock <DEVICE_BD_ADDRESS>
-```
-
-## remove
-デバイスと切断し、ペアリング情報を削除する。
-
-```shell:bluetoothctl
-remove <DEVICE_BD_ADDRESS>
-```
-
-再度、ペアリング・接続を行いたい場合は `pair` をし直す必要がある。
-
 ## info
 ペアリング・接続したデバイスの情報を表示する。
 
@@ -454,9 +462,9 @@ Device XX:XX:XX:XX:XX:XX (public)
 	Class: 0x00000000
 	Icon: computer
 	Paired: yes
-	Trusted: yes
+	Trusted: no
 	Blocked: no
-	Connected: yes
+	Connected: no
 	LegacyPairing: no
 	UUID: Serial Port               (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
 	UUID: Audio Source              (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
@@ -474,6 +482,282 @@ Device XX:XX:XX:XX:XX:XX (public)
 ```
 
 現在選択されている (デフォルトの) コントローラにペアリング・接続されているデバイスの情報しか表示されないので、別のコントローラでデバイスをペアリング・接続させている場合は `select` で切り替える必要がある。
+
+## connect
+デバイスと接続する。
+
+```shell:bluetoothctl
+connect <DEVICE_BD_ADDRESS>
+```
+
+事前に `pair` でペアリングを行っておかないと接続できないのだが、もしペアリングをしていなかった場合は自動的にペアリングも行ってくれる。
+
+なお、ペアリングが完了しているなら、ペアリングしているデバイス側で接続しようとすれば接続することができる。`connect` は bluetoothctl 側から接続を行いたいときに使う。
+
+`info` を実行すると接続状況が変更されたことがわかる。
+
+```shell:bluetoothctl
+info <DEVICE_BD_ADDRESS>
+```
+
+```diff
+  Device XX:XX:XX:XX:XX:XX (public)
+  	Name: MacBook Pro 15
+  	Alias: MacBook Pro 15
+  	Class: 0x00000000
+  	Icon: computer
+  	Paired: yes
+  	Trusted: no
+  	Blocked: no
+- 	Connected: no
++ 	Connected: yes
+  	LegacyPairing: no
+  	UUID: Serial Port               (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Audio Source              (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control Target (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Headset AG                (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: GN                        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Handsfree Audio Gateway   (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: PnP Information           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Vendor specific           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	Modalias: bluetooth:xxxxxxxxxxxxxxx
+  	ManufacturerData Key: 0x0000
+  	ManufacturerData Value:
+    XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX     .MacBookPro15,1
+```
+
+## disconnect
+デバイスを切断する。
+
+```shell:bluetoothctl
+disconnect <DEVICE_BD_ADDRESS>
+```
+
+ペアリング情報が削除されるわけではないので、ペアリングしているデバイス側から接続することもできる。bluetoothctl 側から接続したい場合は `connect` を実行すれば良い。
+
+`info` を実行すると接続状況が変更されたことがわかる。
+
+```shell:bluetoothctl
+info <DEVICE_BD_ADDRESS>
+```
+
+```diff
+  Device XX:XX:XX:XX:XX:XX (public)
+  	Name: MacBook Pro 15
+  	Alias: MacBook Pro 15
+  	Class: 0x00000000
+  	Icon: computer
+  	Paired: yes
+  	Trusted: no
+  	Blocked: no
+- 	Connected: yes
++ 	Connected: no
+  	LegacyPairing: no
+  	UUID: Serial Port               (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Audio Source              (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control Target (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Headset AG                (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: GN                        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Handsfree Audio Gateway   (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: PnP Information           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Vendor specific           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	Modalias: bluetooth:xxxxxxxxxxxxxxx
+  	ManufacturerData Key: 0x0000
+  	ManufacturerData Value:
+    XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX     .MacBookPro15,1
+```
+
+## trust
+デバイスを信頼する。
+
+```shell:bluetoothctl
+trust <DEVICE_BD_ADDRESS>
+```
+
+信頼することによって、再起動した場合でもペアリング情報を保持することができる。
+
+https://mumeiyamibito.0am.jp/bluetoothctl
+
+`info` を実行すると信頼状況が変更されたことがわかる。
+
+```shell:bluetoothctl
+info <DEVICE_BD_ADDRESS>
+```
+
+```diff
+  Device XX:XX:XX:XX:XX:XX (public)
+  	Name: MacBook Pro 15
+  	Alias: MacBook Pro 15
+  	Class: 0x00000000
+  	Icon: computer
+  	Paired: yes
+- 	Trusted: no
++ 	Trusted: yes
+  	Blocked: no
+  	Connected: yes
+  	LegacyPairing: no
+  	UUID: Serial Port               (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Audio Source              (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control Target (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Headset AG                (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: GN                        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Handsfree Audio Gateway   (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: PnP Information           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Vendor specific           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	Modalias: bluetooth:xxxxxxxxxxxxxxx
+  	ManufacturerData Key: 0x0000
+  	ManufacturerData Value:
+    XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX     .MacBookPro15,1
+```
+
+## untrust
+信頼したデバイスを信頼しない状態に戻す。
+
+```shell:bluetoothctl
+untrust <DEVICE_BD_ADDRESS>
+```
+
+`info` を実行すると信頼状況が変更されたことがわかる。
+
+```shell:bluetoothctl
+info <DEVICE_BD_ADDRESS>
+```
+
+```diff
+  Device XX:XX:XX:XX:XX:XX (public)
+  	Name: MacBook Pro 15
+  	Alias: MacBook Pro 15
+  	Class: 0x00000000
+  	Icon: computer
+  	Paired: yes
+- 	Trusted: yes
++ 	Trusted: no
+  	Blocked: no
+  	Connected: yes
+  	LegacyPairing: no
+  	UUID: Serial Port               (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Audio Source              (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control Target (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Headset AG                (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: GN                        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Handsfree Audio Gateway   (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: PnP Information           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Vendor specific           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	Modalias: bluetooth:xxxxxxxxxxxxxxx
+  	ManufacturerData Key: 0x0000
+  	ManufacturerData Value:
+    XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX     .MacBookPro15,1
+```
+
+## block
+デバイスをブロックする。
+
+```shell:bluetoothctl
+block <DEVICE_BD_ADDRESS>
+```
+
+`info` を実行するとブロック状況が変更されたことがわかる。
+
+```shell:bluetoothctl
+info <DEVICE_BD_ADDRESS>
+```
+
+```diff
+  Device XX:XX:XX:XX:XX:XX (public)
+  	Name: MacBook Pro 15
+  	Alias: MacBook Pro 15
+  	Class: 0x00000000
+  	Icon: computer
+  	Paired: yes
+  	Trusted: yes
+- 	Blocked: no
++ 	Blocked: yes
+  	Connected: yes
+  	LegacyPairing: no
+  	UUID: Serial Port               (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Audio Source              (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control Target (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Headset AG                (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: GN                        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Handsfree Audio Gateway   (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: PnP Information           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Vendor specific           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	Modalias: bluetooth:xxxxxxxxxxxxxxx
+  	ManufacturerData Key: 0x0000
+  	ManufacturerData Value:
+    XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX     .MacBookPro15,1
+```
+
+## unblock
+ブロックされているデバイスのブロックを解除する。
+
+```shell:bluetoothctl
+unblock <DEVICE_BD_ADDRESS>
+```
+
+`info` を実行するとブロック状況が変更されたことがわかる。
+
+```shell:bluetoothctl
+info <DEVICE_BD_ADDRESS>
+```
+
+```diff
+  Device XX:XX:XX:XX:XX:XX (public)
+  	Name: MacBook Pro 15
+  	Alias: MacBook Pro 15
+  	Class: 0x00000000
+  	Icon: computer
+  	Paired: yes
+  	Trusted: yes
+- 	Blocked: yes
++ 	Blocked: no
+  	Connected: yes
+  	LegacyPairing: no
+  	UUID: Serial Port               (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Audio Source              (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control Target (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: A/V Remote Control        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Headset AG                (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: GN                        (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Handsfree Audio Gateway   (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: PnP Information           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Vendor specific           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	Modalias: bluetooth:xxxxxxxxxxxxxxx
+  	ManufacturerData Key: 0x0000
+  	ManufacturerData Value:
+    XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX     .MacBookPro15,1
+```
+
+## remove
+デバイスと切断し、ペアリング情報を削除する。
+
+```shell:bluetoothctl
+remove <DEVICE_BD_ADDRESS>
+```
+
+```
+[CHG] Device XX:XX:XX:XX:XX:XX ServicesResolved: no
+Device has been removed
+[CHG] Device XX:XX:XX:XX:XX:XX Connected: no
+[DEL] Device XX:XX:XX:XX:XX:XX MacBook Pro 15
+```
+
+`info` を実行するとデバイス情報が削除されたことがわかる。
+
+```shell:bluetoothctl
+info <DEVICE_BD_ADDRESS>
+```
+
+```
+Device XX:XX:XX:XX:XX:XX not available
+```
+
+再度、ペアリング・接続を行いたい場合は `pair` をし直す必要がある。
 
 ## set-alias
 デバイスにエイリアスを設定する。
@@ -573,6 +857,35 @@ Changing  succeeded
 [CHG] Controller XX:XX:XX:XX:XX:XX Alias: BlueZ 5.53
 ```
 
+`show` を実行するとエイリアスがもとに戻ったことがわかる。
+
+
+```diff
+  Controller XX:XX:XX:XX:XX:XX (public)
+  	Name: BlueZ 5.53
+- 	Alias: Ubuntu
++ 	Alias: BlueZ 5.53
+  	Class: 0x00000000
+  	Powered: yes
+  	Discoverable: no
+  	DiscoverableTimeout: 0x00000000
+  	Pairable: yes
+  	UUID: Audio Source              (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Generic Attribute Profile (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Generic Access Profile    (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: PnP Information           (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Handsfree                 (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	UUID: Audio Sink                (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
+  	Modalias: usb:xxxxxxxxxxxxxxx
+  	Discovering: no
+  Advertising Features:
+  	ActiveInstances: 0x00
+  	SupportedInstances: 0x00
+  	SupportedIncludes: tx-power
+  	SupportedIncludes: appearance
+  	SupportedIncludes: local-name
+```
+
 エイリアスが 2 つあってややこしい (`set-alias` と `system-alias`) が、`reset-alias` は `system-alias` で設定したコントローラのエイリアスを削除するものであり、`set-alias` で設定したデバイスのエイリアスは削除しない。
 
 デバイスのエイリアス (`set-alias`) はコマンドで削除することができないようなので、いったん `remove` でペアリング情報を削除してから、`pair` で再ペアリングしないともとに戻らない。
@@ -582,6 +895,10 @@ Changing  succeeded
 
 ```shell:bluetoothctl
 default-agent
+```
+
+```
+Default agent request successful
 ```
 
 このコマンドは、デバイスとのペアリングなどをすべて bluetoothctl 側で操作する際には不要だ。
