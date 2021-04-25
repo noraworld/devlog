@@ -43,8 +43,6 @@ layout: article
 # はじめに
 最近 bluetoothctl を利用する機会が多いので、bluetoothctl のコマンドについて調べてまとめてみた。
 
-内容としては `bluetoothctl --help` を日本語訳したような感じだが、ヘルプは具体的な使い方や例までは載っていないので、この記事ではそれらもなるべくわかりやすくまとめておく。
-
 
 
 # bluetoothctl とは
@@ -943,3 +941,25 @@ https://qiita.com/propella/items/6daf3c56e26f709b4141#bluetoothctl
 これに関しては調べてもよくわからなかった。
 
 [^2]: 見出しの名前を `advertise` にすると消える現象が発生したので、適当に `*` をつけた。マークダウンパーサのバグ？
+
+
+
+# その他、便利な使い方
+`bluetoothctl` コマンドでいったん bluetoothctl のインタラクティブインターフェースに入ってから操作を行うのが基本だが、以下のようにするとシェルから直接 bluetoothctl のコマンドを実行することもできる。
+
+```shell:Shell
+bluetoothctl -- list
+```
+
+上記は、シェルで `bluetoothctl` を実行したあとに、bluetoothctl のインターフェースで `list` を実行して `exit` したのと同じである。
+
+上記の記法だと 1 つのコマンドしか実行できないが、以下のようにすると複数の bluetoothctl のコマンドを実行することもできる。
+
+```shell:Shell
+{
+  printf "show\n\n"
+  printf "paired-devices\n\n"
+} | bluetoothctl
+```
+
+シェルスクリプト内で bluetoothctl のコマンドを実行したいときなどに便利だろう。
