@@ -3,7 +3,7 @@ title: "bluetoothctl のコマンド一覧と使い方をまとめてみた"
 emoji: "📘"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["RaspberryPi", "Bluetooth", "bluetoothctl", "Ubuntu", "Linux"]
-published: false
+published: true
 order: 95
 layout: article
 ---
