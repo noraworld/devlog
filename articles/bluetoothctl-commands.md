@@ -445,6 +445,10 @@ Pairing successful
 
 その後、ペアリング可能な場合は、ペアリングしようとしているデバイス側で接続するかどうかのダイアログが表示されるはずなので、「接続」を選択する。
 
+| Numeric output | No output |
+|---|---|
+| ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/bluetoothctl-commands/16DAA9F9-EF3D-4221-AE9D-541CA82305EC.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/bluetoothctl-commands/DE872B62-456E-4B7D-BCEB-BDC8BFE3E7CF_4_5005_c.jpeg) |
+
 一方、bluetoothctl 側では `yes` とタイプするか、ペアリングしようとしているデバイス側で表示されている 6 桁の認証コードをタイプすることでペアリングを行う。後述する `agent` の設定を変更している場合は何も入力しなくても良いようにすることもできる。
 
 ## agent
