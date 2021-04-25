@@ -1,3 +1,4 @@
+articles/bluetoothctl-commands.md, 55c0cb1eb52cf8dccc12
 articles/systemd-unit-files-user-level-tips.md, 18ebc2a59cf168c474ef
 articles/eventmachine-installation-failure-macos.md, 834dd11a6a0f45a2d7ed
 articles/sudo-completion-zsh.md, 4618b73e8a480e63aa60
