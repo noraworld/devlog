@@ -8,6 +8,38 @@ order: 95
 layout: article
 ---
 
+# クイックリファレンス
+
+| コマンド名 | 説明 | 使用例 |
+|---|---|---|
+| [list](#list) | 利用可能なコントローラをすべて表示する | `list` |
+| [select](#select) | デフォルトのコントローラを変更する | `select <CONTROLLER_DB_ADDRESS>` |
+| [show](#show) | 選択されているコントローラの情報を表示する | `show` |
+| [power](#power) | Bluetooth レシーバーの電源のオン・オフを切り替える | `power on|off` |
+| [pairable](#pairable) | Bluetooth レシーバーのペアリング可否の状態を変更する | `pairable on|off` |
+| [discoverable](#discoverable) | Bluetooth レシーバーを、他のデバイスから検索可能な状態にするかどうかを変更する | `discoverable on|off` |
+| [discoverable-timeout](#discoverable-timeout) | `discoverable on` を実行したあとに、自動的に `discoverable off` にするまでの時間を設定する | `discoverable-timeout <TIME>` |
+| [scan](#scan) | ペアリング・接続可能なデバイス一覧を検索する | `scan on|off` |
+| [devices](#devices) | ペアリング・接続可能なデバイス一覧を表示する | `devices` |
+| [pair](#pair) | デバイスとペアリングする | `pair <DEVICE_BD_ADDRESS>` |
+| [agent](#agent) | ペアリングする際にどのように認証するかを指定する | `agent <TYPE>` |
+| [paired-devices](#paired-devices) | ペアリングされているデバイス一覧を表示する | `paired-devices` |
+| [info](#info) | ペアリング・接続したデバイスの情報を表示する | `info <DEVICE_BD_ADDRESS>` |
+| [connect](#connect) | デバイスと接続する | `connect <DEVICE_BD_ADDRESS>` |
+| [disconnect](#disconnect) | デバイスを切断する | `disconnect <DEVICE_BD_ADDRESS>` |
+| [trust](#trust) | デバイスを信頼する | `trust <DEVICE_BD_ADDRESS>` |
+| [untrust](#untrust) | 信頼したデバイスを信頼しない状態に戻す | `untrust <DEVICE_BD_ADDRESS>` |
+| [block](#block) | デバイスをブロックする | `block <DEVICE_BD_ADDRESS>` |
+| [unblock](#unblock) | ブロックされているデバイスのブロックを解除する | `unblock <DEVICE_BD_ADDRESS>` |
+| [remove](#remove) | デバイスと切断し、ペアリング情報を削除する | `remove <DEVICE_BD_ADDRESS>` |
+| [set-alias](#set-alias) | デバイスにエイリアスを設定する | `set-alias <DEVICE_ALIAS>` |
+| [system-alias](#system-alias) | コントローラにエイリアスを設定する | `system-alias <CONTROLLER_ALIAS` |
+| [reset-alias](#reset-alias) | `system-alias` で設定したエイリアスを削除する | `reset-alias` |
+| [default-agent](#default-agent) | ペアリングなどをしたいデバイス側からリクエストがあったときに、どのコントローラでそのリクエストを受けるのかを指定する | `default-agent` |
+| [advertise](#advertise) | 用途不明 | |
+
+
+
 # はじめに
 最近 bluetoothctl を利用する機会が多いので、bluetoothctl のコマンドについて調べてまとめてみた。
 
@@ -164,7 +196,7 @@ Advertising Features:
 ここで表示されるのは選択されている (デフォルトの) コントローラの情報なので、別のコントローラの情報を見たかったら `select` でコントローラを変更する必要がある。
 
 ## power
-Bluetooth 送信機の電源のオン・オフを切り替える。
+Bluetooth レシーバーの電源のオン・オフを切り替える。
 
 ```shell:bluetoothctl
 power on|off
@@ -213,7 +245,7 @@ show
 これ以降のコマンドの説明では、電源がオンになっていることを前提とする。
 
 ## pairable
-Bluetooth 送信機をペアリング可能な状態にする。
+Bluetooth レシーバーのペアリング可否の状態を変更する。
 
 ```shell:bluetoothctl
 pairable on|off
@@ -256,7 +288,7 @@ show
 ```
 
 ## discoverable
-Bluetooth 送信機を、他のデバイスから検索可能な状態にする。
+Bluetooth レシーバーを、他のデバイスから検索可能な状態にするかどうかを変更する。
 
 ```shell:bluetoothctl
 discoverable on|off
