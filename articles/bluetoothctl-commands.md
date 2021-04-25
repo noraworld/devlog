@@ -72,7 +72,7 @@ Bluetooth に関する操作をコマンドラインで行うことができる�
 
 bluetoothctl コマンドはインタラクティブなインターフェースで実装されている。下記コマンドを実行すると、コントローラ[^1]の一覧とともに bluetoothctl のプロンプトが表示されるはずだ。
 
-[^1]: そのデバイスで利用可能な Bluetooth 送信機のこと。通常はそのデバイスに標準で搭載されている送信機が表示されるが、Bluetooth レシーバー (USB) などを複数接続していれば複数表示されるだろう。
+[^1]: そのデバイスで利用可能な、Bluetooth の電波を送受信する装置のこと。通常はそのデバイスに標準で搭載されている送受信装置が表示されるが、Bluetooth レシーバー (USB) などを複数接続していれば複数表示されるだろう。
 
 ```shell:Shell
 bluetoothctl
@@ -157,7 +157,7 @@ Controller XX:XX:XX:XX:XX:XE BlueZ 5.53
 Controller XX:XX:XX:XX:XX:XF BlueZ 5.53
 ```
 
-先ほども説明したが、ここで `[default]` がついている Bluetooth 送信機 (Bluetooth レシーバーなど) に対して各種 Bluetooth の設定を行うことになる。
+先ほども説明したが、ここで `[default]` がついている Bluetooth 送受信装置 (Bluetooth レシーバーなど) に対して各種 Bluetooth の設定を行うことになる。
 
 ## show
 選択されているコントローラの情報を表示する。
@@ -191,7 +191,7 @@ Advertising Features:
 	SupportedIncludes: local-name
 ```
 
-その Bluetooth 送信機が起動しているかどうか、別のデバイスから検索可能かどうかなどの情報が表示される。
+その Bluetooth 送受信装置が起動しているかどうか、別のデバイスから検索可能かどうかなどの情報が表示される。
 
 ここで表示されるのは選択されている (デフォルトの) コントローラの情報なので、別のコントローラの情報を見たかったら `select` でコントローラを変更する必要がある。
 
