@@ -133,17 +133,25 @@ body {
     position: sticky;
     top: $margin-between-topics;
 
+    & > div:not(:first-child) {
+      margin-top: $margin-between-topics;
+    }
+
     .sidebar-content-title {
       font-size: 16px;
       font-weight: bold;
       margin-bottom: 10px;
     }
 
-    .profile, .topics {
+    .profile, .topics, .ad {
       background-color: rgb(255, 255, 255);
       padding: 20px;
       box-sizing: border-box;
       border-radius: 8px;
+    }
+
+    .ad {
+      height: 300px;
     }
 
     .profile {
@@ -166,8 +174,6 @@ body {
     }
 
     .topics {
-      margin-top: $margin-between-topics;
-
       .topics-grid {
         display: flex;
         flex-wrap: wrap;
