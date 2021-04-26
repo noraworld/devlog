@@ -11,6 +11,9 @@ $pre-color: #292b32;
 $code-font: 'Fira Code', Menlo, monospace;
 $code-block-border-radius: 3.5px;
 $topic-cell-padding: 7px;
+$container-width: 1200px;
+$sidebar-width: 340px;
+$article-width: $container-width - $sidebar-width - $article-sidebar-left-right-margin * 2 - $margin-between-topics;
 
 body {
   background-color: #e5efff;
@@ -20,7 +23,7 @@ body {
   }
 
   .container {
-    max-width: 1200px;
+    max-width: $container-width;
     margin: 0 auto;
   }
 
@@ -67,11 +70,13 @@ body {
   }
 
   .article {
+    width: $article-width;
     background-color: rgb(255, 255, 255);
     border-radius: 8px;
     padding: 20px 40px;
     box-sizing: border-box;
     margin-left: $article-sidebar-left-right-margin;
+    margin-right: $margin-between-topics;
     overflow-wrap: break-word;
     font-size: 16px;
     line-height: 2.0;
@@ -127,6 +132,7 @@ body {
   }
 
   .sidebar {
+    width: $sidebar-width;
     padding: 0;
     float: right;
     margin-right: $article-sidebar-left-right-margin;
