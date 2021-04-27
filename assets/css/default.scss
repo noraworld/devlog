@@ -11,8 +11,9 @@ $pre-color: #292b32;
 $code-font: 'Fira Code', Menlo, monospace;
 $code-block-border-radius: 3.5px;
 $topic-cell-padding: 7px;
+
 $container-width: 1200px;
-$sidebar-width: 340px;
+$sidebar-width: 300px;
 $article-width: $container-width - $sidebar-width - $article-sidebar-left-right-margin * 2 - $margin-between-topics;
 
 body {
@@ -157,7 +158,8 @@ body {
     }
 
     .ad {
-      height: 300px;
+      height: $sidebar-width;
+      padding: 10px;
     }
 
     .profile {
