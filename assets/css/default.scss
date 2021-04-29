@@ -160,6 +160,24 @@ body {
     .ad {
       height: $sidebar-width;
       padding: 10px;
+
+      // &:before {
+      //   content: '😢';
+      //   white-space: pre;
+      //   font-size: 42px;
+      //   width: 100%;
+      //   display: inline-block;
+      //   text-align: center;
+      // }
+      // &:after {
+      //   content: '広告をブロックしているようです';
+      //   white-space: pre;
+      //   font-size: 13.5px;
+      //   color: rgb(90, 90, 90);
+      //   display: inline-block;
+      //   width: 100%;
+      //   text-align: center;
+      // }
     }
 
     .profile {
