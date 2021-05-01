@@ -345,7 +345,7 @@ $ node index.js
 エラーメッセージに `Please use HTTPS` と書かれていることからもわかる通り、Webhook URL は HTTPS でなければなりません。もし HTTPS になっていない場合は Let’s Encrypt などを使用して HTTPS 対応をしてください。
 
 Nginx + Let’s Encrypt での対応方法については以前に記事にまとめていますので参考にしてください。
-[Nginx+リバースプロキシ環境でWebサーバを停止させずに Let's Encrypt (Certbot) のSSL証明書を自動更新する](https://qiita.com/noraworld/items/a2b4a5fabd7bf6ca25e0)
+[Nginx+リバースプロキシ環境でWebサーバを停止させずに Let's Encrypt (Certbot) のSSL証明書を自動更新する](https://ja.developers.noraworld.blog/auto-renew-letsencrypt-for-nginx-reverse-proxies)
 
 #### URL の指定方法が間違っている
 有効な URL が指定されていないとこのメッセージが表示されます。ご丁寧にも `Please use HTTPS` と書かれているのが逆にややこしいですが、`http://` になっているだけでなく、それ以外の無効な URL だった場合も同様のメッセージなので、正しい URL かどうかを確認してください。

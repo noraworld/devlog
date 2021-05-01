@@ -232,7 +232,7 @@ services:
 パウンド記号を削除するだけで OK です。編集したら保存してエディタを閉じます。
 
 ### 今後マストドンをアップデートする際の注意点
-`docker-compose.yml` を編集したことにより、Git で管理されていないファイルの差分が発生します。この状態だと、マストドンのアップデートをする際に、エラーが発生してしまうので、アップデート前に上記の変更をスタッシュに退避する必要があります。詳細は「[Docker を利用したマストドンのアップデートメモ](http://qiita.com/noraworld/items/54216d13332f9ecb2846)」を参考にしてください。
+`docker-compose.yml` を編集したことにより、Git で管理されていないファイルの差分が発生します。この状態だと、マストドンのアップデートをする際に、エラーが発生してしまうので、アップデート前に上記の変更をスタッシュに退避する必要があります。詳細は「[Docker を利用したマストドンのアップデートメモ](https://ja.developers.noraworld.blog/update-mastodon-on-docker)」を参考にしてください。
 
 マストドンをアップデートする際に注意すべきことなので、現時点ではとりあえず無視して進めていただいて構いません。
 
@@ -332,5 +332,5 @@ Docker のデータボリュームの調べ方に関しては「[Docker: デー�
 
 # あわせて読みたい
 
-* [Docker を利用したマストドンのアップデートメモ](http://qiita.com/noraworld/items/54216d13332f9ecb2846)
-* [マストドン運営に必要なデイリータスクとキャッシュ削除タスクを cron ジョブに登録する](http://qiita.com/noraworld/items/9c1be562a717141b5c14)
+* [Docker を利用したマストドンのアップデートメモ](https://ja.developers.noraworld.blog/update-mastodon-on-docker)
+* [マストドン運営に必要なデイリータスクとキャッシュ削除タスクを cron ジョブに登録する](https://ja.developers.noraworld.blog/mastodon-tasks-crontab)

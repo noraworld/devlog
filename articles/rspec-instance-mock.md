@@ -334,7 +334,7 @@ end
 
 ところで、この記事ではモックオブジェクトを作る際に `instance_double` を使用しました。`double` や `instance_double` の違いについての記事も書きましたので、興味があれば併せてご覧ください。
 
-[RSpec における double / spy / instance_double / class_double のそれぞれの違いについて](https://qiita.com/noraworld/items/3c6d13519ecde6b68fdf)
+[RSpec における double / spy / instance_double / class_double のそれぞれの違いについて](https://ja.developers.noraworld.blog/ruby-double-spy-instance-double-class-double)
 
 # 参考にしたサイト
 - [使えるRSpec入門・その3「ゼロからわかるモック（mock）を使ったテストの書き方」](https://qiita.com/jnchito/items/640f17e124ab263a54dd)

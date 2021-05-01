@@ -11,7 +11,7 @@ layout: article
 # はじめに
 以前にこのような記事を公開しました。
 
-[Dnsmasq を使って特定のウェブサイトに OpenVPN 経由でアクセスできないようにする方法](https://qiita.com/noraworld/items/a0df2a53c4359ff04fa9)
+[Dnsmasq を使って特定のウェブサイトに OpenVPN 経由でアクセスできないようにする方法](https://ja.developers.noraworld.blog/access-restriction-using-dnsmasq-via-openvpn)
 
 Dnsmasq を利用して、VPN を経由したデバイスで特定のサイトにアクセスできないようにする方法を紹介した記事です。
 
@@ -217,7 +217,7 @@ Fire TV も Apple TV と同様に、通常の方法ではプロキシの設定�
 ちなみに、当たり前ですが**プロキシを通過しないネットワークアクセスでは上記のアクセス制限はかからない**ことに注意してください。たとえば、`ping` コマンドや `curl` コマンドを実行する際はプロキシを通過しないのでふつうにアクセスできます。また、Nintendo Switch でも注意書きにある通り、一部のソフトではプロキシを使えないようです。
 
 # さいごに
-いかがだったでしょうか。自宅のマシンを利用するため、VPN に比べて手軽にできるのでおすすめです。これをするモチベーションとしては、[Dnsmasq のときと同じ](https://qiita.com/noraworld/items/a0df2a53c4359ff04fa9#%E3%83%A2%E3%83%81%E3%83%99%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3) です。
+いかがだったでしょうか。自宅のマシンを利用するため、VPN に比べて手軽にできるのでおすすめです。これをするモチベーションとしては、[Dnsmasq のときと同じ](https://ja.developers.noraworld.blog/access-restriction-using-dnsmasq-via-openvpn#%E3%83%A2%E3%83%81%E3%83%99%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3) です。
 
 もちろん VPN + プロキシという組み合わせでもできると思いますので、お好みの環境で試してみてください。
 
@@ -225,7 +225,7 @@ Fire TV も Apple TV と同様に、通常の方法ではプロキシの設定�
 
 OpenVPN を利用した VPN 環境構築についても以前に記事にしていますので参考まで。
 
-[OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://qiita.com/noraworld/items/2fe6be489e1d93c748b8)
+[OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://ja.developers.noraworld.blog/openvpn-installation-and-setup-guidebook)
 
 # 参考にしたサイト
 - [3分で Mac OS X に squid プロキシをたてる](https://tofu.hatenadiary.com/entry/2017/03/14/squid-on-mac-osx)

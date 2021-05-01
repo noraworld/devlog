@@ -10,7 +10,7 @@ layout: article
 
 # はじめに
 以前にこのような記事を書きました。
-[JavaScript でテキストエリア内のカーソルのある位置に文字列を挿入する方法](https://qiita.com/noraworld/items/d6334a4f9b07792200a5)
+[JavaScript でテキストエリア内のカーソルのある位置に文字列を挿入する方法](https://ja.developers.noraworld.blog/insert-text-into-textarea-at-cursor-position)
 
 しかし、この方法でテキストエリア内の文字列を書き換えると、一つ問題が生じます。それは、**undo (`command + z`) や redo (`command + shift+ z`) が効かなくなること**です。
 

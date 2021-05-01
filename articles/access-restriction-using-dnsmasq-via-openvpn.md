@@ -106,12 +106,12 @@ OpenVPN + Dnsmasq の有用性について紹介したところで、ここか�
 ## OpenVPN の環境構築
 こちらに関してはすでに過去のぼくが記事を書いているのでそちらを参考にしてみてください。
 
-- [OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://qiita.com/noraworld/items/2fe6be489e1d93c748b8)
+- [OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://ja.developers.noraworld.blog/openvpn-installation-and-setup-guidebook)
 
 関連記事も参考になるかもしれません。
 
-- [Ubuntu クライアントから OpenVPN サーバに接続する方法](https://qiita.com/noraworld/items/05658055446c41482cce)
-- [OpenVPN のアクセスログを保存しないようにする方法](https://qiita.com/noraworld/items/46877df66822f208944e)
+- [Ubuntu クライアントから OpenVPN サーバに接続する方法](https://ja.developers.noraworld.blog/how-to-connect-openvpn-via-ubuntu-client)
+- [OpenVPN のアクセスログを保存しないようにする方法](https://ja.developers.noraworld.blog/not-to-save-access-log-of-openvpn)
 
 ## Dnsmasq の設定方法
 この記事は Dnsmasq の設定方法を中心に説明します。
@@ -146,7 +146,7 @@ listen-address=127.0.0.1, 10.8.0.1
 `/etc/dnsmasq.conf` を見ると数百行に渡ってコメントアウトされた行があると思います。その行の中から `listen-address` を探し、コメントを外して上記のように記述してください。`10.8.0.1` はご自身の環境に併せて変更してください。
 
 ### OpenVPN 設定ファイルの編集
-「[OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://qiita.com/noraworld/items/2fe6be489e1d93c748b8)」の通りに環境構築をされた場合は、`/etc/openvpn/server.conf` という設定ファイルに以下のような記述があるかと思います。
+「[OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://ja.developers.noraworld.blog/openvpn-installation-and-setup-guidebook)」の通りに環境構築をされた場合は、`/etc/openvpn/server.conf` という設定ファイルに以下のような記述があるかと思います。
 
 ```/etc/openvpn/server.conf
 push "dhcp-option DNS 8.8.8.8"
@@ -165,7 +165,7 @@ push "dhcp-option DNS 8.8.8.8"
 $ sudo systemctl restart openvpn
 ```
 
-うまくいかない場合は[「OpenVPNのインストールとセットアップからインターネット接続までのガイドブック」の「OpenVPN サーバが起動できない場合」](https://qiita.com/noraworld/items/2fe6be489e1d93c748b8#openvpn-%E3%82%B5%E3%83%BC%E3%83%90%E3%81%8C%E8%B5%B7%E5%8B%95%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88)あたりも参考にしてみてください。
+うまくいかない場合は[「OpenVPNのインストールとセットアップからインターネット接続までのガイドブック」の「OpenVPN サーバが起動できない場合」](https://ja.developers.noraworld.blog/openvpn-installation-and-setup-guidebook#openvpn-%E3%82%B5%E3%83%BC%E3%83%90%E3%81%8C%E8%B5%B7%E5%8B%95%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88)あたりも参考にしてみてください。
 
 ### ファイアウォールの編集
 せっかく Dnsmasq を通すようにしても、DNS のポートが空いていなければどのサイトの名前解決もできなくなってしまいます。なのでファイアウォールで 53 番ポートを開放します。
@@ -229,7 +229,7 @@ curl: (35) gnutls_handshake() failed: The TLS connection was non-properly termin
 もしうまくいかないのであれば問題を切り分けて考えてみましょう。
 
 #### OpenVPN に接続できない
-そもそも OpenVPN に接続できない場合は OpenVPN の設定が間違っている可能性が高いです。[「OpenVPNのインストールとセットアップからインターネット接続までのガイドブック」の「注意ポイント」](https://qiita.com/noraworld/items/2fe6be489e1d93c748b8#%E6%B3%A8%E6%84%8F%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88)が参考になるかもしれません。
+そもそも OpenVPN に接続できない場合は OpenVPN の設定が間違っている可能性が高いです。[「OpenVPNのインストールとセットアップからインターネット接続までのガイドブック」の「注意ポイント」](https://ja.developers.noraworld.blog/openvpn-installation-and-setup-guidebook#%E6%B3%A8%E6%84%8F%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88)が参考になるかもしれません。
 
 #### ブロックしたサイトにアクセスできてしまう
 VPN サーバ上ではアクセスできないようになっていたが、クライアント側では依然としてアクセスできてしまう場合は、クライアントで使用する DNS が正しく設定できていない可能性があります。

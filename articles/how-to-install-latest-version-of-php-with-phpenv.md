@@ -41,7 +41,7 @@ $ phpenv install --list
 $ phpenv install x.x.x
 ```
 
-**phpenv install で OpenSSL に関するエラーが発生したら「[OpenSSLとの壮絶な闘い](http://qiita.com/noraworld/items/26e516e0245ff619f648#openssl%E3%81%A8%E3%81%AE%E5%A3%AE%E7%B5%B6%E3%81%AA%E9%97%98%E3%81%84)」を参照**
+**phpenv install で OpenSSL に関するエラーが発生したら「[OpenSSLとの壮絶な闘い](https://ja.developers.noraworld.blog/how-to-install-latest-version-of-php-with-phpenv#openssl%E3%81%A8%E3%81%AE%E5%A3%AE%E7%B5%B6%E3%81%AA%E9%97%98%E3%81%84)」を参照**
 
 ```bash
 $ phpenv global x.x.x
@@ -53,7 +53,7 @@ $ ps -ef | grep php-fpm | grep -v grep
 ```
 
 **Webサーバを起動してPHPが使用できるか確認する**
-**「[CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える](http://qiita.com/noraworld/items/fd491a77af9d4e1ccffa)」参照**
+**「[CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える](https://ja.developers.noraworld.blog/prepare-php-environment-with-nginx-and-php-fpm)」参照**
 
 ```bash
 # composerのインストール（任意）
@@ -139,7 +139,7 @@ $ phpenv install x.x.x
 
 最後にsuccessfullyと表示されればインストール完了です。
 
-もしここでOpenSSLに関するエラーが発生した場合は後述する[OpenSSLとの壮絶な闘い](http://qiita.com/noraworld/items/26e516e0245ff619f648#openssl%E3%81%A8%E3%81%AE%E5%A3%AE%E7%B5%B6%E3%81%AA%E9%97%98%E3%81%84)を参考にしてください。
+もしここでOpenSSLに関するエラーが発生した場合は後述する[OpenSSLとの壮絶な闘い](https://ja.developers.noraworld.blog/how-to-install-latest-version-of-php-with-phpenv#openssl%E3%81%A8%E3%81%AE%E5%A3%AE%E7%B5%B6%E3%81%AA%E9%97%98%E3%81%84)を参考にしてください。
 
 この状態でPHPのバージョンを確認しようとすると以下のように表示されます。
 
@@ -197,7 +197,7 @@ PHP-FPMにプロセス（画面に何か）が表示されればOKです。
 参考: [Mac OS X El CapitanにNginx + phpenv + php-build + php-fpmの環境を構築する手順](http://qiita.com/jshimazu/items/09be38be00a5863acc08)
 
 # Webサーバで確認
-今回インストールされたPHPがWebアプリケーションとして実行できるか確認します。これに関しては「[CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える](http://qiita.com/noraworld/items/fd491a77af9d4e1ccffa)」を参考にしてください。最後の確認（`phpinfo()`の内容）で、今回インストールしたPHPのバージョンが表示されればOKです。
+今回インストールされたPHPがWebアプリケーションとして実行できるか確認します。これに関しては「[CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える](https://ja.developers.noraworld.blog/prepare-php-environment-with-nginx-and-php-fpm)」を参考にしてください。最後の確認（`phpinfo()`の内容）で、今回インストールしたPHPのバージョンが表示されればOKです。
 
 # Composerのインストール（おまけ）
 PHPがインストールできてしまえば、Composerのインストールはとても簡単なのでついでに紹介します。
@@ -252,7 +252,7 @@ $ source ~/.bashrc
 # OpenSSLとの壮絶な闘い
 **こちらは、OpenSSLでエラーが発生する場合についてです。上記の手順で問題なくインストールできた場合は気にする必要はありません。**
 
-少し前に、「[OpenSSLをソースからビルドしてNginxで使用する](http://qiita.com/noraworld/items/9c1d3c56293b68ca05b0)」という記事を投稿しました。これにある通り、自分はOpenSSLをソースからビルドして、OpenSSL 1.0.2 系の環境にしました。実はこれが、自分の環境でのインストールを厄介にさせた一番の理由でした。この問題に悩まされなかったVM上の環境では上記の手順ですんなりいけたのに、1.0.2系をインストールしたマシン上では相当苦労しました…
+少し前に、「[OpenSSLをソースからビルドしてNginxで使用する](https://ja.developers.noraworld.blog/build-openssl-from-source-and-use-it-in-nginx)」という記事を投稿しました。これにある通り、自分はOpenSSLをソースからビルドして、OpenSSL 1.0.2 系の環境にしました。実はこれが、自分の環境でのインストールを厄介にさせた一番の理由でした。この問題に悩まされなかったVM上の環境では上記の手順ですんなりいけたのに、1.0.2系をインストールしたマシン上では相当苦労しました…
 
 このようなエラーが発生しました。
 

@@ -257,7 +257,7 @@ Bash ではそのまま使えますが、Zsh では `zsh/datetime` をロード�
 + zmodload zsh/datetime
 ```
 
-参考: [Zsh で $EPOCHREALTIME を使いたい](https://qiita.com/noraworld/items/fb9e1f7208b1f61187ce)
+参考: [Zsh で $EPOCHREALTIME を使いたい](https://ja.developers.noraworld.blog/zsh-epochrealtime)
 
 ## `bindkey -e` を追加する (`Ctrl` キーを Bash と同じキーバインドで使用したい場合)
 `Ctrl` + `A` でコマンドの行頭に移動、`Ctrl` + `E` で行末に移動、`Ctrl` + `P` で一つ前のコマンド履歴を表示、`Ctrl` + `N` で一つ先の履歴を表示、などのキーバインドが、Bash ではデフォルトで有効でしたが、Zsh だと `^A`、`^E`、`^P`、`^N` のように表示されてしまいます。

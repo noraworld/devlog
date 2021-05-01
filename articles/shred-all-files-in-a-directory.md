@@ -21,7 +21,7 @@ shred: dir: failed to open for writing: Is a directory
 では、ディレクトリ内に存在するすべてのファイルを完全消去したい場合にはどうしたら良いでしょうか。その方法を紹介します。
 
 ## Tips: rm コマンドが「完全消去」ではない理由について
-`rm` コマンドでは完全消去にはならない理由については [こちら](https://qiita.com/noraworld/items/72d6a6dc5014f44e789f#rm-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%A7%E3%81%AF%E3%83%80%E3%83%A1%E3%81%AA%E3%81%AE%E3%81%8B) を参照してください。
+`rm` コマンドでは完全消去にはならない理由については [こちら](https://ja.developers.noraworld.blog/delete-data-in-hdd-completely#rm-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%A7%E3%81%AF%E3%83%80%E3%83%A1%E3%81%AA%E3%81%AE%E3%81%8B) を参照してください。
 
 # 解決法
 `dir` というディレクトリを完全消去したい場合、以下のコマンドを実行するだけです。

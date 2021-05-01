@@ -43,5 +43,5 @@ $ sudo systemctl restart openvpn
 以上でログが記録されないようになりました。お疲れさまでした。なお、OpenVPN のエラーなどで作業が必要になったときは、ログがヒントになっていることが多いので、変更を元に戻すことを推奨します。設定ファイルの変更後は OpenVPN の再起動を忘れずに行ってください。
 
 # 参考サイト
-* [OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://qiita.com/noraworld/items/2fe6be489e1d93c748b8)
-* [Ubuntu クライアントから OpenVPN サーバに接続する方法](https://qiita.com/noraworld/items/05658055446c41482cce)
+* [OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://ja.developers.noraworld.blog/openvpn-installation-and-setup-guidebook)
+* [Ubuntu クライアントから OpenVPN サーバに接続する方法](https://ja.developers.noraworld.blog/how-to-connect-openvpn-via-ubuntu-client)

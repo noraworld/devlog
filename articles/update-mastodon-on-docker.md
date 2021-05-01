@@ -81,7 +81,7 @@ stash@{0}: WIP on (no branch): 01e011bc Bump version to 1.3.2 (#2623)
 
 そうならないように、`docker-compose.yml` を編集してデータの永続化を行うようにすることを推奨します。そのために、ここでは `git stash` コマンドで未コミットのファイルを退避する方法を説明しています。
 
-データの永続化に関する詳細や、設定方法に関しては「[Docker を使ってデータの永続化をせずにマストドンをデプロイしてしまったときの対処法](http://qiita.com/noraworld/items/ff775cbad97baf566614)」を参考にしてください。
+データの永続化に関する詳細や、設定方法に関しては「[Docker を使ってデータの永続化をせずにマストドンをデプロイしてしまったときの対処法](https://ja.developers.noraworld.blog/enable-mastodon-db-persistence-on-docker)」を参考にしてください。
 
 ## タグ付き最新版へのアップデート
 退避ができてリポジトリがクリーンな状態になったらタグ付き最新版にアップデートします。
@@ -279,5 +279,5 @@ $ sudo docker-compose stop && sudo docker-compose up -d
 
 # あわせて読みたい
 
-* [Docker を使ってデータの永続化をせずにマストドンをデプロイしてしまったときの対処法](http://qiita.com/noraworld/items/ff775cbad97baf566614)
-* [マストドン運営に必要なデイリータスクとキャッシュ削除タスクを cron ジョブに登録する](http://qiita.com/noraworld/items/9c1be562a717141b5c14)
+* [Docker を使ってデータの永続化をせずにマストドンをデプロイしてしまったときの対処法](https://ja.developers.noraworld.blog/enable-mastodon-db-persistence-on-docker)
+* [マストドン運営に必要なデイリータスクとキャッシュ削除タスクを cron ジョブに登録する](https://ja.developers.noraworld.blog/mastodon-tasks-crontab)

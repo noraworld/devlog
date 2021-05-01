@@ -93,7 +93,7 @@ $ sudo crontab < root_cron.conf
 
 ここで注意すべき点は、必ず **root で実行すること**（**`sudo` をつけること**）です。マストドンの環境を Docker コンテナ内に作っている場合は、タスクの実行（`docker-compose` コマンドの実行）に root 権限が必要になります。`sudo` をつけずに cron を登録してしまうと一般ユーザで登録され、cron ジョブの実行も一般ユーザとして実行されることになり、タスクの実行時に権限がないと怒られてしまいます。
 
-:collision: ここでは root ユーザとしてジョブを登録していますが、実は一般ユーザでも実行できることがわかりました。詳しくは以降の「[補足: ジョブを一般ユーザとして実行したい場合](http://qiita.com/noraworld/items/9c1be562a717141b5c14#%E8%A3%9C%E8%B6%B3-%E3%82%B8%E3%83%A7%E3%83%96%E3%82%92%E4%B8%80%E8%88%AC%E3%83%A6%E3%83%BC%E3%82%B6%E3%81%A8%E3%81%97%E3%81%A6%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%9F%E3%81%84%E5%A0%B4%E5%90%88)」を参照してください。
+:collision: ここでは root ユーザとしてジョブを登録していますが、実は一般ユーザでも実行できることがわかりました。詳しくは以降の「[補足: ジョブを一般ユーザとして実行したい場合](https://ja.developers.noraworld.blog/mastodon-tasks-crontab#%E8%A3%9C%E8%B6%B3-%E3%82%B8%E3%83%A7%E3%83%96%E3%82%92%E4%B8%80%E8%88%AC%E3%83%A6%E3%83%BC%E3%82%B6%E3%81%A8%E3%81%97%E3%81%A6%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%9F%E3%81%84%E5%A0%B4%E5%90%88)」を参照してください。
 
 root で cron ジョブが登録されたかどうかは以下のコマンドで確認できます。
 
@@ -240,8 +240,8 @@ no crontab for root
 
 # あわせて読みたい
 
-* [Docker を利用したマストドンのアップデートメモ](http://qiita.com/noraworld/items/54216d13332f9ecb2846)
-* [Docker を使ってデータの永続化をせずにマストドンをデプロイしてしまったときの対処法](http://qiita.com/noraworld/items/ff775cbad97baf566614)
+* [Docker を利用したマストドンのアップデートメモ](https://ja.developers.noraworld.blog/update-mastodon-on-docker)
+* [Docker を使ってデータの永続化をせずにマストドンをデプロイしてしまったときの対処法](https://ja.developers.noraworld.blog/enable-mastodon-db-persistence-on-docker)
 
 # 参考サイト
 

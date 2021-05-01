@@ -81,7 +81,7 @@ $ cat .ruby-version
 
 上記の例では `2.4.1` なので、Ruby 2.4.1 をインストールします。
 
-Ruby のインストールには `rbenv` を利用します。`rbenv` の導入および必要なライブラリ等に関しては「[【CentOS7(+Ubuntu16)】Ruby / Rails のインストールから Rails サーバの起動までの(ほぼ)完全ガイド](http://qiita.com/noraworld/items/d92cca9bb449b48a97aa)」を参考にしてください。
+Ruby のインストールには `rbenv` を利用します。`rbenv` の導入および必要なライブラリ等に関しては「[【CentOS7(+Ubuntu16)】Ruby / Rails のインストールから Rails サーバの起動までの(ほぼ)完全ガイド](https://ja.developers.noraworld.blog/ruby-and-rails-installation-guide)」を参考にしてください。
 
 ```bash
 $ rbenv install 2.4.1
@@ -97,7 +97,7 @@ $ gem install bundler
 # Yarn のインストール
 Yarn がインストールされていない場合はインストールします。Yarn をインストールするためにはまず Node.js をインストールする必要があります。
 
-Node.js のインストールに関しては `ndenv` を使用することを個人的におすすめします。`ndenv` 以外のインストール方法でも構いませんが、以降の説明では `ndenv` を使用してインストールしたと想定して説明を進めます。その際は各々読み替えてください。`ndenv` の導入および Node.js のインストールに関しては「[ndenv を使用して複数のバージョンの Node.js を管理する方法と基本的な使い方](http://qiita.com/noraworld/items/462689e108c10102d51f)」を参考にしてください。
+Node.js のインストールに関しては `ndenv` を使用することを個人的におすすめします。`ndenv` 以外のインストール方法でも構いませんが、以降の説明では `ndenv` を使用してインストールしたと想定して説明を進めます。その際は各々読み替えてください。`ndenv` の導入および Node.js のインストールに関しては「[ndenv を使用して複数のバージョンの Node.js を管理する方法と基本的な使い方](https://ja.developers.noraworld.blog/installation-of-nodejs-with-ndenv)」を参考にしてください。
 
 ちなみに Node.js のバージョンについては特に指定はないですが、v6.7.0 を使用したところ、問題なく動作しました。
 
@@ -665,7 +665,7 @@ $ sudo nginx -s reload
 
 # 後日談
 ## 不要になった Docker コンテナを削除
-non-Docker 環境で問題なく稼働したことを確認したら、もうマストドンの Docker コンテナは必要ありません。もし、もう一度 Docker で稼働させたくなったとしても、[データの永続化](http://qiita.com/noraworld/items/ff775cbad97baf566614)をしていれば、またいつでも Docker 稼働に戻すことができます。
+non-Docker 環境で問題なく稼働したことを確認したら、もうマストドンの Docker コンテナは必要ありません。もし、もう一度 Docker で稼働させたくなったとしても、[データの永続化](https://ja.developers.noraworld.blog/enable-mastodon-db-persistence-on-docker)をしていれば、またいつでも Docker 稼働に戻すことができます。
 
 現状、マストドンの Docker コンテナが動いていなければ空き容量を増やすために削除してしまったほうが良いでしょう。以下のコマンドで、現在稼働していないコンテナ、現在使われていないイメージ、ボリュームを削除することができます。
 

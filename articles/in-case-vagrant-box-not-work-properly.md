@@ -73,7 +73,7 @@ https://atlas.hashicorp.com からダウンロードします。`https://atlas.h
 `$ vagrant box add ボックス名 ボックスのURL`
 
 # さいごに
-この記事を書いた時点では解決策が見つかりませんでしたが、後日、FTPクライアントからログインできない問題の解決策が見つかりました。[Vagrantで作成したローカルサーバにFTPクライアント(Cyberduck)からログインできないときの解決法](http://qiita.com/noraworld/items/a0fac559d2d6e76d50f8) を参照してください。
+この記事を書いた時点では解決策が見つかりませんでしたが、後日、FTPクライアントからログインできない問題の解決策が見つかりました。[Vagrantで作成したローカルサーバにFTPクライアント(Cyberduck)からログインできないときの解決法](https://ja.developers.noraworld.blog/how-to-login-to-vagrant-via-cyberduck) を参照してください。
 
 しかし、この解決策を見つけたときにはすでにボックスを削除してしまったので、同様の解決法で解決できたかどうかはわかりません。また、ボックスによってパスワード認証ができたりできなかったりする原因や、`$ vagrant ssh` ができない問題の原因は結局わかりませんでした。
 

@@ -24,7 +24,7 @@ $ sudo yum -y install php
 $ php --version
 ```
 
-📝 最新版のPHPをインストールしたい場合、あるいはプロジェクトごとに異なるバージョンのPHPを簡単に管理したい場合は、phpenvをおすすめします。phpenv利用したPHPのインストール手順については「[phpenvで最新版のPHPをインストールしてWebサイトで使用する](http://qiita.com/noraworld/items/26e516e0245ff619f648)」を参考にしてください。
+📝 最新版のPHPをインストールしたい場合、あるいはプロジェクトごとに異なるバージョンのPHPを簡単に管理したい場合は、phpenvをおすすめします。phpenv利用したPHPのインストール手順については「[phpenvで最新版のPHPをインストールしてWebサイトで使用する](https://ja.developers.noraworld.blog/how-to-install-latest-version-of-php-with-phpenv)」を参考にしてください。
 
 # PHP-FPMのインストール
 以下のコマンドを実行します。
@@ -36,7 +36,7 @@ $ sudo yum -y install php-fpm
 # Nginxのインストール
 こちらの記事を参照してください。
 
-[CentOS 7 (5, 6) で "安定版 (最新版)" のNginxをインストールする方法](http://qiita.com/noraworld/items/1aae57dcbe428089c7d5)
+[CentOS 7 (5, 6) で "安定版 (最新版)" のNginxをインストールする方法](https://ja.developers.noraworld.blog/how-to-install-latest-or-stable-version-of-nginx)
 
 # PHP-FPMの設定を変更
 Apacheを使用する場合は特に変更することはありませんが、Nginxを使用する場合は設定ファイルの変更が必要です。`/etc/php-fpm.d/www.conf`内の`user`と`group`を`nginx`に変更します。

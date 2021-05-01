@@ -9,7 +9,7 @@ layout: article
 ---
 
 # はじめに
-以前に投稿した「[OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://qiita.com/noraworld/items/2fe6be489e1d93c748b8)」（以下、サーバガイドブックとします）という記事では、OpenVPN サーバの構築方法と、Mac や iPhone から OpenVPN サーバに接続する方法を紹介しました。本記事では、Ubuntu から OpenVPN サーバに接続する方法について紹介します。
+以前に投稿した「[OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://ja.developers.noraworld.blog/openvpn-installation-and-setup-guidebook)」（以下、サーバガイドブックとします）という記事では、OpenVPN サーバの構築方法と、Mac や iPhone から OpenVPN サーバに接続する方法を紹介しました。本記事では、Ubuntu から OpenVPN サーバに接続する方法について紹介します。
 
 今回試した環境は Ubuntu 16.04 ですが、他のバージョンでもほぼ同じだと思われます。操作が若干異なる場合は、各自でお調べください。なお、本記事では、OpenVPN サーバがすでに構築されており、VPN をトンネルしてインターネットに接続できる環境が整っている状態を前提に説明します。まだサーバ側の環境が整っていない場合は、サーバガイドブックを参考にしてください。
 
@@ -99,4 +99,4 @@ VPN に正しく接続され、インターネットにアクセスできるこ�
 
 # 参考サイト
 * [Ubuntu17.10にOpenVPNクライアント導入](https://gtrt7.com/blog/linux/openvpncl_ubuntu1710)
-* [OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://qiita.com/noraworld/items/2fe6be489e1d93c748b8)
+* [OpenVPNのインストールとセットアップからインターネット接続までのガイドブック](https://ja.developers.noraworld.blog/openvpn-installation-and-setup-guidebook)

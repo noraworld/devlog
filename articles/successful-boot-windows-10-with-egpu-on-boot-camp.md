@@ -11,7 +11,7 @@ layout: article
 # 前回のあらすじ
 Mac mini (2018) に Blackmagic eGPU Pro を接続して Boot Camp 環境で Windows 10 を使おうと思ったら、どうがんばっても Windows 10 で eGPU を有効にすることができず、あえなく断念しました。
 
-[Mac mini (2018) + Blackmagic eGPU Pro の組み合わせで Boot Camp 環境の Windows 10 を使用することはできない（たぶん......）](https://qiita.com/noraworld/items/f0d00a3cb5e391356ef7)
+[Mac mini (2018) + Blackmagic eGPU Pro の組み合わせで Boot Camp 環境の Windows 10 を使用することはできない（たぶん......）](https://ja.developers.noraworld.blog/cannot-boot-windows-10-with-egpu-on-boot-camp)
 
 そもそもなぜ eGPU を使って Windows 10 を起動したかったかというと、
 

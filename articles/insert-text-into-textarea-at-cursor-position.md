@@ -11,7 +11,7 @@ layout: article
 # :warning: 注意
 この記事の方法では、undo (`command + z`) や redo (`command + shift + z`) が効きません。undo や redo を有効にした状態で同じことを実現するための記事を追加で書きましたので、よろしければそちらをご覧ください。
 
-[JavaScript でテキストエリア内の文字列を書き換えた際に undo や redo が効くようにする](https://qiita.com/noraworld/items/020296f63f285ca2bd86)
+[JavaScript でテキストエリア内の文字列を書き換えた際に undo や redo が効くようにする](https://ja.developers.noraworld.blog/text-insertion-with-undo-redo)
 
 # 実現したいこと
 テキストエリア内に下記のような文章があったとします。

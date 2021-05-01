@@ -50,15 +50,15 @@ Docker も、macOS 直の環境を汚すことは防げますし、構築も簡�
 以上の理由から、Vagrant や Docker を使用せずに、macOS 直の環境にマストドンを構築していきます。
 
 ## 目次
-* [リポジトリをフォークしてクローン](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF%E3%81%97%E3%81%A6%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3)
-* [Ruby のインストール](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#ruby-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
-* [Yarn のインストール](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#yarn-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
-* [bundle install](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#bundle-install)
-* [yarn install](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#yarn-install)
-* [PostgreSQL のインストール](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#postgresql-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
-* [Redis のインストール](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#redis-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
-* [データベースのセットアップ](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97)
-* [サーバを起動](https://qiita.com/noraworld/items/65233e6da9c03cc4dbb7#%E3%82%B5%E3%83%BC%E3%83%90%E3%82%92%E8%B5%B7%E5%8B%95)
+* [リポジトリをフォークしてクローン](https://ja.developers.noraworld.blog/development-of-mastodon-without-vagrant-and-docker#%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF%E3%81%97%E3%81%A6%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3)
+* [Ruby のインストール](https://ja.developers.noraworld.blog/development-of-mastodon-without-vagrant-and-docker#ruby-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+* [Yarn のインストール](https://ja.developers.noraworld.blog/development-of-mastodon-without-vagrant-and-docker#yarn-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+* [bundle install](https://ja.developers.noraworld.blog/development-of-mastodon-without-vagrant-and-docker#bundle-install)
+* [yarn install](https://ja.developers.noraworld.blog/development-of-mastodon-without-vagrant-and-docker#yarn-install)
+* [PostgreSQL のインストール](https://ja.developers.noraworld.blog/development-of-mastodon-without-vagrant-and-docker#postgresql-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+* [Redis のインストール](https://ja.developers.noraworld.blog/development-of-mastodon-without-vagrant-and-docker#redis-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+* [データベースのセットアップ](https://ja.developers.noraworld.blog/development-of-mastodon-without-vagrant-and-docker#%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97)
+* [サーバを起動](https://ja.developers.noraworld.blog/development-of-mastodon-without-vagrant-and-docker#%E3%82%B5%E3%83%BC%E3%83%90%E3%82%92%E8%B5%B7%E5%8B%95)
 
 ## リポジトリをフォークしてクローン
 [マストドンの公式リポジトリ](https://github.com/tootsuite/mastodon)にアクセスして、リポジトリをフォークします。
@@ -123,7 +123,7 @@ $ ruby -v
 ruby 2.4.2p198 (2017-09-14 revision 59899) [x86_64-darwin16]
 ```
 
-参考: [【CentOS7(+Ubuntu16)】Ruby / Rails のインストールから Rails サーバの起動までの(ほぼ)完全ガイド](https://qiita.com/noraworld/items/d92cca9bb449b48a97aa)
+参考: [【CentOS7(+Ubuntu16)】Ruby / Rails のインストールから Rails サーバの起動までの(ほぼ)完全ガイド](https://ja.developers.noraworld.blog/ruby-and-rails-installation-guide)
 
 ## Yarn のインストール
 Node と NPM をインストールします。Node をインストールすると NPM もインストールされます。
@@ -165,7 +165,7 @@ Node と NPM がインストールされたら、NPM を使用して Yarn をイ
 $ npm install -g yarn
 ```
 
-参考: [ndenv を使用して複数のバージョンの Node.js を管理する方法と基本的な使い方](https://qiita.com/noraworld/items/462689e108c10102d51f)
+参考: [ndenv を使用して複数のバージョンの Node.js を管理する方法と基本的な使い方](https://ja.developers.noraworld.blog/installation-of-nodejs-with-ndenv)
 
 ## bundle install
 まずは必要なライブラリを brew でインストールします。
@@ -191,7 +191,7 @@ $ idn --version
 ```
 
 参考: [`bundle install`でnokogiriとnokogumboが入らない](http://linuxserver.jp/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0/ruby/on-rails/nokogiri-ruby-2-3-1)
-参考: [macOS で idn-ruby がインストールできないときの解決法](https://qiita.com/noraworld/items/7b8ba64d413f3f424b5b)
+参考: [macOS で idn-ruby がインストールできないときの解決法](https://ja.developers.noraworld.blog/installation-of-idn-ruby-on-macos)
 
 ここまでできたら、bundle install を実行します。
 
