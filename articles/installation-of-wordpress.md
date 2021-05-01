@@ -23,7 +23,7 @@ WordPressは導入が簡単と聞いていましたが、ひっかかるポイ�
 # PHPの実行環境を整える
 WordPressはPHPで動いています。PHPの実行環境の導入に関しては以下の記事を参照してください。
 
-[CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える](https://zenn.dev/noraworld/articles/prepare-php-environment-with-nginx-and-php-fpm)
+[CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える](https://ja.developers.noraworld.blog/prepare-php-environment-with-nginx-and-php-fpm)
 
 # MySQLの環境を整える
 WordPressではMySQLを使用します。
@@ -128,7 +128,7 @@ Bye
 [WordPress.org の秘密鍵サービス](https://api.wordpress.org/secret-key/1.1/salt/)
 
 # Nginxの設定をする
-Nginxの設定は [CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える](https://zenn.dev/noraworld/articles/prepare-php-environment-with-nginx-and-php-fpm) でも紹介したのでここでは細かいことは省略しますが、今回は説明を簡単にするために`root`をホームディレクトリに変更します。
+Nginxの設定は [CentOS7 + Nginx + PHP-FPM でPHPを実行する環境を整える](https://ja.developers.noraworld.blog/prepare-php-environment-with-nginx-and-php-fpm) でも紹介したのでここでは細かいことは省略しますが、今回は説明を簡単にするために`root`をホームディレクトリに変更します。
 
 ```diff:/etc/nginx/conf.d/default.conf
   location / {

@@ -182,14 +182,14 @@ WantedBy=multi-user.target
 
 Nginx & Let’s Encrypt で SSL 証明書を発行してもらう方法については以下を参考にしてください。
 
-https://zenn.dev/noraworld/articles/auto-renew-letsencrypt-for-nginx-reverse-proxies
+https://ja.developers.noraworld.blog/auto-renew-letsencrypt-for-nginx-reverse-proxies
 
 ## Ruby と RubyGems のインストール
 ツールがあるディレクトリで以下のコマンドを実行します。
 
 なお、rbenv のインストールについては以下を参考にしてください。
 
-https://zenn.dev/noraworld/articles/ruby-and-rails-installation-guide
+https://ja.developers.noraworld.blog/ruby-and-rails-installation-guide
 
 ```shell
 $ rbenv install $(cat .ruby-version)

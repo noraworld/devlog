@@ -28,7 +28,7 @@ Ruby 2.0.0p353
 はじめにNginxをダウンロードします。Ubuntuでは `$ sudo apt install nginx` だけでインストールできると思いますが、CentOS は少し特殊な設定をしなければなりません。
 
 詳しくは別の記事で書いたのでこちらを参照してください。
-[CentOS 7 (5, 6) で安定版 (最新版) の Nginx をインストールする方法](https://zenn.dev/noraworld/articles/how-to-install-latest-or-stable-version-of-nginx)
+[CentOS 7 (5, 6) で安定版 (最新版) の Nginx をインストールする方法](https://ja.developers.noraworld.blog/how-to-install-latest-or-stable-version-of-nginx)
 
 # Rails アプリケーション側の設定
 まずはじめに Rails 側での設定を行います。

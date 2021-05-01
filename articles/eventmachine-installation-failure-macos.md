@@ -72,7 +72,7 @@ package configuration for openssl is not found
 
 ここで、ふと、自分が以前に書いた記事を思い出した。
 
-https://zenn.dev/noraworld/articles/brew-install-and-update-failure-on-macos-mojave
+https://ja.developers.noraworld.blog/brew-install-and-update-failure-on-macos-mojave
 
 すると、過去にも全く同じ警告が出ていることがわかった。
 

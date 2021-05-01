@@ -155,7 +155,7 @@ Ubuntu Server 20.10 でも動いていた。そのあといろいろいじって
 # Ubuntu のインストール
 下記の記事を参考に、Raspberry Pi に Ubuntu をインストールする。
 
-https://zenn.dev/noraworld/articles/setup-ubuntu-on-raspberry-pi-without-keyboard
+https://ja.developers.noraworld.blog/setup-ubuntu-on-raspberry-pi-without-keyboard
 
 
 # 必要なパッケージのインストール
@@ -412,7 +412,7 @@ marlin register macbook
 
 補完スクリプトの使い方については以下を参照してほしい。
 
-https://zenn.dev/noraworld/articles/self-made-command-zsh-completion#%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97
+https://ja.developers.noraworld.blog/self-made-command-zsh-completion#%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97
 
 ## デバイスの接続状況確認
 ```shell:Shell
@@ -479,7 +479,7 @@ Bluetooth 接続が 1 回で成功すれば音声が途切れるのも 1 回だ�
 
 自動接続については別記事でも紹介しているので、興味があればそちらも見てほしい。
 
-https://zenn.dev/noraworld/articles/bluetoothctl-autoconnect
+https://ja.developers.noraworld.blog/bluetoothctl-autoconnect
 
 
 # ダミー音声の出力
@@ -563,7 +563,7 @@ pacmd list-sink-inputs | grep -c "media\.name = \"ALSA Playback\""
 # それ以外の設定
 PulseAudio のデーモンは、システム起動後に初回ログインした際に起動される。そのため、Raspberry Pi 再起動時に自動的にログインするように設定を追加する。
 
-https://zenn.dev/noraworld/articles/ubuntu-reboot-auto-login
+https://ja.developers.noraworld.blog/ubuntu-reboot-auto-login
 
 
 # その他
