@@ -310,7 +310,9 @@ https://askubuntu.com/questions/845195/how-to-set-up-ubuntu-pc-as-bluetooth-head
 | :---: | --- |
 | 0 | 音楽の音声と通話の音声の自動切り替えを行わない (非推奨) |
 | 1 | `media.role` プロパティが `phone` に設定されたキャプチャストリームが表示されたときに自動切り替えが発生する (デフォルト) |
-| 2 | キャプチャデバイスが利用可能にする必要があるかどうかを検出するためのヒューリスティックに基づいて自動切り替えを行う |
+| 2 | キャプチャデバイスが利用可能にする必要があるかどうかを検出するための [ヒューリスティクス](https://ja.wikipedia.org/wiki/%E3%83%92%E3%83%A5%E3%83%BC%E3%83%AA%E3%82%B9%E3%83%86%E3%82%A3%E3%82%AF%E3%82%B9)[^3] に基づいて自動切り替えを行う |
+
+[^3]: いつでも適切なタイミングで A2DP と HFP の切り替えが行われるわけではないが、ある程度のレベルで正しく自動切り替えを行うことができる。
 
 https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#auto_switch
 
