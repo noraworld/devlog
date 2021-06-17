@@ -283,6 +283,10 @@ https://rohhie.net/ubuntu20-04-fix-the-audio-output-destination/
 sudo apt -y install ofono
 ```
 
+```shell:Shell
+sudo systemctl start ofono
+```
+
 そして PulseAudio の設定を変更し、oFono を使用するようにする。
 
 ```diff:/etc/pulse/default.pa
@@ -385,6 +389,25 @@ Bluetooth トランスミッター側から来る音楽の音声は、各種デ�
 反対に、iPhone から見た場合も Raspberry Pi と WH-1000XM3 に同時接続できているというわけだ。音楽を再生する場合はその音声を Raspberry Pi に送るし、通話の音声を流す場合はその音声を WH-1000XM3 に送るというわけだ。Raspberry Pi に送った音声も、最終的には同じ WH-1000XM3 に送られるので、わざわざ切り替える必要はないということだ。
 
 ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/pulseaudio-bluetooth/1ABA6108-130C-4208-8158-4BFBAFB5EDED_1_201_a.jpeg)
+
+PulseAudio ではなくヘッドフォン側で A2DP と HFP の自動切り替えを行う場合で、かつ oFono を有効化した場合は、最後に PulseAudio の設定をもとに戻し oFono を無効化する。
+
+```diff:/etc/pulse/default.pa
+- load-module module-bluetooth-discover headset=ofono
++ load-module module-bluetooth-discover
+```
+
+```diff:/etc/pulse/default.pa
+- load-module module-bluetooth-policy auto_switch=2
++ load-module module-bluetooth-policy
+```
+
+```shell:Shell
+sudo systemctl stop ofono
+sudo systemctl disable ofono
+# or
+sudo apt -y purge ofono
+```
 
 ### 余談: PulseAudio をシステムワイドで起動する件について
 興味なければ読み飛ばしても問題ない。
