@@ -1,3 +1,4 @@
+articles/pulseaudio-bluetooth-quick-setup.md, 75fa078efe21bdb8cad2
 articles/rspec-rules-for-team.md, 71d7de462292dcf773ad
 articles/markdown-syntax.md, f084edfb0e81513a946e
 articles/diff-between-commands-instead-of-files.md, 8b07c804f20c32f6efa6
