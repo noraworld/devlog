@@ -152,6 +152,8 @@ sudo apt -y install pulseaudio pulseaudio-utils alsa-base alsa-utils bluetooth b
 # systemd-units の導入
 通常は手動で設定するものだが、筆者はめんどくさがりなので、GitHub リポジトリで管理しており、そこから設定を丸ごとインポートする。
 
+https://github.com/noraworld/systemd-units
+
 各サービスファイル内の `WorkingDirectory` は適宜変更する必要があるが、ユーザ名が `ubuntu` (デフォルト) で、ホームディレクトリ以下に `workspace` という名前のディレクトリを作り、その中で clone した場合は `WorkingDirectory` の変更は不要。
 
 ```shell
@@ -183,6 +185,8 @@ systemctl --user enable dummy-sound
 # bluetooth-conf の導入
 これも通常は手動で設定するが、リポジトリ管理なので、そこから設定を丸ごとインポートする。
 
+https://github.com/noraworld/bluetooth-conf
+
 ```shell
 git clone https://github.com/noraworld/bluetooth-conf.git
 cd bluetooth-conf
@@ -196,8 +200,11 @@ sudo systemctl enable bluetooth
 # pulse-conf の導入
 これも同じくリポジトリから設定を丸ごとインポートする。
 
+https://github.com/noraworld/pulse-conf
+
 ```shell
 git clone https://github.com/noraworld/pulse-conf.git
+cd pulse-conf
 sudo rm -r /etc/pulse
 sudo ln -s $PWD/pulse /etc/pulse
 systemctl --user enable pulseaudio
@@ -222,6 +229,8 @@ sudo reboot
 
 # bluetoothctl-autoconnector の導入
 Bluetooth 操作 (ペアリング等) を簡単に行うためのツールを導入する。
+
+https://github.com/noraworld/bluetoothctl-autoconnector
 
 ```shell
 git clone https://github.com/noraworld/bluetoothctl-autoconnector.git
