@@ -3,7 +3,7 @@ title: "Raspberry Pi を Bluetooth オーディオサーバにする最速セッ
 emoji: "💨"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["PulseAudio", "Bluetooth", "RaspberryPi"]
-published: false
+published: true
 order: 99
 layout: article
 ---
