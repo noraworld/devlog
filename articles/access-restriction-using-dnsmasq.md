@@ -325,6 +325,8 @@ PC の場合は、こんなことをしなくても、ブラウザのディベ�
 sudo tcpdump -n -i any dst port 53 and host <IP_ADDR>
 ```
 
+[超絶初心者むけtcpdumpの使い方](https://qiita.com/tossh/items/4cd33693965ef231bd2a)
+
 ## PC の場合
 上記の方法で PC からのパケットも捕捉できるのだが、一応 PC 単体でパケットを調べる方法についても紹介しておく。
 
@@ -333,8 +335,6 @@ PC の場合は、ブラウザのディベロッパーツールからパケッ�
 Google Chrome & Windows の場合は `F12` キー、Google Chrome & macOS の場合は `command` + `option` + `i` を押すことでディベロッパーツールを開くことができる。
 
 その後、ネットワークタブをクリックすれば、そのページでアクセスするすべてのパケットを監視することができる。
-
-[超絶初心者むけtcpdumpの使い方](https://qiita.com/tossh/items/4cd33693965ef231bd2a)
 
 ## Application Lookup
 もっと簡単な方法として、以下の便利なサイトを見つけたので紹介する。
