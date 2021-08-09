@@ -1,3 +1,4 @@
+articles/access-restriction-using-dnsmasq.md, 19140751e71221229d03
 articles/pulseaudio-bluetooth-quick-setup.md, 75fa078efe21bdb8cad2
 articles/rspec-rules-for-team.md, 71d7de462292dcf773ad
 articles/markdown-syntax.md, f084edfb0e81513a946e
