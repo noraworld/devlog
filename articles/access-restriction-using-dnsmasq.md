@@ -293,13 +293,14 @@ DHCP リースの更新は、各端末ごとで行うのだが、大抵の場合
 
 
 
-# TIPS: ブロックすべきドメインを捕捉する方法
+# TIPS: ブロックすべきドメインを調べる方法
 YouTube をブロックしたい場合に `youtube.com` を指定するのは誰でもわかると思うが、すでに YouTube を開いてしまっている場合はこれだけでは防げない。
 
 たとえば Fire TV などで YouTube アプリをすでに開いてしまっている場合は、`youtube.com` をブロックしていてもふつうにコンテンツ一覧や動画を読み込めてしまう。つまり、YouTube アプリを終了するまでは使えてしまう。
 
 これを解決するためには追加で `googlevideo.com` も対象に入れなければいけないのだが、この `googlevideo.com` をブロックすべきであるということをどうやって知るのかについて説明する。
 
+## PC 以外の場合
 Raspberry Pi 上で、以下のコマンドを実行しておく。
 
 ```shell:Shell
@@ -315,6 +316,38 @@ sudo tcpdump -n -i any dst port 53
 PC の場合は、こんなことをしなくても、ブラウザのディベロッパーツールを使えば良いのかもしれないが、iPhone や Fire TV のようにパケットを監視することができない端末からの何かしらのアクセスを遮断したい場合には重宝するだろう。
 
 [tcpdumpでパケットの確認](https://qiita.com/icebird009/items/b90df257fb1f7c8c9bdf#tcpdump%E3%81%A7%E3%83%91%E3%82%B1%E3%83%83%E3%83%88%E3%81%AE%E7%A2%BA%E8%AA%8D)
+
+ただし、上記のコマンドは、Raspberry Pi の DNS にアクセスしてきたすべての端末のパケットを拾ってしまう。
+
+特定の端末のみのパケットを拾いたい場合は、以下のようにその端末に割り振られた IP アドレスを指定する。
+
+```shell:Shell
+sudo tcpdump -n -i any dst port 53 and host <IP_ADDR>
+```
+
+## PC の場合
+上記の方法で PC からのパケットも捕捉できるのだが、一応 PC 単体でパケットを調べる方法についても紹介しておく。
+
+PC の場合は、ブラウザのディベロッパーツールからパケットを監視することができる。
+
+Google Chrome & Windows の場合は `F12` キー、Google Chrome & macOS の場合は `command` + `option` + `i` を押すことでディベロッパーツールを開くことができる。
+
+その後、ネットワークタブをクリックすれば、そのページでアクセスするすべてのパケットを監視することができる。
+
+[超絶初心者むけtcpdumpの使い方](https://qiita.com/tossh/items/4cd33693965ef231bd2a)
+
+## Application Lookup
+もっと簡単な方法として、以下の便利なサイトを見つけたので紹介する。
+
+[Application Lookup - Netify](https://www.netify.ai/resources/applications)
+
+このページにアクセスすると、いろいろなサービス一覧が表示されるはずだ。
+
+その中に、自分がブロックしたいサービスがあれば、詳細ページに飛ぶことでそのサービスの主要なドメインを知ることができる。
+
+たとえば YouTube の場合は、以下のページの `PRIMARY DOMAINS` を見ればブロックすべきドメインがわかる。
+
+[YouTube - Domains and App Information](https://www.netify.ai/resources/applications/youtube)
 
 
 
