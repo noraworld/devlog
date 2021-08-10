@@ -37,9 +37,17 @@ https://ja.developers.noraworld.blog/setup-ubuntu-on-raspberry-pi-without-keyboa
 # タイムゾーンの変更 (任意)
 最初は UTC になっているが、ログの時刻を JST にしたいので、タイムゾーンを変更する。
 
-```shell
+```shell:Shell
 sudo timedatectl set-timezone Asia/Tokyo
 ```
+
+cron の再起動も忘れずに。
+
+```shell:Shell
+sudo systemctl restart cron
+```
+
+https://ja.developers.noraworld.blog/cron-timezone
 
 
 
@@ -57,7 +65,7 @@ SSH のときに毎回パスワード入力するのは面倒なのと、一応�
 
 https://github.com/noraworld/ssh-conf
 
-```shell
+```shell:Shell
 git clone https://github.com/noraworld/ssh-conf.git
 cd ssh-conf
 sudo rm /etc/ssh/sshd_config
@@ -70,13 +78,13 @@ sudo ln -s $PWD/ssh/sshd_config.d /etc/ssh
 
 すでにローカルの `~/.ssh/config` に Raspberry Pi 用の設定があり、ポート番号も変えるのが面倒な場合は、そのポート番号を以下のコマンドで追加する。
 
-```shell
+```shell:Shell
 echo "Port <YOUR_PORT>" | tee -a $PWD/ssh/sshd_config.d/port.conf
 ```
 
 今回、新しくポート番号を設定する場合は、以下のコマンドで乱数を生成しつつ書き込むことができる。ただし以下のコマンドは短時間の間に何度も実行しないこと。
 
-```shell
+```shell:Shell
 echo "Port $(od -An -tu2 -N2 /dev/random | tr -d ' ')" | tee -a $PWD/ssh/sshd_config.d/port.conf
 ```
 
@@ -89,7 +97,7 @@ echo "Port $(od -An -tu2 -N2 /dev/random | tr -d ' ')" | tee -a $PWD/ssh/sshd_co
 
 次に、ファイアウォールの設定で先ほど設定した SSH 用のポートを開放する。
 
-```shell
+```shell:Shell
 sudo ufw enable
 sudo ufw default deny
 sudo ufw deny ssh
@@ -98,7 +106,7 @@ sudo ufw allow <YOUR_PORT>/tcp
 
 SSH とファイアウォールの設定を反映させる。
 
-```shell
+```shell:Shell
 sudo systemctl restart ssh
 sudo ufw reload
 ```
@@ -123,7 +131,7 @@ Raspberry Pi で使っていた以前のデータのバックアップがある�
 
 以下は筆者の dotfiles なので、適宜読み替えること。
 
-```shell
+```shell:Shell
 git clone https://github.com/noraworld/dotfiles.git
 cd dotfiles
 ./setup
@@ -143,7 +151,7 @@ https://ja.developers.noraworld.blog/ubuntu-reboot-auto-login
 
 
 # 必要なパッケージのインストール
-```shell
+```shell:Shell
 sudo apt -y install pulseaudio pulseaudio-utils alsa-base alsa-utils bluetooth bluez pulseaudio-module-bluetooth ofono
 ```
 
@@ -156,7 +164,7 @@ https://github.com/noraworld/systemd-units
 
 各サービスファイル内の `WorkingDirectory` は適宜変更する必要があるが、ユーザ名が `ubuntu` (デフォルト) で、ホームディレクトリ以下に `workspace` という名前のディレクトリを作り、その中で clone した場合は `WorkingDirectory` の変更は不要。
 
-```shell
+```shell:Shell
 whoami # ubuntu
 cd
 mkdir workspace
@@ -166,7 +174,7 @@ git clone https://github.com/noraworld/systemd-units.git
 
 各サービスファイルをリンクしてデーモンリロードする。
 
-```shell
+```shell:Shell
 cd systemd-units
 sudo systemctl link $PWD/lib/systemd/system/*
 systemctl --user link $PWD/lib/systemd/user/*
@@ -176,7 +184,7 @@ systemctl --user daemon-reload
 
 dummy-sound の自動起動設定をする。
 
-```shell
+```shell:Shell
 systemctl --user enable dummy-sound
 ```
 
@@ -187,7 +195,7 @@ systemctl --user enable dummy-sound
 
 https://github.com/noraworld/bluetooth-conf
 
-```shell
+```shell:Shell
 git clone https://github.com/noraworld/bluetooth-conf.git
 cd bluetooth-conf
 sudo rm -r /etc/bluetooth
@@ -202,7 +210,7 @@ sudo systemctl enable bluetooth
 
 https://github.com/noraworld/pulse-conf
 
-```shell
+```shell:Shell
 git clone https://github.com/noraworld/pulse-conf.git
 cd pulse-conf
 sudo rm -r /etc/pulse
@@ -214,14 +222,14 @@ sudo gpasswd -a $(whoami) pulse-access
 
 `pulse/default.pa` 内の音声出力先 (`set-default-sink`) と音声入力元 (`set-default-source`) は、以下のコマンドで調べて適宜変更すること。
 
-```shell
+```shell:Shell
 pactl list sinks short | awk '{ print $2 }'
 ```
 
 
 
 # 再起動
-```shell
+```shell:Shell
 sudo reboot
 ```
 
@@ -232,7 +240,7 @@ Bluetooth 操作 (ペアリング等) を簡単に行うためのツールを導
 
 https://github.com/noraworld/bluetoothctl-autoconnector
 
-```shell
+```shell:Shell
 git clone https://github.com/noraworld/bluetoothctl-autoconnector.git
 cd bluetoothctl-autoconnector
 ./setup.sh
@@ -253,7 +261,7 @@ XX:XX:XX:XX:XX:XX KJ-43X8500F
 
 デバイスをペアリングするには、以下のようなコマンドを実行する。
 
-```shell
+```shell:Shell
 marlin register MacBook\ Pro\ 15
 ```
 
