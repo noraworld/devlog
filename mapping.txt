@@ -1,3 +1,4 @@
+articles/sql-dump-and-restore-with-rails-console.md, bc0de846553c7b002688
 articles/cron-timezone.md, 16754d5a08f99760c515
 articles/access-restriction-using-dnsmasq.md, 19140751e71221229d03
 articles/pulseaudio-bluetooth-quick-setup.md, 75fa078efe21bdb8cad2
