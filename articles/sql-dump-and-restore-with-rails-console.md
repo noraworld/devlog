@@ -29,6 +29,7 @@ Rails Console 内で以下の Ruby を実行する。
 environment = Rails.env
 configuration = ActiveRecord::Base.configurations[environment]
 cmd = "mysqldump -u #{configuration['username']} -p#{configuration['password']} -h #{configuration['host']} -P #{configuration['port']} #{configuration['database']} > db/#{Date.today}.dump"
+exec cmd
 ```
 
 Rails アプリケーションのルートディレクトリ内に `db/2021-08-18.dump` のようなダンプファイルが生成される。
@@ -50,6 +51,7 @@ Rails Console 内で以下の Ruby を実行する。
 environment = Rails.env
 configuration = ActiveRecord::Base.configurations[environment]
 cmd = "mysql -u #{configuration['username']} -p#{configuration['password']} -h #{configuration['host']} -P #{configuration['port']} #{configuration['database']} < db/#{Date.today}.dump"
+exec cmd
 ```
 
 これで開発用サーバのデータをローカルで使えるようになった。
