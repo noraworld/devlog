@@ -1,3 +1,4 @@
+articles/scrum-story-points.md, 6cac97263785de49c19c
 articles/sql-dump-and-restore-with-rails-console.md, bc0de846553c7b002688
 articles/cron-timezone.md, 16754d5a08f99760c515
 articles/access-restriction-using-dnsmasq.md, 19140751e71221229d03
