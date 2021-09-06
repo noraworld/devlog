@@ -86,7 +86,7 @@ erb = ERB.new <<~'HEADER'
   layout: post
   title: "<%= @options[:title] %>"
   image: "<%= @options[:image] %>"
-  date: "<%= time %>"
+  date: "<%= Time.now.strftime('%Y-%m-%d') %>"
   tags:
   <% @options[:tags]&.each do |tag| %>
   - <%= tag %>
