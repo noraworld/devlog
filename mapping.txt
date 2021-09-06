@@ -1,3 +1,4 @@
+articles/here-document-condition-loop.md, 8397927fbb7102e59d47
 articles/scrum-story-points.md, 6cac97263785de49c19c
 articles/sql-dump-and-restore-with-rails-console.md, bc0de846553c7b002688
 articles/cron-timezone.md, 16754d5a08f99760c515
