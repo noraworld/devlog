@@ -331,6 +331,15 @@ sudo systemctl restart radvd.service
 
 
 
+# radvd の自動起動を有効化
+radvd はデフォルトでは自動起動が有効になっていないので、有効にする。
+
+```shell:Shell
+sudo systemctl enable radvd.service
+```
+
+
+
 # IPv6 テスト
 本当に IPv6 でのインターネット接続ができているのかをテストする。以下の 3 つのサイトにアクセスして、IPv6 が有効になっていることを確認する。
 
