@@ -107,7 +107,7 @@ end
 # 使い方
 [目標](#目標) の項で提示した `InclusionInArrayValidator` のテストを以下に示す。
 
-```ruby
+```ruby:spec/validators/inclusion_in_array_validator_spec.rb
 # frozen_string_literal: true
 
 require 'rails_helper'
@@ -191,7 +191,10 @@ validates :attribute, inclusion_in_array: { in: (1..47) }
 これらを明示的に指定したい場合は、以下のようにする。
 
 ```ruby
-let(:mock) { build_validator_mock(attribute: :prefecture, validator: :inclusion_in_array, options: { in: (1..47) }).new(prefecture: [1, 13, 27, 47]) }
+let(:mock) do
+  build_validator_mock(attribute: :prefecture, validator: :inclusion_in_array, options: { in: (1..47) }).
+                   new(prefecture: [1, 13, 27, 47])
+end
 ```
 
 `attribute` の値を `:prefecture` に変えたので、`attribute: [1, 13, 27, 47]` の部分が `prefecture: [1, 13, 27, 47]` になったことに注意すること。
@@ -303,3 +306,17 @@ new(sub_category: [1], main_category: [6])
 ```
 
 のようにした場合、メインカテゴリ「ゲーム」と、メインカテゴリ「ゲーム」に属さない (メインカテゴリ「アニメ」に属する) サブカテゴリ「ほのぼの」が指定されているため、異常系となる。
+
+
+
+
+
+# 参考サイト
+* カスタムバリデータのテストの書き方について
+    * [【Rails】まだValidatorのテストで消耗してるの？](https://qiita.com/izumin5210/items/a7036093c25c42f2298d)
+    * [Rails の Custom Validator をテストする](https://blog.kotamiyake.me/tech/test-custom-validator-on-rails/)
+    * [RailsでCustom validatorをテストする](https://r7kamura.com/articles/2014-09-12-q)
+* RSpec 用のモジュールの置き場所と読み込み方について
+    * [RSpecコトハジメ ~初期設定マニュアル~](https://qiita.com/naoki_mochizuki/items/1d3026a32786642fc762)
+* Struct の文法について
+    * [Class: Struct (Ruby 2.7.0)](https://ruby-doc.org/core-2.7.0/Struct.html#:~:text=If%20the%20optional%20keyword_init%20keyword%20argument%20is%20set%20to%20true%2C%20.new%20takes%20keyword%20arguments%20instead%20of%20normal%20arguments.)
