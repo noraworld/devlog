@@ -50,7 +50,7 @@ validates :prefecture, inclusion_in_array: { in: (1..47) }
 
 いくつかのカスタムバリデータを実装している場合は、それぞれに全く同じダミーモデル生成の処理を書くのは DRY ではない。
 
-そこで、CustomValidatorHelper というヘルパーを作り、そこにダミーモデルを生成する処理を書く。
+そこで、`CustomValidatorHelper` というヘルパーを作り、そこにダミーモデルを生成する処理を書く。
 
 `spec/support/helper/custom_validator_helper.rb` というファイルを生成し、以下のコードを書く。
 
@@ -87,7 +87,7 @@ end
 
 
 # CustomValidatorHelper をロード
-CustomValidatorHelper を用意しただけでは、各 spec ファイルで読み込んでくれない。そのため、全 spec 内で CustomValidatorHelper が自動的に読み込まれるようにする。
+`CustomValidatorHelper` を用意しただけでは、各 spec ファイルで読み込んでくれない。そのため、全 spec 内で `CustomValidatorHelper` が自動的に読み込まれるようにする。
 
 `spec/rails_helper.rb` に以下のコードを追加する。
 
@@ -176,7 +176,7 @@ let(:mock) { build_validator_mock(options: options).new(attribute: value) }
 let(:mock) { build_validator_mock(options: { in: (1..47) }).new(attribute: [1, 13, 27, 47]) }
 ```
 
-先ほど作成した CustomValidatorHelper の `build_validator_mock` メソッドを呼び出している。
+先ほど作成した `CustomValidatorHelper` の `build_validator_mock` メソッドを呼び出している。
 
 このメソッドを呼び出すことにより、アプリケーション内で以下のようにバリデータを呼び出したことになる。
 
@@ -211,7 +211,7 @@ validates :prefecture, inclusion_in_array: { in: (1..47) }
 
 また、呼び出すバリデータの名称に関しても、`RSpec.describe InclusionInArrayValidator, type: :model do ... end` のように書いたら、ふつうは `inclusion_in_array` で呼び出すはずなので、こちらも省略して構わない。
 
-## options を省略した場合
+## `options` を省略した場合
 なお、`options: { in: (1..47) }` の部分を省略して、
 
 ```ruby
@@ -224,7 +224,7 @@ let(:mock) { build_validator_mock.new(attribute: [1, 13, 27, 47]) }
 validates :prefecture, inclusion_in_array: true
 ```
 
-`options` を省略すると、代わりに `true` が入る。ここに指定するとして、`true` が来ることが多い印象なので、省略時は `true` が入るように CustomValidatorHelper で実装している。
+`options` を省略すると、代わりに `true` が入る。ここに指定する値として、よく `true` が来ることが多い印象なので、省略時は `true` が入るように `CustomValidatorHelper` で実装している。
 
 ## 他の属性 (カラム) と依存関係のあるカスタムバリデータをテストしたい場合
 今までの説明 (都道府県 ID) のように、1 つの属性単体で完結する場合はこれで十分だろう。しかし、他の属性と依存関係がある場合はどのように書けば良いだろうか。
@@ -283,26 +283,26 @@ end
 ```ruby
 let(:mock) do
   build_validator_mock(attribute: :sub_category, record: :main_category).
-                   new(sub_category: [1, 2], main_category: [3, 6])
+                   new(sub_category: [3, 6], main_category: [1, 2])
 end
 ```
 
 `build_validator_mock` を呼び出す際の引数として、`record: :main_category` というものを追加する。
 
-そして、`attribute` と `record` に指定したそれぞれのキーを使って、`new(sub_category: [1, 2], main_category: [3, 6])` のようにインスタンスを生成する。
+そして、`attribute` と `record` に指定したそれぞれのキーを使って、`new(sub_category: [3, 6], main_category: [1, 2])` のようにインスタンスを生成する。
 
-これにより、バリデータ内で、`value` には、`attribute` として指定した `sub_category` の値 (`[1, 2]`) が入り、`record.main_category` には、`record` として指定した `main_category` の値 (`[3, 6]`) が入ることになる。
+これにより、バリデータ内で、`value` には、`attribute` として指定した `sub_category` の値 (`[3, 6]`) が入り、`record.main_category` には、`record` として指定した `main_category` の値 (`[1, 2]`) が入ることになる。
 
 ちなみに、上記のサブカテゴリ ID は、`※ 1` のリストによれば、メインカテゴリ ID に属しているので、正常系となる。
 
 ```ruby
-new(sub_category: [1, 2], main_category: [3, 6])
+new(sub_category: [3, 6], main_category: [1, 2])
 ```
 
 の部分を、たとえば
 
 ```ruby
-new(sub_category: [1], main_category: [6])
+new(sub_category: [6], main_category: [1])
 ```
 
 のようにした場合、メインカテゴリ「ゲーム」と、メインカテゴリ「ゲーム」に属さない (メインカテゴリ「アニメ」に属する) サブカテゴリ「ほのぼの」が指定されているため、異常系となる。
