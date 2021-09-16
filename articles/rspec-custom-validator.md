@@ -55,6 +55,8 @@ validates :prefecture, inclusion_in_array: { in: (1..47) }
 `spec/support/helper/custom_validator_helper.rb` というファイルを生成し、以下のコードを書く。
 
 ```ruby:spec/support/helper/custom_validator_helper.rb
+# frozen_string_literal: true
+
 # カスタムバリデータを簡単にテストできるようにするためのモジュール
 module CustomValidatorHelper
   def build_validator_mock(attribute: nil, record: nil, validator: nil, options: nil)
@@ -91,8 +93,8 @@ CustomValidatorHelper を用意しただけでは、各 spec ファイルで読�
 
 ```ruby:spec/rails_helper.rb
 RSpec.configure do |config|
-  Dir[Rails.root.join("spec/support/config/*.rb")].each { |f| require f }
-  Dir[Rails.root.join("spec/support/helper/*.rb")].each { |f| require f }
+  Dir[Rails.root.join('spec/support/config/*.rb')].each { |f| require f }
+  Dir[Rails.root.join('spec/support/helper/*.rb')].each { |f| require f }
 end
 ```
 
@@ -108,10 +110,10 @@ end
 ```ruby
 # frozen_string_literal: true
 
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe InclusionInArrayValidator, type: :model do
-  describe "#validate_each" do
+  describe '#validate_each' do
     # valid? または invalid? を呼び出さないとエラーメッセージが取得できないので
     before do
       mock.valid?
@@ -120,40 +122,40 @@ RSpec.describe InclusionInArrayValidator, type: :model do
     let(:mock) { build_validator_mock(options: options).new(attribute: value) }
 
     # 例として都道府県を想定 (1 〜 47 まで)
-    context "正常な場合" do
-      context "範囲内の整数を複数指定した場合" do
+    context '正常な場合' do
+      context '範囲内の整数を複数指定した場合' do
         let(:value)   { [1, 13, 27, 47] }
         let(:options) { { in: (1..47) } }
 
-        specify "バリデーションを通過すること" do
+        specify 'バリデーションを通過すること' do
           expect(mock).to be_valid
         end
       end
     end
 
-    context "異常な場合" do
-      context "0 を指定した場合" do
+    context '異常な場合' do
+      context '0 を指定した場合' do
         let(:value)   { [0] }
         let(:options) { { in: (1..47) } }
 
-        specify "バリデーションを通過しないこと" do
+        specify 'バリデーションを通過しないこと' do
           expect(mock).to be_invalid
         end
 
-        specify "エラーメッセージが表示されること" do
+        specify 'エラーメッセージが表示されること' do
           expect(mock.errors.added?(:attribute, :inclusion_in_array)).to be_truthy
         end
       end
 
-      context "負の数を指定した場合" do
+      context '負の数を指定した場合' do
         let(:value)   { [-5] }
         let(:options) { { in: (1..47) } }
 
-        specify "バリデーションを通過しないこと" do
+        specify 'バリデーションを通過しないこと' do
           expect(mock).to be_invalid
         end
 
-        specify "エラーメッセージが表示されること" do
+        specify 'エラーメッセージが表示されること' do
           expect(mock.errors.added?(:attribute, :inclusion_in_array)).to be_truthy
         end
       end
