@@ -1,3 +1,4 @@
+articles/rspec-custom-validator.md, a96bbf0776759d91811a
 articles/custom-dns-and-dhcp-with-dnsmasq.md, a1edf94116888ced689e
 articles/ipv6-addresses-representation-and-type.md, 882fb4502153c8484d45
 articles/here-document-condition-loop.md, 8397927fbb7102e59d47
