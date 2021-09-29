@@ -2,8 +2,8 @@
 title: "AquesTalk Pi を Ubuntu 20 で動作させるのは不可能らしい"
 emoji: "🍓"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: []
-published: false
+topics: ["RaspberryPi", "Ubuntu", "arm64", "AArch64", "AquesTalk"]
+published: true
 order: 110
 layout: article
 ---
@@ -11,7 +11,7 @@ layout: article
 # タイトルの曖昧さ回避
 タイトルは、簡潔にするために多少端折っているが、正確にはこうだ。
 
-**CPU アーキテクチャが 64-bit の Raspberry Pi に、64-bit 版の Ubuntu 20 以上のバージョンをインストールして、AquesTalk を動作させることは、実質、現状不可能である。**
+**CPU アーキテクチャが 64-bit の Raspberry Pi に、64-bit 版の Ubuntu 20 以上のバージョンをインストールして、AquesTalk を動作させることは、現状、実質不可能である。**
 
 ## CPU アーキテクチャが 64-bit
 現状では [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) のことを指す。いわゆる arm64 のことだ。
@@ -63,7 +63,7 @@ AquesTalk にはいくつかの種類がある。
 このうち、AquesTalk1、AquesTalk2、AquesTalk10 は Windows や macOS、Linux などクロスプラットフォームに対応したものとなっており、AquesTalk Pi は Raspberry Pi 用にビルドされたものとなっている。
 
 ### AquesTalk Pi
-Raspberry Pi で動作させたいのだから、まずは AquesTalk Pi をインストールして試してみる。
+Raspberry Pi で動作させたいのだから、まずは AquesTalk Pi をダウンロードして試してみる。
 
 使用方法は簡単だ。公式サイトからバイナリをダウンロードしてきて実行するだけだ。
 
@@ -84,11 +84,11 @@ zsh: no such file or directory: ./AquesTalkPi
 
 指定しているパスやファイル名は間違っていない (補完も正しく効いている) のに、なぜか上記のエラーが出る。
 
-これは非常にわかりにくいが、実はファイルが見つからないということではないらしい。64-bit 版のコンピュータで 32-bit 版のバイナリを実行すると、上記のエラーになるらしい。
+これは非常にわかりにくいが、実はファイルが見つからないということではないらしい。64-bit 版の OS で 32-bit 版のバイナリを実行すると、上記のエラーになるらしい。
 
 参考: [Linuxでファイルを実行したら「No such file or directory」と言われた時には？](https://qiita.com/charon/items/2c83be19ef93b48f7a53)
 
-ファイルの形式を見てみると、たしかに 32-bit バイナリであることがわかる。
+ファイルの形式を見てみると、たしかに 32-bit 版のバイナリであることがわかる。
 
 ```shell:Shell
 file AquesTalkPi
@@ -98,7 +98,7 @@ file AquesTalkPi
 AquesTalkPi: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 3.2.0, BuildID[sha1]=0124bfc7a6c4ada0c0229c1ce5956dc52e3335dd, stripped
 ```
 
-そして、先述した通り、Raspberry Pi 4 Model B は arm64 なので、64-bit 版である。
+そして、先述した通り、Raspberry Pi 4 Model B は arm64 で、64-bit 版の Ubuntu をインストールしている。
 
 ```shell:Shell
 dpkg --print-architecture
@@ -108,14 +108,14 @@ dpkg --print-architecture
 arm64
 ```
 
-つまり、64-bit 版コンピュータで、32-bit 版のバイナリを実行していたのでエラーになっていた、というわけだ。
+つまり、64-bit 版の OS で、32-bit 版のバイナリを実行していたのでエラーになっていた、というわけだ。
 
 余談だが、`no such file or directory` というエラーはさすがにひどいと思う。完全に初心者泣かせだ。
 
 ともあれ、これで AquesTalk Pi がこのままでは実行できないということがわかった。
 
-####
-次に、64-bit 版コンピュータで 32-bit 版バイナリを実行する方法について調査した。
+#### 64-bit 版で 32-bit 版バイナリを実行したい
+次に、64-bit 版の OS で 32-bit 版バイナリを実行する方法について調査した。
 
 すると、いくつかの参考になる記事が出てきた。
 
@@ -124,7 +124,7 @@ arm64
 
 他にも記事は見つかったが、基本的にはどれも同じ解決方法について述べられていた。
 
-しかし、どの方法を試してみても、パッケージを参照元 URL が Not Found だったり、パッケージが見つからないというエラーになってしまう。
+しかし、どの方法を試してみても、パッケージ参照元 URL が Not Found だったり、パッケージが見つからないというエラーになってしまう。
 
 どうやら、これらの記事は昔の Ubuntu (Debian ベースの OS) ではできたらしいのだが、今は 32-bit 版を実行するためのパッケージが提供を終了しているようだ。
 
@@ -132,7 +132,7 @@ arm64
 
 昔はまだ 32-bit コンピュータがそこそこ主流だったため、32-bit と 64-bit どちらでも動かせるようにパッケージが提供されていたのだが、今は 64-bit コンピュータがかなり普及してきたので、今後は 32-bit のサポートの提供を終了していく方針なのだろう。
 
-というわけで、Raspberry Pi 4 Model B に Ubuntu 20 以降の OS をインストールした場合は、残念ながら AquesTalk Pi は実行できないという結論に至った。
+というわけで、Raspberry Pi 4 Model B に 64-bit 版の Ubuntu 20 以降の OS をインストールした場合は、残念ながら AquesTalk Pi は実行できないという結論に至った。
 
 仮に現時点で実行できる方法があったとしても、それも近い将来でまた使えなくなってしまう可能性が高い。
 
@@ -192,9 +192,9 @@ objdump -a /usr/lib/libdmmp.so.0.2.0
 /usr/lib/libdmmp.so.0.2.0
 ```
 
-ファイルフォーマットが違うので、何やら怪しい雰囲気が漂っているのだが、このレイヤーの技術に関して筆者はあまり詳しくないので、もう少し深ぼってみる。
+ファイルフォーマットが違うので、何やら怪しい雰囲気が漂っているのだが、このレイヤーの技術に関して筆者はあまり詳しくないので、もう少し深堀りしてみる。
 
-`readelf` コマンドを使用するとより詳しいバイナリの情報が出てくるらしい。
+`readelf` コマンドを使用すると、より詳しいバイナリの情報が出てくるらしい。
 
 参考: [アーキテクチャ不明のELFバイナリ調査 ではreadelfを使う](https://qiita.com/thetsuthetsu/items/02d50347cf5eb4cb7ffa)
 
@@ -271,11 +271,23 @@ ELF Header:
 # 結論
 ということで、まとめると以下のようになる。
 
-* AquesTalk Pi は 32-bit 版の Raspberry Pi でのみ動作する
-* Ubuntu 20 以降では、基本的に 64-bit 版のコンピュータで 32-bit 版のバイナリを実行することはできない
+* AquesTalk Pi は 32-bit 版でのみ動作する
+* Ubuntu 20 以降では、基本的に 64-bit 版で 32-bit 版のバイナリを実行することはできない
 * AquesTalk1, AquesTalk2, AquesTalk10 は x86_64 アーキテクチャのコンピュータでのみ動作する
-* **結果として、arm64 アーキテクチャの Raspberry Pi 4 Model B に Ubuntu 20.04.3 をインストールして AquesTalk を利用することは現状できない**
+* **結果として、arm64 アーキテクチャの Raspberry Pi 4 Model B に 64-bit 版の Ubuntu 20.04.3 をインストールして AquesTalk を利用することは現状できない**
 
-もちろんこれはあくまで現時点での話なので、今後、アクエスト社が 64-bit 版に対応した AquesTalk Pi を提供してくれれば、あるいは AquesTalk10 等が ARM アーキテクチャをサポートしてくれれば利用できるようになる。しかし現状ではこれらは提供されていないため、筆者の環境のように Ubuntu 20.04.3 をインストールした Raspberry Pi 4 Model B では残念ながら動作させることができないようだ。
+もちろんこれはあくまで現時点での話なので、今後、アクエスト社が 64-bit 版に対応した AquesTalk Pi を提供してくれれば、あるいは AquesTalk10 等が ARM アーキテクチャをサポートしてくれれば利用できるようになる。
+
+しかし現状ではこれらは提供されていないため、筆者の環境のように 64-bit 版 Ubuntu 20.04.3 をインストールした Raspberry Pi 4 Model B では残念ながら動作させることができないようだ。
+
+かといって、AquesTalk を動作させるためだけに、現状 64-bit 版で動作させている Raspberry Pi に、敢えて 32-bit 版の OS をインストールして運用したいとは思わない。筆者の自宅の Raspberry Pi は、DNS サーバ & DHCP サーバ & Bluetooth オーディオサーバという重要な役割を担っているのだ。
+
+というわけで、AquesTalk を使うのは諦めることにした。
 
 繰り返しになるが、筆者の調査不足なだけで、現実的に動作させる方法があるのかもしれない。もしその方法をご存知の方がいたらご教授いただけるとありがたい。
+
+
+
+
+# 謝辞
+今回の件に関しては、アクエスト社に問い合わせを行い、AquesTalk Pi が 32-bit 版のみの提供であること、AquesTalk10 等が x86_64 のみをサポートしていることなどを丁寧にご教授いただきました。対応していただいた株式会社アクエストの担当の方に、この場を借りてお礼を申し上げます。
