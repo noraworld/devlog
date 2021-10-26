@@ -48,6 +48,13 @@ exclude:
   - .gitignore
   - README.md
   - mapping.txt
+  - package.json
+  - package-lock.json
+  - .ruby-version
+  - .rubocop.yml
+  - CNAME
+  - articles/
+  - bin/
 
 
 # Articles info published at GitHub Pages
