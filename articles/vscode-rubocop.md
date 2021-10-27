@@ -27,11 +27,11 @@ RuboCop のルールに従っていない箇所に波線が表示され、そこ
 * ファイルを保存してから結果が反映されるまでに若干時間がかかる
 * ファイルを開いた直後は実行されないときもある
     * ファイルを開いたあと、変更を加え保存してからでないと効かないときがある
-    * 効くときもあるのでよくわからない
+    * ファイルを開いただけで効くときもあるのでよくわからない
 * プロジェクトディレクトリのルートに `.rubocop.yml` が必要
     * デフォルトのルールを適用させたい場合でも `.rubocop.yml` が必要となる
     * プロジェクトで管理されていない簡素な Ruby スクリプトなどに適用することはできない
-* VS Code 上での自動修正はできない
+* VS Code 上での自動修正 (`--auto-correct`) はできない
 * Metrics 系の警告は、クラスやモジュール、メソッドの全行に波線が入るので見づらくなる
     * 筆者は Metrics 系の警告の波線表示は無効にしている (詳しくは後述)
 
@@ -42,6 +42,11 @@ RuboCop のルールに従っていない箇所に波線が表示され、そこ
 
 複数の Ruby / Rails プロジェクトを持っていて、それぞれが異なる Ruby のバージョンだったりすると全く使えなくなってしまうので、しばらくの間、この機能を使っていなかった。
 
+これに関して issue を投稿したりもしたのだが、3 ヶ月経っても音沙汰なかった。
+
+[ruby-rubocop does not pick the proper Ruby and RuboCop versions #155](https://github.com/misogi/vscode-ruby-rubocop/issues/155)
+
+### 別の拡張機能を発見
 しかし、もともとインストールしていた [Ruby](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby) という定番の拡張機能に、同等の機能があることを知った。単に設定を正しくしていなかっただけだった。
 
 [vscode-ruby/docs at 330dcd2af212a336eba791ac0bd185f1c78042d7 · rubyide/vscode-ruby](https://github.com/rubyide/vscode-ruby/tree/330dcd2af212a336eba791ac0bd185f1c78042d7/docs)
