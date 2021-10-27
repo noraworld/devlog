@@ -224,7 +224,7 @@ v12.16.1
 ```
 
 # グローバルにインストールしたコマンドを使用する
-`npm install -g <PACKAGE_NAME>` や `gem install <PACKAGE_NAME` などでインストールしたパッケージに、コマンドが提供されているものがある。
+`npm install -g <PACKAGE_NAME>` や `gem install <PACKAGE_NAME>` などでインストールしたパッケージに、コマンドが提供されているものがある。
 
 それらのコマンドを使用するためには、再読み込みをする必要がある。
 
