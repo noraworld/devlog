@@ -1,3 +1,4 @@
+articles/chrome-extensions-cors.md, 77880402a3dc84c72e2c
 articles/replace-anyenv-with-asdf.md, 3cdfc3089a59c1414b1f
 articles/vscode-rubocop.md, 3e5179d2ec3313b25c20
 articles/rails-concerns-decorators-form-objects-helpers.md, 
