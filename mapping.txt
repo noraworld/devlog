@@ -1,3 +1,4 @@
+articles/codecov-simplecov-circleci.md, 91499067078581a3be6e
 articles/github-pages-dependency-versions.md, f0da9ecb608476fe3a02
 articles/chrome-extensions-cors.md, 77880402a3dc84c72e2c
 articles/replace-anyenv-with-asdf.md, 3cdfc3089a59c1414b1f
