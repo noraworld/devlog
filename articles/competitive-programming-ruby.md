@@ -3,7 +3,7 @@ title: "Ruby で競技プログラミング (AtCoder) をやっているとき�
 emoji: "💎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Ruby", "AtCoder"]
-published: false
+published: true
 order: 118
 layout: article
 ---
