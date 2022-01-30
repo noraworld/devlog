@@ -38,7 +38,7 @@ Ruby で配列のループを回すときは [`Array#each`](https://docs.ruby-la
 
 ところが、競技プログラミングをやっている最中に限っては、トリッキーな位置の要素を指定することが多いため、`Array#each` のような、順番に要素のみを参照するメソッドではなく `for` 文や [`Integer#upto`](https://docs.ruby-lang.org/ja/latest/method/Integer/i/upto.html) などを利用する頻度のほうが高かったりする。
 
-たとえば、[AtCoder Beginner Contest 237 の C 問題の解説](https://atcoder.jp/contests/abc237/editorial/3338) の 30 〜 35 行目[^2]を見てみる。
+たとえば、[AtCoder Beginner Contest 237 の C 問題の解説](https://atcoder.jp/contests/abc237/editorial/3338) (C++) の 30 〜 35 行目[^2]を見てみる。
 
 [^2]: 2022 年 1 月 31 日現在。
 
@@ -53,7 +53,16 @@ Ruby で配列のループを回すときは [`Array#each`](https://docs.ruby-la
 
 ループの開始が `x` で、終了が `(n - y)` というトリッキーな指定となっている。さらにその中の `if` の条件式で、`a[x + n - y - i - 1]` という、かなり複雑な添字の指定になっている。
 
-これと同等のことを `Array#each` を使って表現するのはなかなか難しいだろう。もちろん添字を使うときのために `Array#each_with_index` というメソッドも存在するが、結局、添字しか使わないし、ループの開始と終了が 0 〜 N のように単純ではないので、ここでは筆者は `Integer#upto` を使いたくなるところだ。
+これと同等のことを `Array#each` を使って表現するのはなかなか難しいだろう。もちろん添字を使うときのために `Array#each_with_index` というメソッドも存在するが、結局、添字しか使わないし、ループの開始と終了が 0 〜 N のように単純ではないので、ここでは筆者は以下のように `Integer#upto` を使いたくなるところだ。
+
+```ruby
+x.upto(n - y - 1) do |i|
+  if word[i] != word[x + n - y - i - 1]
+    puts 'No'
+    exit
+  end
+end
+```
 
 ちなみにこの項目を書くにあたって、改めて Ruby のループの書き方についておさらいしたのだが、Ruby にはこんなにループの書き方があるのかと驚かされた。
 
