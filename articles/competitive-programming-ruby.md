@@ -38,17 +38,17 @@ Ruby で配列のループを回すときは [`Array#each`](https://docs.ruby-la
 
 ところが、競技プログラミングをやっている最中に限っては、トリッキーな位置の要素を指定することが多いため、`Array#each` のような、順番に要素のみを参照するメソッドではなく `for` 文や [`Integer#upto`](https://docs.ruby-lang.org/ja/latest/method/Integer/i/upto.html) などを利用する頻度のほうが高かったりする。
 
-たとえば、[AtCoder Beginner Contest 237 の C 問題の解説](https://atcoder.jp/contests/abc237/editorial/3338) (C++) の 30 〜 35 行目[^2]を見てみる。
+たとえば、[AtCoder Beginner Contest 237 の C 問題の解説](https://atcoder.jp/contests/abc237/editorial/3338) (C++) の 30 〜 35 行目[^2]を見てみる。都合によりインデントを一段回上げている。
 
 [^2]: 2022 年 1 月 31 日現在。
 
 ```cpp
-	for (int i = x; i < (n - y); i++) {
-		if (a[i] != a[x + n - y - i - 1]) {
-			cout << "No" << endl;
-			return 0;
-		}
+for (int i = x; i < (n - y); i++) {
+	if (a[i] != a[x + n - y - i - 1]) {
+		cout << "No" << endl;
+		return 0;
 	}
+}
 ```
 
 ループの開始が `x` で、終了が `(n - y)` というトリッキーな指定となっている。さらにその中の `if` の条件式で、`a[x + n - y - i - 1]` という、かなり複雑な添字の指定になっている。
@@ -69,6 +69,39 @@ end
 [【Ruby入門】ループ処理まとめ（for・times・while・each・upto・downto・step・loop）](https://www.sejuku.net/blog/14955)
 
 業務で使用するのはやはり専ら `Array#each` くらいだ。
+
+## `Range#each` で代用できてしまうことが判明
+記事を書き終わったあとに RuboCop にかけてみて気づいたのだが、添字をレシーバにして [`Range#each`](https://docs.ruby-lang.org/ja/latest/method/Range/i/each.html) を使用すれば意外にこれだけでもいけてしまうということがわかった。
+
+たとえば、上記の `Integer#upto` を用いたコードを `Range#each` に書き換えると以下のようになる。
+
+```ruby
+(x..(n - y - 1)).each do |i|
+  if word[i] != word[x + n - y - i - 1]
+    puts 'No'
+    exit
+  end
+end
+```
+
+他にも、`for` を使った以下のような書き方も `Range#each` が使えそうだ。
+
+```ruby
+arr = %w[apple banana orange]
+n = arr.length
+
+# for
+for i in 0...n
+  puts arr[i]
+end
+
+# Range#each
+(0...n).each do |i|
+  puts arr[i]
+end
+```
+
+`for` を `Range#each` に書き換えるのはまだ自然だが、`Integer#upto` を `Range#each` に書き換えるとカッコの数が増えて若干複雑になるから個人的には `Integer#upto` を使うかな。
 
 
 
@@ -118,7 +151,6 @@ main
 def main
   n = gets.to_i
   s = gets.chomp
-  a = [0]
   l = []
   r = []
 
@@ -160,9 +192,9 @@ main
 #!/usr/bin/env ruby
 
 def main
-  h, w = gets.split.map(&:to_i)
+  h, _w = gets.split.map(&:to_i)
   a = []
-  for i in 0...h
+  h.times do
     a << gets.split.map(&:to_i)
   end
 
