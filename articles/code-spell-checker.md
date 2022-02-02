@@ -35,14 +35,13 @@ VS Code のメジャーな拡張機能で、英単語の誤植を波線で指摘
 
 
 # 単語帳の作り方について
-さて、この拡張機能、とても便利ではあるのだが、単語の追加方法や追加場所が若干わかりづらい。
+以下の 2 通りの追加方法がある
 
-コマンドパレット経由やファイルに直接記述して単語を追加することができるのだが、どのファイルにどのように追加されるのか (コマンドパレットの場合)、また、どのファイルにどのように追加すれば良いのか (ファイルに直接記述する場合) が、若干わかりづらかった。
+* コマンドパレットで追加
+* 設定ファイルに直接記述して追加
 
-この記事ではそれらについて解説する。
-
-## コマンドパレット経由
-コマンドパレット (`shift` + `cmd` + `P`) を押すとコマンドパレットが起動する。入力欄に `add words to` まで入力すると、以下の 8 つの項目が候補として表示される。
+## コマンドパレット
+`shift` + `cmd` + `P` を押すとコマンドパレットが起動する。入力欄に `add words to` まで入力すると、以下の 8 つの項目が候補として表示される。
 
 * Add Words to CSpell Configuration
 * Add Words to Dictionary
@@ -53,99 +52,152 @@ VS Code のメジャーな拡張機能で、英単語の誤植を波線で指摘
 * Add Words to Workspace Settings
 * Add Words to Workspace Dictionary
 
-これらのどれを選んでも単語は登録されるのだが、どのファイルに登録されるのか、またその単語帳の適用範囲はどこまでなのかを説明する。
+これらのどれを選んでも単語は登録されるが、どのファイルに追加されるのか、またその単語帳の適用範囲はどこまでなのかについては [グループ分け](#グループ分け) 以降で後述する。
 
-なお、8 項目あるが、実際には全く同じ挙動をする項目があり、グループ分けすると 4 種類である。そのため、その 4 グループごとに説明することにする。
+なお、8 項目あるが、実際には全く同じ挙動をする項目があり、同じ挙動のものはまとめて紹介する。同じ挙動のものはどれを使っても良い。
 
-### グループ 1 (未検証)
-#### 該当するコマンド名
-* Add Words to CSpell Configuration
+`Add Words to CSpell Configuration` だけは、筆者の環境では `No matching configuration found.` というエラーが出て登録できなかった。そのため未検証。
 
-これは筆者の環境では `No matching configuration found.` というエラーが出て登録できなかった。そのため未検証。
+## 設定ファイル
+主に `settings.json` または `cspell.json` を編集することにより設定することができる。それぞれの特徴は以下の通り。
+
+* `settings.json`
+    * VS Code 全般の設定ファイル
+    * ネームスペースに `cSpell` が必要 ([グループ分け](#グループ分け) 以降の記述例参照)
+* `cspell.json`
+    * Code Spell Checker のみの設定ファイル
+    * ネームスペースに `cSpell` は不要 ([グループ分け](#グループ分け) 以降の記述例参照)
+    * `settings.json` に記述すると単語帳の部分が肥大化するので単語帳を別ファイルに分けたいときにおすすめ
+    * `<PROJECT_ROOT>/.vscode/settings.json` に、そのプロジェクトでのみ適用される VS Code の設定をしている人がチームメンバー内にいる場合におすすめ (プロジェクトのディレクトリ以下で管理する場合)
+
+## グループ分け
+単語を追加するファイルの場所や、コマンドパレット経由での追加方法はいくつもあるのだが、分類すると以下の 3 つに分けられる。
+
+* User
+* Folder
+* Workspace
+
+それぞれのグループごとに、適用範囲、コマンドパレットでのコマンド名、保存先ファイル名、記述例を説明する。コマンドパレット経由の場合、複数ファイルがあるうちの、「コマンドパレット経由」の列に「○」がついている行のファイルに単語が追加される。
+
+### User
+#### 適用範囲
+VS Code 全体
+
+#### コマンドパレットでのコマンド名
+* Add Words to User Settings
+* Add Words to User Dictionary
+
+#### 保存先ファイル名
+
+| 保存先ファイル名 | コマンドパレット経由 |
+| --- | --- |
+| `$HOME/Library/Application\ Support/Code/User/settings.json` | ○ |
+| `$HOME/.vscode/cspell.json` | |
+
+#### 記述例
+```json:settings.json
+{
+    "cSpell.userWords": [
+        "dotfiles"
+    ]
+}
+```
+
+```json:cspell.json
+{
+    "userWords": [
+        "dotfiles"
+    ]
+}
+```
+
+#### 備考
+`$HOME/.vscode/cspell.json` は実態ファイルでないと正しく動作しないことを確認している。バグなのか仕様なのかは不明。
+
+`$HOME/Library/Application\ Support/Code/User/settings.json` のほうはシンボリックリンクでも問題なく動作することを確認済み。
+
+##### シンボリックリンクの場合
+ファイルを変更してもすぐに反映されない。リンクを削除して、もう一度、リンクを作成すると反映される。正直これでは使い物にならない。
+
+##### ハードリンクの場合
+そもそも設定が反映されない。
 
 
 
-### グループ 2 (Folder)
-#### 該当するコマンド名
+
+### Folder
+#### 適用範囲
+そのプロジェクトのディレクトリ以下のみ
+
+#### コマンドパレットでのコマンド名
 * Add Words to Dictionary
 * Add Words to Folder Settings
 * Add Words to Folder Dictionary
 
-#### 保存先ファイル名と適用範囲
-| 保存先ファイル名 | 適用範囲 |
+#### 保存先ファイル名
+
+| 保存先ファイル名 | コマンドパレット経由 |
 | --- | --- |
-| `<PROJECT_ROOT>/.vscode/settings.json` | そのプロジェクトのディレクトリ以下のみ |
+| `<PROJECT_ROOT>/.vscode/settings.json` | ○ |
+| `<PROJECT_ROOT>/.vscode/cspell.json` | |
+| `<PROJECT_ROOT>/cspell.json` | |
+
+#### 記述例
+```json:settings.json
+{
+    "cSpell.words": [
+        "dotfiles"
+    ]
+}
+```
+
+```json:cspell.json
+{
+    "words": [
+        "dotfiles"
+    ]
+}
+```
 
 #### 備考
-そのプロジェクトの `.gitignore` で `.vscode/` を追加している場合は、各人が自由に単語を登録しても問題ない。
+`.gitignore` に追加しない限りは、そのプロジェクトで管理することになる。
 
-逆にそのプロジェクトのチームメンバー全員で単語帳を共有したい場合は `.gitignore` から削除する。ただし、単語を追加するたびに差分が発生してしまい、そのためだけに `git commit` して `git push` して PR を作成して承認をもらってマージする、という手順を踏むのは少々手間かもしれない。
-
-
-
-### グループ 3 (User)
-#### 該当するコマンド名
-* Add Words to User Settings
-* Add Words to User Dictionary
-
-#### 保存先ファイル名と適用範囲
-| 保存先ファイル名 | 適用範囲 |
-| --- | --- |
-| `$HOME/Library/Application\ Support/Code/User/settings.json` | VS Code 全体 |
+メリットは、チームメンバー全員でそのプロジェクト固有の単語を共有できること。デメリットは、単語を追加するたびに差分が発生してしまい、そのためだけに `git commit` して `git push` して PR を作成して承認をもらってマージする、という手順が発生すること。
 
 
 
-### グループ 4 (Workspace) (非推奨)
-#### 該当するコマンド名
+
+# Workspace (非推奨)
+#### 適用範囲
+ワークスペース全体
+
+厳密には異なるが、ワークスペースはウィンドウのことだと思って良い。VS Code のウィンドウを 2 つ開いている場合は 2 つのワークスペースがあることになる。そのうちのどちらかのみに適用することができる。
+
+#### コマンドパレットでのコマンド名
 * Add Words to Workspace Settings
 * Add Words to Workspace Dictionary
 
-#### 保存先ファイル名と適用範囲
-| 保存先ファイル名 | 適用範囲 |
+#### 保存先ファイル名
+
+| 保存先ファイル名 | コマンドパレット経由 |
 | --- | --- |
-| `$HOME/Library/Application\ Support/Code/Workspaces/<RANDOM_VALUE>/workspace.json` | ワークスペース全体 |
+| `$HOME/Library/Application\ Support/Code/Workspaces/<WORKSPACE_ID>/workspace.json` | ○ |
+
+#### 記述例
+```json:workspace.json
+{
+    "cSpell.words": [
+        "dotfiles"
+    ]
+}
+```
 
 #### 備考
-`<RANDOM_VALUE>` は `1625624235245` のような値で、複数のワークスペースを識別する VS Code 内部の値のようだ。
+`<WORKSPACE_ID>` は `1625624235245` のような値で、複数のワークスペースを識別する VS Code 内部の値のようだ。
 
-ここに保存されると `dotfiles` リポジトリやプロジェクトリポジトリで管理するのが難しいのでおすすめしない。また、どこに保存されたのかがわかりづらいため、現状の単語帳を把握するのも難しい。実際、筆者もこのファイルを探すのにホームディレクトリ以下を登録した単語で grep したが、探すのにとても苦労した。
+ここに保存されると dotfiles リポジトリやプロジェクトリポジトリで管理するのが難しいのでおすすめしない。また、どこに保存されたのかがわかりづらいため、現状の単語帳を把握するのも難しい。実際、筆者もこのファイルを探すのに、ホームディレクトリ以下を、登録した単語で grep したが、探すのにとても苦労した。
 
-
-
-## ファイルに直接記述
-基本的には、前述した [コマンドパレット経由](#コマンドパレット経由) の保存先ファイル名と適用範囲を見て、どこに記述すれば良いのかを決めれば良い。
-
-ただし、`settings.json` のほかに、`cspell.json` というファイルも有効である。`settings.json` は VS Code 全般の設定であるのに対し、`cspell.json` は Code Spell Checker のみの設定である。
-
-たとえば、単語帳をプロジェクトのチームメンバー全員で共有したいから、`<PROJECT_ROOT>/.vscode/settings.json` を Git 管理対象としたいが、人によってはここに Code Spell Checker 以外の、プロジェクト固有の VS Code の設定を入れている可能性がある。
-
-つまり、`<PROJECT_ROOT>/.vscode/settings.json` を Git 管理対象としてしまうと、良くも悪くもチーム全体で、そのプロジェクト固有の VS Code の設定を一律にしなければならなくなってしまう。もちろんユーザ設定に追加しているものなら問題ないが、そのプロジェクトでだけ適用したい VS Code の設定というのもあるだろう。
-
-そこで使えるのが `cspell.json` である。`settings.json` と同じディレクトリにこのファイルを置いておき、ここには Code Spell Checker のみの設定を記述する。
-
-注意点として、ネームスペースが両者で若干異なるということだ。以下は `<PROJECT_ROOT>/.vscode/settings.json` に `dotfiles` という単語を追加した場合の設定である。
-
-```json:.vscode/settings.json
-{
-  "cSpell.words": [
-    "dotfiles"
-  ]
-}
-```
-
-これを `cspell.json` で管理する場合は、`cSpell` を取り除く必要がある。
-
-```json:.vscode/cspell.json
-{
-  "words": [
-    "dotfiles"
-  ]
-}
-```
-
-ちなみに、プロジェクトディレクトリ直下に置いても良いらしい。つまり、`<PROJECT_ROOT>/.vscode/cspell.json` ではなく `<PROJECT_ROOT>/cspell.json` でも良い。こちらであれば `.gitignore` から外す必要もなくて便利かもしれない。
-
-また、VS Code 全体で適用する場合、つまり `$HOME/.vscode/cspell.json` に記述する場合も同様に `cSpell` を取り除く必要がある。`$HOME/.vscode/cspell.json` に置く場合はプロジェクトとは無関係のため `settings.json` と分けるメリットはあまりないかもしれないが、単語登録だけで `settings.json` を埋め尽くしたくない場合に便利だろう。
+そもそも `<WORKSPACE_ID>` からワークスペースを特定するのも難しいため、ファイルを手動で書き換えるようなものではない。
 
 
 
