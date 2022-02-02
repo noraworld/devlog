@@ -90,7 +90,7 @@ VS Code 全体
 #### 保存先ファイル名
 
 | 保存先ファイル名 | コマンドパレット経由 |
-| --- | --- |
+| --- | :---: |
 | `$HOME/Library/Application\ Support/Code/User/settings.json` | ○ |
 | `$HOME/.vscode/cspell.json` | |
 
@@ -137,7 +137,7 @@ VS Code 全体
 #### 保存先ファイル名
 
 | 保存先ファイル名 | コマンドパレット経由 |
-| --- | --- |
+| --- | :---: |
 | `<PROJECT_ROOT>/.vscode/settings.json` | ○ |
 | `<PROJECT_ROOT>/.vscode/cspell.json` | |
 | `<PROJECT_ROOT>/cspell.json` | |
@@ -180,7 +180,7 @@ VS Code 全体
 #### 保存先ファイル名
 
 | 保存先ファイル名 | コマンドパレット経由 |
-| --- | --- |
+| --- | :---: |
 | `$HOME/Library/Application\ Support/Code/Workspaces/<WORKSPACE_ID>/workspace.json` | ○ |
 
 #### 記述例
