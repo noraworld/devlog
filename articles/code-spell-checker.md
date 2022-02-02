@@ -145,6 +145,8 @@ VS Code のメジャーな拡張機能で、英単語の誤植を波線で指摘
 
 ちなみに、プロジェクトディレクトリ直下に置いても良いらしい。つまり、`<PROJECT_ROOT>/.vscode/cspell.json` ではなく `<PROJECT_ROOT>/cspell.json` でも良い。こちらであれば `.gitignore` から外す必要もなくて便利かもしれない。
 
+また、VS Code 全体で適用する場合、つまり `$HOME/.vscode/cspell.json` に記述する場合も同様に `cSpell` を取り除く必要がある。`$HOME/.vscode/cspell.json` に置く場合はプロジェクトとは無関係のため `settings.json` と分けるメリットはあまりないかもしれないが、単語登録だけで `settings.json` を埋め尽くしたくない場合に便利だろう。
+
 
 
 
