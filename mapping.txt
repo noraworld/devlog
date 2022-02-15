@@ -1,3 +1,4 @@
+articles/cherry-pick-operation.md, 24650366aff6d80b5186
 articles/gh-pr-commits.md, 6a5a361cf01494579616
 articles/code-spell-checker.md, 
 articles/competitive-programming-ruby.md, 060cce87719cad85b0db
