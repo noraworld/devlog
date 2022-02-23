@@ -45,7 +45,7 @@ layout: article
 # インストール方法
 [zcat](https://command-not-found.com/zcat) がインストールされていない場合は、事前にインストールする。
 
-インストーラを使ってインストールすることができる。
+[インストーラ](https://github.com/noraworld/aquestalk-installer) を使ってインストールすることができる。
 
 ```shell
 wget -qO- https://raw.githubusercontent.com/noraworld/aquestalk-installer/master/bin/pi | sh
