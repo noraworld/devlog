@@ -8,6 +8,11 @@ order: 110
 layout: article
 ---
 
+# 重要
+**この記事の内容は古く、現在は AquesTalk Pi を Ubuntu 20 で動作させるのは『可能』である。そのため、この記事を読む必要はない。インストール方法や使い方については新しく記事を執筆したためそちらを参照すること。**
+
+[AquesTalk Pi (ゆっくりボイス、棒読みちゃん) が Raspberry Pi 4 でも動作するようになったぞ！！](https://zenn.dev/noraworld/articles/aquestalk-pi-version-1-20-ubuntu20-arm64)
+
 # タイトルの曖昧さ回避
 タイトルは、簡潔にするために多少端折っているが、正確にはこうだ。
 
