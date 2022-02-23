@@ -43,52 +43,37 @@ layout: article
 
 
 # インストール方法
-公式サイトのダウンロードページからアーカイブファイルをダウンロードして解凍するだけなのでとても簡単だ。
+[zcat](https://command-not-found.com/zcat) がインストールされていない場合は、事前にインストールする。
+
+インストーラを使ってインストールすることができる。
 
 ```shell
-wget https://www.a-quest.com/archive/package/aquestalkpi-20220207.tgz -O aquestalkpi.tgz
-zcat aquestalkpi.tgz | tar xv
-cd aquestalkpi
-mv AquesTalkPi AquesTalkPi32
-mv bin64/AquesTalkPi AquesTalkPi
-rmdir bin64 # 任意
+wget -qO- https://raw.githubusercontent.com/noraworld/aquestalk-installer/master/bin/pi | sh
 ```
 
-## ダウンロードリンクについて注意点
-ダウンロード URL の `20220207` の部分は、新しいバージョンが公開された場合に変更する必要がある。
+インストール後、カレントディレクトリに `aquestalkpi` というディレクトリがあるはずだ。
 
-もし上記の URL でダウンロードできなかった場合は [ダウンロードページ](https://www.a-quest.com/products/aquestalkpi.html) のダウンロードボタンから URL を調べて置き換えること。
-
-## 64-bit 版の使用方法についての詳細
-`aquestalkpi` ディレクトリ直下にもともとある `AquesTalkPi` は 32-bit 版バイナリなので 64-bit 版では動作しない。実行しようとすると `no such file or directory` というエラーが表示されるはず[^1]。
-
-[^1]: 実行できないバイナリを実行しようとしたときのエラーメッセージが `no such file or directory` なの、本当にややこしいから変更してほしい……。
-
-`bin64/AquesTalkPi` が 64-bit 版バイナリなのでこちらを利用する。ただし、`bin64` ディレクトリにあると、同ディレクトリに辞書がないためエラーになる。そのため、一度 `AquesTalkPi` (32-bit 版) を `AquesTalkPi32` とリネームして、`bin64/AquesTalkPi` (64-bit 版) を同じ名前で上のディレクトリに移動させる。
-
-これで 64-bit 版バイナリが利用できるようになる。
-
-## zcat がインストールされていない場合
-Ubuntu Server の場合は最初からインストールされているはずだが、もしインストールされていなかった場合は以下のコマンドを実行する。
-
-```shell
-sudo apt -y install gzip
-```
-
-Ubuntu 以外の OS に関しては [command-not-found.com &ndash; zcat](https://command-not-found.com/zcat) を参照すること。
 
 
 
 
 # 使い方
-使い方も簡単だ。`AquesTalkPi` の実行結果を aplay (wave 音声を再生するコマンド) に渡すだけで良い。
+[aplay](https://command-not-found.com/aplay) がインストールされていない場合は、事前にインストールする。
+
+そして `aquestalkpi` ディレクトリに移動しておく。
+
+```shell
+cd aquestalkpi
+```
+
+使い方は簡単だ。`AquesTalkPi` の実行結果を aplay (wave 音声を再生するコマンド) に渡すだけで良い。
 
 ```shell
 ./AquesTalkPi 漢字も読めます。 | aplay
 ```
 
 ```shell
-echo ゆっくりしていってね？ | ./AquesTalkPi -b -f -  | aplay
+echo ゆっくりしていってね？ | ./AquesTalkPi -b -f - | aplay
 ```
 
 ファイルに wave ファイルとして出力して、あとからそれを再生することもできる。
@@ -103,15 +88,6 @@ aplay out.wav
 ```shell
 ./AquesTalkPi -h
 ```
-
-## aplay がインストールされていない場合
-Ubuntu の場合は以下のコマンドを実行する。
-
-```shell
-sudo apt -y install alsa-utils
-```
-
-Ubuntu 以外の OS に関しては [command-not-found.com &ndash; aplay](https://command-not-found.com/aplay) を参照すること。
 
 
 
