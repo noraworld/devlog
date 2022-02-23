@@ -54,6 +54,12 @@ mv bin64/AquesTalkPi AquesTalkPi
 rmdir bin64 # 任意
 ```
 
+## ダウンロードリンクについて注意点
+ダウンロード URL の `20220207` の部分は、新しいバージョンが公開された場合に変更する必要がある。
+
+もし上記の URL でダウンロードできなかった場合は [ダウンロードページ](https://www.a-quest.com/products/aquestalkpi.html) のダウンロードボタンから URL を調べて置き換えること。
+
+## 64-bit 版の使用方法についての詳細
 `aquestalkpi` ディレクトリ直下にもともとある `AquesTalkPi` は 32-bit 版バイナリなので 64-bit 版では動作しない。実行しようとすると `no such file or directory` というエラーが表示されるはず[^1]。
 
 [^1]: 実行できないバイナリを実行しようとしたときのエラーメッセージが `no such file or directory` なの、本当にややこしいから変更してほしい……。
