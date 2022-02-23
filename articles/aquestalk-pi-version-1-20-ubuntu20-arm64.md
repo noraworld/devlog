@@ -46,8 +46,8 @@ layout: article
 公式サイトのダウンロードページからアーカイブファイルをダウンロードして解凍するだけなのでとても簡単だ。
 
 ```shell
-wget https://www.a-quest.com/archive/package/aquestalkpi-20220207.tgz
-zcat aquestalkpi-20220207.tgz | tar xv
+wget https://www.a-quest.com/archive/package/aquestalkpi-20220207.tgz -O aquestalkpi.tgz
+zcat aquestalkpi.tgz | tar xv
 cd aquestalkpi
 mv AquesTalkPi AquesTalkPi32
 mv bin64/AquesTalkPi AquesTalkPi
