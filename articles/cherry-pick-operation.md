@@ -3,7 +3,7 @@ title: "cherry-pick 運用の地獄から這い上がった話をしよう"
 emoji: "💩"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["DevOps", "Git", "GitHub", "GitFlow", "DX"]
-published: false
+published: false # Fix "Fixme" before turning into true
 order: 121
 layout: article
 ---
@@ -17,22 +17,212 @@ layout: article
 
 
 
-#
+# Fixme
 筆者が参加しているプロジェクトでは、ブランチの運用が cherry-pick で行われていた。Git Flow でも GitHub Flow でもない。言うなれば、Cherry-pick Flow である。
 
-## Cherry-pick Flow とは何か
-Git Flow なら、本番リリースする際に `develop` ブランチからリリースブランチを切り、それを `master` にマージする。そして、その際のマージコミットやホットフィックスを `develop` に逆輸入すれば、基本的に `develop` ブランチが Fast-forward な状態となる。
+## Git Flow について
+Git Flow なら、本番リリースする際にまず `develop` ブランチからリリースブランチを切る。
+
+```mermaid
+flowchart LR
+    subgraph branch[ ]
+        direction TB
+
+        subgraph develop
+            d1[A] --> d2[B] --> d3[C]
+        end
+
+        subgraph release
+            r1[A] --> r2[B] --> r3[C]
+        end
+    end
+
+    develop --> release
+```
+
+それを `master` にマージする。
+
+```mermaid
+flowchart LR
+    subgraph branch[ ]
+        direction LR
+
+        subgraph release
+            r1[A] --> r2[B] --> r3[C]
+        end
+
+        subgraph master
+            m1[A] --> m2[B] --> m3[C] -.-> M1
+        end
+
+        r3 --> M1
+    end
+```
+
+そして、`master` へのマージ後のマージコミット (M1) を `develop` に逆輸入すれば、基本的に `develop` ブランチが Fast-forward な状態となる。
+
+```mermaid
+flowchart LR
+    subgraph branch[ ]
+        direction LR
+
+        subgraph develop
+            d1[A] --> d2[B] --> d3[C] -.-> d4[M1] -.-> d5[M2]
+        end
+
+        subgraph master
+            m1[A] --> m2[B] --> m3[C] --> m4[M1]
+        end
+
+        m4 --> d5
+    end
+```
+
+ホットフィックスの場合も同様である。
+
+```mermaid
+flowchart LR
+    subgraph branch[ ]
+        direction LR
+
+        subgraph develop
+            d1[A] --> d2[B] --> d3[C] -.-> d4[D] -.-> d5[E] -.-> d6[M1] -.-> d7[M2]
+        end
+
+        subgraph master
+            m1[A] --> m2[B] --> m3[C] -.-> m4[D] -.-> m5[E] -.-> m6[M1]
+        end
+
+        subgraph hotfix
+            h1[D] --> h2[E]
+        end
+
+        %% master -> develop
+        m6 --> d7
+
+        %% hotfix -> master
+        m3 --> h1
+        h2 --> m6
+    end
+```
 
 コミットの取りこぼしなど起きるわけがないし、リリース作業自体もやることが明確でわかりやすい。
 
+## Cherry-pick Flow とは何か
 では Cherry-pick Flow だとどうなるか。
 
 本番リリースする際に **`master` ブランチからリリースブランチを切る**。 `develop` からではない。
 
-そして `develop` ブランチの中から、**今回リリースしたいコミットだけを cherry-pick してリリースブランチに取り込む**。それを `master` にマージする。
+```mermaid
+flowchart LR
+    subgraph branch[ ]
+        direction TB
+
+        subgraph master
+            d1[A] --> d2[B] --> d3[C]
+        end
+
+        subgraph release
+            r1[A] --> r2[B] --> r3[C]
+        end
+    end
+
+    master --> release
+```
+
+そして `develop` ブランチの中から、**今回リリースしたいコミットだけを cherry-pick してリリースブランチに取り込む**。
+
+```mermaid
+flowchart LR
+    subgraph branch[ ]
+        direction LR
+
+        subgraph develop
+            direction LR
+            d1[A] --> d2[B] --> d3[C] --> d4[D] --> d5[E] --> d6[F] --> d7[G]
+        end
+
+        subgraph release
+            direction LR
+            r1[A] --> r2[B] --> r3[C] --> r4[E] --> r5[G]
+        end
+
+        d5 -.-> |cherry-pick| r4
+        d7 -.-> |cherry-pick| r5
+    end
+```
+
+上図の例では、コミット `E` とコミット `G` のみをリリースしたいため、それらを cherry-pick している。コミット `D` やコミット `F` はリリースされない。
+
+それを `master` にマージする。
+
+```mermaid
+flowchart LR
+    subgraph branch[ ]
+        direction LR
+
+        subgraph master
+            direction LR
+            m1[A] --> m2[B] --> m3[C] -.-> m4[E] -.-> m5[G] -.-> m6[M]
+        end
+
+        subgraph release
+            direction LR
+            r1[A] --> r2[B] --> r3[C] --> r4[E] --> r5[G]
+        end
+
+        r5 --> m6
+    end
+```
+
+最終的に以下のようになる。
+
+```mermaid
+flowchart LR
+    subgraph branch[ ]
+        direction LR
+
+        subgraph develop
+            direction LR
+            d1[A] --> d2[B] --> d3[C] --> d4[D] --> d5[E] --> d6[F] --> d7[G]
+        end
+
+        subgraph master
+            direction LR
+            m1[A] --> m2[B] --> m3[C] --> m4[E] --> m5[G] --> m6[M]
+        end
+    end
+```
+
+`master` には `D` と `F` がないし、`develop` にも `M` がない。
+
+`M` はマージコミットなので、これだけならまだ `master` に取り込まれていない機能がある、だけで済む。
+
+しかし、実際にはこうなっている。
+
+```mermaid
+flowchart LR
+    subgraph branch[ ]
+        direction LR
+
+        subgraph develop
+            direction LR
+            d1[A] --> d2[B] --> d3[C] --> d4[D] --> d5[E] --> d6[F] --> d7[G]
+        end
+
+        subgraph master
+            direction LR
+            m1[A] --> m2[B] --> m3[C] --> m4[E] --> m5[G] --> m6[M] --> m7[H]
+        end
+    end
+```
+
+`H` が `master` にのみ存在する。これは本番環境でのみ反映させたい内容である。本来なら環境変数などで処理を分けるべきところを、ブランチでコードを分けている。本当に地獄である……。
+
+これに関しては「[本番環境と異なるコードを追うのが非常に困難になる](#本番環境と異なるコードを追うのが非常に困難になる)」の項目で詳しく解説する。
 
 ## なぜこのようなフローになったか
-筆者もプロジェクトの最初からいたわけではない上に、初期メンバーも今は一人もいないので詳細はわからないが、`develop` ブランチを、いわゆるフィーチャーブランチのように使ってしまったことが発端らしい。
+筆者もプロジェクトの最初からいたわけではない上に、初期メンバーも今は一人もいないので詳細はわからないが、`develop` ブランチを、いわゆる `feature` ブランチのように使ってしまったことが発端らしい。
 
 Git Flow なら、`develop` ブランチにあるものは、次のリリース時にすべて本番、つまり `master` ブランチに取り込まれる。だから、**`develop` に取り込まれたものは、いつでも本番リリースしても良いような状態になっている必要がある**。
 
@@ -147,4 +337,6 @@ end
 
 つまり、コード内で条件分岐するのではなく、ブランチで出し分けていたというわけだ。しかもスクリプト内のトラッキング ID もハードコードされていたため、本番環境でのみ存在する環境変数というものもなく、これに気がつけなければ謎のままだった。
 
-本番環境と動作が異なる部分の原因を追うのが難しくなるというだけではなく、該当するコードを変更してリリース際に、もれなくコンフリクトがついてまわる。どこに潜んでいるのかもわからない `master` と `develop` 間の差分によるコンフリクトに当たる様子は、まるで地雷を踏まないように気をつけながら外を歩くかのような恐怖がある。
+本番環境と動作が異なる部分の原因を追うのが難しくなるというだけではなく、該当するコードを変更してリリースする際に、もれなくコンフリクトがついてまわる。
+
+どこに潜んでいるのかもわからない `master` と `develop` 間の差分によるコンフリクトに当たる様子は、まるで地雷を踏まないように気をつけながら外を歩くかのような恐怖がある。
