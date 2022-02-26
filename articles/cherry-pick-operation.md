@@ -3,7 +3,7 @@ title: "cherry-pick 運用の地獄から這い上がった話をしよう"
 emoji: "💩"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["DevOps", "Git", "GitHub", "GitFlow", "DX"]
-published: false # Fix "Fixme" before turning into true
+published: false # Fix "TBD" before turning into true
 order: 121
 layout: article
 ---
@@ -17,7 +17,7 @@ layout: article
 
 
 
-# Fixme
+# TBD
 筆者が参加しているプロジェクトでは、ブランチの運用が cherry-pick で行われていた。Git Flow でも GitHub Flow でもない。言うなれば、Cherry-pick Flow である。
 
 ## Git Flow について
@@ -340,3 +340,119 @@ end
 本番環境と動作が異なる部分の原因を追うのが難しくなるというだけではなく、該当するコードを変更してリリースする際に、もれなくコンフリクトがついてまわる。
 
 どこに潜んでいるのかもわからない `master` と `develop` 間の差分によるコンフリクトに当たる様子は、まるで地雷を踏まないように気をつけながら外を歩くかのような恐怖がある。
+
+
+
+
+
+# TBD
+では、この運用を廃止するために行った作業を具体的に紹介する。
+
+## 用語解説
+### `origin`
+今まで開発を進めていた、もともとあるリモートリポジトリを指す。本家のリポジトリ。
+
+### `tmp`
+今回の cherry-pick 廃止作業用の一時的なリモートリポジトリを指す。作業開始前は 0 コミットの産まれたてほやほやのリポジトリ。
+
+## 登場するオブジェクト
+登場するオブジェクトは以下の 4 つ。
+
+* `origin` の `master`
+* `origin` の `develop`
+* `tmp` の `master`
+* `tmp` の `develop`
+
+## 作業フロー
+一連の流れは以下の通り[^3]。
+
+[^3]: なお、ここで解説する一連の流れは、後に登場する図中の作業番号と合わせるために一部の作業が省略されている。省略されている部分に関しては、さらに後で詳しく説明する。
+
+1. `tmp` を新しく作成する
+2. `origin` の `master` を **コミット履歴を保持せずに** `tmp` の `master` にコピーする
+3. `origin` の `develop` を **コミット履歴を保持せずに** `tmp` の `develop` にコピーする
+4. `tmp` の `develop` と `tmp` の `master` 間の差分を埋めて `tmp` の `master` に上書きする
+5. `tmp` の `master` の内容を `origin` の `master` にコピーする
+6. `tmp` の `master` の内容を `origin` の `develop` にコピーする
+7. `origin` の `develop` を `origin` の `master` にマージする
+8. `origin` の `master` を `origin` の `develop` にマージバックする
+
+```mermaid
+flowchart
+    subgraph repository[ ]
+        subgraph origin
+            origin_master[master]
+            origin_develop[develop]
+        end
+
+        subgraph tmp
+            tmp_master[master]
+            tmp_develop[develop]
+        end
+
+        origin_master --> |2| tmp_master
+        origin_develop --> |3| tmp_develop
+    end
+```
+
+```mermaid
+flowchart
+    subgraph repository[ ]
+        direction TB
+
+        subgraph origin
+            direction LR
+            origin_master[master]
+            origin_develop[develop]
+        end
+
+        subgraph tmp
+            direction BT
+            tmp_master[master]
+            tmp_develop[develop]
+        end
+
+        tmp_develop --> |4| tmp_master
+    end
+```
+
+```mermaid
+flowchart
+    subgraph repository[ ]
+        direction RL
+
+        subgraph origin
+            origin_master[master]
+            origin_develop[develop]
+        end
+
+        subgraph tmp
+            tmp_master[master]
+            tmp_develop[develop]
+        end
+
+        tmp_master --> |5| origin_master
+        tmp_master --> |6| origin_develop
+    end
+```
+
+```mermaid
+flowchart
+    subgraph repository[ ]
+        direction TB
+
+        subgraph origin
+            direction TB
+            origin_master[master]
+            origin_develop[develop]
+        end
+
+        subgraph tmp
+            tmp_master[master]
+            tmp_develop[develop]
+        end
+
+        origin_develop --> |7| origin_master
+        origin_master --> |8| origin_develop
+    end
+```
