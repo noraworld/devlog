@@ -1,5 +1,5 @@
 ---
-title: "Mermaid のフローチャートで同名のオブジェクトを複数作成する方法"
+title: "Mermaid のフローチャートで同じ名前のオブジェクトを複数作成する方法"
 emoji: "🧜‍♀️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Mermaid", "Flowchart", "Diagram", "Markdown", "JavaScript"]
