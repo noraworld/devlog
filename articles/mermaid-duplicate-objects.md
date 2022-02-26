@@ -24,7 +24,8 @@ A --- B         E --- F
 ```
 flowchart LR
     A --- B --- C --- D --- E --- F
-          B --- C --- D --- E
+    B --- C
+    D --- E
 ```
 
 しかし、これだと以下のように出力されてしまう。
@@ -32,7 +33,8 @@ flowchart LR
 ```mermaid
 flowchart LR
     A --- B --- C --- D --- E --- F
-          B --- C --- D --- E
+    B --- C
+    D --- E
 ```
 
 以下のように書いた場合も同じ出力になる。
@@ -40,20 +42,22 @@ flowchart LR
 ```
 flowchart LR
     A --- B
-    B --- C & C
+    B --- C
+    B --- C
     C --- D
-    C --- D
-    D & D --- E
+    D --- E
+    D --- E
     E --- F
 ```
 
 ```mermaid
 flowchart LR
     A --- B
-    B --- C & C
+    B --- C
+    B --- C
     C --- D
-    C --- D
-    D & D --- E
+    D --- E
+    D --- E
     E --- F
 ```
 
