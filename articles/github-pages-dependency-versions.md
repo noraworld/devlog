@@ -599,6 +599,7 @@ Jekyll で使われているテンプレートエンジン。Jekyll 内でバン
 
 HTML ファイル内で <!-- {% raw %} -->`{{ code }}`<!-- {% endraw %} --> や <!-- {% raw %} -->`{% code %}`<!-- {% endraw %} --> のように書くことで、条件分岐をしたりループを回したり Jekyll の変数を参照したりすることができる。
 <!-- raw と endraw で囲まないと Jekyll 内では Liquid のテンプレートとみなされてエラーになってしまう。いっぽうで Qiita や Zenn では、raw と endraw がそのまま表示されてしまうので HTML のコメントにしている。 -->
+<!-- https://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags#answer-13582517 -->
 
 
 
