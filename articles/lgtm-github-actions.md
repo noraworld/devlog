@@ -3,7 +3,7 @@ title: "【チーム団欒ノスヽメ】GitHub のコメントに自動で LGTM
 emoji: "⭐️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["GitHub", "GitHub Actions", "LGTM"]
-published: false
+published: true
 order: 128
 layout: article
 ---
