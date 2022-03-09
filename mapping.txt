@@ -1,3 +1,4 @@
+articles/heroku-rails-mysql.md, 09dac6e4340b85e35be4
 articles/rails-command-hangs.md, 5f0f0a9bba2ec1dfab67
 articles/lgtm-github-actions.md, 
 articles/heroku-pipeline-app-name.md, c6c2a1e5e1c2f253101c
