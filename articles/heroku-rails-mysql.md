@@ -31,7 +31,7 @@ Heroku で MySQL を使用する際には、JawsDB または ClearDB のいず�
 
 アドオンは、リポジトリルートに `app.json` という名前でファイルを作り、そこに以下のような JSON を追加することで Heroku 上で使用することができる。
 
-## JawsDB の場合
+### JawsDB の場合
 ```json:app.json
 {
   "addons": [
@@ -40,7 +40,7 @@ Heroku で MySQL を使用する際には、JawsDB または ClearDB のいず�
 }
 ```
 
-## ClearDB の場合
+### ClearDB の場合
 ```json:app.json
 {
   "addons": [
