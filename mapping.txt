@@ -1,3 +1,4 @@
+articles/heroku-postdeploy-runs-only-once.md, 1c57bd07cf0eb8ae807e
 articles/heroku-rails-mysql.md, 09dac6e4340b85e35be4
 articles/rails-command-hangs.md, 5f0f0a9bba2ec1dfab67
 articles/lgtm-github-actions.md, 
