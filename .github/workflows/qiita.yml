@@ -3,8 +3,6 @@ name: "GitHub to Qiita"
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   qiita:
