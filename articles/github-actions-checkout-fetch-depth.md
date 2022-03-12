@@ -3,7 +3,7 @@ title: "GitHub Actions で Git の操作 (前のコミット ID 取得など) �
 emoji: "🐱"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["GitHub Actions", "GitHub", "Git"]
-published: false
+published: true
 order: 131
 layout: article
 ---
