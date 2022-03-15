@@ -2,7 +2,7 @@
 title: "GitHub Actions には環境変数にバグがある！"
 emoji: "🐞"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["GitHub Actions", "GitHub", "env"]
+topics: ["GitHubActions", "GitHub", "env"]
 published: true
 order: 132
 layout: article
