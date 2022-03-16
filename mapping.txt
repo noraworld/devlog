@@ -125,3 +125,4 @@ articles/pushd-is-more-useful-than-cd.md, 81c12253d22b7575151a
 articles/history-grep.md, afcb7a3dab2208d95537
 articles/chrome-extensions-and-themes-path.md, e602c27763c9a9c4e13f
 articles/github-actions-metadata-side-commands.md, f68fcd95648e3862ef40
+articles/code-spell-checker.md, 66391ab5f2c09704dbeb
