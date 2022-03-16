@@ -63,6 +63,8 @@ flowchart LR
 
 同じ文字列のオブジェクトを複数箇所で書くと、それらは単一のオブジェクトとみなされ、二重結合してしまう。
 
+
+
 # 正しい書き方
 同じ文字列のオブジェクトを複数作成したい場合は、以下のように ID と文字列を別々に定義すれば良い。
 
@@ -83,6 +85,8 @@ flowchart LR
     A --- B --- c1[C] --- d1[D] --- E --- F
           B --- c2[C] --- d2[D] --- E
 ```
+
+
 
 # 参考サイト
 * [Flowchart ― Mermaid](https://mermaid-js.github.io/mermaid/#/flowchart)
