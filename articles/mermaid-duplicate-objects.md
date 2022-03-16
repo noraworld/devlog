@@ -8,6 +8,8 @@ order: 125
 layout: article
 ---
 
+この記事では [Mermaid](https://mermaid-js.github.io/mermaid/#/) を使用しています。Mermaid の図が正しく表示されない場合は [Zenn の記事](https://zenn.dev/noraworld/articles/mermaid-duplicate-objects) でご覧ください。
+
 # やりたいこと
 [Mermaid](https://mermaid-js.github.io/mermaid/#/) で以下のようなフローチャートを作りたいとする。
 
