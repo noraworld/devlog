@@ -8,7 +8,7 @@ order: 132
 layout: article
 ---
 
-# はじめに
+# 問題点
 GitHub Actions で環境変数を用意したいとする。
 
 [ドキュメント](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs) には以下のように記述することで環境変数が設定できると書かれている。
