@@ -1,22 +1,18 @@
-articles/github-actions-checkout-fetch-depth.md,
 articles/heroku-postdeploy-runs-only-once.md, 1c57bd07cf0eb8ae807e
 articles/heroku-rails-mysql.md, 09dac6e4340b85e35be4
 articles/rails-command-hangs.md, 5f0f0a9bba2ec1dfab67
-articles/lgtm-github-actions.md,
 articles/heroku-pipeline-app-name.md, c6c2a1e5e1c2f253101c
 articles/aquestalk-pi-version-1-20-ubuntu20-arm64.md, 565ba929c5309495c574
 articles/license-copyright.md, 447182eb81fdcd42e189
 articles/connection-refused.md, a2057018402bdd97f408
 articles/cherry-pick-operation.md, 24650366aff6d80b5186
 articles/gh-pr-commits.md, 6a5a361cf01494579616
-articles/code-spell-checker.md,
 articles/competitive-programming-ruby.md, 060cce87719cad85b0db
 articles/codecov-simplecov-circleci.md, 91499067078581a3be6e
 articles/github-pages-dependency-versions.md, f0da9ecb608476fe3a02
 articles/chrome-extensions-cors.md, 77880402a3dc84c72e2c
 articles/replace-anyenv-with-asdf.md, 3cdfc3089a59c1414b1f
 articles/vscode-rubocop.md, 3e5179d2ec3313b25c20
-articles/rails-concerns-decorators-form-objects-helpers.md,
 articles/disable-ubuntu-server-gui.md, c66a5922edfb02b9581d
 articles/ripgrep-aarch64.md, af298bf24dfaaad2c8c4
 articles/aquestalk-pi-ubuntu20-arm64.md, c0f9f9c3c87c5bab601c
