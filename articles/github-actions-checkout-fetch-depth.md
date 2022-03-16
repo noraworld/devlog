@@ -2,7 +2,7 @@
 title: "GitHub Actions で Git の操作 (前のコミット ID 取得など) がうまくいかないときの対処法"
 emoji: "🐱"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["GitHub Actions", "GitHub", "Git"]
+topics: ["GitHubActions", "GitHub", "Git"]
 published: true
 order: 131
 layout: article
