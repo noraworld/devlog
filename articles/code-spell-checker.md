@@ -2,7 +2,7 @@
 title: "Code Spell Checker のファイル保存先と適用範囲について"
 emoji: "🪄"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["VS Code", "Code Spell Checker"]
+topics: ["VSCode", "Code-Spell-Checker"]
 published: true
 order: 119
 layout: article
