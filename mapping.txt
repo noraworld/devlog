@@ -129,3 +129,4 @@ articles/code-spell-checker.md, 66391ab5f2c09704dbeb
 articles/github-actions-checkout-fetch-depth.md, 28e8b8750e65f4f3eaa6
 articles/lgtm-github-actions.md, b79f3ce6594b4e66e4ff
 articles/rails-concerns-decorators-form-objects-helpers.md, c6dc8d73d27beaf3d60b
+articles/mermaid-duplicate-objects.md, 2000f67bb53bce8dd369
