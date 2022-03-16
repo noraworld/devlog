@@ -2,7 +2,7 @@
 title: "Rails の concerns, decorators, form objects, helper の使い分けメモ"
 emoji: "👌"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: []
+topics: ["Rails"]
 published: false
 order: 102
 layout: article
