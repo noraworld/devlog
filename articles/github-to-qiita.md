@@ -10,7 +10,7 @@ layout: article
 
 **この記事は古いです。現在は新しい実装として GitHub Actions で動作するものを用意しており、こちらのほうはサーバを自分で用意する必要がないため簡単に導入できます。詳しくは以下の記事をご覧ください。**
 
-![【設定簡単】GitHub Actions を使ってリポジトリ上の技術記事を Qiita に自動で投稿しよう](https://zenn.dev/noraworld/articles/github-to-qiita-by-github-actions)
+[【設定簡単】GitHub Actions を使ってリポジトリ上の技術記事を Qiita に自動で投稿しよう](https://zenn.dev/noraworld/articles/github-to-qiita-by-github-actions)
 
 # はじめに
 エンジニアのための技術記事共有サイトとして、Qiita は日本ではかなり有名なサービスです。
