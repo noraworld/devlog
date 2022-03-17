@@ -135,7 +135,7 @@ jobs:
 ```yaml
 ---
 title: "記事のタイトル"
-topics: ["GitHub Actions", "Ruby", "YAML"]
+topics: ["GitHubActions", "Ruby", "YAML"]
 published: true
 ---
 
