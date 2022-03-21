@@ -133,3 +133,4 @@ articles/mermaid-duplicate-objects.md, 2000f67bb53bce8dd369
 articles/github-actions-env-bug.md, 7cfb908a5c38df3306aa
 articles/github-to-qiita-by-github-actions.md, 2210b2a5f915f9552035
 articles/github-merge-options.md, 1b9d342922cba0438fd6
+articles/diff-operator.md, 1931f6341cd02637a463
