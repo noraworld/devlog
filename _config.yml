@@ -2,8 +2,8 @@
 title: Noraworld Developers Blog
 description: >- # この行以降、次のプロパティが登場するまでは複数行の説明文として扱われる
   日々の開発や趣味プログラミングで得た技術的な知見を共有するブログです
-url: "https://noraworld.github.io/developers-blog-content-ja/"
-baseurl: ""
+url: "https://noraworld.github.io"
+baseurl: "/developers-blog-content-ja"
 google_analytics: "G-7VS1W4MH23"
 google_adsense: "ca-pub-6761843998035165"
 
