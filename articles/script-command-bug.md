@@ -141,3 +141,9 @@ stty rows <縦幅> cols <横幅>
 ---
 
 何か良い解決策はないものか。
+
+
+
+# 参考
+* [BSD script command prevents a terminal from recognizing its size. How can I fix this?](https://stackoverflow.com/questions/68554149/bsd-script-command-prevents-a-terminal-from-recognizing-its-size-how-can-i-fix)
+* [Delete code related to recording](https://github.com/noraworld/dotfiles/commit/f2976bf95b57a3293385f9c194487deafb16ee53)
