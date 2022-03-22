@@ -134,3 +134,4 @@ articles/github-actions-env-bug.md, 7cfb908a5c38df3306aa
 articles/github-to-qiita-by-github-actions.md, 2210b2a5f915f9552035
 articles/github-merge-options.md, 1b9d342922cba0438fd6
 articles/diff-operator.md, 1931f6341cd02637a463
+articles/how-to-kill-finder.md, af6e23bc63e4b8bd178e
