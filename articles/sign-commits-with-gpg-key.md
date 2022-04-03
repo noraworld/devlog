@@ -20,6 +20,7 @@ layout: article
 # 環境
 * macOS Big Sur Version 11.6.4
 * gpg (GnuPG) 2.3.4
+* git version 2.35.1
 
 環境やバージョンによって、以降で使用する `gpg` コマンドの仕様が異なる可能性がある点に留意すること。
 
