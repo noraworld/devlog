@@ -25,6 +25,43 @@ GitHub で PR をマージするとき、以下の 3 種類のオプションが
 * PR にあるコミットと全く同じコミットハッシュのコミットがそのままマージ先ブランチに追加される
 * それに加えてすべてのコミットの差分をまとめたマージコミットが新しく追加される
 
+## イメージ
+
+```mermaid
+flowchart LR
+    subgraph マージ先
+        direction LR
+
+        a2[A]
+        b2[B]
+        c2[C]
+        d2[D]
+        e2[E]
+        f2[F]
+
+        m[M]
+    end
+
+    subgraph マージ元
+        direction LR
+
+        a1[A]
+        b1[B]
+        c1[C]
+        d1[D]
+        e1[E]
+        f1[F]
+    end
+
+    a1 --- b1 --- c1 --- d1 --- e1 --- f1
+    a2 --- b2 --- c2 --- d2 --- e2 --- f2 --- m
+```
+
+`A` 〜 `F` は、両者のブランチともにコミットハッシュ含め全く同じコミットである。
+
+`M` はマージコミットで、`A` 〜 `F` までの差分がすべて含まれている。
+
+## 詳細
 以下のスクリーンショットは PR のコミット一覧のページである。コミットハッシュの部分を赤枠で囲んでいる。
 
 ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/github-merge-options/Screen%20Shot%202022-03-19%20at%2022.22.15.png)
@@ -49,6 +86,33 @@ Git フローで開発していて、リリース時に `develop` ブランチ�
 # Squash and merge
 * PR にあるすべてのコミットを 1 つにまとめたコミットがマージ先ブランチに追加される
 
+## イメージ
+
+```mermaid
+flowchart LR
+    subgraph マージ先
+        direction LR
+
+        s[S]
+    end
+
+    subgraph マージ元
+        direction LR
+
+        a[A]
+        b[B]
+        c[C]
+        d[D]
+        e[E]
+        f[F]
+    end
+
+    a --- b --- c --- d --- e --- f
+```
+
+`S` はスカッシュしたコミット (1 つにまとめたコミット) で、`A` 〜 `F` までの差分がすべて含まれている。
+
+## 詳細
 以下のスクリーンショットは PR のコミット一覧のページである。
 
 ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/github-merge-options/Screen%20Shot%202022-03-19%20at%2022.44.24.png)
@@ -73,6 +137,41 @@ Git フローで開発していて、リリース時に `develop` ブランチ�
 * PR にあるコミットのクローンコミットがマージ先ブランチに追加される
     * **コミットハッシュがすべて変わる**
 
+## イメージ
+
+```mermaid
+flowchart LR
+    subgraph マージ先
+        direction LR
+
+        a2[A']
+        b2[B']
+        c2[C']
+        d2[D']
+        e2[E']
+        f2[F']
+    end
+
+    subgraph マージ元
+        direction LR
+
+        a1[A]
+        b1[B]
+        c1[C]
+        d1[D]
+        e1[E]
+        f1[F]
+    end
+
+    a1 --- b1 --- c1 --- d1 --- e1 --- f1
+    a2 --- b2 --- c2 --- d2 --- e2 --- f2
+```
+
+`A` 〜 `F` は、コミットメッセージや差分に関しては、それぞれ `A'` 〜 `F'` と同じではあるが、コミットハッシュが異なる。
+
+そのため、Git としてはそれぞれが別のコミットという扱いになる。
+
+## 詳細
 以下のスクリーンショットは PR のコミット一覧のページである。
 
 ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/github-merge-options/Screen%20Shot%202022-03-19%20at%2022.56.08.png)
