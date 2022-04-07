@@ -138,3 +138,4 @@ articles/how-to-kill-finder.md, af6e23bc63e4b8bd178e
 articles/script-command-bug.md, 51cc0f2e86fdafaf1f22
 articles/log-session-input.md, 14775e28fafb06fe6f06
 articles/sign-commits-with-gpg-key.md, 43cd1dd8c28931a766c1
+articles/share-gpg-keys.md, c45d2c140a5fbc755baf
