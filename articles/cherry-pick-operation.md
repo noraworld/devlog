@@ -3,7 +3,7 @@ title: "cherry-pick 運用の地獄から這い上がった話をしよう"
 emoji: "💩"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["DevOps", "Git", "GitHub", "GitFlow", "DX"]
-published: false # Fix "TBD" before turning into true
+published: true
 order: 121
 layout: article
 ---
@@ -17,7 +17,7 @@ layout: article
 
 
 
-# TBD
+# 状況と問題点
 筆者が参加しているプロジェクトでは、ブランチの運用が cherry-pick で行われていた。Git Flow でも GitHub Flow でもない。言うなれば、Cherry-pick Flow である。
 
 ## Git Flow について
@@ -345,7 +345,7 @@ end
 
 
 
-# TBD
+# 作業内容
 では、この運用を廃止するために行った作業を具体的に紹介する。
 
 ## 用語解説
@@ -371,11 +371,10 @@ end
 1. `tmp` を新しく作成する
 2. `origin` の `master` を **コミット履歴を保持せずに** `tmp` の `master` にコピーする
 3. `origin` の `develop` を **コミット履歴を保持せずに** `tmp` の `develop` にコピーする
-4. `tmp` の `develop` と `tmp` の `master` 間の差分を埋めて `tmp` の `master` に上書きする
-5. `tmp` の `master` の内容を `origin` の `master` にコピーする
-6. `tmp` の `master` の内容を `origin` の `develop` にコピーする
-7. `origin` の `develop` を `origin` の `master` にマージする
-8. `origin` の `master` を `origin` の `develop` にマージバックする
+4. `tmp` の `develop` と `tmp` の `master` 間の差分を確認する
+5. `tmp` の `develop` の内容を `origin` の `master` にコピーする
+6. `origin` の `master` を `origin` の `develop` にマージする
+7. `origin` の `develop` を `origin` の `master` にマージバックする
 
 ```mermaid
 flowchart
@@ -412,7 +411,7 @@ flowchart
             tmp_develop[develop]
         end
 
-        tmp_develop --> |4| tmp_master
+        tmp_develop <-.-> |4| tmp_master
     end
 ```
 
@@ -431,8 +430,7 @@ flowchart
             tmp_develop[develop]
         end
 
-        tmp_master --> |5| origin_master
-        tmp_master --> |6| origin_develop
+        tmp_develop --> |5| origin_master
     end
 ```
 
@@ -452,8 +450,8 @@ flowchart
             tmp_develop[develop]
         end
 
+        origin_master --> |6| origin_develop
         origin_develop --> |7| origin_master
-        origin_master --> |8| origin_develop
     end
 ```
 
@@ -461,6 +459,24 @@ flowchart
 ここから先は具体的な作業手順について説明しようと思う。
 
 ### `origin` の `master` を `tmp` の `master` にコピー
+
+```mermaid
+flowchart
+    subgraph repository[ ]
+        subgraph origin
+            origin_master[master]
+            origin_develop[develop]
+        end
+
+        subgraph tmp
+            tmp_master[master]
+            tmp_develop[develop]
+        end
+
+        origin_master --> tmp_master
+    end
+```
+
 まずは `tmp` リポジトリに移動する。
 
 ```shell:Shell
@@ -529,7 +545,27 @@ git push --set-upstream tmp master
 
 これで `origin` の `master` のファイル内容をそのままで 1 コミットだけのブランチが `tmp` の `master` に出来上がった。
 
-### `origin` の `develop` を `tmp` の `develop` に重ねる
+### `origin` の `develop` を `tmp` の `develop` にコピー
+
+```mermaid
+flowchart
+    subgraph repository[ ]
+        direction LR
+
+        subgraph origin
+            origin_master[master]
+            origin_develop[develop]
+        end
+
+        subgraph tmp
+            tmp_master[master]
+            tmp_develop[develop]
+        end
+
+        origin_develop --> tmp_develop
+    end
+```
+
 `tmp` リポジトリの `master` ブランチから `develop` ブランチを切り、そこに `origin` の `develop` の全コードをそのままコピーする。つまり、`tmp` の `develop` ブランチは 2 コミットとなり、1 コミット目が `origin` の `master` と同じコード、そして 2 コミット目が `origin` の `develop` と同じコードになるようにしたい。
 
 まずは `tmp` リポジトリに移動する。
@@ -590,6 +626,28 @@ git push --set-upstream tmp master
 ```
 
 ### 差分確認
+
+```mermaid
+flowchart
+    subgraph repository[ ]
+        direction TB
+
+        subgraph origin
+            direction LR
+            origin_master[master]
+            origin_develop[develop]
+        end
+
+        subgraph tmp
+            direction BT
+            tmp_master[master]
+            tmp_develop[develop]
+        end
+
+        tmp_develop <-.-> tmp_master
+    end
+```
+
 `master` のコードに `develop` のコードを上書きしたので、`tmp` の `develop` の 2 コミット目 (コミットメッセージが `"Copy from origin/develop"` であるコミット) の差分は、`master` と `develop` の差分になっている。
 
 この差分は以下の 3 つに分類できる。
@@ -634,6 +692,26 @@ git push --set-upstream tmp master
 なので、開発陣全員の開発のキリの良いタイミングを見計らい、すべての開発途中のコードがリモートリポジトリの `develop` に集まった状態で作業を開始した。そしてこの作業が完了するまでの間は一切開発をすることができないので、夜中に一気に進めることにした。
 
 #### ① `develop` → `master`
+
+```mermaid
+flowchart
+    subgraph repository[ ]
+        direction RL
+
+        subgraph origin
+            origin_master[master]
+            origin_develop[develop]
+        end
+
+        subgraph tmp
+            tmp_master[master]
+            tmp_develop[develop]
+        end
+
+        tmp_develop --> origin_master
+    end
+```
+
 まずは `master` ブランチの上に `develop` ブランチのコードを丸ごと上書きする。
 
 `origin` リポジトリに移動する。
@@ -693,15 +771,77 @@ GitHub 上で `eliminate-cherry-pick` を `master` にマージする PR を作�
 この PR をマージすることで `origin` の `master` ブランチが `develop` のコードと同じになった。
 
 #### ② `master` → `develop`
+
+```mermaid
+flowchart
+    subgraph repository[ ]
+        direction TB
+
+        subgraph origin
+            direction TB
+            origin_master[master]
+            origin_develop[develop]
+        end
+
+        subgraph tmp
+            tmp_master[master]
+            tmp_develop[develop]
+        end
+
+        origin_master --> origin_develop
+    end
+```
+
 ① の時点ではまだ `master` のコードが `develop` になっただけなので、`master` → `develop` にマージする PR を作成してファイルの差分を解消する。
 
 #### ③ `develop` → `master`
 ② の時点でファイルの差分は消えたが、まだコミット履歴がごちゃごちゃになっているので、`develop` → `master` にマージする PR を作成して `master` のコミット履歴のごちゃごちゃを解消する。
 
-#### ④ `master` → `develop`
-③ と同様の理由で `master` → `develop` にマージする PR を作成して、今度は `develop` のコミット履歴のごちゃごちゃを解消する。
+```mermaid
+flowchart
+    subgraph repository[ ]
+        direction TB
 
-#### TBD
+        subgraph origin
+            direction BT
+            origin_master[master]
+            origin_develop[develop]
+        end
+
+        subgraph tmp
+            tmp_master[master]
+            tmp_develop[develop]
+        end
+
+        origin_develop --> origin_master
+    end
+```
+
+#### ④ `master` → `develop`
+
+```mermaid
+flowchart
+    subgraph repository[ ]
+        direction TB
+
+        subgraph origin
+            direction TB
+            origin_master[master]
+            origin_develop[develop]
+        end
+
+        subgraph tmp
+            tmp_master[master]
+            tmp_develop[develop]
+        end
+
+        origin_master --> origin_develop
+    end
+```
+
+すでに ③ の時点で `master` ↔ `develop` 間のファイル差分とコミット履歴のごちゃごちゃを解消することができたが、これだと `master` が 1 コミット分マージコミットで進んでしまっているので、再び `master` → `develop` にマージする PR を作成して、`develop` を fast-forward な状態にする。
+
+#### コミット数と差分量
 ① 〜 ④ の作業を行うことでようやく `master` ↔ `develop` 間のファイル差分とコミット履歴のごちゃごちゃを解消することができた。
 
 それぞれの PR のコミット数と差分量は以下のようになった。
