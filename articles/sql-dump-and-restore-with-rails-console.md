@@ -34,6 +34,16 @@ exec cmd
 
 Rails アプリケーションのルートディレクトリ内に `db/2021-08-18.dump` のようなダンプファイルが生成される。
 
+## `mysqldump: Error 2020: Got packet bigger than 'max_allowed_packet' bytes` と表示された場合
+`mysqldump` コマンドのオプションとして `--max_allowed_packet=1G` を追加する。
+
+```diff:Diff
+-cmd = "mysqldump -u #{configuration['username']} -p#{configuration['password']} -h #{configuration['host']} -P #{configuration['port']} #{configuration['database']} > db/#{Date.today}.dump"
++cmd = "mysqldump --max_allowed_packet=1G -u #{configuration['username']} -p#{configuration['password']} -h #{configuration['host']} -P #{configuration['port']} #{configuration['database']} > db/#{Date.today}.dump"
+```
+
+参考: [mysqldumpでmax_allowed_packetが最大値にもかかわらずエラー](https://qiita.com/MasamotoMiyata/items/be123813ea535cd3e320)
+
 
 
 # ローカル側の操作
@@ -55,6 +65,22 @@ exec cmd
 ```
 
 これで開発用サーバのデータをローカルで使えるようになった。
+
+## `ERROR 1153 (08S01) at line 824: Got a packet bigger than 'max_allowed_packet' bytes` と表示された場合
+MySQL にログインし、`max_allowed_packet=1000000000` を実行する。
+
+```shell:Shell
+mysql
+```
+
+```sql:MySQL
+SET GLOBAL max_allowed_packet=1000000000;
+\q
+```
+
+そして上記の操作をもう一度繰り返す。
+
+参考: [【MySQL】ERROR 1153 (08S01) at line 58: Got a packet bigger than ‘max_allowed_packet’ bytes](https://www.softel.co.jp/blogs/tech/archives/2449)
 
 
 
