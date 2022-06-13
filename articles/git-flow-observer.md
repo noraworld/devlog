@@ -15,7 +15,7 @@ layout: article
 
 一言でまとめれば、会社のプロジェクトでは cherry-pick を使って運用していてとてもつらかったのでがんばって廃止した、という内容です。
 
-そして、今後、二度とこの悪夢のような運用をしないようにするために、プロジェクトが git-flow に準拠しているかどうかを検証する [git-flow observer](https://zenn.dev/noraworld/articles/cherry-pick-operation) GitHub Actions を作ったので紹介します。
+そして、今後、二度とこの悪夢のような運用をしないようにするために、プロジェクトが git-flow に準拠しているかどうかを検証する [git-flow observer](https://github.com/noraworld/git-flow-observer) という GitHub Actions を作ったので紹介します。
 
 
 
