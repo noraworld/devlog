@@ -141,3 +141,4 @@ articles/sign-commits-with-gpg-key.md, 43cd1dd8c28931a766c1
 articles/share-gpg-keys.md, c45d2c140a5fbc755baf
 articles/delete-gpg-keys.md, 38969b97e971957591e4
 articles/resolve-resource-busy.md, 7a73ad4cd507145a46d4
+articles/git-flow-observer.md, cee3e7316994fd0c8ba4
