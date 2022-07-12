@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Menu"
-        uses: noraworld/release-menu@v0.1.0
+        uses: noraworld/release-menu@v0.1.1
         with:
           # ここにオプションを追加
           # base: master
