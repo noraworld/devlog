@@ -253,6 +253,8 @@ sudo ufw allow 67/udp             # DHCP: Raspberry Pi を DHCP サーバとし�
 sudo ufw allow 68/udp             # DHCP: Raspberry Pi を DHCP サーバとして利用しない場合は実行不要
 ```
 
+参考: [UFW is blocking DNS](https://unix.stackexchange.com/questions/131332/ufw-is-blocking-dns#answer-145108)
+
 設定が完了したら UFW を有効にします。
 
 ```shell
@@ -434,3 +436,11 @@ VPN を利用したい理由は人によって様々だと思います[^2]が、
 [^2]: ちなみに筆者は海外でしか利用できないコンテンツを視聴するために VPN を利用しています。
 
 ちなみに今回の手順で紹介した Dnsmasq は DNS サーバとしても使えます。たとえば特定の時間帯だけ Twitter や YouTube をアクセス制限したかったり、特定のサイトをブロックしたかったりする場合に活用できます。詳しくは「[Dnsmasq を使って特定の時間帯・サイトへのアクセス制限をする](https://zenn.dev/noraworld/articles/access-restriction-using-dnsmasq)」で紹介しているので良ければこちらもご覧ください。
+
+
+
+# 参考サイト
+* [Raspberry Pi VPN Gateway - NordVPN](https://www.instructables.com/Raspberry-Pi-VPN-Gateway-NordVPN/)
+* [PiRouterVPN](https://starlightparabola.tumblr.com/post/668543565017858048/piroutervpn-objective-getting-raspberry-pi-as-vpn)
+* [How to configure a Raspberry Pi](https://support.nordvpn.com/FAQ/NordVPN-setup-tutorials/1047409772/How-to-configure-a-Raspberry-Pi.htm)
+* [Use Raspberry Pi behind router to connect all devices on router to NordVPN](https://www.reddit.com/r/nordvpn/comments/qzgutk/use_raspberry_pi_behind_router_to_connect_all/)
