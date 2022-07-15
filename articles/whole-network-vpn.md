@@ -52,12 +52,13 @@ VPN を利用すると以下のようなメリットがあります。
 
 
 
-# NordVPN のサブスクリプション契約
+# NordVPN の登録とセットアップ
+まずは NordVPN の登録とセットアップを行い、Raspberry Pi を VPN に接続します。
+
+## NordVPN のサブスクリプション契約
 NordVPN を利用したことがない場合は、[公式サイト](https://nordvpn.com) にアクセスしプランを選択しアカウントを作成します。
 
-
-
-# `nordvpn` コマンドのインストール
+## `nordvpn` コマンドのインストール
 Raspberry Pi に `nordvpn` コマンドをインストールします。以下のコマンドを実行します。
 
 ```shell
@@ -68,9 +69,7 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
 これで `nordvpn` コマンドが使えるようになります。
 
-
-
-# `nordvpn` ユーザグループに追加
+## `nordvpn` ユーザグループに追加
 今後のコマンドを実行する際に `nordvpn` ユーザの権限を求められることがあります。そのため、現在ログイン中のユーザを `nordvpn` ユーザのグループに追加しておきます。
 
 ```shell
@@ -83,9 +82,7 @@ sudo usermod -aG nordvpn $USER
 sudo reboot
 ```
 
-
-
-# NordVPN にログイン
+## NordVPN にログイン
 NordVPN にログインします。以下のコマンドを実行します。
 
 ```shell
@@ -118,7 +115,7 @@ Raspberry Pi のターミナルに戻り、以下のようなコマンドを実�
 nordvpn login --callback "nordvpn://login?action=login&exchange_token=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&status=done"
 ```
 
-ダブルクオートの中は先ほどコピーしたリンクアドレスをペーストします。トークンの中にエスケープが必要な文字が含まれていることもあるのでリンクアドレスは必ずダブルクオートで囲ってください。
+ダブルクオートの中は先ほどコピーしたリンクアドレスをペーストします。トークンの中にエスケープが必要な文字が含まれていることもあるので、リンクアドレスは必ずダブルクオートで囲ってください。
 
 以下のメッセージが表示されたらログイン完了です。
 
@@ -126,9 +123,7 @@ nordvpn login --callback "nordvpn://login?action=login&exchange_token=XXXXXXXXXX
 Welcome to NordVPN! You can now connect to VPN by using 'nordvpn connect'.
 ```
 
-
-
-# ポートの開放
+## ポートの開放
 これで Raspberry Pi 上で NordVPN のサーバに接続する準備は整いました。ただこのまま接続してしまうと Raspberry Pi のネットワークが VPN 先に移り SSH 接続が切れてしまうので、事前にポートを開放しておきます。ついでに今後必要になるポートも一緒に開放します。
 
 以下のコマンドを実行します。必要に応じてポート番号を変えたり開放しないものを判断したりしてください。
@@ -170,10 +165,8 @@ Whitelisted ports:
 
 `Whitelisted ports` の部分が設定した内容とマッチしていれば OK です。
 
-
-
-# VPN サーバに接続
-VPN サーバに接続します。サーバの国を指定しない場合は住んでいる国と同じ国のサーバに接続されますが、今回は VPN に接続していることがよりわかりやすくなるように国を指定して接続します。
+## VPN サーバに接続
+VPN サーバに接続します。接続するサーバの国を指定しない場合は住んでいる国と同じ国のサーバに接続されますが、今回は VPN に接続していることがよりわかりやすくなるように国を指定して接続します。
 
 以下はアメリカのサーバに接続するコマンドです。
 
@@ -183,7 +176,7 @@ nordvpn connect United_States
 
 なお、以降はアメリカのサーバに接続したものとして説明します。
 
-## 他の国のサーバに接続したい場合
+### 他の国のサーバに接続したい場合
 他の国のサーバに接続したい場合は、上記の `United_States` の個所を別の国に変更してください。サーバが利用可能な国の名前のリストは以下のコマンドで取得できます。
 
 ```shell
@@ -203,18 +196,16 @@ Canada                  Georgia                 Japan                   Norway  
 Chile                   Germany                 Latvia                  Poland                  Sweden
 ```
 
-## 接続確認
+### 接続確認
 本当に VPN 接続されているかどうか確認します。以下のコマンドを実行します。
 
 ```shell
 curl https://ipinfo.io
 ```
 
-`"country"` の個所が `"US"` になっていれば OK です。
+`"country"` の部分が `"US"` になっていれば OK です。
 
-
-
-# Meshnet を有効にする
+## Meshnet を有効にする
 Meshnet を有効します。これにより、VPN に接続しながら LAN 内の他のデバイスと通信を行うことができます。
 
 以下のコマンドを実行します。
@@ -223,7 +214,7 @@ Meshnet を有効します。これにより、VPN に接続しながら LAN 内
 nordvpn set meshnet on
 ```
 
-## エラーが発生して有効にできない場合
+### エラーが発生して有効にできない場合
 まれに以下のようなエラーが発生することがあります。
 
 ```
@@ -239,59 +230,8 @@ nordvpn connect United_States
 
 それでも問題が解決しない場合は切断したあとしばらく時間をおいてから再接続して試すか、別の国のサーバに接続してみてください。
 
-
-
-# UFW の設定
-UFW のポート開放の設定を行います。この設定は不要かもしれませんが、VPN の接続が切断された際に家中の全デバイスがインターネットにつながらなくなる、ということがないように念のため設定しておきます。
-
-必要なポートを開放します。以下のコマンドを実行します。必要に応じてポート番号の変更、開放しないポートの判断をしてください。
-
-```shell
-sudo ufw allow 22                 # SSH: SSH のポート番号を変更している場合は適宜変更
-sudo ufw allow out to any port 53 # DNS: Raspberry Pi を DNS サーバとして利用しない場合は実行不要
-sudo ufw allow 67/udp             # DHCP: Raspberry Pi を DHCP サーバとして利用しない場合は実行不要
-sudo ufw allow 68/udp             # DHCP: Raspberry Pi を DHCP サーバとして利用しない場合は実行不要
-```
-
-参考: [UFW is blocking DNS](https://unix.stackexchange.com/questions/131332/ufw-is-blocking-dns#answer-145108)
-
-設定が完了したら UFW を有効にします。
-
-```shell
-sudo ufw enable
-sudo systemctl start ufw
-sudo systemctl enable ufw
-```
-
-設定を確認するには以下のコマンドを実行します。
-
-```shell
-sudo ufw status
-sudo systemctl status ufw
-```
-
-
-
-# IP フォワーディングと IP マスカレードの設定
-UFW で IP フォワーディングと IP マスカレードの設定を行います。これにより、同一 LAN の他のデバイスから Raspberry Pi に来たパケットを拾ってインターネット通信を行うようにすることができます。
-
-## IP フォワーディング
-パケット転送を有効にします。`/etc/default/ufw` を開き、以下のように書き換えます。
-
-```diff:/etc/default/ufw
--DEFAULT_FORWARD_POLICY="DROP"
-+DEFAULT_FORWARD_POLICY="ACCEPT"
-```
-
-次に IP フォワーディングを有効にします。`/etc/ufw/sysctl.conf` を開き、以下のように書き換えます。
-
-```diff:/etc/ufw/sysctl.conf
--# net.ipv4.ip_forward=1
-+net.ipv4.ip_forward=1
-```
-
 ## WireGuard が有効になっているか確認
-NordVPN で WireGuard が有効になっているか確認します。以下のコマンドを実行します。
+最後に、WireGuard が有効になっているか確認します。以下のコマンドを実行します。
 
 ```shell
 nordvpn settings
@@ -323,15 +263,64 @@ Whitelisted ports:
 nordvpn set technology nordlynx
 ```
 
-続いて、インターフェース名が `nordlynx` になっているか念のため確認します。以下のコマンドを実行します。
+続いて、インターフェース名が `nordlynx` になっているネットワークインターフェースがあるか念のため確認します。以下のコマンドを実行します。
 
 ```shell
 ip a
 ```
 
-ネットワークインターフェース名がいくつか表示されると思いますが、その中に `nordlynx` というものがあれば OK です。
+ネットワークインターフェース名がいくつか表示される (`lo`、`eth0`、`wlan0` など) と思いますが、その中に `nordlynx` というものがあれば OK です。
 
-## IP マスカレード
+
+
+# UFW の設定
+UFW の設定を行います。この設定は不要かもしれませんが、VPN の接続が切断された際に家中の全デバイスがインターネットにつながらなくなる、ということがないように念のため設定しておきます。
+
+## ポートの開放
+必要なポートを開放します。以下のコマンドを実行します。必要に応じてポート番号の変更、開放しないポートの判断をしてください。
+
+```shell
+sudo ufw allow 22                 # SSH: SSH のポート番号を変更している場合は適宜変更
+sudo ufw allow out to any port 53 # DNS: Raspberry Pi を DNS サーバとして利用しない場合は実行不要
+sudo ufw allow 67/udp             # DHCP: Raspberry Pi を DHCP サーバとして利用しない場合は実行不要
+sudo ufw allow 68/udp             # DHCP: Raspberry Pi を DHCP サーバとして利用しない場合は実行不要
+```
+
+参考: [UFW is blocking DNS](https://unix.stackexchange.com/questions/131332/ufw-is-blocking-dns#answer-145108)
+
+設定が完了したら UFW を有効にします。
+
+```shell
+sudo ufw enable
+sudo systemctl start ufw
+sudo systemctl enable ufw
+```
+
+設定を確認するには以下のコマンドを実行します。
+
+```shell
+sudo ufw status
+```
+
+## IP フォワーディングと IP マスカレードの設定
+UFW で IP フォワーディングと IP マスカレードの設定を行います。これにより、同一 LAN の他のデバイスから Raspberry Pi に来たパケットを拾ってインターネット通信を行うようにすることができます。
+
+### IP フォワーディング
+パケット転送を有効にします。`/etc/default/ufw` を開き、以下のように書き換えます。
+
+```diff:/etc/default/ufw
+-DEFAULT_FORWARD_POLICY="DROP"
++DEFAULT_FORWARD_POLICY="ACCEPT"
+```
+
+次に IP フォワーディングを有効にします。`/etc/ufw/sysctl.conf` を開き、以下のように書き換えます。
+
+```diff:/etc/ufw/sysctl.conf
+-# net.ipv4.ip_forward=1
++net.ipv4.ip_forward=1
+```
+
+### IP マスカレード
 IP マスカレードを有効にします。`/etc/ufw/before.rules` を開くと、一番下の行に `COMMIT` と書かれているはずなので、その下に以下のような設定を追加します。
 
 ```diff:/etc/ufw/before.rules
@@ -352,6 +341,13 @@ COMMIT
 sudo ufw reload
 sudo systemctl restart ufw
 ```
+
+
+
+# IP アドレスの固定
+Raspberry Pi の IP アドレスが変動してしまうとルータとしては使いづらいです。そのため、IP アドレスを固定します。
+
+IP アドレスの固定に関しては「[コマンドラインで Ubuntu を固定 IP アドレスにする方法 (なるべく丁寧に解説)](https://zenn.dev/noraworld/articles/ubuntu-fixed-ip-address-via-cli)」をご覧ください。
 
 
 
@@ -379,10 +375,10 @@ sudo apt -y install dnsmasq
 ## DHCP の設定
 DHCP の設定を行います。`/etc/dnsmasq.conf` を開き、以下のような設定を追加します。
 
-```/etc/dnsmasq.conf
-dhcp-range=192.168.3.200,192.168.3.254,12h
-dhcp-option=option:netmask,255.255.255.0
-dhcp-option=option:router,192.168.3.2
+```diff:/etc/dnsmasq.conf
++dhcp-range=192.168.3.200,192.168.3.254,12h
++dhcp-option=option:netmask,255.255.255.0
++dhcp-option=option:router,192.168.3.2
 ```
 
 各々の値はご自身の環境に併せて変更してください。`192.168.3.2` の部分には Raspberry Pi に割り当てられているプライベート IP アドレスを設定します。
@@ -392,6 +388,7 @@ Dnsmasq を起動します。以下のコマンドを実行します。
 
 ```shell
 sudo systemctl start dnsmasq
+sudo systemctl enable dnsmasq
 ```
 
 
