@@ -259,12 +259,15 @@ sudo ufw allow 68/udp             # DHCP: Raspberry Pi を DHCP サーバとし�
 
 ```shell
 sudo ufw enable
+sudo systemctl start ufw
+sudo systemctl enable ufw
 ```
 
 設定を確認するには以下のコマンドを実行します。
 
 ```shell
 sudo ufw status
+sudo systemctl status ufw
 ```
 
 
@@ -347,6 +350,7 @@ COMMIT
 
 ```shell
 sudo ufw reload
+sudo systemctl restart ufw
 ```
 
 
