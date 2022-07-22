@@ -166,7 +166,10 @@ SmartDNS を利用することにより、逆にコンテンツが見られな�
 
 VPN 接続かどうかの判定方法はサービスによってまちまちなので、こういったことも起きます。その場合はめんどうですがサービスごとに DNS を切り替えるしかありません。
 
-ちなみに我が家では Raspberry Pi が VPN ルータ兼 DNS サーバになっていて、cron を使って特定の時間ごとに上流 DNS サーバを自動的に切り替えています。
+ちなみに我が家では Raspberry Pi が VPN ルータ兼 DNS サーバになっていて、cron を使って特定の時間ごとに上流 DNS サーバを自動的に切り替えています。詳しく知りたい方は以下の記事もご覧ください。
+
+* [家のネットワークを丸ごと VPN にする方法 (Raspberry Pi × NordVPN)](https://zenn.dev/noraworld/articles/whole-network-vpn)
+* [Dnsmasq を使って特定の時間帯・サイトへのアクセス制限をする](https://zenn.dev/noraworld/articles/access-restriction-using-dnsmasq)
 
 ## 参考
 * [What is SmartDNS?](https://support.nordvpn.com/General-info/SmartDNS/1161156142/What-is-SmartDNS.htm)
