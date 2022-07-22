@@ -137,7 +137,7 @@ DNS リークが発生しているかどうかを判定してくれるいくつ�
 
 | DNS リークしている場合 | DNS リークしていない場合 |
 | --- | --- |
-| (スクリーンショットを取り損ねたのであとで追加) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%200.42.42.png) |
+| ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%2014.32.10.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%200.42.42.png) |
 | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%200.34.26.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%201.52.46.png)
 
 ### dnsleak.com
