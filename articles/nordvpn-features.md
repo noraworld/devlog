@@ -2,7 +2,7 @@
 title: "NordVPN の便利な機能についてまとめてみた"
 emoji: "🛡"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["vpn", "nordvpn", "openvpn", "wireguard", dns"]
+topics: ["vpn", "nordvpn", "openvpn", "wireguard", "dns"]
 published: true
 order: 147
 layout: article
