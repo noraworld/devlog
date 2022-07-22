@@ -114,8 +114,8 @@ VPN に接続すると、インターネット利用時にご自宅のネット�
 
 | DNS リークしている場合 | DNS リークしていない場合 |
 | --- | --- |
-| ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-21%20at%2019.25.59.png) | (スクリーンショットが用意できたら更新する) |
-| ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-21%20at%2019.28.48.png) | (スクリーンショットが用意できたら更新する) |
+| ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-21%20at%2019.25.59.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%2014.43.37.png) |
+| ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-21%20at%2019.28.48.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%2014.45.50.png) |
 
 DNS リークを防止することによりこれらのコンテンツにアクセスすることができます[^2]。
 
