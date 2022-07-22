@@ -113,7 +113,7 @@ VPN に接続すると、インターネット利用時にご自宅のネット�
 [^1]: 2022 年 7 月 21 日現在。
 
 | DNS リークしている場合 | DNS リークしていない場合 |
-| --- | --- |
+| :---: | :---: |
 | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-21%20at%2019.25.59.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%2014.43.37.png) |
 | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-21%20at%2019.28.48.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%2014.45.50.png) |
 
@@ -138,7 +138,7 @@ DNS リークが発生しているかどうかを判定してくれるいくつ�
 * テストを行う前に表示された IP アドレスと、テスト後の DNS の IP アドレスが一致していること
 
 | DNS リークしている場合 | DNS リークしていない場合 |
-| --- | --- |
+| :---: | :---: |
 | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%2014.32.10.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%200.42.42.png) |
 | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%200.34.26.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%201.52.46.png)
 
@@ -146,7 +146,7 @@ DNS リークが発生しているかどうかを判定してくれるいくつ�
 [dnsleak.com](https://dnsleak.com) では、上記に加え、DNS リークが発生しているかどうかをメッセージで表示してくれます。
 
 | DNS リークしている場合 | DNS リークしていない場合 |
-| --- | --- |
+| :---: | :---: |
 | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%200.39.59.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/nordvpn-features/Screen%20Shot%202022-07-22%20at%201.47.31.png) |
 
 こちらも IP アドレスと DNS の IP アドレスが一致しているかどうかで DNS リークを判定しています。
