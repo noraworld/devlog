@@ -145,3 +145,4 @@ articles/git-flow-observer.md, cee3e7316994fd0c8ba4
 articles/release-menu.md, 86604b76b27c908b9c34
 articles/whole-network-vpn.md, 6ceae93085b217f53f60
 articles/nordvpn-features.md, 48a6450632cd6b18fcdd
+articles/google-meet-to-slack.md, eb190f53900293e881d0
