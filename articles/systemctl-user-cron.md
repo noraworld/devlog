@@ -1,5 +1,5 @@
 ---
-title: "cron で systemctl --user を使う方法 (Failed to connect to bus: No such file or directory の解決法)"
+title: "cron で systemctl --user を使う方法 (Failed to connect to bus... の解決法)"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["cron", "systemctl", "linux", "ubuntu"]
