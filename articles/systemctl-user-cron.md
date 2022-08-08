@@ -28,7 +28,7 @@ systemctl --user status your-daemon.service
 
 
 # 問題点
-ところが、ユーザレベルの場合、同じように書いても正しく動作しません。
+ユーザレベルの場合、同じように書いても正しく動作しません。
 
 ```shell
 # 動作しない
@@ -58,7 +58,12 @@ cron の設定を行ったユーザとコマンドを実行したいユーザが
 */10 * * * * XDG_RUNTIME_DIR=/run/user/$(id -u <OTHER_USER>) systemctl --user restart your-daemon.service
 ```
 
-なお、cron 内での変数の定義の仕方がシェルスクリプトに似ているので勘違いしやすいのですが、cron の文法はシェルスクリプトとは異なります。そのため、以下のように最初に `XDG_RUNTIME_DIR` をセットしておいても正しく動作しません。
+
+
+# 注意点
+cron 内での変数の定義の仕方がシェルスクリプトに似ているので勘違いしやすいのですが、cron の文法はシェルスクリプトとは異なります。
+
+そのため、以下のように最初に `XDG_RUNTIME_DIR` をセットしておいても正しく動作しません。
 
 ```shell
 # 動作しない
@@ -66,7 +71,7 @@ export XDG_RUNTIME_DIR=/run/user/$(id -u)
 */10 * * * * systemctl --user restart your-daemon.service
 ```
 
-そのため、`systemctl --user` を何回も使いたい場合は環境変数の定義とコマンドの実行をセットにしたシェルスクリプトをどこかに用意しておいて、それを呼び出すと良いでしょう。
+`systemctl --user` を何回も使いたい場合は環境変数の定義とコマンドの実行をセットにしたシェルスクリプトをどこかに用意しておいて、それを呼び出すと良いでしょう。
 
 ```shell:restart-your-daemon.sh
 # シェルスクリプト
