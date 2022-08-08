@@ -146,3 +146,4 @@ articles/release-menu.md, 86604b76b27c908b9c34
 articles/whole-network-vpn.md, 6ceae93085b217f53f60
 articles/nordvpn-features.md, 48a6450632cd6b18fcdd
 articles/google-meet-to-slack.md, eb190f53900293e881d0
+articles/systemctl-user-cron.md, e3e7d0b91faa787cc561
