@@ -74,6 +74,17 @@ sudo timedatectl set-ntp on
 
 
 
+# NTP のポートを許可
+UFW (ファイアウォール) を有効にしている場合は、NTP ポートを許可しておきます。
+
+```shell:Shell
+sudo ufw allow ntp
+sudo ufw reload
+sudo systemctl restart ufw
+```
+
+
+
 # 動作確認
 再起動時に問題が起こらないかどうかを確認したいので、まずは再起動します。
 
