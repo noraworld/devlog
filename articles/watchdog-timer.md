@@ -40,6 +40,7 @@ Heartbeat は日本語に訳すと心臓の鼓動で、システムが正常に�
 [^2]: ファイル名は任意なので `main.conf` でなくても大丈夫です。ただし拡張子は `.conf` としてください。
 
 ```conf:/etc/systemd/system.conf.d/main.conf
+[Manager]
 RuntimeWatchdogSec=5
 ```
 
