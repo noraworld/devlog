@@ -1,8 +1,8 @@
 ---
-title: "Ubuntu を再起動するとシステム日時が狂う問題の解決法"
+title: "Raspberry Pi を再起動するとシステム日時が狂う問題の解決法"
 emoji: "🕰"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["ubuntu", "linux", "date", "timedatectl", "ntp"]
+topics: ["raspberrypi", "linux", "date", "timedatectl", "ntp"]
 published: true
 order: 151
 layout: article
@@ -18,6 +18,12 @@ https://twitter.com/i/web/status/1559228842375385088
 しかも再起動するたびに変わります。最初は数日前の日付だったのが、1 日前になったり 1 週間後になったり……。一番ひどかったのが上記のツイートの 4 ヶ月前です。
 
 今回は NTP サーバと正しく同期することで、再起動時にシステムの日時が狂う問題を解決する方法について紹介します。
+
+
+
+# 環境
+* Raspberry Pi 4
+* Ubuntu 22.04.1 LTS
 
 
 
