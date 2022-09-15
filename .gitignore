@@ -11,13 +11,6 @@ vendor
 
 # developers-blog-tools
 bin
-#Gemfile
-#Gemfile.lock
-.env
-.env.sample
-#.ruby-version
-items/
-/img/
 
 # Temporary
 temp*
