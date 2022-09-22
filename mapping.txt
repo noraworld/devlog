@@ -153,3 +153,4 @@ articles/ubuntu-22-upgrade.md, 1f2532e05e50e1ec4fe5
 articles/ssh-rsa-sha1-disabled.md, 97178f0eb57b9277fae5
 articles/ruby-installation-m1-mac.md, e70e9432dc4dca18215d
 articles/node-installation-m1-mac.md, 197d02a1e712858585b1
+articles/docker-mysql-installation-m1-mac.md, 34c2a3229f46b09056c6
