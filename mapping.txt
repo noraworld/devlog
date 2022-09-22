@@ -151,3 +151,4 @@ articles/watchdog-timer.md, 239a73686290107c0e11
 articles/system-clock-synchronization.md, 4e60cc45c72868f5ab65
 articles/ubuntu-22-upgrade.md, 1f2532e05e50e1ec4fe5
 articles/ssh-rsa-sha1-disabled.md, 97178f0eb57b9277fae5
+articles/ruby-installation-m1-mac.md, e70e9432dc4dca18215d
