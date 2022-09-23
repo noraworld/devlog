@@ -221,6 +221,13 @@ M1 Mac で `therubyracer` が使われている Rails アプリケーション�
 
 
 
+# 謝辞
+今回の件でいろいろと調べている間に伊藤淳一さんのツイートを見つけ、Twitter で質問させていただきました。`therubyracer` をどうにかするより使わずに済む方向で環境構築したほうが良いというアドバイスのもと、なんとか問題を解決することができました。ありがとうございます！ 🙏
+
+https://twitter.com/i/web/status/1373956412120965122
+
+
+
 # 参考サイト
 * [How to Install (Or Get Rid Of) therubyracer on M1 or M2 Macs](https://www.rubyonmac.dev/how-to-install-therubyracer-on-m1-m2-apple-silicon-mac)
 * [Unable To Install libv8/therubyracer on M1 Macbook Pro (Apple Silicon)](https://github.com/rubyjs/libv8/issues/312)
