@@ -13,6 +13,7 @@ layout: article
 sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y dist-upgrade
+sudo apt -y install <保留中のパッケージ> # 必要に応じて
 sudo reboot
 ```
 
@@ -62,10 +63,23 @@ To see these additional updates run: apt list --upgradable
 
 
 # 解決方法
-以下のコマンドを実行する。
+まずは以下のコマンドを実行する。
 
 ```shell:Shell
 sudo apt -y dist-upgrade
+```
+
+この際、`The following packages have been kept back:` と表示され、その下にパッケージ一覧が表示された場合は、それらのパッケージをインストールする。
+
+```shell:Shell
+sudo apt -y install <保留中のパッケージ>
+```
+
+上記のメッセージが表示されない場合はこの手順はスキップする。
+
+最後に再起動する。
+
+```shell:Shell
 sudo reboot
 ```
 
@@ -81,3 +95,5 @@ sudo reboot
 
 # 参考サイト
 * [29 packages can be updated - How? [duplicate]](https://askubuntu.com/questions/449032/29-packages-can-be-updated-how#answer-621709)
+* ["The following packages have been kept back:" Why and how do I solve it?](https://askubuntu.com/a/602)
+* [Ubuntuのupgradeで保留（not upgraded）されたときの解決法](https://blog.goo.ne.jp/takuminews/e/eca67b95214d55f788dfcd2b94ef5677)
