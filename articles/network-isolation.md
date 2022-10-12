@@ -495,3 +495,6 @@ google.com.             47      IN      A       172.217.161.206
 
 
 # 参考サイト
+* [Ubuntu EC2 インスタンスでセカンダリネットワークインターフェイスを動作させるにはどうすればよいですか?](https://aws.amazon.com/jp/premiumsupport/knowledge-center/ec2-ubuntu-secondary-network-interface/)
+* [iptables forwarding between two interface](https://serverfault.com/a/431607)
+* [How to configure UFW to allow IP Forwarding?](https://askubuntu.com/a/1130516/1476690)
