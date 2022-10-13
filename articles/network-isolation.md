@@ -114,14 +114,14 @@ DNS によるネットワーク制限の問題は、パブリック DNS など�
 # 準備
 まず、以下のものを準備してください。
 
-* Raspberry Pi
+* [Raspberry Pi](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
     * Linux (Ubuntu) がインストールされたコンピュータなら理論上は何でも良いのですが、ルータ・DNS サーバとして 24 時間稼働させることを考えると、消費電力の観点から Raspberry Pi のような低消費電力コンピュータが望ましいです
     * ちなみに筆者 Raspberry Pi 4B を使用しています
 * [LAN-USB アダプタ](https://www.amazon.co.jp/gp/product/B08B691ZP3)
     * 2 つのネットワークを構築するためには LAN ポートが 2 つ必要ですが、Raspberry Pi は LAN ポートが 1 つしかないためそれを増設するために使用します
     * Raspberry Pi 4 の場合は必ず USB 3.0 ポート (端子が青色のほうの USB ポート) に接続してください
     * ドライバのインストールが不要なものを選んでください
-* 市販の Wi-Fi ルータ
+* [市販の Wi-Fi ルータ](https://www.elecom.co.jp/products/WRC-2533GST2.html)
     * ルータと書きましたが実際には Wi-Fi のアクセスポイントとしてのみ使用します
     * 有線接続する場合は本来であればスイッチングハブが必要ですが、近年の Wi-Fi ルータは LAN ポートが複数ついていることが多いのでこれで代用できます
     * Wi-Fi ルータなのでもちろん無線接続する場合にも使えて一石二鳥です
