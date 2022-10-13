@@ -564,3 +564,4 @@ google.com.             47      IN      A       172.217.161.206
 * [Ubuntu EC2 インスタンスでセカンダリネットワークインターフェイスを動作させるにはどうすればよいですか?](https://aws.amazon.com/jp/premiumsupport/knowledge-center/ec2-ubuntu-secondary-network-interface/)
 * [iptables forwarding between two interface](https://serverfault.com/a/431607)
 * [How to configure UFW to allow IP Forwarding?](https://askubuntu.com/a/1130516/1476690)
+* [dnsmasqを使って内部向けDNSサーバを立てる](http://blog.poppypop.mydns.jp/2016/02/17/dnsmasq/) <!-- HTTP になっているので IP アドレス直打ちテストに使えそう -->
