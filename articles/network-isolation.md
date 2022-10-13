@@ -423,6 +423,8 @@ sudo ufw allow proto udp from any to any port 67:68
 COMMIT
 ```
 
+`*nat` と `COMMIT` はすでに記載されているはずですので、必ず `*nat` と `COMMIT` の間に `POSTROUTING` の設定を追加してください。
+
 ## 設定の確認
 以下のコマンドを実行して設定を確認します。
 
