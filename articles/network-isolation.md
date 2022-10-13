@@ -3,7 +3,7 @@ title: "物理的にネットワークを分離して特定のサイトに特定
 emoji: "✌️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["dns", "dnsmasq", "network", "ufw", "netplan"]
-published: false
+published: true
 order: 158
 layout: article
 ---
