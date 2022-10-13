@@ -430,6 +430,11 @@ Status: active
 
 To                         Action      From
 --                         ------      ----
+53/udp                     ALLOW       Anywhere
+67:68/udp                  ALLOW       Anywhere
+53/udp (v6)                ALLOW       Anywhere (v6)
+67:68/udp (v6)             ALLOW       Anywhere (v6)
+
 53                         DENY FWD    Anywhere
 53 (v6)                    DENY FWD    Anywhere (v6)
 ```
