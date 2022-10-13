@@ -8,7 +8,9 @@ order: 158
 layout: article
 ---
 
-# 忙しい人用
+![independent network](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/network-isolation/independent_network.jpeg)
+
+# 忙しい人向け
 * 具体的な実現方法は知りたいけど前置きは読みたくない場合は [今回紹介するアプローチ](#今回紹介するアプローチ) からお読みください
 * とにかく環境構築のやり方だけ知りたい場合は [準備](#準備) からお読みください
 
@@ -92,6 +94,8 @@ DNS によるネットワーク制限の問題は、パブリック DNS など�
 でも、DNS サーバをデバイス側で簡単に変更できてしまうのと同じように、ルータ (デフォルトゲートウェイ) もデバイス側で簡単に変更できてしまうのでは？ と思った方もいるかもしれません。
 
 そこで、もうひと手間加えます。ネットワークを物理的に 2 つに分断します。
+
+![independent network](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/network-isolation/independent_network.jpeg)
 
 通常の家庭では、ネットワークはプロバイダが提供するルータあるいは市販で購入したルータを基軸に単一のネットワークが形成され、そのネットワーク内に各々のデバイスが属していると思います。
 
