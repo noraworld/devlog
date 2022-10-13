@@ -74,6 +74,16 @@ layout: article
 
 しかし、実際にルータでパケットフィルタリングしてみると、性能面での問題や表示速度の問題が浮き彫りになりました。パフォーマンスを犠牲にせずに TCP/IP 層で制限をかけるのは難しいという結論に至りました。
 
+以下は制限するサイトの数[^6] (ルール) とそのときの通信速度を調べた表です。ルールを増やせば増やすほど通信速度が遅くなっていることがわかります。
+
+[^6]: ルールのすべてが特定のウェブサイトの制限ではないので、実際には制限していたサイトの数は少ないです。
+
+| [ルール 129 個](https://www.speedtest.net/result/13786229845) | [ルール 178 個](https://www.speedtest.net/result/13785172559) | [ルール 476 個](https://www.speedtest.net/result/13785212312) |
+| --- | --- | --- |
+| ![129_rules](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/network-isolation/129_rules.png) | ![178_rules](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/network-isolation/178_rules.png) | ![476_rules](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/network-isolation/476_rules.png) |
+
+さらに 476 個のときはさすがに Raspberry Pi のルータとしての負荷が高すぎて PulseAudio の音声が乱れるなど、他のプロセスのパフォーマンスにも影響を及ぼしてしまっていました。
+
 どうしようかと考えていたところ、良いアイデアが思い浮かびました。DNS による制限は優秀だが、デバイスの設定でパブリック DNS などを指定してしまうと簡単に制限を解除できてしまう。でも、用意した DNS 以外を使用禁止にすることができれば…… と。
 
 今回紹介するのはその制限の仕組みと構築方法になります。
