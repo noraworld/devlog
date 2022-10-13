@@ -385,6 +385,24 @@ sudo ufw enable
 sudo ufw route deny from any to any port 53
 ```
 
+これでパブリック DNS や本物のルータが持つ DNS サーバ機能は各端末で利用できなくなりました。
+
+## 53 番ポート (INPUT) を許可
+パブリック DNS が利用できなくなったのは良いですが、このままだと Raspberry Pi の DNS も利用できません。
+
+そのため、Raspberry Pi への DNS 通信は許可します。
+
+```shell:Shell
+sudo ufw allow proto udp from any to any port 53
+```
+
+## 67, 68 番ポート (INPUT) を許可
+DHCP サーバの通信を許可します。
+
+```shell:Shell
+sudo ufw allow proto udp from any to any port 67:68
+```
+
 ## マスカレードの設定
 `eth0` は本物のルータが属するネットワークのインタフェースなのでインターネットにつながっています。しかし `eth1` はこの時点ではまだインターネットにつながっていません。つまり、各種デバイスはまだインターネットに接続することができない状態です。
 
