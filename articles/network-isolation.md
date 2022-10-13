@@ -142,11 +142,40 @@ DNS によるネットワーク制限の問題は、パブリック DNS など�
 
 
 # 物理的なネットワークを再構築
-ネットワークを以下のように物理的に配線してください。
+ネットワークを以下のように物理的に配線してください[^4][^5]。
 
+```mermaid
+flowchart TD
+    subgraph network
+        direction LR
+
+        subgraph network_a[Network A]
+            genuine_router[本物のルータ]
+        end
+
+        subgraph raspberry_pi[Raspberry Pi]
+        end
+
+        subgraph network_b[Network B]
+            direction LR
+
+            wi_fi_router[Wi-Fi ルータ]
+
+            wi_fi_router -- 有線 --- device_a[デバイス A]
+            wi_fi_router -. 無線 .- device_b[デバイス B]
+            wi_fi_router -- 有線 --- device_c[デバイス C]
+        end
+    end
+
+    genuine_router -- USB-LAN アダプタ --- raspberry_pi
+    raspberry_pi -- もともとある LAN ポート --- wi_fi_router
 ```
-プロバイダ支給のモデム・ルータまたは壁にある LAN ポート - (USB-LAN アダプタ) - Raspberry Pi - (もともとある LAN ポート) - Wi-Fi ルータ - 各種デバイス
-```
+
+[^4]: 図中の『有線』『無線』の表記は有線・無線のどちらでも接続可能ということを表しています。必ずしもこの通りに接続する必要はありません。
+
+[^5]: 図の表現上、Raspberry Pi はネットワーク A にも B にも属していないように見えますが、実際にはネットワーク A, B の両方に属しています。
+
+![independent network](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/network-isolation/independent_network.jpeg)
 
 Wi-Fi ルータはアクセスポイントモードに変更しておいてください。機器によって設定の仕方は異なるかもしれませんが、たいていの場合は本体に動作モードを変更するための物理的な切替スイッチまたはボタンがついていると思います。
 
