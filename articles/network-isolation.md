@@ -78,7 +78,7 @@ layout: article
 
 [^6]: ルールのすべてが特定のウェブサイトの制限ではないので、実際には制限していたサイトの数は少ないです。
 
-[^7]: ルール数の計測は `sudo iptables-save | cat -n` で行いました。
+[^7]: ルール数の計測は `sudo iptables-save | wc -l` で行いました。
 
 | [ルール 129 個](https://www.speedtest.net/result/13786229845) | [ルール 178 個](https://www.speedtest.net/result/13785172559) | [ルール 476 個](https://www.speedtest.net/result/13785212312) |
 | --- | --- | --- |
