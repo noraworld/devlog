@@ -569,6 +569,14 @@ google.com.             47      IN      A       172.217.161.206
 
 
 
+# 謝辞
+本記事の基礎となっている『物理的にネットワークを分離』というアイデアは『[Dnsmasq を使って特定の時間帯・サイトへのアクセス制限をする](https://zenn.dev/noraworld/articles/access-restriction-using-dnsmasq)』の記事でいただいたコメントを参考にしています。この場を借りてお礼を申し上げます。
+
+* https://zenn.dev/link/comments/4cda80b1e1c202
+* https://zenn.dev/link/comments/0efeb8240f51a3
+
+
+
 # 参考サイト
 * [Ubuntu EC2 インスタンスでセカンダリネットワークインターフェイスを動作させるにはどうすればよいですか?](https://aws.amazon.com/jp/premiumsupport/knowledge-center/ec2-ubuntu-secondary-network-interface/)
 * [iptables forwarding between two interface](https://serverfault.com/a/431607)
