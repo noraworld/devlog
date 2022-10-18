@@ -1,5 +1,5 @@
 ---
-title: "ぼくのかんがえたさいきょうのおうちねっとわーく"
+title: "物理的にネットワークを分離して特定のサイトに特定の時間帯にアクセスできないようにする"
 emoji: "✌️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["dns", "dnsmasq", "network", "ufw", "netplan"]
