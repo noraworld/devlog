@@ -97,8 +97,8 @@ exit|quit
 
 
 
-# 環境
-bluetoothctl 5.53
+# 動作確認環境
+* bluetoothctl 5.53
 
 
 
