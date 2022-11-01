@@ -15,11 +15,11 @@ layout: article
 | [list](#list) | 利用可能なコントローラをすべて表示する | `list` |
 | [select](#select) | デフォルトのコントローラを変更する | `select <CONTROLLER_DB_ADDRESS>` |
 | [show](#show) | 選択されているコントローラの情報を表示する | `show` |
-| [power](#power) | Bluetooth レシーバーの電源のオン・オフを切り替える | `power on|off` |
-| [pairable](#pairable) | Bluetooth レシーバーのペアリング可否の状態を変更する | `pairable on|off` |
-| [discoverable](#discoverable) | Bluetooth レシーバーを、他のデバイスから検索可能な状態にするかどうかを変更する | `discoverable on|off` |
+| [power](#power) | Bluetooth レシーバーの電源のオン・オフを切り替える | `power on\|off` |
+| [pairable](#pairable) | Bluetooth レシーバーのペアリング可否の状態を変更する | `pairable on\|off` |
+| [discoverable](#discoverable) | Bluetooth レシーバーを、他のデバイスから検索可能な状態にするかどうかを変更する | `discoverable on\|off` |
 | [discoverable-timeout](#discoverable-timeout) | `discoverable on` を実行したあとに、自動的に `discoverable off` にするまでの時間を設定する | `discoverable-timeout <TIME>` |
-| [scan](#scan) | ペアリング・接続可能なデバイス一覧を検索する | `scan on|off` |
+| [scan](#scan) | ペアリング・接続可能なデバイス一覧を検索する | `scan on\|off` |
 | [devices](#devices) | ペアリング・接続可能なデバイス一覧を表示する | `devices` |
 | [pair](#pair) | デバイスとペアリングする | `pair <DEVICE_BD_ADDRESS>` |
 | [agent](#agent) | ペアリングする際にどのように認証するかを指定する | `agent <TYPE>` |
