@@ -31,4 +31,8 @@ layout: article
 
 
 
-#
+# 参考サイト
+* https://nordvpn.com/blog/what-are-vpn-ports/#:~:text=For%20NordVPN%20to%20work%20on,443%20TCP%20to%20be%20open.
+* https://askubuntu.com/questions/1244346/ipv6-eui-64-how-to-activate-privacy-extension-on-ubuntu-server-20-04
+* https://ktaka.blog.ccmp.jp/2020/05/linuxipv6-ipoe.html
+* https://unix.stackexchange.com/questions/305061/why-does-dig-6-google-com-not-work-for-me
