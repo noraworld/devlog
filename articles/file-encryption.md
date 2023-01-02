@@ -6,6 +6,28 @@ topics: ["openssl", "smime"]
 published: true
 ---
 
+# TL;DR
+
+```shell:Shell
+# 鍵生成
+openssl genrsa -aes256 -out key.pem 4096
+
+# X.509 証明書生成 (自己署名証明書)
+openssl req -new -x509 -key key.pem -out cert.pem -days 36500 -subj /CN="Kosuke Aoki"
+
+# 証明書情報の確認
+openssl x509 -noout -subject -dates -in <CertFile>
+
+# 暗号化
+echo "This file will be encrypted." > plain.txt
+openssl smime -aes256 -binary -encrypt -in plain.txt -out encrypted.txt cert.pem
+
+# 復号
+openssl smime -decrypt -in encrypted.txt -out unencrypted.txt -inkey key.pem
+```
+
+
+
 # はじめに
 機密情報をクラウドで管理したり他の人にインターネット経由で送ったりする際にファイルを暗号化したいことがあるかと思います。そこで今回は CLI で簡単にファイルを暗号化する方法についてまとめます。
 
