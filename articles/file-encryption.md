@@ -16,7 +16,7 @@ openssl genrsa -aes256 -out key.pem 4096
 openssl req -new -x509 -key key.pem -out cert.pem -days 36500 -subj /CN="Kosuke Aoki"
 
 # 証明書情報の確認
-openssl x509 -noout -subject -dates -in <CertFile>
+openssl x509 -noout -subject -dates -in cert.pem
 
 # 暗号化
 echo "This file will be encrypted." > plain.txt
