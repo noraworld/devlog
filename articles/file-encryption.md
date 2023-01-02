@@ -23,7 +23,7 @@ echo "This file will be encrypted." > plain.txt
 openssl smime -aes256 -binary -encrypt -in plain.txt -out encrypted.txt cert.pem
 
 # 復号
-openssl smime -decrypt -in encrypted.txt -out unencrypted.txt -inkey key.pem
+openssl smime -decrypt -in encrypted.txt -out decrypted.txt -inkey key.pem
 ```
 
 
@@ -187,12 +187,12 @@ openssl smime -decrypt -in <EncryptedFile> -out <PlainFile> -inkey <KeyFile>
 以下は入力例です。先ほど暗号化したファイル `encrypted.txt` を復号してみます。
 
 ```shell:Shell
-openssl smime -decrypt -in encrypted.txt -out unencrypted.txt -inkey key.pem
+openssl smime -decrypt -in encrypted.txt -out decrypted.txt -inkey key.pem
 ```
 
 パスフレーズを求められたら最初に設定した鍵のパスフレーズを入力します。
 
-`encrypted.txt` の内容を復号したファイルが `unencrypted.txt` が生成されます。
+`encrypted.txt` の内容を復号したファイルが `decrypted.txt` が生成されます。
 
 
 
