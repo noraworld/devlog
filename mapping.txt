@@ -157,3 +157,4 @@ articles/docker-mysql-installation-m1-mac.md, 34c2a3229f46b09056c6
 articles/therubyracer-installation-m1-mac.md, 5d5d07fbd6ed127decfa
 articles/network-isolation.md, 88c30f3cb80a840e3230
 articles/raspberry-pi-ipv6.md, f82dbcff519c66c4fece
+articles/eliminate-resource-forks.md, 9f6147997f857984c3f7
