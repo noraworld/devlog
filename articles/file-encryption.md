@@ -58,6 +58,8 @@ openssl genrsa -aes256 -out key.pem 4096
 
 OpenSSL はたくさんの暗号化アルゴリズムをサポートしていますが、上記はその中でも安全性がかなり高い AES256 を採用しています。また、鍵長は長めに 4096 ビットとしています。
 
+コマンド実行中にパスフレーズを求められますので十分に複雑な文字列を入力します。ここで設定したパスフレーズを忘れてしまうと暗号化されたファイルを復号できなくなってしまいますので、ウェブサイト等のパスワードと同様に大切に保管してください。
+
 
 
 # 証明書生成
@@ -83,6 +85,8 @@ openssl req -new <CertType> -key <KeyFile> -out <CertFile> -days <Expiration> -s
 ```shell:Shell
 openssl req -new -x509 -key key.pem -out cert.pem -days 36500 -subj /CN="Kosuke Aoki"
 ```
+
+パスフレーズを求められたら、鍵を生成する際に設定したものを入力します。
 
 ## 有効期限について
 有効期限は `-days <ExpirationDays>` オプションで指定できます。現在時刻からの経過日数が有効期限となります。たとえば `-days 365` と指定すると、現在時刻から 1 年後が有効期限となります。
@@ -185,6 +189,8 @@ openssl smime -decrypt -in <EncryptedFile> -out <PlainFile> -inkey <KeyFile>
 ```shell:Shell
 openssl smime -decrypt -in encrypted.txt -out unencrypted.txt -inkey key.pem
 ```
+
+パスフレーズを求められたら最初に設定した鍵のパスフレーズを入力します。
 
 `encrypted.txt` の内容を復号したファイルが `unencrypted.txt` が生成されます。
 
