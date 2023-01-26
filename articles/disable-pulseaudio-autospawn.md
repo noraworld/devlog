@@ -134,6 +134,8 @@ systemctl --user unmask pulseaudio.service
 
 たいていの他のサービスは `systemctl disable` などでうまくいくのですが、PulseAudio はちょっと特殊だったので、今回記事として残しておくことにしました。
 
+なお、使っていなくても PulseAudio デーモンを起動したまま放っておくこともできますが、筆者の Raspberry Pi 上では、特に Raspberry Pi から音声を流していなくても常に 2 〜 3 % ほどの CPU 使用率となっていました。Raspberry Pi はそこまで性能が良いわけではないので不要なプロセスはできる限り停止させておいたほうが得策です。
+
 
 
 # 参考サイト
