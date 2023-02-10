@@ -123,6 +123,7 @@ ubuntu 1414 0.0 0.2 288196 16968 ? S<sl 15:54 0:00 /usr/bin/pulseaudio --daemoni
 ```shell:Shell
 systemctl --user unmask pulseaudio.socket
 systemctl --user unmask pulseaudio.service
+sudo reboot
 ```
 
 
