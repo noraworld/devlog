@@ -14,23 +14,23 @@ jobs:
   devto:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: "Publish articles on dev.to"
-        uses: sinedied/publish-devto@v2
-        id: publish_devto
-        with:
-          devto_key: ${{ secrets.DEVTO_ACCESS_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          files: "articles/en/*.md"
-          branch: main
-          conventional_commits: true
-          dry_run: ${{ github.event_name == 'pull_request' }}
-      - uses: actions-ecosystem/action-create-comment@v1
-        if: ${{ github.event_name == 'pull_request' }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          body: |
-            Changes result:
-            ```
-            ${{ steps.publish_devto.outputs.result_summary }}
-            ```
+    - uses: actions/checkout@v2
+    - name: "Publish articles on dev.to"
+      uses: sinedied/publish-devto@v2
+      id: publish_devto
+      with:
+        devto_key: ${{ secrets.DEVTO_ACCESS_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        files: "articles/en/*.md"
+        branch: main
+        conventional_commits: true
+        dry_run: ${{ github.event_name == 'pull_request' }}
+    - uses: actions-ecosystem/action-create-comment@v1
+      if: ${{ github.event_name == 'pull_request' }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        body: |
+          Changes result:
+          ```
+          ${{ steps.publish_devto.outputs.result_summary }}
+          ```
