@@ -24,9 +24,9 @@ jobs:
           files: "articles/en/*.md"
           branch: main
           conventional_commits: true
-          dry_run: ${{ github.event_name == "pull_request" }}
+          dry_run: ${{ github.event_name == 'pull_request' }}
       - uses: actions-ecosystem/action-create-comment@v1
-        if: ${{ github.event_name == "pull_request" }}
+        if: ${{ github.event_name == 'pull_request' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           body: |
