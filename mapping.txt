@@ -162,3 +162,4 @@ articles/file-encryption.md, 4b5d902332e1f557804a
 articles/openresty-lua-nginx-module.md, 05af2d50fd64bbdfa7de
 articles/disable-pulseaudio-autospawn.md, bb750534902c0889d409
 articles/git-loose-object-is-corrupt.md, c43c3eff10680bfb37e1
+articles/ubuntu-wi-fi-router.md, faef1152116da7597eb7
