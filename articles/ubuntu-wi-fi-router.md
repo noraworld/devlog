@@ -3,7 +3,7 @@ title: "Raspberry Pi で作る Wi-Fi ルータ"
 emoji: "🚏"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["linux", "ubuntu", "raspberrypi", "wifi", "network"]
-published: false
+published: true
 ---
 
 # はじめに
