@@ -660,7 +660,9 @@ Changing XX:XX:XX:XX:XX:XX trust succeeded
 
 信頼することによって、再起動した場合でもペアリング情報を保持することができる。
 
-https://mumeiyamibito.0am.jp/bluetoothctl
+~~[bluetoothctl [無銘闇人の備忘録]](https://mumeiyamibito.0am.jp/bluetoothctl)~~ ([アーカイブ版](https://web.archive.org/web/20230605024341/https://mumeiyamibito.0am.jp/bluetoothctl#:~:text=PC%20%E3%82%92%E5%86%8D%E8%B5%B7%E5%8B%95%E3%81%97%E3%81%9F%E5%A0%B4%E5%90%88%E3%81%A7%E3%82%82%E3%80%81%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%9F%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9%E3%81%A8%E3%81%AE%E3%83%9A%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E3%82%92%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B%E3%80%82))
+
+また、デバイスを信頼するとクライアント側から接続を確立することができる。デバイスを信頼していない場合、Linux マシン側 (ホスト) から `bluetoothctl` コマンドを実行しないと特定のデバイスに接続することができない (クライアントからホストに接続しようとしても失敗する) が、一度信頼しておくと次回以降はクライアントからも接続ができるようになる。ただし、Bluetooth のデーモン (や OS 自体) を再起動した場合、初回はホストから接続する必要がある。
 
 `info` を実行すると信頼状況が変更されたことがわかる。
 
