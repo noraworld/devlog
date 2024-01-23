@@ -232,24 +232,62 @@ sudo rfkill unblock wlan
 次に `/etc/hostapd/hostapd.conf` というファイルを開き Wi-Fi アクセスポイントの設定を入力します。
 
 ```conf:/etc/hostapd/hostapd.conf
-interface=wlan0
 driver=nl80211
-ssid=Raspberry Pi
-hw_mode=g
-channel=7
-wmm_enabled=0
-macaddr_acl=0
+ctrl_interface=/var/run/hostapd
+ctrl_interface_group=0
 auth_algs=1
-ignore_broadcast_ssid=0
-wpa=2
-wpa_passphrase=<YOUR_PASSWORD>
 wpa_key_mgmt=WPA-PSK
-wpa_pairwise=TKIP
-rsn_pairwise=CCMP
+beacon_int=100
+ssid=Raspberry Pi
+channel=36
+hw_mode=a
+ieee80211n=1
+require_ht=1
+ht_capab=[MAX-AMSDU-3839][HT40+][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40]
 ieee80211ac=1
+require_vht=1
+ieee80211d=0
+ieee80211h=0
+vht_capab=[MAX-AMSDU-3839][SHORT-GI-80]
+vht_oper_chwidth=1
+vht_oper_centr_freq_seg0_idx=42
+wpa_passphrase=<YOUR_PASSWORD>
+interface=wlan0
+wpa=2
+wpa_pairwise=CCMP
+country_code=JP
+ignore_broadcast_ssid=0
 ```
 
 `<YOUR_PASSWORD>` に任意の Wi-Fi パスワードを設定してください。
+
+## Raspberry Pi 4 以前のモデルを使用している場合
+[Raspberry Pi 3 Model B](https://us.rs-online.com/m/d/4252b1ecd92888dbb9d8a39b536e7bf2.pdf) またはそれより古いモデルの Raspberry Pi の Wi-Fi は IEEE 802.11ac に対応していません。
+
+そのため、上記の代わりに以下の設定を入力してください。
+
+```conf:/etc/hostapd/hostapd.conf
+driver=nl80211
+ctrl_interface=/var/run/hostapd
+ctrl_interface_group=0
+auth_algs=1
+wpa_key_mgmt=WPA-PSK
+beacon_int=100
+ssid=Raspberry Pi
+channel=1
+hw_mode=g
+ieee80211n=0
+wpa_passphrase=<YOUR_PASSWORD>
+interface=wlan0
+wpa=2
+wpa_pairwise=CCMP
+country_code=JP
+ignore_broadcast_ssid=0
+```
+
+`<YOUR_PASSWORD>` は任意の Wi-Fi パスワードを置き換えます。
+
+---
 
 設定できたらデーモンを有効にします。
 
@@ -326,15 +364,28 @@ sudo sh -c 'echo 127.0.1.1 $(hostname) >> /etc/hosts'
 
 
 # 通信速度に関する補足
-Raspberry Pi の性能の問題なのか、搭載されているドライバーの問題なのか、あるいは `hostapd` の設定の問題なのか分かりませんが、正直言って通信速度はあまり良くないです。
+Raspberry Pi はあくまでシングルボードコンピュータのため、市販の Wi-Fi ルータと比べるとアクセスポイントとしての通信速度は劣りますが、普段使いなら十分な速度で通信を行うことができます。
 
-| 市販の Wi-Fi ルータ | Raspberry Pi |
-| :---: | :---: |
-| ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/ubuntu-wi-fi-router/Screenshot%202024-01-13%20at%203.00.50.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/ubuntu-wi-fi-router/Screenshot%202024-01-13%20at%202.12.12.png) |
+参考までに、以下に Raspberry Pi (IEEE 802.11g & IEEE 802.11ac) と市販の Wi-Fi ルータでそれぞれ通信速度を計測した結果を掲載します。
 
-通信環境や使用する機器によって異なりますが、筆者の環境では市販のルータと比べると約 10 分の 1 のスピードしか出ていないことが分かりました。
+| IEEE 802.11g | IEEE 802.11ac | 市販の Wi-Fi ルータ |
+| :---: | :---: | :---: |
+| ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/ubuntu-wi-fi-router/Screenshot%202024-01-13%20at%202.12.12.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/ubuntu-wi-fi-router/Screenshot%202024-01-23%20at%2014.40.56.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/ubuntu-wi-fi-router/Screenshot%202024-01-13%20at%203.00.50.png) |
 
-ハードウェア的な問題なら諦めるしかないですが、設定の見直しで改善することが判明したときは改めて記事を更新しようと思います。
+IEEE 802.11g だと数値的には低くなってしまいますが、YouTube の 1080p でも映像が止まることなく視聴することができました。
+
+ちなみに、IEEE 802.11ac よりさらに速い IEEE 802.11ax という規格がありますが、[Raspberry Pi 4 Model B](https://datasheets.raspberrypi.com/rpi4/raspberry-pi-4-product-brief.pdf) は非対応です。
+
+| Wi-Fi 規格名 | 最大通信速度 | 周波数 | 新呼称 |
+| :--- | ---: | ---: | :---: |
+| IEEE 802.11a | 54 Mbps | 5 GHz 帯 | |
+| IEEE 802.11b | 11 Mbps | 2.4 GHz 帯 | |
+| IEEE 802.11g | 54 Mbps | 2.4 GHz 帯 | |
+| IEEE 802.11n | 600 Mbps | 2.4 GHz 帯<br>5 GHz 帯 | Wi-Fi 4 |
+| IEEE 802.11ac | 6.9 Gbps | 5 GHz 帯 | Wi-Fi 5 |
+| IEEE 802.11ax | 9.6 Gbps | 2.4 GHz 帯<br>5 GHz 帯 | Wi-Fi 6 |
+
+_参考元: [【Wi-Fiルーター】2.4GHzと5GHzの違いについて](https://qa.elecom.co.jp/faq_detail.html?id=5953)_
 
 
 
