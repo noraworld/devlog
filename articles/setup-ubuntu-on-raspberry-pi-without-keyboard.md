@@ -21,11 +21,11 @@ layout: article
 ```yaml:/Volumes/system-boot/network-config
 wifis:
   wlan0:
-  dhcp4: true
-  optional: true
-  access-points:
-    <wifi network name>:
-      password: "<wifi password>"
+    dhcp4: true
+    optional: true
+    access-points:
+      "<wifi network name>":
+        password: "<wifi password>"
 ```
 
 ## 5. Raspberry Pi の IP アドレスを調べる
@@ -83,11 +83,11 @@ OS を焼いたあとは SD カードのディスクがアンマウントされ�
 ```yaml:/Volumes/system-boot/network-config
 wifis:
   wlan0:
-  dhcp4: true
-  optional: true
-  access-points:
-    <wifi network name>:
-      password: "<wifi password>"
+    dhcp4: true
+    optional: true
+    access-points:
+      "<wifi network name>":
+        password: "<wifi password>"
 ```
 
 `<wifi network name>` には使用している Wi-Fi の SSID、`<wifi password>` には Wi-Fi のパスワードを設定します。
