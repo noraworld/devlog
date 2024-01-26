@@ -366,13 +366,13 @@ sudo sh -c 'echo 127.0.1.1 $(hostname) >> /etc/hosts'
 # 通信速度に関する補足
 Raspberry Pi はあくまでシングルボードコンピュータのため、市販の Wi-Fi ルータと比べるとアクセスポイントとしての通信速度は劣りますが、普段使いなら十分な速度で通信を行うことができます。
 
-参考までに、以下に Raspberry Pi (IEEE 802.11g & IEEE 802.11ac) と市販の Wi-Fi ルータでそれぞれ通信速度を計測した結果を掲載します。
+参考までに、以下に Raspberry Pi 4 Model B (IEEE 802.11g & IEEE 802.11ac) と市販の Wi-Fi ルータでそれぞれ通信速度を計測した結果を掲載します。
 
-| IEEE 802.11g | IEEE 802.11ac | 市販の Wi-Fi ルータ |
+| Raspberry Pi 4 Model B<br>(IEEE 802.11g) | Raspberry Pi 4 Model B<br>(IEEE 802.11ac) | [市販の Wi-Fi ルータ](https://www.elecom.co.jp/products/WRC-2533GST2.html)<br>(IEEE 802.11ac) |
 | :---: | :---: | :---: |
 | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/ubuntu-wi-fi-router/Screenshot%202024-01-13%20at%202.12.12.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/ubuntu-wi-fi-router/Screenshot%202024-01-23%20at%2014.40.56.png) | ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/ubuntu-wi-fi-router/Screenshot%202024-01-13%20at%203.00.50.png) |
 
-IEEE 802.11g だと数値的には低くなってしまいますが、YouTube の 1080p でも映像が止まることなく視聴することができました。
+IEEE 802.11g だと数値的には低くなってしまいますが、YouTube の 1080p でも映像が止まることなく視聴することができました。繰り返しになりますが、Raspberry Pi 4 Model B 以前の Raspberry Pi は IEEE 802.11ac に対応してないため、IEEE 802.11g 等を使用する必要があります。
 
 ちなみに、IEEE 802.11ac よりさらに速い IEEE 802.11ax という規格がありますが、[Raspberry Pi 4 Model B](https://datasheets.raspberrypi.com/rpi4/raspberry-pi-4-product-brief.pdf) は非対応です。
 
