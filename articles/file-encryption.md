@@ -1,5 +1,5 @@
 ---
-title: "コマンドラインでファイルを暗号化する方法"
+title: "OpenSSL を使ってコマンドラインでファイルを暗号化する方法"
 emoji: "🔐"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["openssl", "smime"]
