@@ -374,7 +374,7 @@ Raspberry Pi はあくまでシングルボードコンピュータのため、�
 
 IEEE 802.11g だと数値的には低くなってしまいますが、YouTube の 1080p でも映像が止まることなく視聴することができました。繰り返しになりますが、Raspberry Pi 4 Model B 以前の Raspberry Pi は IEEE 802.11ac に対応してないため、IEEE 802.11g 等を使用する必要があります。
 
-ちなみに、IEEE 802.11ac よりさらに速い IEEE 802.11ax という規格がありますが、[Raspberry Pi 4 Model B](https://datasheets.raspberrypi.com/rpi4/raspberry-pi-4-product-brief.pdf) は非対応です。
+ちなみに、IEEE 802.11ac よりさらに速い IEEE 802.11ax という規格がありますが、[Raspberry Pi 4 Model B](https://datasheets.raspberrypi.com/rpi4/raspberry-pi-4-product-brief.pdf) および [Raspberry Pi 5](https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf) は非対応です。
 
 | Wi-Fi 規格名 | 最大通信速度 | 周波数 | 新呼称 |
 | :--- | ---: | ---: | :---: |
