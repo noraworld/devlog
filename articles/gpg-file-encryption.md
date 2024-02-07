@@ -6,6 +6,8 @@ topics: ["gpg", "encryption", "cipher", "cryptography"]
 published: true
 ---
 
+OpenSSL 版は [こちら](https://zenn.dev/noraworld/articles/file-encryption)
+
 # 忙しい人向け
 ```shell
 # フォルダを圧縮
