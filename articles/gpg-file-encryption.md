@@ -18,7 +18,7 @@ gpg --encrypt --recipient you@example.com foo.zip          # バイナリデー�
 gpg --encrypt --recipient you@example.com --armor foo.zip  # アスキーデータ
 
 # 復号
-gpg --decrypt foo.zip.gpg
+gpg foo.zip.gpg
 ```
 
 
@@ -86,7 +86,7 @@ gpg --encrypt --recipient you@example.com --armor foo.zip
 暗号化したファイルを復号するには以下のコマンドを実行します。
 
 ```shell
-gpg --decrypt foo.zip.gpg
+gpg foo.zip.gpg
 ```
 
 元のファイル `foo.zip` が生成されるはずです。
