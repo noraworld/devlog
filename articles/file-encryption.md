@@ -6,6 +6,8 @@ topics: ["openssl", "smime"]
 published: true
 ---
 
+GPG 版は [こちら](https://zenn.dev/noraworld/articles/gpg-file-encryption)
+
 # TL;DR
 
 ```shell:Shell
