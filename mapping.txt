@@ -164,3 +164,4 @@ articles/disable-pulseaudio-autospawn.md, bb750534902c0889d409
 articles/git-loose-object-is-corrupt.md, c43c3eff10680bfb37e1
 articles/ubuntu-wi-fi-router.md, faef1152116da7597eb7
 articles/git-move-to-another-repository-with-history.md, 458ce4a17b2627137bd7
+articles/gpg-file-encryption.md, 3af2b3f8e04954fbd964
