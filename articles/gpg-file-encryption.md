@@ -13,7 +13,7 @@ zip -r foo.zip foo
 
 # 暗号化
 gpg -e -o /tmp/encrypted.zip.gpg -r you@example.com foo.zip     # バイナリデータ
-gpg -a -e -o /tmp/encrypted.zip.gpg -r you@example.com foo.zip  # アスキーデータ
+gpg -a -e -o /tmp/encrypted.zip.asc -r you@example.com foo.zip  # アスキーデータ
 
 # 復号
 gpg -d -o /tmp/decrypted.zip encrypted.zip.gpg
