@@ -37,7 +37,7 @@ gpg -d -o /tmp/decrypted.zip encrypted.zip.gpg
 # はじめに
 前回は OpenSSL を使ってファイルを暗号化する方法について紹介しました。
 
-[コマンドラインでファイルを暗号化する方法 (OpenSSL 編)](https://zenn.dev/noraworld/articles/file-encryption)
+[OpenSSL でファイルを暗号化する方法](https://zenn.dev/noraworld/articles/file-encryption)
 
 しかし `openssl` コマンドによる暗号化だとオプションが複雑だったり、ファイルサイズが大きい場合に正しく暗号化できなかったりするデメリットがあります。
 
