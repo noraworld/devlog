@@ -15,7 +15,7 @@ zip -r foo.zip foo
 gpg -e -o /tmp/encrypted.zip.gpg -r you@example.com foo.zip
 
 # 復号
-gpg -d -o /tmp/decrypted.zip encrypted.zip.gpg
+gpg -d -o /tmp/decrypted.zip /tmp/encrypted.zip.gpg
 ```
 
 | ロングオプション | ショートオプション | 説明 |
