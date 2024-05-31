@@ -1,12 +1,17 @@
 ---
-title: "コマンドラインでファイルを暗号化する方法 (OpenSSL 編)"
+title: "OpenSSL でファイルを暗号化する方法"
 emoji: "🔐"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["openssl", "smime"]
 published: true
 ---
 
-GPG 版は [こちら](https://zenn.dev/noraworld/articles/gpg-file-encryption)
+# GPG のすゝめ
+OpenSSL による暗号化だとオプションが複雑だったり、ファイルサイズが大きい場合に正しく暗号化できなかったりするデメリットがあります。そのため GPG による暗号化をおすすめします。
+
+GPG に関しては「[GPG でファイルやフォルダを暗号化する方法](https://zenn.dev/noraworld/articles/gpg-file-encryption)」をご覧ください。
+
+
 
 # TL;DR
 
