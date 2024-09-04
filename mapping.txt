@@ -167,3 +167,4 @@ articles/git-move-to-another-repository-with-history.md, 458ce4a17b2627137bd7
 articles/gpg-file-encryption.md, 3af2b3f8e04954fbd964
 articles/iterm2-scrollback-history.md, 9f72ca7c6874c61508db
 articles/chrome-devtools-breakpoints.md, d9403dde7499816f5783
+articles/legacy-mysql-mac.md, 001686b6e162e244ff50
