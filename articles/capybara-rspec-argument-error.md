@@ -71,7 +71,7 @@ feature specs や system specs に置き換えるとなると、テストケー�
 そのような場合は RSpec のマッチャーの代わりに Capybara のマッチャーを使うことで ArgumentError を回避できます。
 
 ```ruby:foo_spec.rb
-RSpec.describe '/foo', type: :system do
+RSpec.describe '/foo', type: :request do
   context 'foo' do
     let(:html) { Capybara.string response.body }
 
