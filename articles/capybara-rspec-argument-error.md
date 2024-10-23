@@ -76,7 +76,7 @@ RSpec.describe '/foo', type: :request do
     let(:html) { Capybara.string response.body }
 
     it "displays the flash message" do
-      expect(html.has_css?('.success', text: 'Field was created successfully')).to eq true
+      expect(html.has_css?('.success', text: 'Field was created successfully')).to be_truthy
     end
   end
 end
@@ -86,7 +86,7 @@ end
 
 ```diff
 -      expect(html).to have_css '.success', text: 'Field was created successfully'
-+      expect(html.has_css?('.success', text: 'Field was created successfully')).to eq true
++      expect(html.has_css?('.success', text: 'Field was created successfully')).to be_truthy
 ```
 
 RSpec のマッチャーに関しては詳しく調べていないのですが、どうやらそちら側に問題があるようなので、それを回避するために Capybara 側のマッチャーを使います。上記の例でいうと `have_css` ではなく `has_css?` を使い、`html` ではなく `html.has_css?('.success', text: 'Field was created successfully')` が `true` を返すかどうかを判定します。
