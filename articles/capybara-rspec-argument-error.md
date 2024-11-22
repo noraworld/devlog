@@ -3,7 +3,7 @@ title: "Ruby 3.3 の RSpec 内の Capybara で ArgumentError が発生する問�
 emoji: "🦫"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["ruby", "rails", "rspec", "capybara"]
-published: true
+published: false
 ---
 
 # 環境
