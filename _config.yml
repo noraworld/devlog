@@ -10,8 +10,8 @@ username: noraworld
 profile: >-
   Ruby / Rails / Shell Script / macOS / Ubuntu / Raspberry Pi / Network / Security
 profile_icon: "assets/img/profile.png"
-twitter_username: _noraworld
 github_username: noraworld
+twitter_username: _noraworld
 
 # サイトの設定
 theme: minima
