@@ -1,4 +1,4 @@
-# General settings
+# 一般情報
 title: Noraworld Developers Blog
 description: >-
   日々の開発や趣味プログラミングで得た技術的な知見を共有するブログです
@@ -7,7 +7,7 @@ baseurl: "/devlog/"
 google_analytics: "G-7VS1W4MH23"
 google_adsense: "ca-pub-6761843998035165"
 
-# Personal info
+# プロフィール情報
 username: noraworld
 profile: >-
   Ruby / Rails / Shell Script / macOS / Ubuntu / Raspberry Pi / Network / Security
@@ -15,7 +15,7 @@ profile_icon: "assets/img/profile.png"
 twitter_username: _noraworld
 github_username: noraworld
 
-# Site settings
+# サイトの設定
 theme: minima
 markdown: kramdown
 kramdown:
@@ -25,8 +25,8 @@ plugins:
   - jekyll-feed
   - jemoji
 
-# Excluded file list
-## 上の 10 個はデフォルトで除外されるらしいが、一応、除外リストとして明記しておく
+# 除外ファイルリスト
+## 上の 10 個はデフォルトで除外されるらしいが念のため
 exclude:
   - .sass-cache/
   - .jekyll-cache/
@@ -50,7 +50,7 @@ exclude:
   - articles/
   - bin/
 
-# Articles info published on GitHub Pages
+# GitHub Pages で公開するための設定
 collections:
   articles:
     output: true
