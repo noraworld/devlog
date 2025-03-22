@@ -52,8 +52,7 @@ exclude:
   - articles/
   - bin/
 
-
-# Articles info published at GitHub Pages
+# Articles info published on GitHub Pages
 collections:
   articles:
     output: true
