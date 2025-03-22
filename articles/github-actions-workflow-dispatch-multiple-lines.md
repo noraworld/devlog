@@ -29,7 +29,7 @@ on:
 
 ![](https://noraworld.github.io/box-bulbasaur/2025/03/d9e318711f79ffdf3fed5e489cd5bd15.png)
 
-上記の例の場合、呼び出されるジョブの中で `${{ github.event.inputs.remarks }}` という変数で参照できるようになります。`remarks` は任意の変数名です。
+上記の例の場合、「備考」欄に任意のテキストを入力すると、呼び出されるジョブの中で `${{ github.event.inputs.remarks }}` という変数でテキストの内容を参照できるようになります。`remarks` は任意の変数名です。
 
 # 問題点
 `type` を `string` にすることでテキストフィールドを用意することができるのですが、残念ながら複数行入力ができません。また、複数行入力をするための `type` は現時点では用意されていません。
@@ -66,7 +66,7 @@ on:
 
 そこにある `input` というテキストをダブルクリックして編集可能な状態にします。
 
-![](ttps://noraworld.github.io/box-bulbasaur/2025/03/8f84632e400f2e835c32f644d4ac4e26.png)
+![](https://noraworld.github.io/box-bulbasaur/2025/03/8f84632e400f2e835c32f644d4ac4e26.png)
 
 要素を `input` から `textarea` に変更します。
 
