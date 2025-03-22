@@ -7,7 +7,6 @@ baseurl: "/developers-blog-content-ja"
 google_analytics: "G-7VS1W4MH23"
 google_adsense: "ca-pub-6761843998035165"
 
-
 # Personal info
 username: noraworld
 profile: >-
@@ -25,7 +24,6 @@ kramdown:
 plugins:
   - jekyll-feed
   - jemoji
-
 
 # Excluded file list
 ## 上の 10 個はデフォルトで除外されるらしいが、一応、除外リストとして明記しておく
