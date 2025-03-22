@@ -54,4 +54,4 @@ exclude:
 collections:
   articles:
     output: true
-    permalink: /:path
+    permalink: /ja/:path
