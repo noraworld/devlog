@@ -4,8 +4,6 @@ description: >-
   日々の開発や趣味プログラミングで得た技術的な知見を共有するブログです
 url: "https://noraworld.github.io"
 baseurl: "/devlog/"
-google_analytics: "G-7VS1W4MH23"
-google_adsense: "ca-pub-6761843998035165"
 
 # プロフィール情報
 username: noraworld
@@ -24,6 +22,8 @@ kramdown:
 plugins:
   - jekyll-feed
   - jemoji
+google_analytics: "G-7VS1W4MH23"
+google_adsense: "ca-pub-6761843998035165"
 
 # 除外ファイルリスト
 ## 上の 10 個はデフォルトで除外されるらしいが念のため
