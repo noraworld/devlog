@@ -4,6 +4,8 @@ emoji: "♻️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nginx", "openresty", "lua", "lua-module", "ngx_http_lua_module"]
 published: true
+order: 161
+layout: article
 ---
 
 # はじめに

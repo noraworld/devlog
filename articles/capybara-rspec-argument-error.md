@@ -4,6 +4,8 @@ emoji: "🦫"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["ruby", "rails", "rspec", "capybara"]
 published: true
+order: 171
+layout: article
 ---
 
 # 環境

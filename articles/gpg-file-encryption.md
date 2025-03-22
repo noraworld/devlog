@@ -4,6 +4,8 @@ emoji: "🔑"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["gpg", "encryption", "cipher", "cryptography"]
 published: true
+order: 166
+layout: article
 ---
 
 # クイックリファレンス

@@ -4,6 +4,8 @@ emoji: "🔇"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["pulseaudio", "systemctl"]
 published: true
+order: 162
+layout: article
 ---
 
 # 忙しい人向け

@@ -4,6 +4,8 @@ emoji: "🚏"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["linux", "ubuntu", "raspberrypi", "wifi", "network"]
 published: true
+order: 164
+layout: article
 ---
 
 # はじめに

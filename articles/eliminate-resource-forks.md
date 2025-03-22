@@ -4,6 +4,8 @@ emoji: "🪓"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mac", "macos", "osx"]
 published: true
+order: 159
+layout: article
 ---
 
 # リソースフォークとは？

@@ -4,6 +4,8 @@ emoji: "📜"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["iterm", "iterm2"]
 published: true
+order: 167
+layout: article
 ---
 
 ![](https://raw.githubusercontent.com/noraworld/developers-blog-media-ja/master/iterm2-scrollback-history/231628444-af06c8e1-8780-48b4-844a-7c1358424fa6.png)

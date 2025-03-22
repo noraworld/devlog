@@ -4,6 +4,8 @@ emoji: "🐙"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["git"]
 published: true
+order: 165
+layout: article
 ---
 
 # 読むのがめんどくさい人向け

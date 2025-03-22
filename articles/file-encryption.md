@@ -4,6 +4,8 @@ emoji: "🔐"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["openssl", "smime"]
 published: true
+order: 160
+layout: article
 ---
 
 # GPG のすゝめ

@@ -4,6 +4,8 @@ emoji: "🗑️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["mysql", "sql", "macos", "mac", "homebrew"]
 published: true
+order: 169
+layout: article
 ---
 
 # はじめに

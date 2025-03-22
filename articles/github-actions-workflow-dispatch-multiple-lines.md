@@ -4,6 +4,8 @@ emoji: "🚀"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["GitHubActions", "GitHub"]
 published: true
+order: 172
+layout: article
 ---
 
 # できるようになること

@@ -4,6 +4,8 @@ emoji: "📚"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["rails", "activerecord", "database"]
 published: true
+order: 170
+layout: article
 ---
 
 # はじめに

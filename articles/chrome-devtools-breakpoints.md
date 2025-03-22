@@ -4,6 +4,8 @@ emoji: "📚"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["chrome", "devtools", "breakpoints"]
 published: true
+order: 168
+layout: article
 ---
 
 # はじめに
