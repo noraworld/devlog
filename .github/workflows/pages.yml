@@ -1,0 +1,11 @@
+name: Build and Deploy Jekyll with GitHub Actions
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    uses: noraworld/jekyll-build-pages/.github/workflows/jekyll-gh-pages.yml@main
