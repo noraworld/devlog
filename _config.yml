@@ -65,6 +65,7 @@ exclude:
   - CNAME
   - articles/
   - bin/
+  - jekyll-build-pages
 
 # GitHub Pages で公開するための設定
 collections:
