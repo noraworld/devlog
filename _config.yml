@@ -55,3 +55,10 @@ collections:
   articles:
     output: true
     permalink: /ja/:path
+
+# 記事内では "{{ foo }}" を Liquid のシンタックスとして解釈しないようにする (Jekyll 4.0 以降で利用可能)
+defaults:
+  - scope:
+      type: articles
+    values:
+      render_with_liquid: false
