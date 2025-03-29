@@ -1,4 +1,4 @@
-name: Build and Deploy Jekyll with GitHub Actions
+name: Build and Deploy Jekyll
 
 on:
   push:
