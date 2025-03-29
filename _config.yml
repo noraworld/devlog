@@ -14,14 +14,30 @@ github_username: noraworld
 twitter_username: _noraworld
 
 # サイトの設定
+## kramdown はいろいろと問題がある
+##
+##   * リンク内の縦線がテーブルとして解釈される
+##   * ヘッドラインとテーブルの間に空行を入れないとテーブルがパースされない
+##   * <details> 内でマークダウンが使えない
+##   * 裸の URL がリンクにならない
+##
+## CommonMarkGhPages はバグっていて使えない
+##
+##   markdown: CommonMarkGhPages
+##   plugins:
+##     - jekyll-commonmark-ghpages
+##
+## CommonMark だけでもチェックリスト ("* [x] foo") が使えない程度なので問題なし
+##
 theme: minima
-markdown: kramdown
-kramdown:
-  syntax_highlighter_opts:
-    disable: true
+markdown: CommonMark
+commonmark:
+  options: ["UNSAFE", "SMART", "FOOTNOTES"]
+  extensions: ["strikethrough", "autolink", "table", "tagfilter"]
 plugins:
   - jekyll-feed
   - jemoji
+  - jekyll-commonmark
 google_analytics: "G-7VS1W4MH23"
 google_adsense: "ca-pub-6761843998035165"
 
