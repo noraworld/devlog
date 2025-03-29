@@ -2,35 +2,35 @@
 #   https://github.com/sinedied/devto-github-template/blob/97faa6bb3bb95648725000f06e880b805fcd9d1f/.github/workflows/publish.yml
 #   https://github.com/sinedied/publish-devto/tree/98bd0175f3eee39b6f83aa12deccfaba2dc9498f#usage
 
-name: "GitHub to dev.to"
+# name: "GitHub to dev.to"
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
 
-jobs:
-  devto:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: "Publish articles on dev.to"
-      uses: sinedied/publish-devto@v2
-      id: publish_devto
-      with:
-        devto_key: ${{ secrets.DEVTO_ACCESS_TOKEN }}
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        files: "articles/en/*.md"
-        branch: main
-        conventional_commits: true
-        dry_run: ${{ github.event_name == 'pull_request' }}
-    - uses: actions-ecosystem/action-create-comment@v1
-      if: ${{ github.event_name == 'pull_request' }}
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        body: |
-          Changes result:
-          ```
-          ${{ steps.publish_devto.outputs.result_summary }}
-          ```
+# jobs:
+#   devto:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: "Publish articles on dev.to"
+#       uses: sinedied/publish-devto@v2
+#       id: publish_devto
+#       with:
+#         devto_key: ${{ secrets.DEVTO_ACCESS_TOKEN }}
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+#         files: "articles/en/*.md"
+#         branch: main
+#         conventional_commits: true
+#         dry_run: ${{ github.event_name == 'pull_request' }}
+#     - uses: actions-ecosystem/action-create-comment@v1
+#       if: ${{ github.event_name == 'pull_request' }}
+#       with:
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+#         body: |
+#           Changes result:
+#           ```
+#           ${{ steps.publish_devto.outputs.result_summary }}
+#           ```
