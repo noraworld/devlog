@@ -171,3 +171,4 @@ articles/legacy-mysql-mac.md, 001686b6e162e244ff50
 articles/join-tables-joins.md, 2dbb796ed8a7023b69be
 articles/capybara-rspec-argument-error.md, d2e434c55aeefd239f02
 articles/github-actions-workflow-dispatch-multiple-lines.md, c4e048d3045b9909fb0e
+articles/deploy-jekyll-with-github-actions.md, 97cd15152a3fbd64ef38
