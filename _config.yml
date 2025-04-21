@@ -33,7 +33,7 @@ theme: minima
 markdown: CommonMark
 commonmark:
   options: ["UNSAFE", "SMART", "FOOTNOTES"]
-  extensions: ["strikethrough", "autolink", "table", "tagfilter"]
+  extensions: ["strikethrough", "autolink", "table", "tasklist"]
 plugins:
   - jekyll-feed
   - jemoji
