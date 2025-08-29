@@ -174,3 +174,4 @@ articles/github-actions-workflow-dispatch-multiple-lines.md, c4e048d3045b9909fb0
 articles/deploy-jekyll-with-github-actions.md, 97cd15152a3fbd64ef38
 articles/jekyll-tagfilter-trap.md, 8cd22ff276addb5ec9dc
 articles/javascript-semicolon.md, 7299350062664e50a973
+articles/markdown-list-asterisk.md, f48f1cabe0cec98390d2
