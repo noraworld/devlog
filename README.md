@@ -1,7 +1,7 @@
 # 技術記事置き場 (日本語)
 日本語の技術記事のマスタデータを管理するためのリポジトリである。
 
-[このリポジトリの GitHub Webhook のステータス](https://github.com/noraworld/developers-blog-content-ja/settings/hooks/285310144)
+<!-- [このリポジトリの GitHub Webhook のステータス](https://github.com/noraworld/developers-blog-content-ja/settings/hooks/285310144) -->
 
 ## Git リポジトリで管理する理由
 Qiita のような技術記事を投稿するプラットフォームはいろいろあるし、なんなら技術記事専用のプラットフォームでなくとも、はてなブログのようなブログプラットフォームに投稿することもできる。
