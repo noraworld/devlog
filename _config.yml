@@ -3,7 +3,7 @@ title: Noraworld Developers Blog
 description: >-
   日々の開発や趣味プログラミングで得た技術的な知見を共有するブログです
 url: "https://noraworld.github.io"
-baseurl: "/devlog/"
+baseurl: "/devlog"
 
 # プロフィール情報
 username: noraworld
